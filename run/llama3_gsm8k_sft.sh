@@ -11,25 +11,21 @@ export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
 export dataset="gsm8k"
-export per_device_train_batch_size=1
-export per_device_eval_batch_size=1
+export per_device_train_batch_size=4
+export per_device_eval_batch_size=4
+export gradient_accumulation_steps=4
 export learning_rate=1e-6
 export cutoff_len=2048
 export experiment_name=${prefix}_${dataset}_tbs${per_device_train_batch_size}_ebs${per_device_eval_batch_size}_lr${learning_rate}_cl${cutoff_len}
 export output_dir=${output_dir}/${experiment_name}
-mkdir -p $output_dir
-
-echo "output_dir: $output_dir"
 export WANDB_PROJECT=${current_project}
+
+mkdir -p $output_dir
+echo "output_dir: $output_dir"
 mkdir -p logs
 
 envsubst < examples/train_full/llama3_full_sft.yaml > logs/${experiment_name}.yaml
 
-FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train logs/${experiment_name}.yaml > logs/${experiment_name}.log 2>&1
-#  --dataset=${dataset} \
-#  --per_device_train_batch_size=${per_device_train_batch_size} \
-#  --per_device_eval_batch_size=${per_device_eval_batch_size} \
-#  --learning_rate=${learning_rate} \
-#  --cutoff_len=${cutoff_len} \
-#  --output_dir=${output_dir} \
+FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train logs/${experiment_name}.yaml \
+#  > logs/${experiment_name}.log 2>&1
  
