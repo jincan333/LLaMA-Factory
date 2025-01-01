@@ -10,7 +10,7 @@ export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
-export dataset="gsm8k_real_dpo"
+export dataset="gsm8k_rectify_dpo"
 export per_device_train_batch_size=16
 export per_device_eval_batch_size=16
 export gradient_accumulation_steps=1
@@ -24,7 +24,7 @@ mkdir -p $output_dir
 echo "output_dir: $output_dir"
 mkdir -p logs
 
-envsubst < examples/train_full/llama3_full_sft.yaml > logs/${experiment_name}.yaml
+envsubst < examples/train_full/llama3_full_dpo.yaml > logs/${experiment_name}.yaml
 
 FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train logs/${experiment_name}.yaml \
 #  > logs/${experiment_name}.log 2>&1

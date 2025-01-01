@@ -18,6 +18,7 @@
   "gsm8k_real_dpo":{
     "file_name": "gsm8k/dpo.json",
     "formatting": "sharegpt",
+    "ranking": true,
     "columns": {
       "messages": "messages",
       "chosen": "real",
@@ -31,11 +32,10 @@
     }
   },
   "gsm8k_rectify_sft":{
-    "file_name": "gsm8k/dpo.json",
+    "file_name": "gsm8k/sft.json",
     "formatting": "sharegpt",
     "columns": {
-      "messages": "messages",
-      "response": "rectify"
+      "messages": "rectify"
     },
     "tags": {
       "role_tag": "role",
@@ -45,11 +45,10 @@
     }
   },
   "gsm8k_real_sft":{
-    "file_name": "gsm8k/dpo.json",
+    "file_name": "gsm8k/sft.json",
     "formatting": "sharegpt",
     "columns": {
-      "messages": "messages",
-      "response": "real"
+      "messages": "real"
     },
     "tags": {
       "role_tag": "role",
