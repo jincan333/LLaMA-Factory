@@ -1,9 +1,10 @@
 {
-  "mcts_remove_redundant_rectify_dpo":{
-    "file_name": "gsm8k/mcts_remove_redundant.json",
+  "gsm8k_rectify_dpo":{
+    "file_name": "gsm8k/dpo.json",
     "formatting": "sharegpt",
     "ranking": true,
     "columns": {
+      "messages": "messages",
       "chosen": "rectify",
       "rejected": "generated"
     },
@@ -14,10 +15,11 @@
       "assistant_tag": "assistant"
     }
   },
-  "mcts_remove_redundant_real_dpo":{
-    "file_name": "gsm8k/mcts_remove_redundant.json",
+  "gsm8k_real_dpo":{
+    "file_name": "gsm8k/dpo.json",
     "formatting": "sharegpt",
     "columns": {
+      "messages": "messages",
       "chosen": "real",
       "rejected": "generated"
     },
@@ -28,11 +30,12 @@
       "assistant_tag": "assistant"
     }
   },
-  "mcts_remove_redundant_rectify_sft":{
-    "file_name": "gsm8k/mcts_remove_redundant.json",
+  "gsm8k_rectify_sft":{
+    "file_name": "gsm8k/dpo.json",
     "formatting": "sharegpt",
     "columns": {
-      "messages": "rectify"
+      "messages": "messages",
+      "response": "rectify"
     },
     "tags": {
       "role_tag": "role",
@@ -41,11 +44,12 @@
       "assistant_tag": "assistant"
     }
   },
-  "mcts_remove_redundant_real_sft":{
-    "file_name": "gsm8k/mcts_remove_redundant.json",
+  "gsm8k_real_sft":{
+    "file_name": "gsm8k/dpo.json",
     "formatting": "sharegpt",
     "columns": {
-      "messages": "real"
+      "messages": "messages",
+      "response": "real"
     },
     "tags": {
       "role_tag": "role",

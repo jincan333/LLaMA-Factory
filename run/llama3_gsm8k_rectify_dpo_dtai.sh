@@ -21,7 +21,7 @@ time srun --label apptainer exec --nv \
   --bind $HOME:$HOME \
   --bind $MY_PROJECT:$MY_PROJECT \
   $CONTAINER_DIR/pytorch_24.09-py3.sif bash -c \
-  "source ~/.bashrc && bash run/llama3_gsm8k_real_sft.sh" \
+  "source ~/.bashrc && bash run/llama3_gsm8k_rectify_dpo.sh" \
   > slurm/${prefix}_${date_str}_${SLURM_JOB_ID}.log 2>&1 
 
 echo "Job finished at $(date)"
@@ -32,7 +32,7 @@ echo "Job finished at $(date)"
 #   --bind $HOME:$HOME \
 #   --bind $MY_PROJECT:$MY_PROJECT \
 #   $CONTAINER_DIR/pytorch_24.09-py3.sif bash -c \
-#   "source ~/.bashrc && bash run/llama3_gsm8k_real_sft.sh"
+#   "source ~/.bashrc && bash run/llama3_gsm8k_rectify_dpo.sh"
 
  
 
