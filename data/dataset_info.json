@@ -1,4 +1,59 @@
 {
+  "mcts_remove_redundant_rectify_dpo":{
+    "file_name": "gsm8k/mcts_remove_redundant.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "columns": {
+      "chosen": "rectify",
+      "rejected": "generated"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "mcts_remove_redundant_real_dpo":{
+    "file_name": "gsm8k/mcts_remove_redundant.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "chosen": "real",
+      "rejected": "generated"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "mcts_remove_redundant_rectify_sft":{
+    "file_name": "gsm8k/mcts_remove_redundant.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "rectify"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "mcts_remove_redundant_real_sft":{
+    "file_name": "gsm8k/mcts_remove_redundant.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "real"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
   "gsm8k":{
     "hf_hub_url": "openai/gsm8k",
     "subset": "main",
