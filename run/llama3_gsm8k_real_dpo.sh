@@ -11,8 +11,8 @@ export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
 export dataset="gsm8k_real_dpo"
-export per_device_train_batch_size=16
-export per_device_eval_batch_size=16
+export per_device_train_batch_size=8
+export per_device_eval_batch_size=8
 export gradient_accumulation_steps=1
 export learning_rate=1e-6
 export cutoff_len=2048
