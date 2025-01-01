@@ -14,7 +14,7 @@ echo "Running job on $(hostname)"
 echo "Job started at $(date)"
 
 source ~/.bashrc
-prefix="llama3_gsm8k_sft"
+prefix="llama3_gsm8k_dpo"
 time srun --label apptainer exec --nv \
   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
   --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
