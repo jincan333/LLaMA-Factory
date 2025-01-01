@@ -24,7 +24,7 @@ mkdir -p $output_dir
 echo "output_dir: $output_dir"
 mkdir -p logs
 
-envsubst < examples/train_full/llama3_full_sft.yaml > logs/${experiment_name}.yaml
+envsubst < examples/train_full/llama3_full_dpo.yaml > logs/${experiment_name}.yaml
 
 FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train logs/${experiment_name}.yaml \
 #  > logs/${experiment_name}.log 2>&1
