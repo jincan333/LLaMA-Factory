@@ -10,7 +10,7 @@ export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
-export dataset="gsm8k"
+export dataset="mcts_remove_redundant_real_dpo"
 export per_device_train_batch_size=16
 export per_device_eval_batch_size=16
 export gradient_accumulation_steps=1

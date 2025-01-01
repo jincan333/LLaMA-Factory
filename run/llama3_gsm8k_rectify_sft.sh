@@ -16,9 +16,9 @@ export per_device_eval_batch_size=16
 export gradient_accumulation_steps=1
 export learning_rate=1e-6
 export cutoff_len=2048
-export experiment_name=${prefix}_${dataset}_tbs${per_device_train_batch_size}_ebs${per_device_eval_batch_size}_lr${learning_rate}_cl${cutoff_len}
 export output_dir=${output_dir}/${experiment_name}
 export WANDB_PROJECT=${current_project}
+export experiment_name=${prefix}_${dataset}_tbs${per_device_train_batch_size}_ebs${per_device_eval_batch_size}_lr${learning_rate}_cl${cutoff_len}
 
 mkdir -p $output_dir
 echo "output_dir: $output_dir"
