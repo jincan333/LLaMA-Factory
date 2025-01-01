@@ -4,7 +4,7 @@ flash_attn: fa2
 use_unsloth: False
 
 ### method
-stage: sft
+stage: dpo
 do_train: true
 finetuning_type: full
 deepspeed: examples/deepspeed/ds_z3_config.json  # choices: [ds_z0_config.json, ds_z2_config.json, ds_z3_config.json]
