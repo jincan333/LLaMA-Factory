@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -N 1             
-#SBATCH -t 0:30:00
+#SBATCH -t 1:00:00
 #SBATCH --partition=ghx4
 #SBATCH --ntasks-per-node 1
 #SBATCH --cpus-per-task 64
@@ -14,6 +14,7 @@ echo "Running job on $(hostname)"
 echo "Job started at $(date)"
 
 source ~/.bashrc
+mkdir -p slurm
 prefix="llama3_gsm8k_sft"
 time srun --label apptainer exec --nv \
   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
