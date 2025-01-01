@@ -28,4 +28,20 @@ envsubst < examples/train_full/llama3_full_sft.yaml > logs/${experiment_name}.ya
 
 FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train logs/${experiment_name}.yaml \
 #  > logs/${experiment_name}.log 2>&1
- 
+
+suffix="eval"
+model_name_or_path=${output_dir}
+dataset="gsm8k"
+n_shot=5
+batch_size=128
+accelerate launch -m lm_eval --model hf \
+    --model_args pretrained=${output_dir},dtype=auto \
+    --tasks $dataset \
+    --num_fewshot $n_shot \
+    --gen_kwargs top_p=1,temperature=0 \
+    --output_path ${output_dir}/${dataset} \
+    --log_samples \
+    --write_out \
+    --apply_chat_template \
+    --wandb_args project=$current_project,name=${experiment_name}_${suffix} \
+    --batch_size $batch_size \
