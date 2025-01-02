@@ -35,8 +35,6 @@ echo "Job finished at $(date)"
 #   $CONTAINER_DIR/pytorch_24.09-py3.sif bash -c \
 #   "source ~/.bashrc && bash run/llama3_gsm8k_rectify_sft.sh"
 
- 
-
 # apptainer exec --nv \
 #   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
 #   --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
