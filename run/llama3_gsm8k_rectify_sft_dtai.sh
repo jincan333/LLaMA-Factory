@@ -9,7 +9,7 @@
 echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 echo "Current directory: $(pwd)"
 echo "Job started at $(date)"
-date_str=$(date '+%S_%d_%b_%Y')
+date_str=$(date '+%d_%b_%Y')
 echo "Running job on $(hostname)"
 echo "Job started at $(date)"
 
