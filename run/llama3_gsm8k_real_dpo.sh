@@ -39,7 +39,7 @@ accelerate launch -m lm_eval --model hf \
     --model_args pretrained=${output_dir},dtype=auto \
     --tasks $dataset \
     --num_fewshot $n_shot \
-    --gen_kwargs top_p=1 \
+    --gen_kwargs top_p=1,temperature=0 \
     --output_path ${output_dir}/${dataset} \
     --log_samples \
     --write_out \
