@@ -35,11 +35,14 @@ dataset="gsm8k"
 n_shot=5
 batch_size=128
 export ACCELERATE_LOG_LEVEL=info
+if [[ "$LOCAL_RANK" != "0" ]] && [[ "$RANK" != "0" ]]; then
+    export WANDB_MODE=offline
+fi
 accelerate launch -m lm_eval --model hf \
     --model_args pretrained=${output_dir},dtype=auto \
     --tasks $dataset \
     --num_fewshot $n_shot \
-    --gen_kwargs top_p=1,temperature=0 \
+    --gen_kwargs top_p=1 \
     --output_path ${output_dir}/${dataset} \
     --log_samples \
     --write_out \
