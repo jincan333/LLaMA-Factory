@@ -16,7 +16,7 @@ cutoff_len: 2048
 eval_dataset: gsm8k_rectify_sft
 
 ### output
-output_dir: /research/cbim/medical/cj574/safe_reason/
+output_dir: /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_gsm8k_rectify_sft_tbs16_ebs16_lr1e-6_cl2048
 logging_steps: 10
 save_steps: 500
 plot_loss: true

@@ -23,8 +23,8 @@ plot_loss: true
 overwrite_output_dir: true
 
 ### train
-per_device_train_batch_size: 16
-gradient_accumulation_steps: 1
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 2
 learning_rate: !!float 1e-6
 num_train_epochs: 1.0
 lr_scheduler_type: cosine
@@ -33,10 +33,10 @@ bf16: true
 ddp_timeout: 180000000
 
 ### eval
-per_device_eval_batch_size: 16
+per_device_eval_batch_size: 8
 eval_strategy: steps
 eval_steps: 500
 
 ### wandb
 report_to: wandb
-run_name: llama3_sft_gsm8k_rectify_dpo_tbs16_ebs16_lr1e-6_cl2048
+run_name: llama3_sft_gsm8k_rectify_dpo_tbs8_ebs8_lr1e-6_cl2048
