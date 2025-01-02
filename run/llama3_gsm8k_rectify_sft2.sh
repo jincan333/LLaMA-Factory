@@ -10,11 +10,11 @@ export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
-export dataset="gsm8k_real_dpo"
-export per_device_train_batch_size=4
+export dataset="gsm8k_rectify_sft"
+export per_device_train_batch_size=8
 export per_device_eval_batch_size=8
-export gradient_accumulation_steps=4
-export learning_rate=1e-6
+export gradient_accumulation_steps=2
+export learning_rate=5e-6
 export cutoff_len=2048
 export experiment_name=${prefix}_${dataset}_tbs${per_device_train_batch_size}_ebs${per_device_eval_batch_size}_lr${learning_rate}_cl${cutoff_len}
 export output_dir=${output_dir}/${experiment_name}
@@ -24,11 +24,11 @@ mkdir -p $output_dir
 echo "output_dir: $output_dir"
 mkdir -p logs
 
-envsubst < examples/train_full/llama3_full_dpo.yaml > logs/${experiment_name}.yaml
+# envsubst < examples/train_full/llama3_full_sft.yaml > logs/${experiment_name}.yaml
 
-FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train logs/${experiment_name}.yaml
+# FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train logs/${experiment_name}.yaml
 #  > logs/${experiment_name}.log 2>&1
- 
+
 suffix="eval"
 model_name_or_path=${output_dir}
 dataset="gsm8k"
@@ -47,4 +47,3 @@ accelerate launch -m lm_eval --model hf \
     --apply_chat_template \
     --wandb_args project=$current_project,name=${experiment_name}_${suffix} \
     --batch_size $batch_size
-    # > logs/${experiment_name}_${suffix}.log 2>&1 &
