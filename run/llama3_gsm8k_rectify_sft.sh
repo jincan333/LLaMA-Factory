@@ -33,7 +33,7 @@ suffix="eval"
 model_name_or_path=${output_dir}
 dataset="gsm8k"
 n_shot=5
-batch_size=256
+batch_size=128
 export CUDA_VISIBLE_DEVICES=0
 accelerate launch -m lm_eval --model hf \
     --model_args pretrained=${output_dir},dtype=auto \
