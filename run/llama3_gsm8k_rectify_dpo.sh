@@ -12,7 +12,7 @@ export OMP_NUM_THREADS=8
 prefix="llama3_sft"
 export dataset="gsm8k_rectify_dpo"
 export per_device_train_batch_size=4
-export per_device_eval_batch_size=4
+export per_device_eval_batch_size=16
 export gradient_accumulation_steps=4
 export learning_rate=1e-6
 export cutoff_len=2048
@@ -35,11 +35,14 @@ dataset="gsm8k"
 n_shot=5
 batch_size=128
 export ACCELERATE_LOG_LEVEL=info
+if [[ "$LOCAL_RANK" != "0" ]] && [[ "$RANK" != "0" ]]; then
+    export WANDB_MODE=offline
+fi
 accelerate launch -m lm_eval --model hf \
     --model_args pretrained=${output_dir},dtype=auto \
     --tasks $dataset \
     --num_fewshot $n_shot \
-    --gen_kwargs top_p=1,temperature=0 \
+    --gen_kwargs top_p=1 \
     --output_path ${output_dir}/${dataset} \
     --log_samples \
     --write_out \
