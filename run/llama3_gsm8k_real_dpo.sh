@@ -9,7 +9,7 @@ export MASTER_ADDR=$HOSTNAME
 export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
-prefix="llama3_sft"
+prefix="llama3_dpo"
 export dataset="gsm8k_real_dpo"
 export per_device_train_batch_size=4
 export per_device_eval_batch_size=8
