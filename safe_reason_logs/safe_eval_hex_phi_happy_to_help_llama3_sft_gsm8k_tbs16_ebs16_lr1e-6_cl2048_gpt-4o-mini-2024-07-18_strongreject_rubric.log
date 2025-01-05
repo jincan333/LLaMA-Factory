@@ -1,0 +1,17 @@
+{
+    "model": "llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048",
+    "judge_model": "gpt-4o-mini-2024-07-18",
+    "dataset": "hex_phi",
+    "jailbreak": "happy_to_help",
+    "evaluator": "strongreject_rubric",
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "max_length": 2048,
+    "generate": false,
+    "evaluate": false
+}
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 300 examples [00:00, 9024.80 examples/s]
+Generating train split: 0 examples [00:00, ? examples/s]Generating train split: 300 examples [00:00, 9409.68 examples/s]
+                  score   refusal
+jailbreak                        
+happy_to_help  0.052083  0.943333
