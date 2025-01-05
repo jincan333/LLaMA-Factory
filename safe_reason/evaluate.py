@@ -3,7 +3,7 @@ import os
 import datasets
 import pandas as pd
 import re
-import torch
+import json
 from strong_reject.load_datasets import load_strongreject_small, load_strongreject
 from strong_reject.generate import generate_to_dataset
 from generate import personalized_generate
@@ -12,9 +12,26 @@ from strong_reject.jailbreaks import apply_jailbreaks_to_dataset, register_jailb
 from strong_reject.jailbreaks import registered_jailbreaks
 
 
+def str2bool(v):
+    """
+    Convert a string to a boolean.
+    Acceptable true strings: 'true', 't', 'yes', 'y', '1'
+    Acceptable false strings: 'false', 'f', 'no', 'n', '0'
+    """
+    if isinstance(v, bool):
+        return v
+    v_lower = v.lower()
+    if v_lower in ('true', 't', 'yes', 'y', '1', 'True', 'TRUE'):
+        return True
+    elif v_lower in ('false', 'f', 'no', 'n', '0', 'False', 'FALSE'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
+
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, default='test', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it', 'test'])
+    parser.add_argument('--model', type=str, default='test', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it')
     parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20'])
     parser.add_argument('--dataset', type=str, default='strongreject_small', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest'])
     parser.add_argument('--jailbreak', type=str, default='happy_to_help', choices=['happy_to_help', 'pair', 'happy_to_help'])
@@ -22,13 +39,13 @@ def parse_args():
     parser.add_argument('--temperature', type=float, default=0.7)
     parser.add_argument('--top_p', type=float, default=0.95)
     parser.add_argument('--max_length', type=int, default=2048)
-    parser.add_argument('--generate', type=bool, default=False)
-    parser.add_argument('--evaluate', type=bool, default=False)
+    parser.add_argument('--generate', type=str2bool, default='false')
+    parser.add_argument('--evaluate', type=str2bool, default='false')
     args = parser.parse_args()
     return args
 
 args = parse_args()
-
+print(json.dumps(vars(args), indent=4))
 # get model
 def get_model(model_name):
     project_path = os.environ['MY_PROJECT']
@@ -42,7 +59,7 @@ def get_model(model_name):
         model_name = 'meta-llama/Meta-Llama-3-8B-Instruct'
     elif model_name in ('gemma-2-9b-it'):
         model_name = 'google/gemma-2-9b-it'
-    elif model_name in ('test'):
+    else:
         model_name = os.path.join(project_path, 'safe_reason', model_name)
     model_print_name = re.sub(r'/', '-', model_name)
 
@@ -52,10 +69,11 @@ def get_model(model_name):
 args.model, model_print_name = get_model(args.model)
 args.judge_model, judge_model_print_name = get_model(args.judge_model) 
 
-# load the dataset
+# load the dataset and apply jailbreak
 if os.path.exists(f"data/{args.dataset}/{args.jailbreak}.json"):
     jailbroken_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}.json", split='train')
 else:
+    print(f'loading dataset {args.dataset} and applying jailbreak {args.jailbreak}')
     if args.dataset == 'strongreject':
         dataset = load_strongreject()
     elif args.dataset == 'strongreject_small':
@@ -94,12 +112,13 @@ else:
 
 # generate the responses
 if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json") and not args.generate:
-    responses_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{args.model}_responses.json", split='train')
+    responses_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json", split='train')
 else:
+    print(f'generating responses for {args.model} and {args.jailbreak}')
     if 'gpt' in args.model:
-        responses_dataset = generate_to_dataset(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", temperature=args.temperature, top_p=args.top_p, max_length=args.max_length)
+        responses_dataset = generate_to_dataset(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
     else:
-        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", temperature=args.temperature, top_p=args.top_p, max_length=args.max_length)
+        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
 
     responses_dataset.to_json(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json", orient='records', lines=False, indent=4)
 
@@ -108,11 +127,13 @@ if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{jud
     eval_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json", split='train')
 else:
     # use the StrongREJECT evaluator to score the harmfulness of the responses
+    print(f'evaluating {args.evaluator} for {args.judge_model}')
     print(registered_evaluators.keys())
     eval_dataset = evaluate_dataset(responses_dataset, [args.evaluator], models=[args.judge_model])
     eval_dataset.to_json(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json", orient='records', lines=False, indent=4)
 
 # compare the average harmfulness of the new jailbreak to the no-jailbreak baseline
-eval_results = eval_dataset.to_pandas().groupby("jailbreak")["score"].mean()
+eval_results = eval_dataset.to_pandas().groupby("jailbreak")[["score", "refusal"]].mean()
+
 print(eval_results)
 eval_results.to_csv(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_eval_results.csv")
