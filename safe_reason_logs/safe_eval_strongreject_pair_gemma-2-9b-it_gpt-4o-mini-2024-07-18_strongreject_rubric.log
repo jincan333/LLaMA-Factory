@@ -1,0 +1,215 @@
+{
+    "model": "gemma-2-9b-it",
+    "judge_model": "gpt-4o-mini-2024-07-18",
+    "dataset": "strongreject",
+    "jailbreak": "pair",
+    "evaluator": "strongreject_rubric",
+    "temperature": 0.7,
+    "top_p": 0.95,
+    "max_length": 4096,
+    "generate": false,
+    "evaluate": false
+}
+generating responses for google/gemma-2-9b-it and pair
+Parameter 'function'=<function personalized_generate.<locals>.<lambda> at 0x7ab55d58c400> of the transform datasets.arrow_dataset.Dataset._map_single couldn't be hashed properly, a random hash was used instead. Make sure your transforms and parameters are serializable with pickle or dill for the dataset fingerprinting and caching to work. If you reuse this transform, the caching mechanism will consider it to be different from the previous calls and recompute everything. This warning is only showed once. Subsequent hashing failures won't be showed.
+Map (num_proc=64):   0%|          | 0/313 [00:00<?, ? examples/s]Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.Error: Connection error.
+
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Error: Connection error.
+Map (num_proc=64):   0%|          | 1/313 [00:20<1:46:41, 20.52s/ examples]Map (num_proc=64):   1%|          | 2/313 [00:24<55:57, 10.80s/ examples]  Map (num_proc=64):   1%|          | 3/313 [00:25<32:56,  6.38s/ examples]Map (num_proc=64):   1%|▏         | 4/313 [00:25<20:28,  3.98s/ examples]Map (num_proc=64):   2%|▏         | 5/313 [00:34<28:54,  5.63s/ examples]Map (num_proc=64):   2%|▏         | 7/313 [00:34<14:31,  2.85s/ examples]Map (num_proc=64):   3%|▎         | 8/313 [00:35<11:55,  2.35s/ examples]Map (num_proc=64):   3%|▎         | 9/313 [00:36<09:34,  1.89s/ examples]Map (num_proc=64):   3%|▎         | 10/313 [00:37<08:07,  1.61s/ examples]Map (num_proc=64):   4%|▎         | 11/313 [00:37<06:09,  1.22s/ examples]Map (num_proc=64):   4%|▍         | 12/313 [00:38<05:33,  1.11s/ examples]Map (num_proc=64):   4%|▍         | 13/313 [00:39<05:59,  1.20s/ examples]Map (num_proc=64):   5%|▍         | 15/313 [00:40<03:44,  1.33 examples/s]Map (num_proc=64):   5%|▌         | 16/313 [00:40<03:28,  1.42 examples/s]Map (num_proc=64):   5%|▌         | 17/313 [00:42<05:20,  1.08s/ examples]Map (num_proc=64):   6%|▌         | 18/313 [00:44<05:12,  1.06s/ examples]Map (num_proc=64):   6%|▌         | 19/313 [00:45<05:38,  1.15s/ examples]Map (num_proc=64):   6%|▋         | 20/313 [00:45<04:23,  1.11 examples/s]Map (num_proc=64):   7%|▋         | 21/313 [00:46<03:41,  1.32 examples/s]Map (num_proc=64):   7%|▋         | 22/313 [00:47<04:15,  1.14 examples/s]Map (num_proc=64):   8%|▊         | 24/313 [00:47<02:43,  1.77 examples/s]Map (num_proc=64):   8%|▊         | 25/313 [00:47<02:21,  2.03 examples/s]Map (num_proc=64):   8%|▊         | 26/313 [00:48<02:26,  1.96 examples/s]Map (num_proc=64):   9%|▊         | 27/313 [00:48<02:01,  2.35 examples/s]Map (num_proc=64):   9%|▉         | 28/313 [00:48<01:41,  2.80 examples/s]Map (num_proc=64):  10%|▉         | 30/313 [00:50<02:24,  1.96 examples/s]Map (num_proc=64):  10%|▉         | 31/313 [00:50<02:17,  2.05 examples/s]Map (num_proc=64):  10%|█         | 32/313 [00:51<02:27,  1.90 examples/s]Map (num_proc=64):  11%|█         | 33/313 [00:51<02:02,  2.29 examples/s]Map (num_proc=64):  11%|█         | 34/313 [00:52<02:11,  2.12 examples/s]Map (num_proc=64):  11%|█         | 35/313 [00:52<02:30,  1.85 examples/s]Map (num_proc=64):  12%|█▏        | 37/313 [00:53<02:15,  2.03 examples/s]Map (num_proc=64):  12%|█▏        | 38/313 [00:53<02:05,  2.20 examples/s]Map (num_proc=64):  12%|█▏        | 39/313 [00:54<01:55,  2.37 examples/s]Map (num_proc=64):  13%|█▎        | 40/313 [00:54<01:39,  2.76 examples/s]Map (num_proc=64):  13%|█▎        | 41/313 [00:54<01:31,  2.98 examples/s]Map (num_proc=64):  13%|█▎        | 42/313 [00:55<01:42,  2.65 examples/s]Map (num_proc=64):  14%|█▎        | 43/313 [00:55<01:44,  2.59 examples/s]Map (num_proc=64):  14%|█▍        | 45/313 [00:56<01:37,  2.76 examples/s]Map (num_proc=64):  15%|█▍        | 46/313 [00:56<01:39,  2.68 examples/s]Map (num_proc=64):  15%|█▌        | 47/313 [00:57<01:46,  2.50 examples/s]Map (num_proc=64):  15%|█▌        | 48/313 [00:57<01:46,  2.49 examples/s]Map (num_proc=64):  16%|█▌        | 49/313 [00:57<01:40,  2.64 examples/s]Map (num_proc=64):  16%|█▌        | 50/313 [00:58<01:36,  2.73 examples/s]Map (num_proc=64):  16%|█▋        | 51/313 [00:58<01:39,  2.64 examples/s]Map (num_proc=64):  17%|█▋        | 53/313 [00:59<01:23,  3.10 examples/s]Map (num_proc=64):  17%|█▋        | 54/313 [00:59<01:19,  3.26 examples/s]Map (num_proc=64):  18%|█▊        | 55/313 [00:59<01:11,  3.63 examples/s]Map (num_proc=64):  18%|█▊        | 56/313 [00:59<01:04,  3.98 examples/s]Map (num_proc=64):  18%|█▊        | 57/313 [00:59<00:59,  4.30 examples/s]Map (num_proc=64):  19%|█▉        | 59/313 [01:01<01:32,  2.76 examples/s]Map (num_proc=64):  19%|█▉        | 60/313 [01:01<01:24,  2.98 examples/s]Map (num_proc=64):  19%|█▉        | 61/313 [01:02<02:27,  1.71 examples/s]Map (num_proc=64):  20%|█▉        | 62/313 [01:03<02:23,  1.75 examples/s]Map (num_proc=64):  20%|██        | 63/313 [01:04<02:54,  1.44 examples/s]Map (num_proc=64):  20%|██        | 64/313 [01:04<02:52,  1.44 examples/s]Map (num_proc=64):  21%|██        | 65/313 [01:05<02:15,  1.83 examples/s]Map (num_proc=64):  21%|██▏       | 67/313 [01:06<02:09,  1.91 examples/s]Map (num_proc=64):  22%|██▏       | 68/313 [01:06<02:33,  1.60 examples/s]Map (num_proc=64):  22%|██▏       | 69/313 [01:07<02:05,  1.94 examples/s]Map (num_proc=64):  22%|██▏       | 70/313 [01:07<02:06,  1.92 examples/s]Map (num_proc=64):  23%|██▎       | 71/313 [01:09<04:05,  1.02s/ examples]Map (num_proc=64):  23%|██▎       | 72/313 [01:10<03:56,  1.02 examples/s]Map (num_proc=64):  23%|██▎       | 73/313 [01:11<03:09,  1.27 examples/s]Map (num_proc=64):  24%|██▎       | 74/313 [01:11<02:31,  1.58 examples/s]Map (num_proc=64):  24%|██▍       | 75/313 [01:11<02:19,  1.71 examples/s]Map (num_proc=64):  24%|██▍       | 76/313 [01:12<02:10,  1.81 examples/s]Map (num_proc=64):  25%|██▍       | 78/313 [01:14<03:13,  1.21 examples/s]Map (num_proc=64):  25%|██▌       | 79/313 [01:14<02:36,  1.50 examples/s]Map (num_proc=64):  26%|██▌       | 81/313 [01:15<01:41,  2.28 examples/s]Map (num_proc=64):  26%|██▌       | 82/313 [01:16<02:51,  1.35 examples/s]Map (num_proc=64):  27%|██▋       | 83/313 [01:17<02:31,  1.52 examples/s]Map (num_proc=64):  27%|██▋       | 84/313 [01:18<03:03,  1.25 examples/s]Map (num_proc=64):  27%|██▋       | 86/313 [01:19<02:09,  1.76 examples/s]Map (num_proc=64):  28%|██▊       | 87/313 [01:19<02:03,  1.82 examples/s]Map (num_proc=64):  28%|██▊       | 88/313 [01:19<01:43,  2.18 examples/s]Map (num_proc=64):  28%|██▊       | 89/313 [01:20<01:56,  1.92 examples/s]Map (num_proc=64):  29%|██▉       | 90/313 [01:20<01:53,  1.96 examples/s]Map (num_proc=64):  29%|██▉       | 91/313 [01:21<01:42,  2.17 examples/s]Map (num_proc=64):  29%|██▉       | 92/313 [01:21<01:56,  1.89 examples/s]Map (num_proc=64):  30%|██▉       | 93/313 [01:22<01:48,  2.03 examples/s]Map (num_proc=64):  30%|███       | 94/313 [01:22<01:55,  1.89 examples/s]Map (num_proc=64):  30%|███       | 95/313 [01:23<01:46,  2.04 examples/s]Map (num_proc=64):  31%|███       | 96/313 [01:23<01:35,  2.26 examples/s]Map (num_proc=64):  31%|███       | 97/313 [01:24<01:37,  2.22 examples/s]Map (num_proc=64):  31%|███▏      | 98/313 [01:25<02:56,  1.22 examples/s]Map (num_proc=64):  32%|███▏      | 99/313 [01:26<02:56,  1.21 examples/s]Map (num_proc=64):  32%|███▏      | 100/313 [01:26<02:15,  1.58 examples/s]Map (num_proc=64):  33%|███▎      | 102/313 [01:27<01:23,  2.54 examples/s]Map (num_proc=64):  33%|███▎      | 103/313 [01:27<01:15,  2.78 examples/s]Map (num_proc=64):  34%|███▎      | 105/313 [01:27<01:06,  3.15 examples/s]Map (num_proc=64):  34%|███▍      | 106/313 [01:28<01:02,  3.33 examples/s]Map (num_proc=64):  34%|███▍      | 107/313 [01:28<01:09,  2.95 examples/s]Map (num_proc=64):  35%|███▍      | 108/313 [01:29<02:08,  1.60 examples/s]Map (num_proc=64):  35%|███▍      | 109/313 [01:30<01:58,  1.72 examples/s]Map (num_proc=64):  35%|███▌      | 110/313 [01:31<02:19,  1.46 examples/s]Map (num_proc=64):  35%|███▌      | 111/313 [01:31<01:49,  1.84 examples/s]Map (num_proc=64):  36%|███▌      | 112/313 [01:32<01:48,  1.85 examples/s]Map (num_proc=64):  36%|███▌      | 113/313 [01:33<02:33,  1.30 examples/s]Map (num_proc=64):  36%|███▋      | 114/313 [01:33<01:58,  1.68 examples/s]Map (num_proc=64):  37%|███▋      | 115/313 [01:34<02:02,  1.61 examples/s]Map (num_proc=64):  37%|███▋      | 116/313 [01:34<01:36,  2.04 examples/s]Map (num_proc=64):  37%|███▋      | 117/313 [01:34<01:34,  2.07 examples/s]Map (num_proc=64):  38%|███▊      | 118/313 [01:35<01:20,  2.41 examples/s]Map (num_proc=64):  38%|███▊      | 119/313 [01:35<01:11,  2.71 examples/s]Map (num_proc=64):  38%|███▊      | 120/313 [01:35<01:04,  2.98 examples/s]Map (num_proc=64):  39%|███▊      | 121/313 [01:35<00:55,  3.44 examples/s]Map (num_proc=64):  39%|███▉      | 122/313 [01:36<01:13,  2.58 examples/s]Map (num_proc=64):  39%|███▉      | 123/313 [01:39<03:38,  1.15s/ examples]Map (num_proc=64):  40%|███▉      | 124/313 [01:39<02:46,  1.13 examples/s]Map (num_proc=64):  40%|████      | 126/313 [01:40<02:05,  1.49 examples/s]Map (num_proc=64):  41%|████      | 127/313 [01:40<01:48,  1.71 examples/s]Map (num_proc=64):  41%|████      | 128/313 [01:41<01:28,  2.08 examples/s]Map (num_proc=64):  41%|████      | 129/313 [01:41<01:13,  2.50 examples/s]Map (num_proc=64):  42%|████▏     | 130/313 [01:42<01:38,  1.87 examples/s]Map (num_proc=64):  42%|████▏     | 131/313 [01:42<01:26,  2.10 examples/s]Map (num_proc=64):  42%|████▏     | 133/313 [01:42<01:07,  2.67 examples/s]Map (num_proc=64):  43%|████▎     | 134/313 [01:43<01:17,  2.32 examples/s]Map (num_proc=64):  43%|████▎     | 136/313 [01:44<01:21,  2.18 examples/s]Map (num_proc=64):  44%|████▍     | 137/313 [01:46<02:06,  1.39 examples/s]Map (num_proc=64):  44%|████▍     | 138/313 [01:46<01:51,  1.57 examples/s]Map (num_proc=64):  45%|████▍     | 140/313 [01:47<01:25,  2.02 examples/s]Map (num_proc=64):  45%|████▌     | 141/313 [01:48<01:53,  1.51 examples/s]Map (num_proc=64):  45%|████▌     | 142/313 [01:49<01:59,  1.43 examples/s]Map (num_proc=64):  46%|████▌     | 143/313 [01:49<01:51,  1.52 examples/s]Map (num_proc=64):  46%|████▌     | 144/313 [01:50<01:39,  1.70 examples/s]Map (num_proc=64):  46%|████▋     | 145/313 [01:51<02:09,  1.29 examples/s]Map (num_proc=64):  47%|████▋     | 146/313 [01:51<01:51,  1.50 examples/s]Map (num_proc=64):  47%|████▋     | 147/313 [01:52<01:34,  1.76 examples/s]Map (num_proc=64):  47%|████▋     | 148/313 [01:52<01:32,  1.78 examples/s]Map (num_proc=64):  48%|████▊     | 149/313 [01:54<02:37,  1.04 examples/s]Map (num_proc=64):  48%|████▊     | 150/313 [01:54<01:59,  1.37 examples/s]Map (num_proc=64):  48%|████▊     | 151/313 [01:54<01:35,  1.69 examples/s]Map (num_proc=64):  49%|████▊     | 152/313 [01:56<02:35,  1.03 examples/s]Map (num_proc=64):  49%|████▉     | 153/313 [01:57<01:57,  1.36 examples/s]Map (num_proc=64):  49%|████▉     | 154/313 [01:57<01:30,  1.76 examples/s]Map (num_proc=64):  50%|████▉     | 155/313 [01:57<01:11,  2.20 examples/s]Map (num_proc=64):  50%|████▉     | 156/313 [01:57<01:12,  2.17 examples/s]Map (num_proc=64):  50%|█████     | 157/313 [01:58<01:39,  1.57 examples/s]Map (num_proc=64):  50%|█████     | 158/313 [01:59<01:27,  1.76 examples/s]Map (num_proc=64):  51%|█████     | 159/313 [02:01<02:50,  1.11s/ examples]Map (num_proc=64):  51%|█████     | 160/313 [02:01<02:07,  1.20 examples/s]Map (num_proc=64):  51%|█████▏    | 161/313 [02:02<01:53,  1.33 examples/s]Map (num_proc=64):  52%|█████▏    | 162/313 [02:02<01:27,  1.72 examples/s]Map (num_proc=64):  52%|█████▏    | 163/313 [02:02<01:12,  2.07 examples/s]Map (num_proc=64):  52%|█████▏    | 164/313 [02:03<01:37,  1.52 examples/s]Map (num_proc=64):  53%|█████▎    | 167/313 [02:04<00:54,  2.68 examples/s]Map (num_proc=64):  54%|█████▎    | 168/313 [02:05<01:01,  2.36 examples/s]Map (num_proc=64):  54%|█████▍    | 169/313 [02:05<01:02,  2.30 examples/s]Map (num_proc=64):  54%|█████▍    | 170/313 [02:06<01:16,  1.87 examples/s]Map (num_proc=64):  55%|█████▍    | 171/313 [02:07<01:40,  1.42 examples/s]Map (num_proc=64):  55%|█████▌    | 173/313 [02:07<01:07,  2.07 examples/s]Map (num_proc=64):  56%|█████▌    | 174/313 [02:08<01:11,  1.95 examples/s]Map (num_proc=64):  56%|█████▌    | 175/313 [02:09<01:31,  1.50 examples/s]Map (num_proc=64):  56%|█████▌    | 176/313 [02:10<01:24,  1.62 examples/s]Map (num_proc=64):  57%|█████▋    | 177/313 [02:10<01:21,  1.68 examples/s]Map (num_proc=64):  57%|█████▋    | 179/313 [02:10<00:50,  2.65 examples/s]Map (num_proc=64):  58%|█████▊    | 181/313 [02:11<00:39,  3.30 examples/s]Map (num_proc=64):  58%|█████▊    | 182/313 [02:11<00:53,  2.46 examples/s]Map (num_proc=64):  58%|█████▊    | 183/313 [02:12<00:46,  2.82 examples/s]Map (num_proc=64):  59%|█████▉    | 184/313 [02:13<01:01,  2.11 examples/s]Map (num_proc=64):  59%|█████▉    | 185/313 [02:13<00:58,  2.20 examples/s]Map (num_proc=64):  59%|█████▉    | 186/313 [02:13<00:59,  2.14 examples/s]Map (num_proc=64):  60%|█████▉    | 187/313 [02:14<00:48,  2.58 examples/s]Map (num_proc=64):  60%|██████    | 188/313 [02:14<00:44,  2.80 examples/s]Map (num_proc=64):  60%|██████    | 189/313 [02:15<01:08,  1.81 examples/s]Map (num_proc=64):  61%|██████    | 190/313 [02:16<01:35,  1.28 examples/s]Map (num_proc=64):  61%|██████    | 191/313 [02:17<01:21,  1.50 examples/s]Map (num_proc=64):  61%|██████▏   | 192/313 [02:17<01:21,  1.49 examples/s]Map (num_proc=64):  62%|██████▏   | 193/313 [02:18<01:10,  1.70 examples/s]Map (num_proc=64):  62%|██████▏   | 194/313 [02:18<00:55,  2.14 examples/s]Map (num_proc=64):  62%|██████▏   | 195/313 [02:18<00:48,  2.42 examples/s]Map (num_proc=64):  63%|██████▎   | 197/313 [02:20<01:07,  1.72 examples/s]Map (num_proc=64):  63%|██████▎   | 198/313 [02:21<01:13,  1.56 examples/s]Map (num_proc=64):  64%|██████▎   | 199/313 [02:21<01:05,  1.74 examples/s]Map (num_proc=64):  64%|██████▍   | 200/313 [02:21<00:57,  1.97 examples/s]Map (num_proc=64):  64%|██████▍   | 201/313 [02:22<01:02,  1.80 examples/s]Map (num_proc=64):  65%|██████▍   | 202/313 [02:24<01:39,  1.12 examples/s]Map (num_proc=64):  65%|██████▍   | 203/313 [02:24<01:19,  1.38 examples/s]Map (num_proc=64):  65%|██████▌   | 204/313 [02:24<01:01,  1.76 examples/s]Map (num_proc=64):  65%|██████▌   | 205/313 [02:25<01:13,  1.46 examples/s]Map (num_proc=64):  66%|██████▌   | 206/313 [02:25<00:59,  1.79 examples/s]Map (num_proc=64):  66%|██████▌   | 207/313 [02:26<01:09,  1.52 examples/s]Map (num_proc=64):  66%|██████▋   | 208/313 [02:27<01:05,  1.61 examples/s]Map (num_proc=64):  67%|██████▋   | 210/313 [02:28<00:50,  2.02 examples/s]Map (num_proc=64):  68%|██████▊   | 212/313 [02:29<00:53,  1.90 examples/s]Map (num_proc=64):  68%|██████▊   | 213/313 [02:29<00:45,  2.22 examples/s]Map (num_proc=64):  68%|██████▊   | 214/313 [02:31<01:13,  1.35 examples/s]Map (num_proc=64):  69%|██████▊   | 215/313 [02:31<01:09,  1.41 examples/s]Map (num_proc=64):  69%|██████▉   | 217/313 [02:32<01:06,  1.45 examples/s]Map (num_proc=64):  70%|██████▉   | 218/313 [02:33<00:55,  1.70 examples/s]Map (num_proc=64):  70%|██████▉   | 219/313 [02:34<01:02,  1.51 examples/s]Map (num_proc=64):  70%|███████   | 220/313 [02:34<00:58,  1.58 examples/s]Map (num_proc=64):  71%|███████   | 221/313 [02:35<01:03,  1.45 examples/s]Map (num_proc=64):  71%|███████   | 223/313 [02:35<00:43,  2.09 examples/s]Map (num_proc=64):  72%|███████▏  | 224/313 [02:36<00:50,  1.78 examples/s]Map (num_proc=64):  72%|███████▏  | 225/313 [02:37<00:48,  1.81 examples/s]Map (num_proc=64):  72%|███████▏  | 226/313 [02:37<00:49,  1.76 examples/s]Map (num_proc=64):  73%|███████▎  | 228/313 [02:38<00:32,  2.64 examples/s]Map (num_proc=64):  73%|███████▎  | 229/313 [02:38<00:33,  2.54 examples/s]Map (num_proc=64):  73%|███████▎  | 230/313 [02:38<00:30,  2.68 examples/s]Map (num_proc=64):  74%|███████▍  | 231/313 [02:39<00:29,  2.81 examples/s]Map (num_proc=64):  74%|███████▍  | 232/313 [02:39<00:24,  3.27 examples/s]Map (num_proc=64):  74%|███████▍  | 233/313 [02:40<00:39,  2.03 examples/s]Map (num_proc=64):  75%|███████▌  | 235/313 [02:41<00:33,  2.33 examples/s]Map (num_proc=64):  76%|███████▌  | 237/313 [02:41<00:25,  3.00 examples/s]Map (num_proc=64):  76%|███████▌  | 238/313 [02:42<00:43,  1.73 examples/s]Map (num_proc=64):  76%|███████▋  | 239/313 [02:43<00:38,  1.93 examples/s]Map (num_proc=64):  77%|███████▋  | 240/313 [02:43<00:31,  2.30 examples/s]Map (num_proc=64):  77%|███████▋  | 241/313 [02:43<00:31,  2.29 examples/s]Map (num_proc=64):  77%|███████▋  | 242/313 [02:44<00:41,  1.70 examples/s]Map (num_proc=64):  78%|███████▊  | 243/313 [02:46<01:06,  1.06 examples/s]Map (num_proc=64):  78%|███████▊  | 244/313 [02:47<01:01,  1.11 examples/s]Map (num_proc=64):  78%|███████▊  | 245/313 [02:47<00:53,  1.28 examples/s]Map (num_proc=64):  79%|███████▊  | 246/313 [02:48<00:44,  1.50 examples/s]Map (num_proc=64):  79%|███████▉  | 247/313 [02:48<00:39,  1.68 examples/s]Map (num_proc=64):  80%|███████▉  | 249/313 [02:48<00:23,  2.76 examples/s]Map (num_proc=64):  80%|███████▉  | 250/313 [02:49<00:22,  2.76 examples/s]Map (num_proc=64):  80%|████████  | 251/313 [02:50<00:29,  2.08 examples/s]Map (num_proc=64):  81%|████████  | 252/313 [02:50<00:25,  2.39 examples/s]Map (num_proc=64):  81%|████████  | 253/313 [02:52<00:50,  1.18 examples/s]Map (num_proc=64):  81%|████████▏ | 255/313 [02:53<00:43,  1.34 examples/s]Map (num_proc=64):  82%|████████▏ | 257/313 [02:54<00:32,  1.74 examples/s]Map (num_proc=64):  83%|████████▎ | 260/313 [02:54<00:20,  2.60 examples/s]Map (num_proc=64):  83%|████████▎ | 261/313 [02:54<00:19,  2.64 examples/s]Map (num_proc=64):  84%|████████▎ | 262/313 [02:55<00:19,  2.61 examples/s]Map (num_proc=64):  84%|████████▍ | 264/313 [02:56<00:19,  2.49 examples/s]Map (num_proc=64):  85%|████████▍ | 265/313 [02:57<00:23,  2.01 examples/s]Map (num_proc=64):  85%|████████▌ | 267/313 [02:58<00:22,  2.03 examples/s]Map (num_proc=64):  86%|████████▌ | 268/313 [02:58<00:25,  1.79 examples/s]Map (num_proc=64):  86%|████████▌ | 269/313 [02:59<00:23,  1.89 examples/s]Map (num_proc=64):  86%|████████▋ | 270/313 [02:59<00:21,  2.03 examples/s]Map (num_proc=64):  87%|████████▋ | 271/313 [03:00<00:25,  1.63 examples/s]Map (num_proc=64):  87%|████████▋ | 272/313 [03:01<00:30,  1.36 examples/s]Map (num_proc=64):  87%|████████▋ | 273/313 [03:02<00:26,  1.54 examples/s]Map (num_proc=64):  88%|████████▊ | 275/313 [03:03<00:21,  1.78 examples/s]Map (num_proc=64):  88%|████████▊ | 276/313 [03:03<00:18,  2.03 examples/s]Map (num_proc=64):  88%|████████▊ | 277/313 [03:04<00:21,  1.66 examples/s]Map (num_proc=64):  89%|████████▉ | 278/313 [03:04<00:18,  1.94 examples/s]Map (num_proc=64):  89%|████████▉ | 279/313 [03:05<00:17,  1.92 examples/s]Map (num_proc=64):  89%|████████▉ | 280/313 [03:05<00:13,  2.48 examples/s]Map (num_proc=64):  90%|████████▉ | 281/313 [03:05<00:12,  2.57 examples/s]Map (num_proc=64):  90%|█████████ | 282/313 [03:06<00:19,  1.56 examples/s]Map (num_proc=64):  90%|█████████ | 283/313 [03:08<00:32,  1.09s/ examples]Map (num_proc=64):  91%|█████████ | 284/313 [03:10<00:36,  1.27s/ examples]Map (num_proc=64):  91%|█████████ | 285/313 [03:11<00:30,  1.08s/ examples]Map (num_proc=64):  92%|█████████▏| 287/313 [03:11<00:17,  1.53 examples/s]Map (num_proc=64):  92%|█████████▏| 289/313 [03:11<00:09,  2.41 examples/s]Map (num_proc=64):  93%|█████████▎| 290/313 [03:12<00:10,  2.25 examples/s]Map (num_proc=64):  93%|█████████▎| 291/313 [03:13<00:16,  1.31 examples/s]Map (num_proc=64):  93%|█████████▎| 292/313 [03:14<00:13,  1.59 examples/s]Map (num_proc=64):  94%|█████████▎| 293/313 [03:14<00:11,  1.69 examples/s]Map (num_proc=64):  94%|█████████▍| 294/313 [03:14<00:09,  2.07 examples/s]Map (num_proc=64):  94%|█████████▍| 295/313 [03:16<00:14,  1.22 examples/s]Map (num_proc=64):  95%|█████████▍| 296/313 [03:17<00:12,  1.39 examples/s]Map (num_proc=64):  95%|█████████▍| 297/313 [03:17<00:09,  1.66 examples/s]Map (num_proc=64):  95%|█████████▌| 298/313 [03:18<00:11,  1.36 examples/s]Map (num_proc=64):  96%|█████████▌| 299/313 [03:18<00:08,  1.68 examples/s]Map (num_proc=64):  96%|█████████▌| 300/313 [03:19<00:06,  1.90 examples/s]Map (num_proc=64):  96%|█████████▌| 301/313 [03:19<00:06,  1.99 examples/s]Map (num_proc=64):  96%|█████████▋| 302/313 [03:19<00:05,  2.18 examples/s]Map (num_proc=64):  97%|█████████▋| 303/313 [03:20<00:05,  1.93 examples/s]Map (num_proc=64):  97%|█████████▋| 304/313 [03:21<00:06,  1.43 examples/s]Map (num_proc=64):  97%|█████████▋| 305/313 [03:22<00:05,  1.34 examples/s]Map (num_proc=64):  98%|█████████▊| 306/313 [03:22<00:04,  1.74 examples/s]Map (num_proc=64):  98%|█████████▊| 308/313 [03:27<00:07,  1.48s/ examples]Map (num_proc=64):  99%|█████████▊| 309/313 [03:30<00:07,  1.84s/ examples]Map (num_proc=64):  99%|█████████▉| 310/313 [03:34<00:06,  2.26s/ examples]Map (num_proc=64):  99%|█████████▉| 311/313 [03:36<00:04,  2.34s/ examples]Map (num_proc=64): 100%|█████████▉| 312/313 [03:37<00:01,  1.93s/ examples]Map (num_proc=64): 100%|██████████| 313/313 [03:42<00:00,  2.89s/ examples]Map (num_proc=64): 100%|██████████| 313/313 [03:42<00:00,  1.40 examples/s]
+Map (num_proc=64):   0%|          | 0/313 [00:00<?, ? examples/s]Map (num_proc=64):  10%|▉         | 30/313 [00:00<00:00, 299.16 examples/s]Map (num_proc=64):  92%|█████████▏| 289/313 [00:00<00:00, 1633.67 examples/s]Map (num_proc=64): 100%|██████████| 313/313 [00:00<00:00, 1146.80 examples/s]
+Creating json from Arrow format:   0%|          | 0/1 [00:00<?, ?ba/s]Creating json from Arrow format: 100%|██████████| 1/1 [00:00<00:00, 10.13ba/s]
+evaluating strongreject_rubric for gpt-4o-mini-2024-07-18
+dict_keys(['string_matching', 'openai_moderation_api', 'pair', 'gpt4_judge', 'jailbroken_binary', 'category_binary', 'strongreject_rubric', 'strongreject_finetuned', 'strongreject_aisi', 'harmbench'])
+Map (num_proc=64):   0%|          | 0/313 [00:00<?, ? examples/s]Map (num_proc=64):   0%|          | 1/313 [00:02<11:51,  2.28s/ examples]Map (num_proc=64):   1%|          | 2/313 [00:02<05:30,  1.06s/ examples]Map (num_proc=64):   2%|▏         | 6/313 [00:02<01:23,  3.66 examples/s]Map (num_proc=64):   3%|▎         | 9/313 [00:02<00:50,  6.00 examples/s]Map (num_proc=64):   4%|▍         | 12/313 [00:02<00:35,  8.50 examples/s]Map (num_proc=64):   5%|▍         | 15/313 [00:03<00:26, 11.12 examples/s]Map (num_proc=64):   6%|▌         | 18/313 [00:03<00:23, 12.30 examples/s]Map (num_proc=64):   8%|▊         | 24/313 [00:03<00:14, 19.90 examples/s]Map (num_proc=64):   9%|▉         | 28/313 [00:03<00:12, 22.66 examples/s]Map (num_proc=64):  11%|█         | 33/313 [00:03<00:10, 27.67 examples/s]Map (num_proc=64):  12%|█▏        | 37/313 [00:03<00:09, 27.77 examples/s]Map (num_proc=64):  13%|█▎        | 41/313 [00:03<00:09, 28.58 examples/s]Map (num_proc=64):  14%|█▍        | 45/313 [00:03<00:09, 27.25 examples/s]Map (num_proc=64):  16%|█▌        | 50/313 [00:04<00:09, 28.48 examples/s]Map (num_proc=64):  17%|█▋        | 54/313 [00:04<00:11, 23.12 examples/s]Map (num_proc=64):  18%|█▊        | 57/313 [00:04<00:16, 15.79 examples/s]Map (num_proc=64):  19%|█▉        | 60/313 [00:05<00:25,  9.77 examples/s]Map (num_proc=64):  20%|█▉        | 62/313 [00:05<00:28,  8.68 examples/s]Map (num_proc=64):  20%|██        | 64/313 [00:06<00:29,  8.58 examples/s]Map (num_proc=64):  21%|██        | 66/313 [00:06<00:26,  9.48 examples/s]Map (num_proc=64):  22%|██▏       | 69/313 [00:06<00:19, 12.25 examples/s]Map (num_proc=64):  23%|██▎       | 72/313 [00:06<00:16, 14.41 examples/s]Map (num_proc=64):  24%|██▍       | 76/313 [00:06<00:12, 19.00 examples/s]Map (num_proc=64):  25%|██▌       | 79/313 [00:06<00:15, 15.14 examples/s]Map (num_proc=64):  27%|██▋       | 83/313 [00:06<00:12, 18.80 examples/s]Map (num_proc=64):  29%|██▉       | 90/313 [00:07<00:08, 25.80 examples/s]Map (num_proc=64):  30%|███       | 94/313 [00:07<00:10, 21.33 examples/s]Map (num_proc=64):  32%|███▏      | 99/313 [00:07<00:08, 26.30 examples/s]Map (num_proc=64):  33%|███▎      | 103/313 [00:07<00:08, 24.77 examples/s]Map (num_proc=64):  34%|███▍      | 106/313 [00:07<00:11, 18.48 examples/s]Map (num_proc=64):  35%|███▌      | 110/313 [00:08<00:09, 20.62 examples/s]Map (num_proc=64):  36%|███▌      | 113/313 [00:08<00:10, 19.06 examples/s]Map (num_proc=64):  37%|███▋      | 116/313 [00:08<00:12, 16.11 examples/s]Map (num_proc=64):  38%|███▊      | 118/313 [00:09<00:19, 10.20 examples/s]Map (num_proc=64):  39%|███▊      | 121/313 [00:09<00:16, 11.64 examples/s]Map (num_proc=64):  39%|███▉      | 123/313 [00:09<00:15, 12.21 examples/s]Map (num_proc=64):  40%|████      | 126/313 [00:09<00:13, 13.98 examples/s]Map (num_proc=64):  41%|████      | 128/313 [00:09<00:12, 15.02 examples/s]Map (num_proc=64):  42%|████▏     | 132/313 [00:09<00:09, 19.55 examples/s]Map (num_proc=64):  43%|████▎     | 135/313 [00:09<00:08, 19.96 examples/s]Map (num_proc=64):  44%|████▍     | 138/313 [00:09<00:08, 21.33 examples/s]Map (num_proc=64):  45%|████▌     | 142/313 [00:10<00:08, 19.82 examples/s]Map (num_proc=64):  47%|████▋     | 146/313 [00:10<00:07, 21.87 examples/s]Map (num_proc=64):  48%|████▊     | 149/313 [00:10<00:08, 18.93 examples/s]Map (num_proc=64):  49%|████▊     | 152/313 [00:10<00:10, 15.99 examples/s]Map (num_proc=64):  49%|████▉     | 154/313 [00:10<00:10, 14.80 examples/s]Map (num_proc=64):  51%|█████     | 159/313 [00:11<00:07, 20.56 examples/s]Map (num_proc=64):  52%|█████▏    | 162/313 [00:11<00:07, 20.00 examples/s]Map (num_proc=64):  53%|█████▎    | 165/313 [00:11<00:08, 17.34 examples/s]Map (num_proc=64):  54%|█████▎    | 168/313 [00:11<00:08, 16.54 examples/s]Map (num_proc=64):  54%|█████▍    | 170/313 [00:11<00:08, 16.99 examples/s]Map (num_proc=64):  55%|█████▍    | 172/313 [00:11<00:08, 16.63 examples/s]Map (num_proc=64):  56%|█████▌    | 174/313 [00:12<00:09, 14.09 examples/s]Map (num_proc=64):  57%|█████▋    | 178/313 [00:12<00:07, 17.56 examples/s]Map (num_proc=64):  58%|█████▊    | 181/313 [00:12<00:08, 15.99 examples/s]Map (num_proc=64):  59%|█████▉    | 184/313 [00:12<00:09, 14.08 examples/s]Map (num_proc=64):  59%|█████▉    | 186/313 [00:12<00:08, 14.89 examples/s]Map (num_proc=64):  61%|██████    | 190/313 [00:13<00:07, 17.01 examples/s]Map (num_proc=64):  61%|██████▏   | 192/313 [00:13<00:08, 14.82 examples/s]Map (num_proc=64):  63%|██████▎   | 198/313 [00:13<00:05, 22.75 examples/s]Map (num_proc=64):  64%|██████▍   | 201/313 [00:13<00:06, 17.67 examples/s]Map (num_proc=64):  65%|██████▌   | 204/313 [00:14<00:08, 12.54 examples/s]Map (num_proc=64):  67%|██████▋   | 209/313 [00:14<00:05, 17.56 examples/s]Map (num_proc=64):  68%|██████▊   | 212/313 [00:14<00:06, 15.25 examples/s]Map (num_proc=64):  69%|██████▊   | 215/313 [00:14<00:05, 16.39 examples/s]Map (num_proc=64):  70%|██████▉   | 219/313 [00:14<00:05, 18.09 examples/s]Map (num_proc=64):  71%|███████   | 222/313 [00:15<00:05, 16.50 examples/s]Map (num_proc=64):  72%|███████▏  | 225/313 [00:15<00:04, 18.15 examples/s]Map (num_proc=64):  73%|███████▎  | 229/313 [00:15<00:04, 18.81 examples/s]Map (num_proc=64):  74%|███████▍  | 232/313 [00:15<00:05, 15.87 examples/s]Map (num_proc=64):  75%|███████▍  | 234/313 [00:15<00:05, 14.76 examples/s]Map (num_proc=64):  76%|███████▌  | 237/313 [00:15<00:04, 16.83 examples/s]Map (num_proc=64):  76%|███████▋  | 239/313 [00:16<00:04, 16.10 examples/s]Map (num_proc=64):  77%|███████▋  | 242/313 [00:16<00:03, 17.76 examples/s]Map (num_proc=64):  78%|███████▊  | 244/313 [00:16<00:03, 18.22 examples/s]Map (num_proc=64):  80%|███████▉  | 249/313 [00:16<00:03, 19.71 examples/s]Map (num_proc=64):  81%|████████  | 253/313 [00:16<00:02, 23.31 examples/s]Map (num_proc=64):  82%|████████▏ | 256/313 [00:16<00:03, 17.54 examples/s]Map (num_proc=64):  83%|████████▎ | 260/313 [00:17<00:02, 20.30 examples/s]Map (num_proc=64):  84%|████████▍ | 263/313 [00:17<00:02, 18.07 examples/s]Map (num_proc=64):  85%|████████▍ | 266/313 [00:17<00:02, 19.38 examples/s]Map (num_proc=64):  86%|████████▌ | 269/313 [00:17<00:02, 15.01 examples/s]Map (num_proc=64):  87%|████████▋ | 271/313 [00:17<00:02, 14.67 examples/s]Map (num_proc=64):  87%|████████▋ | 273/313 [00:18<00:03, 13.17 examples/s]Map (num_proc=64):  88%|████████▊ | 275/313 [00:18<00:02, 14.37 examples/s]Map (num_proc=64):  88%|████████▊ | 277/313 [00:18<00:02, 12.57 examples/s]Map (num_proc=64):  89%|████████▉ | 279/313 [00:18<00:03,  9.92 examples/s]Map (num_proc=64):  90%|████████▉ | 281/313 [00:18<00:02, 10.86 examples/s]Map (num_proc=64):  91%|█████████ | 285/313 [00:18<00:01, 15.11 examples/s]Map (num_proc=64):  92%|█████████▏| 287/313 [00:19<00:02, 10.78 examples/s]Map (num_proc=64):  92%|█████████▏| 289/313 [00:19<00:01, 12.07 examples/s]Map (num_proc=64):  93%|█████████▎| 291/313 [00:19<00:02, 10.30 examples/s]Map (num_proc=64):  94%|█████████▎| 293/313 [00:19<00:01, 10.01 examples/s]Map (num_proc=64):  94%|█████████▍| 295/313 [00:20<00:01, 10.62 examples/s]Map (num_proc=64):  95%|█████████▍| 297/313 [00:20<00:01, 11.60 examples/s]Map (num_proc=64):  96%|█████████▌| 299/313 [00:20<00:01, 11.23 examples/s]Map (num_proc=64):  96%|█████████▌| 301/313 [00:20<00:01,  8.76 examples/s]Map (num_proc=64):  97%|█████████▋| 303/313 [00:21<00:02,  3.83 examples/s]Map (num_proc=64):  97%|█████████▋| 304/313 [00:22<00:02,  3.71 examples/s]Map (num_proc=64):  97%|█████████▋| 305/313 [00:22<00:02,  3.58 examples/s]Map (num_proc=64):  98%|█████████▊| 306/313 [00:23<00:03,  1.98 examples/s]Map (num_proc=64):  98%|█████████▊| 307/313 [00:24<00:02,  2.37 examples/s]Map (num_proc=64):  98%|█████████▊| 308/313 [00:24<00:02,  1.94 examples/s]Map (num_proc=64):  99%|█████████▊| 309/313 [00:25<00:01,  2.03 examples/s]Map (num_proc=64):  99%|█████████▉| 310/313 [00:28<00:03,  1.15s/ examples]Map (num_proc=64):  99%|█████████▉| 311/313 [00:28<00:02,  1.03s/ examples]Map (num_proc=64): 100%|█████████▉| 312/313 [00:32<00:01,  1.92s/ examples]Map (num_proc=64): 100%|██████████| 313/313 [00:36<00:00,  2.28s/ examples]Map (num_proc=64): 100%|██████████| 313/313 [00:36<00:00,  8.65 examples/s]
+Creating json from Arrow format:   0%|          | 0/1 [00:00<?, ?ba/s]Creating json from Arrow format: 100%|██████████| 1/1 [00:00<00:00, 88.12ba/s]
+              score   refusal
+jailbreak                    
+pair       0.709665  0.182109

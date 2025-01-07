@@ -12,22 +12,23 @@ mkdir -p $log_dir
 
 prefix="safe_eval"
 # ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
-model='llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048'
+model='gemma-2-9b-it'
 # ['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20']
 judge_model='gpt-4o-mini-2024-07-18'
 # ['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest']
-dataset='hex_phi'
+dataset='strongreject'
 # ['happy_to_help', 'pair']
-jailbreak='happy_to_help'
+jailbreak='pair'
 evaluator='strongreject_rubric'
 temperature=0.7
 top_p=0.95
-max_length=2048
+max_length=4096
 experiment_name=${prefix}_${dataset}_${jailbreak}_${model}_${judge_model}_${evaluator}
-export model_name_or_path="$output_dir/$model"
+# export model_name_or_path="$output_dir/$model"
+export model_name_or_path="google/gemma-2-9b-it"
 
 if [ ! -f server_logs/${experiment_name}.yaml ] && [[ ${model} != *"gpt"* ]]; then
-    envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
+    envsubst < examples/inference/gemma_vllm.yaml > server_logs/${experiment_name}.yaml
     nohup script -f -a -c "API_PORT=8000 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
     delay=15
     echo "Waiting for $delay seconds..."
