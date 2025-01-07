@@ -10,9 +10,9 @@ export CUDA_VISIBLE_DEVICES=2
 mkdir -p server_logs
 
 server_type=""
-experiment_name="llama3_instruct"
+experiment_name="gemma2_instruct"
 # export model_name_or_path="$output_dir/${experiment_name}"
-export model_name_or_path="meta-llama/Meta-Llama-3-8B-Instruct"
+export model_name_or_path="google/gemma-2-9b-it"
 # Parse command-line arguments
 while [[ "$#" -gt 0 ]]; do
     case $1 in
@@ -30,7 +30,7 @@ if [ "$server_type" == "api" ]; then
     # api server
     suffix="generate"
     experiment_name=${experiment_name}_${suffix}
-    envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
+    envsubst < examples/inference/gemma_vllm.yaml > server_logs/${experiment_name}.yaml
     nohup script -f -a -c "API_PORT=8000 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
 fi
 
@@ -38,6 +38,6 @@ if [ "$server_type" == "chat" ]; then
     # chat server
     suffix="chat"
     experiment_name=${experiment_name}_${suffix}
-    envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
+    envsubst < examples/inference/gemma_vllm.yaml > server_logs/${experiment_name}.yaml
     script -f -a -c "FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli chat server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log
 fi
