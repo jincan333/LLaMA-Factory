@@ -31,7 +31,7 @@ if [ "$server_type" == "api" ]; then
     suffix="generate"
     experiment_name=${experiment_name}_${suffix}
     envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
-    nohup script -f -a -c "API_PORT=8000 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
+    nohup script -f -a -c "API_PORT=8001 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
 fi
 
 if [ "$server_type" == "chat" ]; then
