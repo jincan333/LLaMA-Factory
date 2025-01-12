@@ -1,29 +1,28 @@
-# # BeaverTails
-# from datasets import load_dataset
+# BeaverTails
+from datasets import load_dataset
 
-# # Load the whole dataset
-# dataset = load_dataset('PKU-Alignment/BeaverTails')
+# Load the whole dataset
+dataset = load_dataset('PKU-Alignment/BeaverTails')
 
-# # Load only the round 0 dataset
-# round0_30k_dataset = load_dataset('PKU-Alignment/BeaverTails', data_dir='round0/30k')
+# Load only the round 0 dataset
+round0_30k_dataset = load_dataset('PKU-Alignment/BeaverTails', data_dir='round0/30k')
 
-# # Load the training dataset
-# train_dataset = load_dataset('PKU-Alignment/BeaverTails', split='30k_train')
-# test_dataset = load_dataset('PKU-Alignment/BeaverTails', split='30k_test')
+# Load the training dataset
+train_dataset = load_dataset('PKU-Alignment/BeaverTails', split='30k_train')
+test_dataset = load_dataset('PKU-Alignment/BeaverTails', split='30k_test')
 
-# import json
-# import os
+import os
 
-# # Directory to save the JSON files
-# output_dir = "data/beavertails"
-# os.makedirs(output_dir, exist_ok=True)
+# Directory to save the JSON files
+output_dir = "data/beavertails"
+os.makedirs(output_dir, exist_ok=True)
 
-# # Save each split of the dataset as a separate JSON file
-# for split in round0_30k_dataset.keys():
-#     json_path = os.path.join(output_dir, f"{split}.json")
-#     # Save the dataset split as JSON
-#     round0_30k_dataset[split].to_json(json_path, orient="records", lines=False, indent=4)
-#     print(f"Saved {split} split to {json_path}")
+# Save each split of the dataset as a separate JSON file
+for split in round0_30k_dataset.keys():
+    json_path = os.path.join(output_dir, f"{split}.json")
+    # Save the dataset split as JSON
+    round0_30k_dataset[split].to_json(json_path, orient="records", lines=False, indent=4)
+    print(f"Saved {split} split to {json_path}")
 
 
 

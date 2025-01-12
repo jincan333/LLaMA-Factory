@@ -31,9 +31,9 @@ def str2bool(v):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, default='test', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it')
-    parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20'])
-    parser.add_argument('--dataset', type=str, default='strongreject_small', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest'])
+    parser.add_argument('--model', type=str, default='test', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+    parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
+    parser.add_argument('--dataset', type=str, default='strongreject_small', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
     parser.add_argument('--jailbreak', type=str, default='happy_to_help', choices=['happy_to_help', 'pair', 'happy_to_help'])
     parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
     parser.add_argument('--temperature', type=float, default=0.7)
@@ -53,12 +53,18 @@ def get_model(model_name):
         model_name = 'gpt-4o-2024-11-20'
     elif model_name in ('gpt-4o-mini', 'gpt-4o-mini-2024-07-18'):
         model_name = 'gpt-4o-mini-2024-07-18'
+    elif model_name in ('o1-2024-12-17'):
+        model_name = 'o1-2024-12-17'
     elif model_name in ('llama-3-8b', 'meta-llama/Meta-Llama-3-8B'):
         model_name = 'meta-llama/Meta-Llama-3-8B'
     elif model_name in ('llama-3-8b-instruct', 'meta-llama/Meta-Llama-3-8B-Instruct'):
         model_name = 'meta-llama/Meta-Llama-3-8B-Instruct'
     elif model_name in ('gemma-2-9b-it'):
         model_name = 'google/gemma-2-9b-it'
+    elif model_name in ('qwq-32b-preview'):
+        model_name = 'Qwen/QwQ-32B-Preview'
+    elif model_name in ('deepthought-8b'):
+        model_name = 'ruliad/deepthought-8b-llama-v0.01-alpha'
     else:
         model_name = os.path.join(project_path, 'safe_reason', model_name)
     model_print_name = re.sub(r'/', '-', model_name)
@@ -99,6 +105,15 @@ else:
             'label': 'label'
         }
         dataset = dataset.rename_columns(col_renames)
+    elif args.dataset == 'beavertails':
+        dataset = datasets.load_dataset('PKU-Alignment/BeaverTails', split='30k_test')
+        col_renames = {
+            'prompt': 'forbidden_prompt',
+            'category': 'category',
+            'response': 'rejected',
+            'is_safe': 'is_safe'
+        }
+        dataset = dataset.rename_columns(col_renames)
 
     # jailbreak the dataset
     @register_jailbreak("happy_to_help")
@@ -108,19 +123,22 @@ else:
     print(registered_jailbreaks.keys())
 
     jailbroken_dataset = apply_jailbreaks_to_dataset(dataset, [args.jailbreak])
-    jailbroken_dataset.to_json(f"data/{args.dataset}/{args.jailbreak}.json", orient='records', lines=False, indent=4)
+    records = [dict(row) for row in jailbroken_dataset]
+    with open(f"data/{args.dataset}/{args.jailbreak}.json", 'w', encoding='utf-8') as f:
+        json.dump(records, f, indent=4)
 
 # generate the responses
 if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json") and not args.generate:
     responses_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json", split='train')
 else:
     print(f'generating responses for {args.model} and {args.jailbreak}')
-    if 'gpt' in args.model:
-        responses_dataset = generate_to_dataset(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+    if 'gpt' in args.model or 'o1' in args.model:
+        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
     else:
-        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-
-    responses_dataset.to_json(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json", orient='records', lines=False, indent=4)
+        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+    records = [dict(row) for row in responses_dataset]
+    with open(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json", 'w', encoding='utf-8') as f:
+        json.dump(records, f, indent=4)
 
 # evaluate the responses
 if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json") and not args.evaluate:
@@ -130,7 +148,9 @@ else:
     print(f'evaluating {args.evaluator} for {args.judge_model}')
     print(registered_evaluators.keys())
     eval_dataset = evaluate_dataset(responses_dataset, [args.evaluator], models=[args.judge_model])
-    eval_dataset.to_json(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json", orient='records', lines=False, indent=4)
+    records = [dict(row) for row in eval_dataset]
+    with open(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json", 'w', encoding='utf-8') as f:
+        json.dump(records, f, indent=4)
 
 # compare the average harmfulness of the new jailbreak to the no-jailbreak baseline
 eval_results = eval_dataset.to_pandas().groupby("jailbreak")[["score", "refusal"]].mean()
