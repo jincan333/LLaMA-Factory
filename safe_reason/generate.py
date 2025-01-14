@@ -198,10 +198,10 @@ if __name__ == "__main__":
         unsafe_dataset = unsafe_dataset.filter(lambda x: x['number'] == 1)
 
         cot_prompt_unsafe_dataset = unsafe_dataset.map(lambda x: {"cot_prompt": cot_generation.format(prompt=x['forbidden_prompt'], spec_category=specifications[x['number']])})
-        cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.7, top_p=0.95, max_tokens=2048)
-        # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['o1-2024-12-17'], use_local=False, decode_responses=False, max_completion_tokens=2048)
-        # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['meta-llama/Meta-Llama-3-8B-Instruct'], use_local=True, decode_responses=False, max_completion_tokens=2048)
-        # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['ruliad/deepthought-8b-llama-v0.01-alpha'], use_local=True, decode_responses=False, max_completion_tokens=2048)
+        # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.7, top_p=0.95, max_tokens=4096)
+        cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['o1-2024-12-17'], use_local=False, decode_responses=False, max_completion_tokens=4096)
+        # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['meta-llama/Meta-Llama-3-8B-Instruct'], use_local=True, decode_responses=False, max_completion_tokens=4096)
+        # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['ruliad/deepthought-8b-llama-v0.01-alpha'], use_local=True, decode_responses=False, max_completion_tokens=4096)
 
         col_renames = {
             'prompt': 'forbidden_prompt',
