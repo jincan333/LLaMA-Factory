@@ -1,0 +1,78 @@
+{
+    "model": "llama-3-8b-instruct",
+    "judge_model": "gpt-4o-mini-2024-07-18",
+    "dataset": "strongreject",
+    "jailbreak": "translation_guarani",
+    "cot_prompt": "none",
+    "evaluator": "strongreject_rubric",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_length": 4096,
+    "generate": true,
+    "evaluate": true
+}
+loading dataset strongreject and applying jailbreak translation_guarani
+dict_keys(['auto_payload_splitting', 'auto_obfuscation', 'rot_13', 'disemvowel', 'pair', 'pap_evidence_based_persuasion', 'pap_expert_endorsement', 'pap_misrepresentation', 'pap_authority_endorsement', 'pap_logical_appeal', 'translation_hmong', 'translation_scotts_gaelic', 'translation_guarani', 'translation_zulu', 'gcg_transfer_harmbench', 'gcg_transfer_universal_attacks', 'combination_3', 'combination_2', 'few_shot_json', 'dev_mode_v2', 'dev_mode_with_rant', 'wikipedia_with_title', 'distractors', 'wikipedia', 'style_injection_json', 'style_injection_short', 'refusal_suppression', 'prefix_injection', 'distractors_negated', 'poems', 'base64', 'base64_raw', 'base64_input_only', 'base64_output_only', 'none', 'evil_confidant', 'aim', 'happy_to_help'])
+Map (num_proc=64):   0%|          | 0/313 [00:00<?, ? examples/s]Map (num_proc=64):   0%|          | 0/313 [00:11<?, ? examples/s]Map (num_proc=64):   0%|          | 0/313 [00:11<?, ? examples/s]Map (num_proc=64):   0%|          | 0/313 [00:12<?, ? examples/s]Map (num_proc=64):   0%|          | 0/313 [00:12<?, ? examples/s]Map (num_proc=64):   0%|          | 0/313 [00:12<?, ? examples/s]Map (num_proc=64):   0%|          | 0/313 [00:12<?, ? examples/s]
+multiprocess.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/multiprocess/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+                    ^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/datasets/utils/py_utils.py", line 678, in _write_generator_to_queue
+    for i, result in enumerate(func(**kwargs)):
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3428, in _map_single
+    example = apply_function_on_filtered_inputs(example, i, offset=offset)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3320, in apply_function_on_filtered_inputs
+    processed_inputs = function(*fn_args, *additional_args, **fn_kwargs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/strong_reject/jailbreaks.py", line 602, in <lambda>
+    "jailbroken_prompt": registered_jailbreaks[jailbreak](
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/strong_reject/jailbreaks.py", line 432, in translate
+    service = build("translate", "v2", developerKey=os.getenv("GOOGLE_TRANSLATE_API_KEY"))
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/googleapiclient/discovery.py", line 315, in build
+    service = build_from_document(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/googleapiclient/discovery.py", line 616, in build_from_document
+    credentials = _auth.default_credentials(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/googleapiclient/_auth.py", line 57, in default_credentials
+    credentials, _ = google.auth.default(
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/google/auth/_default.py", line 697, in default
+    raise exceptions.DefaultCredentialsError(_CLOUD_SDK_MISSING_CREDENTIALS)
+google.auth.exceptions.DefaultCredentialsError: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/research/cbim/vast/cj574/LLaMA-Factory/safe_reason/evaluate.py", line 149, in <module>
+    jailbroken_dataset = apply_jailbreaks_to_dataset(dataset, [args.jailbreak])
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/strong_reject/jailbreaks.py", line 600, in apply_jailbreaks_to_dataset
+    jailbroken_dataset = dataset.map(
+                         ^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 560, in wrapper
+    out: Union["Dataset", "DatasetDict"] = func(self, *args, **kwargs)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/datasets/arrow_dataset.py", line 3147, in map
+    for rank, done, content in iflatmap_unordered(
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/datasets/utils/py_utils.py", line 718, in iflatmap_unordered
+    [async_result.get(timeout=0.05) for async_result in async_results]
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/datasets/utils/py_utils.py", line 718, in <listcomp>
+    [async_result.get(timeout=0.05) for async_result in async_results]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/multiprocess/pool.py", line 774, in get
+    raise self._value
+google.auth.exceptions.DefaultCredentialsError: Your default credentials were not found. To set up Application Default Credentials, see https://cloud.google.com/docs/authentication/external/set-up-adc for more information.

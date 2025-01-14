@@ -5,12 +5,12 @@ import pandas as pd
 import re
 import json
 from strong_reject.load_datasets import load_strongreject_small, load_strongreject
-from strong_reject.generate import generate_to_dataset
 from generate import personalized_generate
 from strong_reject.evaluate import evaluate_dataset, registered_evaluators
+# from strongreject_evaluate import evaluate_dataset, registered_evaluators
 from strong_reject.jailbreaks import apply_jailbreaks_to_dataset, register_jailbreak
 from strong_reject.jailbreaks import registered_jailbreaks
-
+import specifications as specs
 
 def str2bool(v):
     """
@@ -29,23 +29,6 @@ def str2bool(v):
         raise argparse.ArgumentTypeError('Boolean value expected.')
 
 
-def parse_args():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, default='test', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
-    parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
-    parser.add_argument('--dataset', type=str, default='strongreject_small', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
-    parser.add_argument('--jailbreak', type=str, default='happy_to_help', choices=['happy_to_help', 'pair', 'happy_to_help'])
-    parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
-    parser.add_argument('--temperature', type=float, default=0.7)
-    parser.add_argument('--top_p', type=float, default=0.95)
-    parser.add_argument('--max_length', type=int, default=2048)
-    parser.add_argument('--generate', type=str2bool, default='false')
-    parser.add_argument('--evaluate', type=str2bool, default='false')
-    args = parser.parse_args()
-    return args
-
-args = parse_args()
-print(json.dumps(vars(args), indent=4))
 # get model
 def get_model(model_name):
     project_path = os.environ['MY_PROJECT']
@@ -72,11 +55,54 @@ def get_model(model_name):
     return model_name, model_print_name
 
 
+def get_cot_prompt(cot_prompt):
+    if cot_prompt == 'cot_specification':
+        return specs.cot_specification, specs.overall
+    elif cot_prompt == 'cot_specification_simplified':
+        return specs.cot_specification, specs.simplified_overall
+    elif cot_prompt == 'cot_simple':
+        return specs.cot_simple, specs.overall
+    elif cot_prompt == 'cot_instruction':
+        return specs.cot_instruction, specs.overall
+    else:
+        return None, None
+
+
+def extract_final_response(response):
+    pattern = re.compile(r'(?:final response|final output|final answer)', re.IGNORECASE | re.DOTALL)
+    matches = list(pattern.finditer(response))
+    if not matches:
+        final_response = response
+    else:
+        final_response = re.sub(r'^\W+|\W+$', '', response[matches[-1].end():])
+    return final_response
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+    parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
+    parser.add_argument('--dataset', type=str, default='strongreject', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
+    parser.add_argument('--jailbreak', type=str, default='none', choices=['none', 'pair', 'happy_to_help', 'wikipedia', 'distractors', 'prefix_injection', 'combination_2', 'pap_misrepresentation'])
+    parser.add_argument('--cot_prompt', type=str, default='cot_instruction', choices=['none', 'cot_specification', 'cot_simple', 'cot_instruction', 'cot_specification_simplified'])
+    parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
+    parser.add_argument('--temperature', type=float, default=0)
+    parser.add_argument('--top_p', type=float, default=1)
+    parser.add_argument('--max_length', type=int, default=4096)
+    parser.add_argument('--generate', type=str2bool, default='false')
+    parser.add_argument('--evaluate', type=str2bool, default='false')
+    args = parser.parse_args()
+    return args
+
+args = parse_args()
+print(json.dumps(vars(args), indent=4))
+
 args.model, model_print_name = get_model(args.model)
 args.judge_model, judge_model_print_name = get_model(args.judge_model) 
+cot_template, specifications = get_cot_prompt(args.cot_prompt)
 
 # load the dataset and apply jailbreak
-if os.path.exists(f"data/{args.dataset}/{args.jailbreak}.json"):
+if os.path.exists(f"data/{args.dataset}/{args.jailbreak}.json") and not args.generate and not args.evaluate:
     jailbroken_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}.json", split='train')
 else:
     print(f'loading dataset {args.dataset} and applying jailbreak {args.jailbreak}')
@@ -128,32 +154,44 @@ else:
         json.dump(records, f, indent=4)
 
 # generate the responses
-if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json") and not args.generate:
+if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_responses.json") and not args.generate:
     responses_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json", split='train')
 else:
     print(f'generating responses for {args.model} and {args.jailbreak}')
-    if 'gpt' in args.model or 'o1' in args.model:
-        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+    if args.cot_prompt != 'none':
+        jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": cot_template.format(prompt=x['jailbroken_prompt'], spec_category=specifications)})
+        if 'gpt' in args.model or 'o1' in args.model:
+            responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+        else:
+            responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+        # extract the final response    
+        responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_final_response(x['response'])})
+        col_renames = {
+            'response': 'cot_response',
+            'final_response': 'response',
+        }
+        responses_dataset = responses_dataset.rename_columns(col_renames)
     else:
-        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+        if 'gpt' in args.model or 'o1' in args.model:
+            responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+        else:
+            responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
     records = [dict(row) for row in responses_dataset]
-    with open(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json", 'w', encoding='utf-8') as f:
+    with open(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_responses.json", 'w', encoding='utf-8') as f:
         json.dump(records, f, indent=4)
 
 # evaluate the responses
-if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json") and not args.evaluate:
+if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_{judge_model_print_name}_{args.evaluator}_evaluations.json") and not args.evaluate:
     eval_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json", split='train')
 else:
-    # use the StrongREJECT evaluator to score the harmfulness of the responses
     print(f'evaluating {args.evaluator} for {args.judge_model}')
     print(registered_evaluators.keys())
-    eval_dataset = evaluate_dataset(responses_dataset, [args.evaluator], models=[args.judge_model])
+    eval_dataset = evaluate_dataset(responses_dataset, [args.evaluator], models=[args.judge_model], )
     records = [dict(row) for row in eval_dataset]
-    with open(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json", 'w', encoding='utf-8') as f:
+    with open(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_{judge_model_print_name}_{args.evaluator}_evaluations.json", 'w', encoding='utf-8') as f:
         json.dump(records, f, indent=4)
 
-# compare the average harmfulness of the new jailbreak to the no-jailbreak baseline
 eval_results = eval_dataset.to_pandas().groupby("jailbreak")[["score", "refusal"]].mean()
 
 print(eval_results)
-eval_results.to_csv(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_eval_results.csv")
+eval_results.to_csv(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_{judge_model_print_name}_{args.evaluator}_eval_results.csv")
