@@ -18,9 +18,9 @@ judge_model='gpt-4o-mini-2024-07-18'
 # ['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest']
 dataset='strongreject'
 # ['happy_to_help', 'pair', 'none', 'wikipedia', 'distractors', 'prefix_injection', 'combination_2', 'pap_misrepresentation']
-jailbreak='pair'
+jailbreak='pap_misrepresentation'
 # ['none', 'cot_specification', 'cot_specification_simplified', 'cot_instruction', 'cot_simple']
-cot_prompt='cot_specification_simplified'
+cot_prompt='cot_specification'
 evaluator='strongreject_rubric'
 temperature=0
 top_p=1
@@ -33,8 +33,8 @@ if [ ! -f server_logs/${experiment_name}.yaml ] && [[ ${model} != *"gpt"* ]]; th
     envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
     nohup script -f -a -c "API_PORT=8001 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
     # delay=30
-    echo "Waiting for $delay seconds..."
-    sleep $delay
+    # echo "Waiting for $delay seconds..."
+    # sleep $delay
 fi
 
 nohup python -u ${current_project}/evaluate.py \
