@@ -82,7 +82,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
     parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
-    parser.add_argument('--dataset', type=str, default='strongreject', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
+    parser.add_argument('--dataset', type=str, default='xstest', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
     parser.add_argument('--jailbreak', type=str, default='none', choices=['none', 'pair', 'happy_to_help', 'wikipedia', 'distractors', 'prefix_injection', 'combination_2', 'pap_misrepresentation'])
     parser.add_argument('--cot_prompt', type=str, default='cot_instruction', choices=['none', 'cot_specification', 'cot_simple', 'cot_instruction', 'cot_specification_simplified'])
     parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
@@ -131,6 +131,7 @@ else:
             'label': 'label'
         }
         dataset = dataset.rename_columns(col_renames)
+        dataset = dataset.filter(lambda x: x['label'] == 'safe')
     elif args.dataset == 'beavertails':
         dataset = datasets.load_dataset('PKU-Alignment/BeaverTails', split='30k_test')
         col_renames = {
@@ -192,6 +193,7 @@ else:
         json.dump(records, f, indent=4)
 
 eval_results = eval_dataset.to_pandas().groupby("jailbreak")[["score", "refusal"]].mean()
+eval_results['non-refusal'] = 1 - eval_results['refusal']
 
 print(eval_results)
 eval_results.to_csv(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_{judge_model_print_name}_{args.evaluator}_eval_results.csv")
