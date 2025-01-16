@@ -22,7 +22,7 @@ dataset='strongreject'
 jailbreak='none,pair,pap_misrepresentation'
 # jailbreak='none'
 # ['none', 'cot_specification', 'cot_specification_simplified', 'cot_instruction', 'cot_simple']
-cot_prompt='none'
+cot_prompt='cot_specification'
 evaluator='strongreject_rubric'
 temperature=0
 top_p=1
