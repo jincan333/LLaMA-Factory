@@ -71,16 +71,16 @@ def generate(
     try:
         # Use openai.ChatCompletion
         if use_local:
-            if model == 'ruliad/deepthought-8b-llama-v0.01-alpha':
-                client = OpenAI(api_key="any-string-works", base_url="http://localhost:8001/v1")
-            elif model == 'google/gemma-2-9b-it':
-                client = OpenAI(api_key="any-string-works", base_url="http://localhost:8002/v1")
-            elif model == 'meta-llama/Meta-Llama-3-8B-Instruct':
+            if 'llama' in model:
                 client = OpenAI(api_key="any-string-works", base_url="http://localhost:8000/v1")
+            elif 'deepthought' in model:
+                client = OpenAI(api_key="any-string-works", base_url="http://localhost:8001/v1")
+            elif 'gemma' in model:
+                client = OpenAI(api_key="any-string-works", base_url="http://localhost:8002/v1")
             else:
                 raise ValueError(f"Model {model} not supported")
             response = client.chat.completions.create(
-                model=model,      # e.g. "your_local_model" or anything you've set
+                model=model,
                 messages=messages,
                 **kwargs,         # e.g. temperature=0.7, top_p=0.95, etc.
             )

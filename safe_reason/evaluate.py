@@ -42,11 +42,11 @@ def get_model(model_name):
         model_name = 'meta-llama/Meta-Llama-3-8B'
     elif model_name in ('llama-3-8b-instruct', 'meta-llama/Meta-Llama-3-8B-Instruct'):
         model_name = 'meta-llama/Meta-Llama-3-8B-Instruct'
-    elif model_name in ('gemma-2-9b-it'):
+    elif model_name in ('gemma-2-9b-it', 'google/gemma-2-9b-it'):
         model_name = 'google/gemma-2-9b-it'
-    elif model_name in ('qwq-32b-preview'):
+    elif model_name in ('qwq-32b-preview', 'Qwen/QwQ-32B-Preview'):
         model_name = 'Qwen/QwQ-32B-Preview'
-    elif model_name in ('deepthought-8b'):
+    elif model_name in ('deepthought-8b', 'ruliad/deepthought-8b-llama-v0.01-alpha'):
         model_name = 'ruliad/deepthought-8b-llama-v0.01-alpha'
     else:
         model_name = os.path.join(project_path, 'safe_reason', model_name)
@@ -146,8 +146,8 @@ else:
         json.dump(records, f, indent=4)
 
 # generate the responses
-if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_responses.json") and not args.generate:
-    responses_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_responses.json", split='train')
+if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json") and not args.generate:
+    responses_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json", split='train')
 else:
     print(f'generating responses for {args.model} and {args.jailbreak}')
     if args.cot_prompt != 'none':
@@ -170,22 +170,22 @@ else:
         else:
             responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
     # records = [dict(row) for row in responses_dataset]
-    # with open(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_responses.json", 'w', encoding='utf-8') as f:
+    # with open(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json", 'w', encoding='utf-8') as f:
     #     json.dump(records, f, indent=4)
 
 # evaluate the responses
-if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_{judge_model_print_name}_{args.evaluator}_evaluations.json") and not args.evaluate:
-    eval_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json", split='train')
+if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json") and not args.evaluate:
+    eval_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json", split='train')
 else:
     print(f'evaluating {args.evaluator} for {args.judge_model}')
     print(registered_evaluators.keys())
     eval_dataset = evaluate_dataset(responses_dataset, [args.evaluator], models=[args.judge_model], )
     records = [dict(row) for row in eval_dataset]
-    with open(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_{judge_model_print_name}_{args.evaluator}_evaluations.json", 'w', encoding='utf-8') as f:
+    with open(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json", 'w', encoding='utf-8') as f:
         json.dump(records, f, indent=4)
 
 eval_results = eval_dataset.to_pandas().groupby("jailbreak")[["score", "refusal"]].mean()
 eval_results['non-refusal'] = 1 - eval_results['refusal']
 
 print(eval_results)
-eval_results.to_csv(f"data/{args.dataset}/{args.jailbreak}_{model_print_name}_{args.cot_prompt}_{judge_model_print_name}_{args.evaluator}_eval_results.csv")
+eval_results.to_csv(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_eval_results.csv")

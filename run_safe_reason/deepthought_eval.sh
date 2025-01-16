@@ -11,8 +11,9 @@ mkdir -p server_logs
 mkdir -p $log_dir
 
 prefix="safe_eval"
-# ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
 model='deepthought-8b'
+# ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
+model_name_or_path="ruliad/deepthought-8b-llama-v0.01-alpha"
 # ['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20']
 judge_model='gpt-4o-mini-2024-07-18'
 # ['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest']
@@ -27,7 +28,7 @@ top_p=1
 max_length=4096
 experiment_name=${prefix}_${dataset}_${jailbreak}_${cot_prompt}_${model}_${judge_model}_${evaluator}
 # export model_name_or_path="$output_dir/$model"
-export model_name_or_path="ruliad/deepthought-8b-llama-v0.01-alpha"
+export model_name_or_path=$model_name_or_path
 
 if [ ! -f server_logs/${experiment_name}.yaml ] && [[ ${model} != *"gpt"* ]]; then
     envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
@@ -38,7 +39,7 @@ if [ ! -f server_logs/${experiment_name}.yaml ] && [[ ${model} != *"gpt"* ]]; th
 fi
 
 nohup python -u ${current_project}/evaluate.py \
-    --model $model \
+    --model $model_name_or_path \
     --judge_model $judge_model \
     --dataset $dataset \
     --jailbreak $jailbreak \
