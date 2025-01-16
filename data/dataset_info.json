@@ -1,4 +1,17 @@
 {
+  "beavertails_sft_full_4_2_50":{
+    "file_name": "beavertails/sft_full_4_2_50.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
   "beavertails_sft_full_5_1_100":{
     "file_name": "beavertails/sft_full_5_1_100.json",
     "formatting": "sharegpt",

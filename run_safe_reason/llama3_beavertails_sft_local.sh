@@ -10,7 +10,7 @@ export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
-export dataset="beavertails_sft_full_5_1_100"
+export dataset="beavertails_sft_full_4_2_50"
 export per_device_train_batch_size=1
 export per_device_eval_batch_size=1
 export gradient_accumulation_steps=16
@@ -28,3 +28,64 @@ envsubst < examples/train_full/llama3_full_sft.yaml > safe_reason_logs/${experim
 
 FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train safe_reason_logs/${experiment_name}.yaml
 #  > logs/${experiment_name}.log 2>&1
+
+suffix="eval"
+model_name_or_path=${output_dir}
+dataset="gsm8k"
+n_shot=5
+batch_size=128
+export ACCELERATE_LOG_LEVEL=info
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+accelerate launch -m lm_eval --model hf \
+    --model_args pretrained=${output_dir},dtype=auto \
+    --tasks $dataset \
+    --num_fewshot $n_shot \
+    --gen_kwargs temperature=0 \
+    --output_path ${output_dir}/${dataset} \
+    --log_samples \
+    --write_out \
+    --apply_chat_template \
+    --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
+    --batch_size $batch_size
+
+dataset="mmlu"
+n_shot=5
+accelerate launch -m lm_eval --model hf \
+    --model_args pretrained=${output_dir},dtype=auto \
+    --tasks $dataset \
+    --num_fewshot $n_shot \
+    --gen_kwargs temperature=0 \
+    --output_path ${output_dir}/${dataset} \
+    --log_samples \
+    --write_out \
+    --apply_chat_template \
+    --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
+    --batch_size $batch_size
+
+dataset="hendrycks_math"
+n_shot=5
+accelerate launch -m lm_eval --model hf \
+    --model_args pretrained=${output_dir},dtype=auto \
+    --tasks $dataset \
+    --num_fewshot $n_shot \
+    --gen_kwargs temperature=0 \
+    --output_path ${output_dir}/${dataset} \
+    --log_samples \
+    --write_out \
+    --apply_chat_template \
+    --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
+    --batch_size $batch_size
+
+dataset="bbh"
+n_shot=5
+accelerate launch -m lm_eval --model hf \
+    --model_args pretrained=${output_dir},dtype=auto \
+    --tasks $dataset \
+    --num_fewshot $n_shot \
+    --gen_kwargs temperature=0 \
+    --output_path ${output_dir}/${dataset} \
+    --log_samples \
+    --write_out \
+    --apply_chat_template \
+    --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
+    --batch_size $batch_size

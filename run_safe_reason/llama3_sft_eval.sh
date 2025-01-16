@@ -11,7 +11,7 @@ mkdir -p server_logs
 mkdir -p $log_dir
 
 prefix="safe_sft"
-model="llama3_sft_beavertails_sft_full_5_1_100_tbs1_ebs1_gas16_lr5e-6_cl4096"
+model="llama3_sft_beavertails_sft_full_4_2_50_tbs1_ebs1_gas16_lr5e-6_cl4096"
 # ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
 model_name_or_path=${output_dir}/${model}
 # ['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20']
@@ -34,9 +34,9 @@ export model_name_or_path=$model_name_or_path
 if [ ! -f server_logs/${experiment_name}.yaml ] && [[ ${model} != *"gpt"* ]]; then
     envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
     nohup script -f -a -c "API_PORT=8000 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
-    # delay=30
-    # echo "Waiting for $delay seconds..."
-    # sleep $delay
+    delay=30
+    echo "Waiting for $delay seconds..."
+    sleep $delay
 fi
 
 nohup python -u ${current_project}/evaluate.py \
