@@ -84,7 +84,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 dataset="hellaswag"
 n_shot=10
-batch_size=128
+batch_size=64
 echo "evaldataset: $dataset"
 accelerate launch -m lm_eval --model hf \
     --model_args pretrained=${model_name_or_path},dtype=auto \
