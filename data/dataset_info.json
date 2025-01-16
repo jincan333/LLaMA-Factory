@@ -1,4 +1,33 @@
 {
+  "beavertails_sft_full_5_1_100":{
+    "file_name": "beavertails/sft_full_5_1_100.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "beavertails_dpo_full_5_1_100":{
+    "file_name": "beavertails/dpo_full_5_1_100.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "columns": {
+      "messages": "messages",
+      "chosen": "chosen",
+      "rejected": "rejected"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
   "gsm8k_rectify_dpo":{
     "file_name": "gsm8k/dpo.json",
     "formatting": "sharegpt",
