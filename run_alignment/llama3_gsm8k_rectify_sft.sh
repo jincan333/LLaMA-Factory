@@ -83,7 +83,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 dataset="bbh_zeroshot"
 n_shot=0
-batch_size=64
+batch_size=128
 echo "evaldataset: $dataset"
 accelerate launch -m lm_eval --model hf \
     --model_args pretrained=${model_name_or_path},dtype=auto \
