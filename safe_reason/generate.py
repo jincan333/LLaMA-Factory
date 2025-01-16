@@ -156,7 +156,7 @@ if __name__ == "__main__":
         dataset = dataset.rename_columns(col_renames)
         safe_dataset = dataset.filter(lambda x: x['is_safe'] == True)
         records = [dict(row) for row in safe_dataset]
-        with open('data/beavertails/beavertails_safe.json', 'w', encoding='utf-8') as f:
+        with open('data/beavertails/safe.json', 'w', encoding='utf-8') as f:
             json.dump(records, f, indent=4)
         
         unsafe_dataset = dataset.filter(lambda x: x['is_safe'] == False)
@@ -249,27 +249,31 @@ if __name__ == "__main__":
         print(f'building cot dataset for beavertails')
         cot_ratings = [4, 5]
         final_response_ratings = [1, 2]
-        class_nums = [10, 50, 100, 500]
+        class_nums = [5, 10, 50]
         for cot_rating in cot_ratings:
             for final_response_rating in final_response_ratings:
                 for class_num in class_nums:
                     full_dataset = []
+                    print(f'cot_rating: {cot_rating}, final_response_rating: {final_response_rating}, class_num: {class_num}')
                     for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
                         class_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/unsafe_{number}_cot.json', split='train')
+                        print(f'class_dataset {number} total: {len(class_dataset)}')
                         class_dataset = class_dataset.filter(lambda x: x['cot_rating'] is not None and x['cot_rating'] >= cot_rating and x['final_response_rating'] is not None and x['final_response_rating'] <= final_response_rating)
+                        print(f'class_dataset {number} selected: {min(class_num, len(class_dataset))}')
                         class_dataset = class_dataset.select(range(min(class_num, len(class_dataset))))
                         full_dataset.extend(class_dataset)
                     records = [dict(row) for row in full_dataset]
-                    with open(f'data/beavertails/beavertails_unsafe_filtered_cot_{cot_rating}_{final_response_rating}_{class_num}.json', 'w', encoding='utf-8') as f:
+                    with open(f'data/beavertails/unsafe_filtered_cot_{cot_rating}_{final_response_rating}_{class_num}.json', 'w', encoding='utf-8') as f:
                         json.dump(records, f, indent=4)
     
     if args.task == 'beavertails_build_alignment_dataset':
+        dataset_name = '4_2_50'
         print(f'building alignment dataset for beavertails')
         safe_dataset = datasets.load_dataset('json', data_files='data/beavertails/safe.json', split='train')
-        unsafe_dataset = datasets.load_dataset('json', data_files='data/beavertails/unsafe_5_1_100.json', split='train')
-        safe_dataset = safe_dataset.select(range(min(len(safe_dataset), len(unsafe_dataset))))
+        unsafe_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/unsafe_filtered_cot_{dataset_name}.json', split='train')
+        safe_dataset = safe_dataset.select(range(min(len(safe_dataset), 3 * len(unsafe_dataset))))
         
-        unsafe_dataset = unsafe_dataset.map(lambda x: {"chosen": "### Analysis\n\n{}\n\n### Output\n{}".format(x['analysis'], x['final_response'])})
+        unsafe_dataset = unsafe_dataset.map(lambda x: {"chosen": "### Analysis\n\n{}\n\n### Final Response\n{}".format(x['analysis'], x['final_response'])})
         dpo_unsafe_dataset = unsafe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "chosen": [{"role": "assistant", "content": x['chosen']}], "rejected": [{"role": "assistant", "content": x['rejected']}]})
         dpo_unsafe_dataset = dpo_unsafe_dataset.remove_columns(['response', 'cot_rating', 'final_response_rating', 'number', 'analysis', 'final_response'])
         sft_unsafe_dataset = dpo_unsafe_dataset.map(lambda x: {"messages": [x['messages'][0], x['chosen'][0]]})
@@ -282,8 +286,8 @@ if __name__ == "__main__":
         sft_full_dataset = sft_full_dataset.shuffle(seed=1234)
         dpo_full_dataset = dpo_full_dataset.shuffle(seed=1234)
         records = [dict(row) for row in sft_full_dataset]
-        with open('data/beavertails/sft_full_5_1_100.json', 'w', encoding='utf-8') as f:
+        with open(f'data/beavertails/sft_full_{dataset_name}.json', 'w', encoding='utf-8') as f:
             json.dump(records, f, indent=4)
         records = [dict(row) for row in dpo_full_dataset]
-        with open('data/beavertails/dpo_full_5_1_100.json', 'w', encoding='utf-8') as f:
+        with open(f'data/beavertails/dpo_full_{dataset_name}.json', 'w', encoding='utf-8') as f:
             json.dump(records, f, indent=4)
