@@ -30,12 +30,12 @@ mkdir -p logs
 #  > logs/${experiment_name}.log 2>&1
 
 suffix="eval"
-model_name_or_path="meta-llama/Llama-3-8B-Instruct"
+model_name_or_path="meta-llama/Meta-Llama-3-8B-Instruct"
 dataset="gsm8k"
 n_shot=5
 batch_size=128
 export ACCELERATE_LOG_LEVEL=info
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=0,1,2,3
 accelerate launch -m lm_eval --model hf \
     --model_args pretrained=${model_name_or_path},dtype=auto \
     --tasks $dataset \
