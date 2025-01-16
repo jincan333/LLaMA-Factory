@@ -36,22 +36,25 @@ n_shot=5
 batch_size=128
 export ACCELERATE_LOG_LEVEL=info
 export CUDA_VISIBLE_DEVICES=0,1,2,3
+echo "evaldataset: $dataset"
 accelerate launch -m lm_eval --model hf \
-    --model_args pretrained=${output_dir},dtype=auto \
+    --model_args pretrained=${model_name_or_path},dtype=auto \
     --tasks $dataset \
     --num_fewshot $n_shot \
-    --gen_kwargs temperature=0 \
+    --gen_kwargs top_p=1,temperature=0 \
     --output_path ${output_dir}/${dataset} \
     --log_samples \
     --write_out \
     --apply_chat_template \
-    --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
+    --wandb_args project=$current_project,name=${experiment_name}_${suffix} \
     --batch_size $batch_size
 
 dataset="mmlu"
 n_shot=5
+batch_size=32
+echo "evaldataset: $dataset"
 accelerate launch -m lm_eval --model hf \
-    --model_args pretrained=${output_dir},dtype=auto \
+    --model_args pretrained=${model_name_or_path},dtype=auto \
     --tasks $dataset \
     --num_fewshot $n_shot \
     --gen_kwargs temperature=0 \
@@ -62,10 +65,12 @@ accelerate launch -m lm_eval --model hf \
     --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
     --batch_size $batch_size
 
-dataset="hendrycks_math"
-n_shot=5
+dataset="hellaswag"
+n_shot=10
+batch_size=64
+echo "evaldataset: $dataset"
 accelerate launch -m lm_eval --model hf \
-    --model_args pretrained=${output_dir},dtype=auto \
+    --model_args pretrained=${model_name_or_path},dtype=auto \
     --tasks $dataset \
     --num_fewshot $n_shot \
     --gen_kwargs temperature=0 \
@@ -76,10 +81,12 @@ accelerate launch -m lm_eval --model hf \
     --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
     --batch_size $batch_size
 
-dataset="bbh"
-n_shot=5
+dataset="bbh_zeroshot"
+n_shot=0
+batch_size=128
+echo "evaldataset: $dataset"
 accelerate launch -m lm_eval --model hf \
-    --model_args pretrained=${output_dir},dtype=auto \
+    --model_args pretrained=${model_name_or_path},dtype=auto \
     --tasks $dataset \
     --num_fewshot $n_shot \
     --gen_kwargs temperature=0 \
