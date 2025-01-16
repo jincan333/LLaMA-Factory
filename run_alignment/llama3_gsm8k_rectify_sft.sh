@@ -51,7 +51,7 @@ export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 dataset="mmlu"
 n_shot=5
-batch_size=64
+batch_size=32
 echo "evaldataset: $dataset"
 accelerate launch -m lm_eval --model hf \
     --model_args pretrained=${model_name_or_path},dtype=auto \
