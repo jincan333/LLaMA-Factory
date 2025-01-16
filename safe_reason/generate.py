@@ -137,7 +137,7 @@ if __name__ == "__main__":
 
     def parse_args():
         parser = argparse.ArgumentParser()
-        parser.add_argument('--task', type=str, default='beavertails_build_alignment_dataset', choices=['beavertails_classification', 'beavertails_generate_cot', 'beavertails_build_cot_dataset', 'beavertails_build_alignment_dataset'])
+        parser.add_argument('--task', type=str, default='beavertails_build_cot_dataset', choices=['beavertails_classification', 'beavertails_generate_cot', 'beavertails_build_cot_dataset', 'beavertails_build_alignment_dataset'])
         args = parser.parse_args()
         return args
 
@@ -215,9 +215,25 @@ if __name__ == "__main__":
             12: specs.sexual_content
         }
         cot_specification = specs.cot_specification
+        safe_dataset = safe_dataset.shuffle(seed=1234)
+        safe_dataset = safe_dataset.select(range(min(len(safe_dataset), 5000)))
+        print('safe', len(safe_dataset))
+        cot_prompt_safe_dataset = safe_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=specifications[x['number']])})
+        cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.7, top_p=0.95, max_tokens=4096)
+        pattern = re.compile(r'# Analysis\s*(.*?)\s*# Final Response', re.IGNORECASE | re.DOTALL)
+        cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
+        pattern = re.compile(r'(?:# Final Response)', re.IGNORECASE | re.DOTALL)
+        cot_dataset = cot_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
+        cot_dataset = cot_dataset.remove_columns(['model', 'cot_prompt'])
+        records = [dict(row) for row in cot_dataset]
+        with open(f'data/beavertails/safe_cot.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
+
         for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
             filtered_dataset = unsafe_dataset.filter(lambda x: x['number'] == number)
-            print(number, len(filtered_dataset))
+            filtered_dataset = filtered_dataset.shuffle(seed=1234)
+            filtered_dataset = filtered_dataset.select(range(min(len(filtered_dataset), 500)))
+            print('unsafe', number, len(filtered_dataset))
             cot_prompt_unsafe_dataset = filtered_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=specifications[x['number']])})
             # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.7, top_p=0.95, max_tokens=4096)
             # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['o1-2024-12-17'], use_local=False, decode_responses=False, max_completion_tokens=4096)
@@ -249,7 +265,7 @@ if __name__ == "__main__":
         print(f'building cot dataset for beavertails')
         cot_ratings = [4, 5]
         final_response_ratings = [1, 2]
-        class_nums = [5, 10, 50]
+        class_nums = [10, 50]
         for cot_rating in cot_ratings:
             for final_response_rating in final_response_ratings:
                 for class_num in class_nums:
