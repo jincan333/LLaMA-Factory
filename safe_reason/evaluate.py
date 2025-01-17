@@ -51,7 +51,7 @@ def get_model(model_name):
         model_name = 'ruliad/deepthought-8b-llama-v0.01-alpha'
     else:
         model_name = os.path.join(project_path, 'safe_reason', model_name)
-    model_print_name = re.sub(r'/', '-', model_name)
+    model_print_name = re.sub(r'/', '-', model_name.split('/')[-1])
 
     return model_name, model_print_name
 
@@ -162,6 +162,16 @@ else:
         else:
             responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
         # extract the final response    
+        pattern = re.compile(r'(?:final response|final output|final answer)', re.IGNORECASE | re.DOTALL)
+        responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
+        col_renames = {
+            'response': 'cot_response',
+            'final_response': 'response',
+        }
+        responses_dataset = responses_dataset.rename_columns(col_renames)
+    elif 'sft' in args.model or 'dpo' in args.model:
+        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+                # extract the final response    
         pattern = re.compile(r'(?:final response|final output|final answer)', re.IGNORECASE | re.DOTALL)
         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
         col_renames = {
