@@ -5,7 +5,7 @@
 #SBATCH --ntasks-per-node 1
 #SBATCH --cpus-per-task 64
 #SBATCH --gpus-per-node 4
-#SBATCH -J llama3_gsm8k_sft
+#SBATCH -J llama3_sft
 echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 echo "Current directory: $(pwd)"
 echo "Job started at $(date)"
