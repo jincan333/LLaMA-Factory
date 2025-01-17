@@ -12,6 +12,7 @@ from strong_reject.jailbreaks import apply_jailbreaks_to_dataset, register_jailb
 from strong_reject.jailbreaks import registered_jailbreaks
 import specifications as specs
 
+
 def str2bool(v):
     """
     Convert a string to a boolean.
@@ -64,6 +65,10 @@ def get_cot_prompt(cot_prompt):
         return specs.cot_simple, specs.overall
     elif cot_prompt == 'cot_instruction':
         return specs.cot_instruction, specs.overall
+    elif cot_prompt == 'cot_helpful':
+        return specs.cot_helpful, specs.overall_helpful
+    elif cot_prompt == 'cot_specification_helpful':
+        return specs.cot_specification_helpful, specs.overall_helpful
     else:
         return None, None
 
@@ -74,7 +79,7 @@ def parse_args():
     parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
     parser.add_argument('--dataset', type=str, default='xstest', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
     parser.add_argument('--jailbreak', type=str, default='none', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
-    parser.add_argument('--cot_prompt', type=str, default='cot_instruction', choices=['none', 'cot_specification', 'cot_simple', 'cot_instruction', 'cot_specification_simplified'])
+    parser.add_argument('--cot_prompt', type=str, default='cot_instruction', choices=['none', 'cot_specification', 'cot_simple', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful'])
     parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
     parser.add_argument('--temperature', type=float, default=0.95)
     parser.add_argument('--top_p', type=float, default=0.7)
