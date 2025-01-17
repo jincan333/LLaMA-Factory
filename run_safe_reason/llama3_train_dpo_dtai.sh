@@ -33,7 +33,7 @@ echo "Job finished at $(date)"
 #   --bind $HOME:$HOME \
 #   --bind $MY_PROJECT:$MY_PROJECT \
 #   $CONTAINER_DIR/pytorch_24.09-py3.sif bash -c \
-#   "source ~/.bashrc && bash run/llama3_gsm8k_rectify_dpo.sh"
+#   "source ~/.bashrc && bash run_safe_reason/llama3_train_dpo.sh"
 
  
 

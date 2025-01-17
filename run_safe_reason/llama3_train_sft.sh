@@ -10,7 +10,7 @@ export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
-export dataset="constrained_answer_sft_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_4"
+export dataset="constrained_helpful_sft_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_4"
 export per_device_train_batch_size=8
 export per_device_eval_batch_size=8
 export gradient_accumulation_steps=2
