@@ -424,51 +424,25 @@ if __name__ == "__main__":
                 unsafe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == False)
                 safe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == True)
                 
+                dpo_unsafe_dataset = unsafe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "constrained_helpful_chosen": [{"role": "assistant", "content": x['constrained']}], "constrained_answer_chosen": [{"role": "assistant", "content": x['constrained']}], "constrained_helpful_rejected": [{"role": "assistant", "content": x['helpful']}], "constrained_answer_rejected": [{"role": "assistant", "content": x['rejected']}]})
+                dpo_unsafe_dataset = dpo_unsafe_dataset.remove_columns(['safe_analysis', 'safe_final_response', 'safe_cot_rating', 'safe_final_response_rating', 'unsafe_analysis', 'unsafe_final_response', 'unsafe_cot_rating', 'unsafe_final_response_rating', 'forbidden_prompt', 'category', 'constrained', 'helpful', 'rejected'])
+                sft_unsafe_dataset = dpo_unsafe_dataset.map(lambda x: {"constrained_helpful": [x['messages'][0], x['constrained_helpful_chosen'][0]], "constrained_answer": [x['messages'][0], x['constrained_answer_chosen'][0]]})
 
-                dpo_unsafe_dataset = unsafe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "chosen": [{"role": "assistant", "content": x['constrained']}], "rejected": [{"role": "assistant", "content": x['helpful']}], "answer": [{"role": "assistant", "content": x['rejected']}]})
-                dpo_unsafe_dataset = dpo_unsafe_dataset.remove_columns(['safe_analysis', 'safe_final_response', 'safe_cot_rating', 'safe_final_response_rating', 'unsafe_analysis', 'unsafe_final_response', 'unsafe_cot_rating', 'unsafe_final_response_rating', 'rejected', 'forbidden_prompt', 'category', 'constrained', 'helpful'])
-                sft_unsafe_dataset = dpo_unsafe_dataset.map(lambda x: {"constrained_helpful": [x['messages'][0], x['chosen'][0]], "constrained_answer": [x['messages'][0], x['chosen'][0]]})
+                dpo_safe_dataset = safe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "constrained_helpful_chosen": [{"role": "assistant", "content": x['helpful']}], "constrained_answer_chosen": [{"role": "assistant", "content": x['rejected']}], "constrained_helpful_rejected": [{"role": "assistant", "content": x['constrained']}], "constrained_answer_rejected": [{"role": "assistant", "content": x['constrained']}]})
+                dpo_safe_dataset = dpo_safe_dataset.remove_columns(['safe_analysis', 'safe_final_response', 'safe_cot_rating', 'safe_final_response_rating', 'unsafe_analysis', 'unsafe_final_response', 'unsafe_cot_rating', 'unsafe_final_response_rating', 'forbidden_prompt', 'category', 'constrained', 'helpful', 'rejected'])
+                sft_safe_dataset = dpo_safe_dataset.map(lambda x: {"constrained_helpful": [x['messages'][0], x['constrained_helpful_chosen'][0]], "constrained_answer": [x['messages'][0], x['constrained_answer_chosen'][0]]})
 
-                dpo_safe_dataset = safe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "chosen": [{"role": "assistant", "content": x['helpful']}], "rejected": [{"role": "assistant", "content": x['constrained']}], "answer": [{"role": "assistant", "content": x['rejected']}]})
-                dpo_safe_dataset = dpo_safe_dataset.remove_columns(['safe_analysis', 'safe_final_response', 'safe_cot_rating', 'safe_final_response_rating', 'unsafe_analysis', 'unsafe_final_response', 'unsafe_cot_rating', 'unsafe_final_response_rating', 'rejected', 'forbidden_prompt', 'category', 'constrained', 'helpful'])
-                sft_safe_dataset = dpo_safe_dataset.map(lambda x: {"constrained_helpful": [x['messages'][0], x['chosen'][0]], "constrained_answer": [x['messages'][0], x['answer'][0]]})
-                sft_full_dataset = concatenate_datasets([sft_safe_dataset, sft_unsafe_dataset])
-                sft_full_dataset = sft_full_dataset.remove_columns(['messages', 'chosen', 'answer'])
                 dpo_full_dataset = concatenate_datasets([dpo_safe_dataset, dpo_unsafe_dataset])
-                sft_full_dataset = sft_full_dataset.shuffle(seed=1234)
                 dpo_full_dataset = dpo_full_dataset.shuffle(seed=1234)
+                sft_full_dataset = concatenate_datasets([sft_safe_dataset, sft_unsafe_dataset])
+                sft_full_dataset = sft_full_dataset.remove_columns(['messages', 'constrained_helpful_chosen', 'constrained_answer_chosen', 'constrained_helpful_rejected', 'constrained_answer_rejected'])
+                sft_full_dataset = sft_full_dataset.shuffle(seed=1234)
+                
                 records = [dict(row) for row in sft_full_dataset]
                 with open(f'data/beavertails/sft_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
                     json.dump(records, f, indent=4)
                 records = [dict(row) for row in dpo_full_dataset]
                 with open(f'data/beavertails/dpo_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
                     json.dump(records, f, indent=4)
-    
-    # if args.task == 'beavertails_build_alignment_dataset':
-    #     dataset_name = '4_2_50'
-    #     ratio = 4
-    #     print(f'building alignment dataset for beavertails')
-    #     full_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/filtered_cot_{dataset_name}.json', split='train')
-    #     full_dataset = full_dataset.shuffle(seed=1234)
-    #     safe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == True)
-    #     unsafe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == False)
-    #     safe_dataset = safe_dataset.select(range(min(len(safe_dataset), ratio * len(unsafe_dataset))))
-        
-    #     unsafe_dataset = unsafe_dataset.map(lambda x: {"chosen": "### Analysis\n\n{}\n\n### Final Response\n{}".format(x['analysis'], x['final_response'])})
-    #     dpo_unsafe_dataset = unsafe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "chosen": [{"role": "assistant", "content": x['chosen']}], "rejected": [{"role": "assistant", "content": x['rejected']}]})
-    #     dpo_unsafe_dataset = dpo_unsafe_dataset.remove_columns(['response', 'cot_rating', 'final_response_rating', 'number', 'analysis', 'final_response'])
-    #     sft_unsafe_dataset = dpo_unsafe_dataset.map(lambda x: {"messages": [x['messages'][0], x['chosen'][0]]})
-    #     dpo_safe_dataset = safe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "chosen": [{"role": "assistant", "content": x['rejected']}], "rejected": [{"role": "assistant", "content": x['rejected']}]})
-    #     sft_safe_dataset = dpo_safe_dataset.map(lambda x: {"messages": [x['messages'][0], x['chosen'][0]]})
-    #     sft_full_dataset = concatenate_datasets([sft_safe_dataset, sft_unsafe_dataset])
-    #     sft_full_dataset = sft_full_dataset.remove_columns(['rejected', 'forbidden_prompt', 'category', 'chosen'])
-    #     dpo_full_dataset = concatenate_datasets([dpo_safe_dataset, dpo_unsafe_dataset])
-    #     dpo_full_dataset = dpo_full_dataset.remove_columns(['forbidden_prompt', 'category'])
-    #     sft_full_dataset = sft_full_dataset.shuffle(seed=1234)
-    #     dpo_full_dataset = dpo_full_dataset.shuffle(seed=1234)
-    #     records = [dict(row) for row in sft_full_dataset]
-    #     with open(f'data/beavertails/sft_full_{dataset_name}.json', 'w', encoding='utf-8') as f:
-    #         json.dump(records, f, indent=4)
-    #     records = [dict(row) for row in dpo_full_dataset]
-    #     with open(f'data/beavertails/dpo_full_{dataset_name}.json', 'w', encoding='utf-8') as f:
-    #         json.dump(records, f, indent=4)
+                print(f'sft_full_dataset: {len(sft_full_dataset)}')
+                print(f'dpo_full_dataset: {len(dpo_full_dataset)}')

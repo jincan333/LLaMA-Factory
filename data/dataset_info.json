@@ -1,4 +1,62 @@
 {
+  "constrained_answer_dpo_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_4":{
+    "file_name": "beavertails/dpo_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_4.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "columns": {
+      "messages": "messages",
+      "chosen": "constrained_answer_chosen",
+      "rejected": "constrained_answer_rejected"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "constrained_helpful_dpo_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_4":{
+    "file_name": "beavertails/dpo_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_4.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "columns": {
+      "messages": "messages",
+      "chosen": "constrained_helpful_chosen",
+      "rejected": "constrained_helpful_rejected"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "constrained_answer_sft_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_4":{
+    "file_name": "beavertails/sft_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_4.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "constrained_answer"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "constrained_helpful_sft_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_4":{
+    "file_name": "beavertails/sft_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_4.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "constrained_helpful"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
   "beavertails_sft_full_4_2_50":{
     "file_name": "beavertails/sft_full_4_2_50.json",
     "formatting": "sharegpt",
