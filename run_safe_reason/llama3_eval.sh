@@ -31,12 +31,12 @@ experiment_name=${prefix}_${dataset}_${jailbreak}_${cot_prompt}_${model}_${judge
 # export model_name_or_path="$output_dir/$model"
 export model_name_or_path=$model_name_or_path
 
-if [ ! -f server_logs/${experiment_name}.yaml ] && [[ ${model} != *"gpt"* ]]; then
+if ! lsof -i:8000 > /dev/null; then
     envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
     nohup script -f -a -c "API_PORT=8000 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
-    # delay=30
-    # echo "Waiting for $delay seconds..."
-    # sleep $delay
+    delay=30
+    echo "Waiting for $delay seconds..."
+    sleep $delay
 fi
 
 nohup python -u ${current_project}/evaluate.py \
