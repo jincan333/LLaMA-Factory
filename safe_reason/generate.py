@@ -10,7 +10,7 @@ import datasets
 import re
 import argparse
 import json
-
+from strong_reject.load_datasets import load_strongreject
 import specifications as specs
 
 
@@ -163,7 +163,7 @@ if __name__ == "__main__":
 
     def parse_args():
         parser = argparse.ArgumentParser()
-        parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_cot_dataset'])
+        parser.add_argument('--task', type=str, default='strongreject_classification', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_cot_dataset', 'test'])
         parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
         args = parser.parse_args()
         return args
@@ -172,6 +172,56 @@ if __name__ == "__main__":
     args.model, model_print_name = get_model(args.model)
     print(json.dumps(vars(args), indent=4))
 
+    if args.task == 'strongreject_classification':
+        print(f'generating classification for strongreject')
+        # dataset = load_strongreject()
+        # prompt_classification = specs.prompt_classification
+        # dataset = dataset.map(lambda x: {"prompt": prompt_classification.format(prompt=x['forbidden_prompt'])})
+        # responses_dataset = personalized_generate(dataset, system_prompt=None, models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0, max_tokens=512)
+        # pattern = re.compile(r'(?:final category number)', re.IGNORECASE | re.DOTALL)
+        # responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
+        # processed_dataset = responses_dataset.map(
+        #     lambda x: {
+        #         'number': int(match.group(0)) if (match := re.search(r"\d+", x['final_response'])) else None,
+        #     },
+        #     num_proc=32
+        # )
+        # processed_dataset = processed_dataset.remove_columns('model')
+        # records = [dict(row) for row in processed_dataset]
+        # with open('data/strongreject/classification.json', 'w', encoding='utf-8') as f:
+        #     json.dump(records, f, indent=4)
+
+        processed_dataset = datasets.load_dataset('json', data_files='data/strongreject/classification.json', split='train')
+
+        specifications = {
+            1: specs.violent_crimes,
+            2: specs.non_violent_crimes,
+            3: specs.sex_related_crimes,
+            4: specs.child_sexual_exploitation,
+            5: specs.cbrne,
+            6: specs.suicide_and_self_harm,
+            7: specs.hate,
+            8: specs.privacy,
+            9: specs.intellectual_property,
+            10: specs.disinformation_and_defamation,
+            11: specs.elections,
+            12: specs.sexual_content,
+            13: specs.others
+        }
+        full_dataset = []
+        for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]:
+            filtered_dataset = processed_dataset.filter(lambda x: x['number'] == number)
+            filtered_dataset = filtered_dataset.shuffle(seed=1234)
+            print('unsafe', number, len(filtered_dataset))
+            cot_specification = specs.cot_specification
+            filtered_dataset = filtered_dataset.map(lambda x: {"classification_cot_prompt": cot_specification.format(prompt="{prompt}", spec_category=specifications[x['number']])})
+            full_dataset.append(filtered_dataset)
+        full_dataset = concatenate_datasets(full_dataset)
+        full_dataset = full_dataset.remove_columns(['prompt', 'response', 'final_response'])
+        records = [dict(row) for row in full_dataset]
+        with open(f'data/strongreject/classification.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
+        
     if args.task == 'beavertails_classification':
         print(f'generating classification for beavertails')
         dataset = datasets.load_dataset('PKU-Alignment/BeaverTails', split='30k_train')
@@ -446,3 +496,15 @@ if __name__ == "__main__":
                     json.dump(records, f, indent=4)
                 print(f'sft_full_dataset: {len(sft_full_dataset)}')
                 print(f'dpo_full_dataset: {len(dpo_full_dataset)}')
+
+    if args.task == 'test':
+        print(f'testing')
+        safe_dataset = datasets.load_dataset('json', data_files='cache/meta-llama-Meta-Llama-3-8B-Instruct_safe_cot.json', split='train')
+        print(len(safe_dataset))
+        unsafe_dataset = datasets.load_dataset('PKU-Alignment/BeaverTails', split='30k_train')
+        unsafe_dataset = unsafe_dataset.filter(lambda x: x['is_safe'] == False)
+        safe_dataset = safe_dataset.filter(lambda x: x['forbidden_prompt'] not in unsafe_dataset['prompt'])
+        print(len(safe_dataset))
+        records = [dict(row) for row in safe_dataset]
+        with open('cache/meta-llama-Meta-Llama-3-8B-Instruct_safe_cot_filtered.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
