@@ -17,10 +17,11 @@ model_name_or_path="google/gemma-2-9b-it"
 # ['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20']
 judge_model='gpt-4o-mini-2024-07-18'
 # ['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest']
-dataset='strongreject'
+# dataset='strongreject'
+dataset='xstest'
 # ['happy_to_help', 'pair', 'none', 'wikipedia', 'distractors', 'prefix_injection', 'combination_2', 'pap_misrepresentation']
-jailbreak='none,pair,pap_misrepresentation'
-# jailbreak='none'
+# jailbreak='none,pair,pap_misrepresentation'
+jailbreak='none'
 # ['none', 'cot_specification', 'cot_specification_simplified', 'cot_instruction', 'cot_simple']
 cot_prompt='cot_specification'
 evaluator='strongreject_rubric'
@@ -31,13 +32,11 @@ experiment_name=${prefix}_${dataset}_${jailbreak}_${cot_prompt}_${model}_${judge
 # export model_name_or_path="$output_dir/$model"
 export model_name_or_path=$model_name_or_path
 
-if [ ! -f server_logs/${experiment_name}.yaml ] && [[ ${model} != *"gpt"* ]]; then
-    envsubst < examples/inference/gemma_vllm.yaml > server_logs/${experiment_name}.yaml
-    nohup script -f -a -c "API_PORT=8002 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
-    # delay=30
-    # echo "Waiting for $delay seconds..."
-    # sleep $delay
-fi
+envsubst < examples/inference/gemma_vllm.yaml > server_logs/${experiment_name}.yaml
+nohup script -f -a -c "API_PORT=8002 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
+# delay=40
+# echo "Waiting for $delay seconds..."
+# sleep $delay
 
 nohup python -u ${current_project}/evaluate.py \
     --model $model_name_or_path \
