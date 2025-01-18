@@ -79,7 +79,7 @@ def parse_args():
     parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
     parser.add_argument('--dataset', type=str, default='xstest', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
     parser.add_argument('--jailbreak', type=str, default='none', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
-    parser.add_argument('--cot_prompt', type=str, default='cot_instruction', choices=['none', 'cot_specification', 'cot_simple', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful'])
+    parser.add_argument('--cot_prompt', type=str, default='cot_instruction', choices=['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful'])
     parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
     parser.add_argument('--temperature', type=float, default=0.95)
     parser.add_argument('--top_p', type=float, default=0.7)
@@ -103,7 +103,7 @@ if os.path.exists(f"data/{args.dataset}/{args.jailbreak}.json") and not args.gen
 else:
     print(f'loading dataset {args.dataset} and applying jailbreak {args.jailbreak}')
     if args.dataset == 'strongreject':
-        dataset = load_strongreject()
+        dataset = datasets.load_dataset('json', data_files='data/strongreject/classification.json', split='train')
     elif args.dataset == 'strongreject_small':
         dataset = load_strongreject_small()
     elif args.dataset == 'advbench':
@@ -156,12 +156,14 @@ if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{mode
 else:
     print(f'generating responses for {args.model} and {args.jailbreak}')
     if args.cot_prompt != 'none':
-        jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": cot_template.format(prompt=x['jailbroken_prompt'], spec_category=specifications)})
+        if args.cot_prompt == 'cot_classification_specification':
+            jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['classification_cot_prompt'].format(prompt=x['jailbroken_prompt'])})
+        else:
+            jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": cot_template.format(prompt=x['jailbroken_prompt'], spec_category=specifications)})
         if 'gpt' in args.model or 'o1' in args.model:
             responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
         else:
             responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-        # extract the final response    
         pattern = re.compile(r'(?:final response|final output|final answer)', re.IGNORECASE | re.DOTALL)
         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
         col_renames = {
@@ -171,7 +173,6 @@ else:
         responses_dataset = responses_dataset.rename_columns(col_renames)
     elif 'sft' in args.model or 'dpo' in args.model:
         responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-                # extract the final response    
         pattern = re.compile(r'(?:final response|final output|final answer)', re.IGNORECASE | re.DOTALL)
         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
         col_renames = {

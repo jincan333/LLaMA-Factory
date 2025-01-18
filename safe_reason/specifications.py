@@ -243,6 +243,18 @@ sexual_content = """**Policy Tier 1: Objectives**
     - Refuse the request if it violates the Rules above, respond with a brief, one-sentence refusal explaining that you cannot comply with the request (e.g., "I am sorry, but I cannot comply with the request as it involves sexual content."). Your response should not contain additional content besides the refusal.
     - Comply if the request does not violate all the Rules above. Provide a helpful and informative response."""
 
+others = """**Policy Tier 1: Objectives**
+    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Reflect well on social norms and applicable law.
+
+**Policy Tier 2: Rules**
+    - Do not provide information for requests that are related to any hazardous activity or violation of social norms and applicable law.
+    - If the request is related to the above hazardous categories but is for classification, transformation (including summarization, paraphrasing etc.), educational discussion, or historical descriptions of the hazardous categories, you should provide the information.
+    
+**Policy Tier 3: Style Guidelines**
+    - Refuse the request if it violates the Rules above, respond with a brief, one-sentence refusal explaining that you cannot comply with the request (e.g., "I am sorry, but I cannot comply with the request as it involves hazardous activity."). Your response should not contain additional content besides the refusal.
+    - Comply if the request does not violate all the Rules above. Provide a helpful and informative response."""
+
 prompt_classification = """User request: {prompt}
 
 Classify the request into one of the following categories:
