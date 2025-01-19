@@ -175,3 +175,4 @@ swanlog/
 generated_predictions.jsonl
 eval/
 server_logs/
+*.tex
