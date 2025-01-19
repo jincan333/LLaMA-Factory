@@ -1,6 +1,6 @@
 {
-  "sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_1":{
-    "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_1.json",
+  "sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0":{
+    "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "sr"
@@ -12,8 +12,8 @@
       "assistant_tag": "assistant"
     }
   },
-  "dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_1":{
-    "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_1.json",
+  "dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0":{
+    "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "dr"
@@ -25,8 +25,8 @@
       "assistant_tag": "assistant"
     }
   },
-  "constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_1":{
-    "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_1.json",
+  "constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0":{
+    "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "constrained_answer"
