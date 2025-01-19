@@ -3,7 +3,7 @@
     "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_1.json",
     "formatting": "sharegpt",
     "columns": {
-      "messages": "dr"
+      "messages": "sr"
     },
     "tags": {
       "role_tag": "role",
