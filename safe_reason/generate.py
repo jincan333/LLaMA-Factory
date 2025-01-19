@@ -163,8 +163,8 @@ if __name__ == "__main__":
 
     def parse_args():
         parser = argparse.ArgumentParser()
-        parser.add_argument('--task', type=str, default='beavertails_generate_cot_unsafe', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_cot_dataset', 'test'])
-        parser.add_argument('--model', type=str, default='gpt-4o-mini-2024-07-18', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+        parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'test'])
+        parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
         args = parser.parse_args()
         return args
 
@@ -252,7 +252,18 @@ if __name__ == "__main__":
         )
         processed_dataset = processed_dataset.remove_columns('model')
         records = [dict(row) for row in processed_dataset]
-        with open('data/beavertails/unsafe_gpt-4o-2024-11-20_classification.json', 'w', encoding='utf-8') as f:
+        with open('cache/unsafe_gpt-4o-2024-11-20_classification.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
+        
+        unsafe_dataset = datasets.load_dataset('json', data_files='cache/unsafe_gpt-4o-2024-11-20_classification.json', split='train')
+        unsafe_dataset = unsafe_dataset.remove_columns(['response', 'final_response', 'prompt'])
+        unmatch_unsafe_dataset = unsafe_dataset.filter(lambda x: x['number'] is None or x['number'] not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+        match_unsafe_dataset = unsafe_dataset.filter(lambda x: x['number'] is not None and 1 <= x['number'] <= 12)
+        records = [dict(row) for row in unmatch_unsafe_dataset]
+        with open('data/beavertails/unsafe_unmatch.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
+        records = [dict(row) for row in match_unsafe_dataset]
+        with open('data/beavertails/unsafe_match.json', 'w', encoding='utf-8') as f:
             json.dump(records, f, indent=4)
 
     if args.task == 'beavertails_generate_cot_safe':
@@ -266,10 +277,13 @@ if __name__ == "__main__":
         overall_helpful = specs.overall_helpful
         cot_specification_helpful = specs.cot_specification_helpful
         cot_prompt_safe_dataset = safe_dataset.map(lambda x: {"cot_prompt": cot_specification_helpful.format(prompt=x['forbidden_prompt'], spec_category=overall_helpful)})
-        cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
-        pattern = re.compile(r'# Analysis\s*(.*?)\s*# Final Response', re.IGNORECASE | re.DOTALL)
+        if '4o' in args.model or 'o1' in args.model:
+            cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
+        else:
+            cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
+        pattern = re.compile(r'### Analysis\s*(.*?)\s*### Final Response', re.IGNORECASE | re.DOTALL)
         cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
-        pattern = re.compile(r'(?:# Final Response)', re.IGNORECASE | re.DOTALL)
+        pattern = re.compile(r'(?:### Final Response)', re.IGNORECASE | re.DOTALL)
         cot_dataset = cot_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
         cot_dataset = cot_dataset.remove_columns(['model', 'cot_prompt'])
         records = [dict(row) for row in cot_dataset]
@@ -280,10 +294,10 @@ if __name__ == "__main__":
         reward_judge_helpful = specs.reward_judge_helpful
         judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge_helpful.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=overall_helpful)})
         judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.95, top_p=0.7, max_tokens=4096)
-        pattern = re.compile(r'(?:# Chain of Thought Rating\s*(.*?)\s*# Final Response Rating)', re.IGNORECASE | re.DOTALL)
+        pattern = re.compile(r'(?:### Chain of Thought Rating\s*(.*?)\s*### Final Response Rating)', re.IGNORECASE | re.DOTALL)
         judge_dataset = judge_dataset.map(lambda x: {"cot_rating": extract_content_first(x['response'], pattern)})
         judge_dataset = judge_dataset.map(lambda x: {'cot_rating': int(match.group(0)) if (match := re.search(r"\d+", x['cot_rating'])) else None})
-        pattern = re.compile(r'(?:# Final Response Rating)', re.IGNORECASE | re.DOTALL)
+        pattern = re.compile(r'(?:### Final Response Rating)', re.IGNORECASE | re.DOTALL)
         judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
         judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
         judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
@@ -303,10 +317,13 @@ if __name__ == "__main__":
         overall = specs.overall
         cot_specification = specs.cot_specification
         cot_prompt_safe_dataset = judge_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=overall)})
-        cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
-        pattern = re.compile(r'# Analysis\s*(.*?)\s*# Final Response', re.IGNORECASE | re.DOTALL)
+        if '4o' in args.model or 'o1' in args.model:
+            cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
+        else:
+            cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
+        pattern = re.compile(r'### Analysis\s*(.*?)\s*### Final Response', re.IGNORECASE | re.DOTALL)
         cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
-        pattern = re.compile(r'(?:# Final Response)', re.IGNORECASE | re.DOTALL)
+        pattern = re.compile(r'(?:### Final Response)', re.IGNORECASE | re.DOTALL)
         cot_dataset = cot_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
         cot_dataset = cot_dataset.remove_columns(['model', 'cot_prompt'])
         records = [dict(row) for row in cot_dataset]
@@ -317,10 +334,10 @@ if __name__ == "__main__":
         reward_judge = specs.reward_judge
         judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=overall)})
         judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.95, top_p=0.7, max_tokens=4096)
-        pattern = re.compile(r'(?:# Chain of Thought Rating\s*(.*?)\s*# Final Response Rating)', re.IGNORECASE | re.DOTALL)
+        pattern = re.compile(r'(?:### Chain of Thought Rating\s*(.*?)\s*### Final Response Rating)', re.IGNORECASE | re.DOTALL)
         judge_dataset = judge_dataset.map(lambda x: {"cot_rating": extract_content_first(x['response'], pattern)})
         judge_dataset = judge_dataset.map(lambda x: {'cot_rating': int(match.group(0)) if (match := re.search(r"\d+", x['cot_rating'])) else None})
-        pattern = re.compile(r'(?:# Final Response Rating)', re.IGNORECASE | re.DOTALL)
+        pattern = re.compile(r'(?:### Final Response Rating)', re.IGNORECASE | re.DOTALL)
         judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
         judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
         judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
@@ -338,16 +355,6 @@ if __name__ == "__main__":
 
     if args.task == 'beavertails_generate_cot_unsafe':
         print(f'generating cot for beavertails unsafe')
-        # unsafe_dataset = datasets.load_dataset('json', data_files='cache/unsafe_gpt-4o-2024-11-20_classification.json', split='train')
-        # unsafe_dataset = unsafe_dataset.remove_columns(['response', 'final_response', 'prompt'])
-        # unmatch_unsafe_dataset = unsafe_dataset.filter(lambda x: x['number'] is None or x['number'] not in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
-        # match_unsafe_dataset = unsafe_dataset.filter(lambda x: x['number'] is not None and 1 <= x['number'] <= 12)
-        # records = [dict(row) for row in unmatch_unsafe_dataset]
-        # with open('data/beavertails/unsafe_unmatch.json', 'w', encoding='utf-8') as f:
-        #     json.dump(records, f, indent=4)
-        # records = [dict(row) for row in match_unsafe_dataset]
-        # with open('data/beavertails/unsafe_match.json', 'w', encoding='utf-8') as f:
-        #     json.dump(records, f, indent=4)
         unsafe_dataset = datasets.load_dataset('json', data_files='data/beavertails/unsafe_match.json', split='train')
         specifications = {
             1: specs.violent_crimes,
@@ -371,24 +378,27 @@ if __name__ == "__main__":
             print('unsafe', number, len(filtered_dataset))
             cot_specification = specs.cot_specification
             cot_prompt_unsafe_dataset = filtered_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=specifications[x['number']])})
-            cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
+            if '4o' in args.model or 'o1' in args.model:
+                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
+            else:
+                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
             # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['o1-2024-12-17'], use_local=False, decode_responses=False, max_completion_tokens=4096)
             # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
             
             # filter cot_dataset
-            pattern = re.compile(r'# Analysis\s*(.*?)\s*# Final Response', re.IGNORECASE | re.DOTALL)
+            pattern = re.compile(r'### Analysis\s*(.*?)\s*### Final Response', re.IGNORECASE | re.DOTALL)
             cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
-            pattern = re.compile(r'(?:# Final Response)', re.IGNORECASE | re.DOTALL)
+            pattern = re.compile(r'(?:### Final Response)', re.IGNORECASE | re.DOTALL)
             cot_dataset = cot_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
             cot_dataset = cot_dataset.remove_columns(['model', 'cot_prompt'])
             cot_dataset = cot_dataset.rename_column('response', 'cot_response')
             reward_judge = specs.reward_judge
             judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=specifications[x['number']])})
             judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.95, top_p=0.7, max_tokens=4096)
-            pattern = re.compile(r'(?:# Chain of Thought Rating\s*(.*?)\s*# Final Response Rating)', re.IGNORECASE | re.DOTALL)
+            pattern = re.compile(r'(?:### Chain of Thought Rating\s*(.*?)\s*### Final Response Rating)', re.IGNORECASE | re.DOTALL)
             judge_dataset = judge_dataset.map(lambda x: {"cot_rating": extract_content_first(x['response'], pattern)})
             judge_dataset = judge_dataset.map(lambda x: {'cot_rating': int(match.group(0)) if (match := re.search(r"\d+", x['cot_rating'])) else None})
-            pattern = re.compile(r'(?:# Final Response Rating)', re.IGNORECASE | re.DOTALL)
+            pattern = re.compile(r'(?:### Final Response Rating)', re.IGNORECASE | re.DOTALL)
             judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
             judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
             judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
@@ -407,11 +417,13 @@ if __name__ == "__main__":
             cot_specification_helpful = specs.cot_specification_helpful
             overall_helpful = specs.overall_helpful
             cot_prompt_unsafe_dataset = judge_dataset.map(lambda x: {"cot_prompt": cot_specification_helpful.format(prompt=x['forbidden_prompt'], spec_category=overall_helpful)})
-            cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
-            # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
-            pattern = re.compile(r'# Analysis\s*(.*?)\s*# Final Response', re.IGNORECASE | re.DOTALL)
+            if '4o' in args.model or 'o1' in args.model:
+                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
+            else:
+                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
+            pattern = re.compile(r'### Analysis\s*(.*?)\s*### Final Response', re.IGNORECASE | re.DOTALL)
             cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
-            pattern = re.compile(r'(?:# Final Response)', re.IGNORECASE | re.DOTALL)
+            pattern = re.compile(r'(?:### Final Response)', re.IGNORECASE | re.DOTALL)
             cot_dataset = cot_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
             cot_dataset = cot_dataset.remove_columns(['model', 'cot_prompt'])
             cot_dataset = cot_dataset.rename_column('response', 'cot_response')
@@ -422,10 +434,10 @@ if __name__ == "__main__":
             reward_judge_helpful = specs.reward_judge_helpful
             judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge_helpful.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=overall_helpful)})
             judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.95, top_p=0.7, max_tokens=4096)
-            pattern = re.compile(r'(?:# Chain of Thought Rating\s*(.*?)\s*# Final Response Rating)', re.IGNORECASE | re.DOTALL)
+            pattern = re.compile(r'(?:### Chain of Thought Rating\s*(.*?)\s*### Final Response Rating)', re.IGNORECASE | re.DOTALL)
             judge_dataset = judge_dataset.map(lambda x: {"cot_rating": extract_content_first(x['response'], pattern)})
             judge_dataset = judge_dataset.map(lambda x: {'cot_rating': int(match.group(0)) if (match := re.search(r"\d+", x['cot_rating'])) else None})
-            pattern = re.compile(r'(?:# Final Response Rating)', re.IGNORECASE | re.DOTALL)
+            pattern = re.compile(r'(?:### Final Response Rating)', re.IGNORECASE | re.DOTALL)
             judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
             judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
             judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
@@ -446,7 +458,7 @@ if __name__ == "__main__":
         cot_ratings = [5]
         final_response_ratings = [1]
         class_nums = [50]
-        ratio = 1
+        ratio = 0
         for cot_rating in cot_ratings:
             for final_response_rating in final_response_ratings:
                 for class_num in class_nums:
@@ -466,7 +478,7 @@ if __name__ == "__main__":
                         full_dataset.extend(class_dataset)
 
                 final_response_rating = 6 - final_response_rating
-                safe_dataset = datasets.load_dataset('json', data_files=f'cache/{model_print_name}_safe_cot.json', split='train')
+                safe_dataset = datasets.load_dataset('json', data_files=f'cache/meta-llama-Meta-Llama-3-8B-Instruct_safe_cot.json', split='train')
                 safe_dataset = safe_dataset.filter(lambda x: x['safe_cot_rating'] is not None and x['safe_cot_rating'] >= cot_rating and x['safe_final_response_rating'] is not None and x['safe_final_response_rating'] >= final_response_rating)
                 print(f'safe_dataset filtered: {len(safe_dataset)}')
                 print(f'safe_dataset selected: {min(len(full_dataset) * ratio, len(safe_dataset))}')
@@ -481,8 +493,12 @@ if __name__ == "__main__":
                     json.dump(records, f, indent=4)
 
                 full_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/{model_print_name}_full_cot_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', split='train')
-                full_dataset = full_dataset.map(lambda x: {"helpful": "### Analysis\n\n{}\n\n### Final Response\n{}".format(x['safe_analysis'], x['safe_final_response'])})
-                full_dataset = full_dataset.map(lambda x: {"constrained": "### Analysis\n\n{}\n\n### Final Response\n{}".format(x['unsafe_analysis'], x['unsafe_final_response'])})
+                full_dataset = full_dataset.rename_columns({
+                    'safe_cot_response': 'helpful',
+                    'unsafe_cot_response': 'constrained'
+                })
+                # full_dataset = full_dataset.map(lambda x: {"helpful": "### Analysis\n\n{}\n\n### Final Response\n{}".format(x['safe_analysis'], x['safe_final_response'])})
+                # full_dataset = full_dataset.map(lambda x: {"constrained": "### Analysis\n\n{}\n\n### Final Response\n{}".format(x['unsafe_analysis'], x['unsafe_final_response'])})
                 unsafe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == False)
                 safe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == True)
                 
@@ -516,7 +532,10 @@ if __name__ == "__main__":
                 cot_prompt_safe_dataset = sft_dr_dataset.filter(lambda x: x['is_safe'] == True)
                 cot_prompt_safe_dataset = cot_prompt_safe_dataset.map(lambda x: {"sr": x['constrained_answer']})
                 cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"cot_prompt": cot_instruction.format(prompt=x['constrained_answer'][0]['content'])})
-                cot_prompt_unsafe_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
+                if '4o' in args.model or 'o1' in args.model:
+                    cot_prompt_unsafe_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
+                else:
+                    cot_prompt_unsafe_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
                 cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"sr": [x['constrained_answer'][0], {"role": "assistant", "content": x['response']}]})
                 cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.remove_columns(['cot_prompt', 'response', 'model'])
                 sft_preliminary_dataset = concatenate_datasets([cot_prompt_safe_dataset, cot_prompt_unsafe_dataset])

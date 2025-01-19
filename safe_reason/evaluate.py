@@ -178,7 +178,7 @@ else:
             responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
         else:
             responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-        pattern = re.compile(r'(?:final response|final output|final answer)', re.IGNORECASE | re.DOTALL)
+        pattern = re.compile(r'(?:### Final Response)', re.IGNORECASE | re.DOTALL)
         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
         col_renames = {
             'response': 'cot_response',
@@ -187,7 +187,7 @@ else:
         responses_dataset = responses_dataset.rename_columns(col_renames)
     elif 'sft' in args.model or 'dpo' in args.model:
         responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-        pattern = re.compile(r'(?:final response|final output|final answer)', re.IGNORECASE | re.DOTALL)
+        pattern = re.compile(r'(?:### Final Response)', re.IGNORECASE | re.DOTALL)
         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
         col_renames = {
             'response': 'cot_response',
