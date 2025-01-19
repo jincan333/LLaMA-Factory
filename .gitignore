@@ -176,3 +176,4 @@ generated_predictions.jsonl
 eval/
 server_logs/
 *.tex
+core

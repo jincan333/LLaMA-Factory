@@ -1,7 +1,0 @@
-0: num_nodes: 1
-0: SLURM_NODEID: 0
-0: CUDA_VISIBLE_DEVICES: 0,1,2,3
-0: output_dir: /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_4_4_50_1_tbs8_ebs8_gas2_lr5e-6_cl4096
-0: [2025-01-18 21:18:35,950] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
-0: slurmstepd: error: *** STEP 310025.0 ON gh075 CANCELLED AT 2025-01-18T21:18:43 ***
