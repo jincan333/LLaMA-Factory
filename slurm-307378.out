@@ -3,3 +3,8 @@ Current directory: /u/cjin1/LLaMA-Factory
 Job started at Thu 16 Jan 2025 11:30:12 PM CST
 Running job on gh082.hsn.cm.delta.internal.ncsa.edu
 Job started at Thu 16 Jan 2025 11:30:12 PM CST
+
+real	30m42.149s
+user	0m0.035s
+sys	0m0.047s
+Job finished at Fri 17 Jan 2025 12:00:54 AM CST
