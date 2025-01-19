@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -N 1             
-#SBATCH -t 1:00:00
+#SBATCH -t 0:30:00
 #SBATCH --partition=ghx4
 #SBATCH --ntasks-per-node 1
 #SBATCH --cpus-per-task 64
