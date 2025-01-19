@@ -1,0 +1,10 @@
+SLURM_JOB_ID: 311354
+Current directory: /u/cjin1/LLaMA-Factory
+Job started at Sun 19 Jan 2025 01:44:55 PM CST
+Running job on gh042.hsn.cm.delta.internal.ncsa.edu
+Job started at Sun 19 Jan 2025 01:44:55 PM CST
+
+real	6m14.391s
+user	0m0.011s
+sys	0m0.017s
+Job finished at Sun 19 Jan 2025 01:51:10 PM CST
