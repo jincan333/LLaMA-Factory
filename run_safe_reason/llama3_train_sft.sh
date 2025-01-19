@@ -81,18 +81,18 @@ FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train safe_reason_logs/${experiment_n
 #     --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
 #     --batch_size $batch_size
 
-# dataset="bbh_zeroshot"
-# n_shot=0
-# batch_size=128
-# echo "evaldataset: $dataset"
-# accelerate launch -m lm_eval --model hf \
-#     --model_args pretrained=${model_name_or_path},dtype=auto \
-#     --tasks $dataset \
-#     --num_fewshot $n_shot \
-#     --gen_kwargs temperature=0 \
-#     --output_path ${output_dir}/${dataset} \
-#     --log_samples \
-#     --write_out \
-#     --apply_chat_template \
-#     --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
-#     --batch_size $batch_size
+dataset="bbh_zeroshot"
+n_shot=0
+batch_size=128
+echo "evaldataset: $dataset"
+accelerate launch -m lm_eval --model hf \
+    --model_args pretrained=${model_name_or_path},dtype=auto \
+    --tasks $dataset \
+    --num_fewshot $n_shot \
+    --gen_kwargs temperature=0 \
+    --output_path ${output_dir}/${dataset} \
+    --log_samples \
+    --write_out \
+    --apply_chat_template \
+    --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
+    --batch_size $batch_size

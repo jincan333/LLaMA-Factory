@@ -163,8 +163,8 @@ if __name__ == "__main__":
 
     def parse_args():
         parser = argparse.ArgumentParser()
-        parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_cot_dataset', 'test'])
-        parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+        parser.add_argument('--task', type=str, default='beavertails_generate_cot_unsafe', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_cot_dataset', 'test'])
+        parser.add_argument('--model', type=str, default='gpt-4o-mini-2024-07-18', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
         args = parser.parse_args()
         return args
 
@@ -262,6 +262,7 @@ if __name__ == "__main__":
         safe_dataset = safe_dataset.select(range(min(len(safe_dataset), 5000)))
         print('safe', len(safe_dataset))
 
+        # generate helpful cot
         overall_helpful = specs.overall_helpful
         cot_specification_helpful = specs.cot_specification_helpful
         cot_prompt_safe_dataset = safe_dataset.map(lambda x: {"cot_prompt": cot_specification_helpful.format(prompt=x['forbidden_prompt'], spec_category=overall_helpful)})
@@ -275,7 +276,6 @@ if __name__ == "__main__":
         with open(f'data/beavertails/{model_print_name}_safe_cot.json', 'w', encoding='utf-8') as f:
             json.dump(records, f, indent=4)
 
-        # filter cot_dataset
         cot_dataset = cot_dataset.rename_column('response', 'cot_response')
         reward_judge_helpful = specs.reward_judge_helpful
         judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge_helpful.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=overall_helpful)})
@@ -286,19 +286,20 @@ if __name__ == "__main__":
         pattern = re.compile(r'(?:# Final Response Rating)', re.IGNORECASE | re.DOTALL)
         judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
         judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
-        judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'cot_response', 'response'])
+        judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
         col_renames = {
             'analysis': 'safe_analysis',
             'final_response': 'safe_final_response',
             'cot_rating': 'safe_cot_rating',
-            'final_response_rating': 'safe_final_response_rating'
+            'final_response_rating': 'safe_final_response_rating',
+            'cot_response': 'safe_cot_response'
         }
         judge_dataset = judge_dataset.rename_columns(col_renames)
         records = [dict(row) for row in judge_dataset]
         with open(f'data/beavertails/{model_print_name}_safe_cot.json', 'w', encoding='utf-8') as f:
             json.dump(records, f, indent=4)
 
-
+        # generate harmful cot
         overall = specs.overall
         cot_specification = specs.cot_specification
         cot_prompt_safe_dataset = judge_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=overall)})
@@ -312,7 +313,6 @@ if __name__ == "__main__":
         with open(f'data/beavertails/{model_print_name}_safe_cot.json', 'w', encoding='utf-8') as f:
             json.dump(records, f, indent=4)
 
-        # filter cot_dataset
         cot_dataset = cot_dataset.rename_column('response', 'cot_response')
         reward_judge = specs.reward_judge
         judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=overall)})
@@ -323,12 +323,13 @@ if __name__ == "__main__":
         pattern = re.compile(r'(?:# Final Response Rating)', re.IGNORECASE | re.DOTALL)
         judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
         judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
-        judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'cot_response', 'response'])
+        judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
         col_renames = {
             'analysis': 'unsafe_analysis',
             'final_response': 'unsafe_final_response',
             'cot_rating': 'unsafe_cot_rating',
-            'final_response_rating': 'unsafe_final_response_rating'
+            'final_response_rating': 'unsafe_final_response_rating',
+            'cot_response': 'unsafe_cot_response'
         }
         judge_dataset = judge_dataset.rename_columns(col_renames)
         records = [dict(row) for row in judge_dataset]
@@ -370,9 +371,9 @@ if __name__ == "__main__":
             print('unsafe', number, len(filtered_dataset))
             cot_specification = specs.cot_specification
             cot_prompt_unsafe_dataset = filtered_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=specifications[x['number']])})
-            # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.7, top_p=0.95, max_tokens=4096)
+            cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
             # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['o1-2024-12-17'], use_local=False, decode_responses=False, max_completion_tokens=4096)
-            cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
+            # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
             
             # filter cot_dataset
             pattern = re.compile(r'# Analysis\s*(.*?)\s*# Final Response', re.IGNORECASE | re.DOTALL)
@@ -390,12 +391,13 @@ if __name__ == "__main__":
             pattern = re.compile(r'(?:# Final Response Rating)', re.IGNORECASE | re.DOTALL)
             judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
             judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
-            judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'cot_response', 'response'])
+            judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
             col_renames = {
                 'analysis': 'unsafe_analysis',
                 'final_response': 'unsafe_final_response',
                 'cot_rating': 'unsafe_cot_rating',
-                'final_response_rating': 'unsafe_final_response_rating'
+                'final_response_rating': 'unsafe_final_response_rating',
+                'cot_response': 'unsafe_cot_response'
             }
             judge_dataset = judge_dataset.rename_columns(col_renames)
             records = [dict(row) for row in judge_dataset]
@@ -405,7 +407,8 @@ if __name__ == "__main__":
             cot_specification_helpful = specs.cot_specification_helpful
             overall_helpful = specs.overall_helpful
             cot_prompt_unsafe_dataset = judge_dataset.map(lambda x: {"cot_prompt": cot_specification_helpful.format(prompt=x['forbidden_prompt'], spec_category=overall_helpful)})
-            cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
+            cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
+            # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
             pattern = re.compile(r'# Analysis\s*(.*?)\s*# Final Response', re.IGNORECASE | re.DOTALL)
             cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
             pattern = re.compile(r'(?:# Final Response)', re.IGNORECASE | re.DOTALL)
@@ -425,12 +428,13 @@ if __name__ == "__main__":
             pattern = re.compile(r'(?:# Final Response Rating)', re.IGNORECASE | re.DOTALL)
             judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
             judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
-            judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'cot_response', 'response'])
+            judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
             col_renames = {
                 'analysis': 'safe_analysis',
                 'final_response': 'safe_final_response',
                 'cot_rating': 'safe_cot_rating',
-                'final_response_rating': 'safe_final_response_rating'
+                'final_response_rating': 'safe_final_response_rating',
+                'cot_response': 'safe_cot_response'
             }
             judge_dataset = judge_dataset.rename_columns(col_renames)
             records = [dict(row) for row in judge_dataset]
