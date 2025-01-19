@@ -1,0 +1,397 @@
+0: num_nodes: 1
+0: SLURM_NODEID: 0
+0: CUDA_VISIBLE_DEVICES: 0,1,2,3
+0: output_dir: /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096
+0: [2025-01-19 14:40:19,262] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [INFO|2025-01-19 14:40:25] llamafactory.cli:157 >> Initializing distributed tasks at: gh045:29501
+0: [2025-01-19 14:40:34,330] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: [2025-01-19 14:40:34,330] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: [2025-01-19 14:40:34,344] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: 
+0: [2025-01-19 14:40:34,797] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-19 14:40:36,278] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-19 14:40:36,278] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-19 14:40:36,278] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-19 14:40:36,278] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+0: [INFO|2025-01-19 14:40:36] llamafactory.hparams.parser:359 >> Process rank: 0, device: cuda:0, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|configuration_utils.py:679] 2025-01-19 14:40:36,691 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-19 14:40:36,692 >> Model config LlamaConfig {
+0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128009,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 8192,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": null,
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": true,
+0:   "vocab_size": 128256
+0: }
+0: 
+0: [2025-01-19 14:40:36,708] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-19 14:40:36,757 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-19 14:40:36,757 >> loading file tokenizer.model from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-19 14:40:36,757 >> loading file added_tokens.json from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-19 14:40:36,757 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/special_tokens_map.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-19 14:40:36,757 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer_config.json
+0: [INFO|tokenization_utils_base.py:2475] 2025-01-19 14:40:37,001 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+0: [INFO|configuration_utils.py:679] 2025-01-19 14:40:37,243 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-19 14:40:37,244 >> Model config LlamaConfig {
+0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128009,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 8192,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": null,
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": true,
+0:   "vocab_size": 128256
+0: }
+0: 
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-19 14:40:37,306 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-19 14:40:37,306 >> loading file tokenizer.model from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-19 14:40:37,306 >> loading file added_tokens.json from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-19 14:40:37,306 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/special_tokens_map.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-19 14:40:37,306 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer_config.json
+0: [INFO|tokenization_utils_base.py:2475] 2025-01-19 14:40:37,534 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+0: [INFO|2025-01-19 14:40:37] llamafactory.data.template:157 >> Add pad token: <|eot_id|>
+0: [INFO|2025-01-19 14:40:37] llamafactory.data.template:157 >> Add <|eot_id|>,<|eom_id|> to stop words.
+0: [WARNING|2025-01-19 14:40:37] llamafactory.data.template:162 >> New tokens have been added, make sure `resize_vocab` is True.
+0: [INFO|2025-01-19 14:40:37] llamafactory.hparams.parser:359 >> Process rank: 2, device: cuda:2, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|2025-01-19 14:40:37] llamafactory.hparams.parser:359 >> Process rank: 1, device: cuda:1, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|2025-01-19 14:40:37] llamafactory.hparams.parser:359 >> Process rank: 3, device: cuda:3, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [rank1]: Traceback (most recent call last):
+0: [rank1]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/launcher.py", line 23, in <module>
+0: [rank1]:     launch()
+0: [rank1]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/launcher.py", line 19, in launch
+0: [rank1]:     run_exp()
+0: [rank1]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/train/tuner.py", line 59, in run_exp
+0: [rank1]:     run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+0: [rank1]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/train/sft/workflow.py", line 51, in run_sft
+0: [rank1]:     dataset_module = get_dataset(template, model_args, data_args, training_args, stage="sft", **tokenizer_module)
+0: [rank1]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/loader.py", line 266, in get_dataset
+0: [rank1]:     dataset = _get_merged_dataset(data_args.dataset, model_args, data_args, training_args, stage)
+0: [rank1]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/loader.py", line 168, in _get_merged_dataset
+0: [rank1]:     for dataset_attr in get_dataset_list(dataset_names, data_args.dataset_dir):
+0: [rank1]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/parser.py", line 112, in get_dataset_list
+0: [rank1]:     raise ValueError(f"Undefined dataset {name} in {DATA_CONFIG}.")
+0: [rank1]: ValueError: Undefined dataset sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0 in dataset_info.json.
+0: [rank2]: Traceback (most recent call last):
+0: [rank2]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/launcher.py", line 23, in <module>
+0: [rank2]:     launch()
+0: [rank2]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/launcher.py", line 19, in launch
+0: [rank2]:     run_exp()
+0: [rank2]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/train/tuner.py", line 59, in run_exp
+0: [rank2]:     run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+0: [rank2]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/train/sft/workflow.py", line 51, in run_sft
+0: [rank2]:     dataset_module = get_dataset(template, model_args, data_args, training_args, stage="sft", **tokenizer_module)
+0: [rank2]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/loader.py", line 266, in get_dataset
+0: [rank2]:     dataset = _get_merged_dataset(data_args.dataset, model_args, data_args, training_args, stage)
+0: [rank2]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/loader.py", line 168, in _get_merged_dataset
+0: [rank2]:     for dataset_attr in get_dataset_list(dataset_names, data_args.dataset_dir):
+0: [rank2]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/parser.py", line 112, in get_dataset_list
+0: [rank2]:     raise ValueError(f"Undefined dataset {name} in {DATA_CONFIG}.")
+0: [rank2]: ValueError: Undefined dataset sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0 in dataset_info.json.
+0: [rank0]: Traceback (most recent call last):
+0: [rank0]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/launcher.py", line 23, in <module>
+0: [rank0]:     launch()
+0: [rank0]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/launcher.py", line 19, in launch
+0: [rank0]:     run_exp()
+0: [rank0]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/train/tuner.py", line 59, in run_exp
+0: [rank0]:     run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+0: [rank0]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/train/sft/workflow.py", line 51, in run_sft
+0: [rank0]:     dataset_module = get_dataset(template, model_args, data_args, training_args, stage="sft", **tokenizer_module)
+0: [rank0]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/loader.py", line 266, in get_dataset
+0: [rank0]:     dataset = _get_merged_dataset(data_args.dataset, model_args, data_args, training_args, stage)
+0: [rank0]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/loader.py", line 168, in _get_merged_dataset
+0: [rank0]:     for dataset_attr in get_dataset_list(dataset_names, data_args.dataset_dir):
+0: [rank0]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/parser.py", line 112, in get_dataset_list
+0: [rank0]:     raise ValueError(f"Undefined dataset {name} in {DATA_CONFIG}.")
+0: [rank0]: ValueError: Undefined dataset sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0 in dataset_info.json.
+0: [rank3]: Traceback (most recent call last):
+0: [rank3]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/launcher.py", line 23, in <module>
+0: [rank3]:     launch()
+0: [rank3]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/launcher.py", line 19, in launch
+0: [rank3]:     run_exp()
+0: [rank3]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/train/tuner.py", line 59, in run_exp
+0: [rank3]:     run_sft(model_args, data_args, training_args, finetuning_args, generating_args, callbacks)
+0: [rank3]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/train/sft/workflow.py", line 51, in run_sft
+0: [rank3]:     dataset_module = get_dataset(template, model_args, data_args, training_args, stage="sft", **tokenizer_module)
+0: [rank3]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/loader.py", line 266, in get_dataset
+0: [rank3]:     dataset = _get_merged_dataset(data_args.dataset, model_args, data_args, training_args, stage)
+0: [rank3]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/loader.py", line 168, in _get_merged_dataset
+0: [rank3]:     for dataset_attr in get_dataset_list(dataset_names, data_args.dataset_dir):
+0: [rank3]:   File "/u/cjin1/LLaMA-Factory/src/llamafactory/data/parser.py", line 112, in get_dataset_list
+0: [rank3]:     raise ValueError(f"Undefined dataset {name} in {DATA_CONFIG}.")
+0: [rank3]: ValueError: Undefined dataset sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0 in dataset_info.json.
+0: [rank0]:[W119 14:40:43.292109325 ProcessGroupNCCL.cpp:1218] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+0: W0119 14:40:44.458000 1637959 torch/distributed/elastic/multiprocessing/api.py:891] Sending process 1637970 closing signal SIGTERM
+0: W0119 14:40:44.458000 1637959 torch/distributed/elastic/multiprocessing/api.py:891] Sending process 1637971 closing signal SIGTERM
+0: W0119 14:40:44.458000 1637959 torch/distributed/elastic/multiprocessing/api.py:891] Sending process 1637972 closing signal SIGTERM
+0: E0119 14:40:44.553000 1637959 torch/distributed/elastic/multiprocessing/api.py:863] failed (exitcode: 1) local_rank: 0 (pid: 1637969) of binary: /usr/bin/python
+0: Traceback (most recent call last):
+0:   File "/usr/local/bin/torchrun", line 33, in <module>
+0:     sys.exit(load_entry_point('torch==2.5.0a0+b465a5843b.nv24.9', 'console_scripts', 'torchrun')())
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+0:     return f(*args, **kwargs)
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 919, in main
+0:     run(args)
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 910, in run
+0:     elastic_launch(
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+0:     return launch_agent(self._config, self._entrypoint, list(args))
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+0:     raise ChildFailedError(
+0: torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+0: ============================================================
+0: /u/cjin1/LLaMA-Factory/src/llamafactory/launcher.py FAILED
+0: ------------------------------------------------------------
+0: Failures:
+0:   <NO_OTHER_FAILURES>
+0: ------------------------------------------------------------
+0: Root Cause (first observed failure):
+0: [0]:
+0:   time      : 2025-01-19_14:40:44
+0:   host      : gh045.hsn.cm.delta.internal.ncsa.edu
+0:   rank      : 0 (local_rank: 0)
+0:   exitcode  : 1 (pid: 1637969)
+0:   error_file: <N/A>
+0:   traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+0: ============================================================
+0: evaldataset: bbh_zeroshot
+0: The following values were not passed to `accelerate launch` and had defaults used instead:
+0: 	`--num_processes` was set to a value of `4`
+0: 		More than one GPU was found, enabling multi-GPU training.
+0: 		If this was unintended please pass in `--num_processes=1`.
+0: 	`--num_machines` was set to a value of `1`
+0: 	`--mixed_precision` was set to a value of `'no'`
+0: 	`--dynamo_backend` was set to a value of `'no'`
+0: To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+0: wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+0: wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+0: wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+0: wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+0: wandb: Currently logged in as: jincan333. Use `wandb login --relogin` to force relogin
+0: wandb: Currently logged in as: jincan333. Use `wandb login --relogin` to force relogin
+0: wandb: Currently logged in as: jincan333. Use `wandb login --relogin` to force relogin
+0: wandb: Currently logged in as: jincan333. Use `wandb login --relogin` to force relogin
+0: wandb: - Waiting for wandb.init()...wandb: - Waiting for wandb.init()...wandb: - Waiting for wandb.init()...wandb: - Waiting for wandb.init()...wandb: \ Waiting for wandb.init()...wandb: Tracking run with wandb version 0.19.1
+0: wandb: Run data is saved locally in /u/cjin1/LLaMA-Factory/wandb/run-20250119_144052-twn7jrdt
+0: wandb: Run `wandb offline` to turn off syncing.
+0: wandb: Syncing run llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096_bbh_zeroshot_eval
+0: wandb: ⭐️ View project at https://wandb.ai/jincan333/safe_reason
+0: wandb: 🚀 View run at https://wandb.ai/jincan333/safe_reason/runs/twn7jrdt
+0: wandb: \ Waiting for wandb.init()...wandb: Tracking run with wandb version 0.19.1
+0: wandb: Run data is saved locally in /u/cjin1/LLaMA-Factory/wandb/run-20250119_144052-7s2th56d
+0: wandb: Run `wandb offline` to turn off syncing.
+0: wandb: Syncing run llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096_bbh_zeroshot_eval
+0: wandb: ⭐️ View project at https://wandb.ai/jincan333/safe_reason
+0: wandb: 🚀 View run at https://wandb.ai/jincan333/safe_reason/runs/7s2th56d
+0: wandb: \ Waiting for wandb.init()...wandb: Tracking run with wandb version 0.19.1
+0: wandb: Run data is saved locally in /u/cjin1/LLaMA-Factory/wandb/run-20250119_144052-j6i4c2ls
+0: wandb: Run `wandb offline` to turn off syncing.
+0: wandb: Syncing run llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096_bbh_zeroshot_eval
+0: wandb: ⭐️ View project at https://wandb.ai/jincan333/safe_reason
+0: wandb: 🚀 View run at https://wandb.ai/jincan333/safe_reason/runs/j6i4c2ls
+0: wandb: \ Waiting for wandb.init()...wandb: Tracking run with wandb version 0.19.1
+0: wandb: Run data is saved locally in /u/cjin1/LLaMA-Factory/wandb/run-20250119_144052-a7vo1r7l
+0: wandb: Run `wandb offline` to turn off syncing.
+0: wandb: Syncing run llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096_bbh_zeroshot_eval
+0: wandb: ⭐️ View project at https://wandb.ai/jincan333/safe_reason
+0: wandb: 🚀 View run at https://wandb.ai/jincan333/safe_reason/runs/a7vo1r7l
+0: 2025-01-19:14:40:54,614 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-19:14:40:54,614 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-19:14:40:54,623 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-19:14:40:54,741 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-19:14:41:04,872 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-19:14:41:04,872 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-19:14:41:04,872 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-19:14:41:04,872 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-19:14:41:04,878 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-19:14:41:04,878 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-19:14:41:04,878 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-19:14:41:04,878 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-19:14:41:04,878 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-19:14:41:04,878 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-19:14:41:04,878 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-19:14:41:04,878 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-19:14:41:04,879 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-19:14:41:04,879 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-19:14:41:04,879 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-19:14:41:04,879 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: [rank0]: Traceback (most recent call last):
+0: [rank0]:   File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+0: [rank0]:     return _run_code(code, main_globals, None,
+0: [rank0]:   File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+0: [rank0]:     exec(code, run_globals)
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/__main__.py", line 461, in <module>
+0: [rank0]:     cli_evaluate()
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/__main__.py", line 382, in cli_evaluate
+0: [rank0]:     results = evaluator.simple_evaluate(
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/utils.py", line 402, in _wrapper
+0: [rank0]:     return fn(*args, **kwargs)
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/evaluator.py", line 204, in simple_evaluate
+0: [rank0]:     lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/api/model.py", line 147, in create_from_arg_string
+0: [rank0]:     return cls(**args, **args2)
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/models/huggingface.py", line 175, in __init__
+0: [rank0]:     self._create_tokenizer(
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/models/huggingface.py", line 707, in _create_tokenizer
+0: [rank0]:     self.tokenizer = transformers.AutoTokenizer.from_pretrained(
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 939, in from_pretrained
+0: [rank0]:     return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 2197, in from_pretrained
+0: [rank0]:     raise EnvironmentError(
+0: [rank0]: OSError: Can't load tokenizer for '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096' is the correct path to a directory containing all relevant files for a LlamaTokenizerFast tokenizer.
+0: [rank0]: Traceback (most recent call last):
+0: [rank0]:   File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+0: [rank0]:     return _run_code(code, main_globals, None,
+0: [rank0]:   File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+0: [rank0]:     exec(code, run_globals)
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/__main__.py", line 461, in <module>
+0: [rank0]:     cli_evaluate()
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/__main__.py", line 382, in cli_evaluate
+0: [rank0]:     results = evaluator.simple_evaluate(
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/utils.py", line 402, in _wrapper
+0: [rank0]:     return fn(*args, **kwargs)
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/evaluator.py", line 204, in simple_evaluate
+0: [rank0]:     lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/api/model.py", line 147, in create_from_arg_string
+0: [rank0]:     return cls(**args, **args2)
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/models/huggingface.py", line 175, in __init__
+0: [rank0]:     self._create_tokenizer(
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/models/huggingface.py", line 707, in _create_tokenizer
+0: [rank0]:     self.tokenizer = transformers.AutoTokenizer.from_pretrained(
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 939, in from_pretrained
+0: [rank0]:     return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 2197, in from_pretrained
+0: [rank0]:     raise EnvironmentError(
+0: [rank0]: OSError: Can't load tokenizer for '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096' is the correct path to a directory containing all relevant files for a LlamaTokenizerFast tokenizer.
+0: [1;34mwandb[0m: 🚀 View run [33mllama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096_bbh_zeroshot_eval[0m at: [34mhttps://wandb.ai/jincan333/safe_reason/runs/a7vo1r7l[0m
+0: [1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250119_144052-a7vo1r7l/logs[0m
+0: [rank0]:[W119 14:41:13.660832141 ProcessGroupNCCL.cpp:1218] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+0: [rank3]: Traceback (most recent call last):
+0: [rank3]:   File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+0: [rank3]:     return _run_code(code, main_globals, None,
+0: [rank3]:   File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+0: [rank3]:     exec(code, run_globals)
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/__main__.py", line 461, in <module>
+0: [rank3]:     cli_evaluate()
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/__main__.py", line 382, in cli_evaluate
+0: [rank3]:     results = evaluator.simple_evaluate(
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/utils.py", line 402, in _wrapper
+0: [rank3]:     return fn(*args, **kwargs)
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/evaluator.py", line 204, in simple_evaluate
+0: [rank3]:     lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/api/model.py", line 147, in create_from_arg_string
+0: [rank3]:     return cls(**args, **args2)
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/models/huggingface.py", line 175, in __init__
+0: [rank3]:     self._create_tokenizer(
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/models/huggingface.py", line 707, in _create_tokenizer
+0: [rank3]:     self.tokenizer = transformers.AutoTokenizer.from_pretrained(
+0: [rank3]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 939, in from_pretrained
+0: [rank3]:     return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+0: [rank3]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 2197, in from_pretrained
+0: [rank3]:     raise EnvironmentError(
+0: [rank3]: OSError: Can't load tokenizer for '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096' is the correct path to a directory containing all relevant files for a LlamaTokenizerFast tokenizer.
+0: [rank3]: Traceback (most recent call last):
+0: [rank3]:   File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+0: [rank3]:     return _run_code(code, main_globals, None,
+0: [rank3]:   File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+0: [rank3]:     exec(code, run_globals)
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/__main__.py", line 461, in <module>
+0: [rank3]:     cli_evaluate()
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/__main__.py", line 382, in cli_evaluate
+0: [rank3]:     results = evaluator.simple_evaluate(
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/utils.py", line 402, in _wrapper
+0: [rank3]:     return fn(*args, **kwargs)
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/evaluator.py", line 204, in simple_evaluate
+0: [rank3]:     lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/api/model.py", line 147, in create_from_arg_string
+0: [rank3]:     return cls(**args, **args2)
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/models/huggingface.py", line 175, in __init__
+0: [rank3]:     self._create_tokenizer(
+0: [rank3]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/models/huggingface.py", line 707, in _create_tokenizer
+0: [rank3]:     self.tokenizer = transformers.AutoTokenizer.from_pretrained(
+0: [rank3]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/models/auto/tokenization_auto.py", line 939, in from_pretrained
+0: [rank3]:     return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+0: [rank3]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/tokenization_utils_base.py", line 2197, in from_pretrained
+0: [rank3]:     raise EnvironmentError(
+0: [rank3]: OSError: Can't load tokenizer for '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096' is the correct path to a directory containing all relevant files for a LlamaTokenizerFast tokenizer.
+0: W0119 14:41:13.822000 1638259 torch/distributed/elastic/multiprocessing/api.py:891] Sending process 1638271 closing signal SIGTERM
+0: W0119 14:41:13.823000 1638259 torch/distributed/elastic/multiprocessing/api.py:891] Sending process 1638272 closing signal SIGTERM
+0: W0119 14:41:13.824000 1638259 torch/distributed/elastic/multiprocessing/api.py:891] Sending process 1638273 closing signal SIGTERM
+0: E0119 14:41:14.240000 1638259 torch/distributed/elastic/multiprocessing/api.py:863] failed (exitcode: 1) local_rank: 0 (pid: 1638270) of binary: /usr/bin/python
+0: Traceback (most recent call last):
+0:   File "/u/cjin1/.my_envs/llamafactory/bin/accelerate", line 8, in <module>
+0:     sys.exit(main())
+0:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+0:     args.func(args)
+0:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1159, in launch_command
+0:     multi_gpu_launcher(args)
+0:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/accelerate/commands/launch.py", line 793, in multi_gpu_launcher
+0:     distrib_run.run(args)
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 910, in run
+0:     elastic_launch(
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+0:     return launch_agent(self._config, self._entrypoint, list(args))
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+0:     raise ChildFailedError(
+0: torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+0: ============================================================
+0: lm_eval FAILED
+0: ------------------------------------------------------------
+0: Failures:
+0:   <NO_OTHER_FAILURES>
+0: ------------------------------------------------------------
+0: Root Cause (first observed failure):
+0: [0]:
+0:   time      : 2025-01-19_14:41:13
+0:   host      : gh045.hsn.cm.delta.internal.ncsa.edu
+0:   rank      : 0 (local_rank: 0)
+0:   exitcode  : 1 (pid: 1638270)
+0:   error_file: <N/A>
+0:   traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+0: ============================================================
+srun: error: gh045: task 0: Exited with exit code 1
