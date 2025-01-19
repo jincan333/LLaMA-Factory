@@ -29,8 +29,9 @@ envsubst < examples/train_full/llama3_full_sft.yaml > safe_reason_logs/${experim
 FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train safe_reason_logs/${experiment_name}.yaml
 #  > logs/${experiment_name}.log 2>&1
 
-# suffix="eval"
-# model_name_or_path=${output_dir}
+suffix="eval"
+model_name_or_path=${output_dir}
+
 # dataset="gsm8k"
 # n_shot=5
 # batch_size=128

@@ -1,1155 +1,0 @@
-0: num_nodes: 1
-0: SLURM_NODEID: 0
-0: CUDA_VISIBLE_DEVICES: 0,1,2,3
-0: output_dir: /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048
-0: [2025-01-02 02:23:30,280] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
-0: [INFO|2025-01-02 02:23:36] llamafactory.cli:157 >> Initializing distributed tasks at: gh084:29501
-0: [2025-01-02 02:23:45,368] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-0: [2025-01-02 02:23:45,368] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-0: [2025-01-02 02:23:45,368] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-0: [2025-01-02 02:23:45,368] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
-0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
-0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
-0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
-0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
-0: [2025-01-02 02:23:47,287] [INFO] [comm.py:652:init_distributed] cdb=None
-0: [2025-01-02 02:23:47,287] [INFO] [comm.py:652:init_distributed] cdb=None
-0: [2025-01-02 02:23:47,287] [INFO] [comm.py:652:init_distributed] cdb=None
-0: [2025-01-02 02:23:47,407] [INFO] [comm.py:652:init_distributed] cdb=None
-0: [2025-01-02 02:23:47,407] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
-0: [INFO|2025-01-02 02:23:47] llamafactory.hparams.parser:359 >> Process rank: 0, device: cuda:0, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
-0: [INFO|configuration_utils.py:679] 2025-01-02 02:23:47,935 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
-0: [INFO|configuration_utils.py:746] 2025-01-02 02:23:47,936 >> Model config LlamaConfig {
-0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
-0:   "architectures": [
-0:     "LlamaForCausalLM"
-0:   ],
-0:   "attention_bias": false,
-0:   "attention_dropout": 0.0,
-0:   "bos_token_id": 128000,
-0:   "eos_token_id": 128009,
-0:   "head_dim": 128,
-0:   "hidden_act": "silu",
-0:   "hidden_size": 4096,
-0:   "initializer_range": 0.02,
-0:   "intermediate_size": 14336,
-0:   "max_position_embeddings": 8192,
-0:   "mlp_bias": false,
-0:   "model_type": "llama",
-0:   "num_attention_heads": 32,
-0:   "num_hidden_layers": 32,
-0:   "num_key_value_heads": 8,
-0:   "pretraining_tp": 1,
-0:   "rms_norm_eps": 1e-05,
-0:   "rope_scaling": null,
-0:   "rope_theta": 500000.0,
-0:   "tie_word_embeddings": false,
-0:   "torch_dtype": "bfloat16",
-0:   "transformers_version": "4.46.1",
-0:   "use_cache": true,
-0:   "vocab_size": 128256
-0: }
-0: 
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:23:47,993 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer.json
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:23:47,993 >> loading file tokenizer.model from cache at None
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:23:47,993 >> loading file added_tokens.json from cache at None
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:23:47,993 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/special_tokens_map.json
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:23:47,993 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer_config.json
-0: [INFO|tokenization_utils_base.py:2475] 2025-01-02 02:23:48,238 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
-0: [INFO|configuration_utils.py:679] 2025-01-02 02:23:48,462 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
-0: [INFO|configuration_utils.py:746] 2025-01-02 02:23:48,463 >> Model config LlamaConfig {
-0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
-0:   "architectures": [
-0:     "LlamaForCausalLM"
-0:   ],
-0:   "attention_bias": false,
-0:   "attention_dropout": 0.0,
-0:   "bos_token_id": 128000,
-0:   "eos_token_id": 128009,
-0:   "head_dim": 128,
-0:   "hidden_act": "silu",
-0:   "hidden_size": 4096,
-0:   "initializer_range": 0.02,
-0:   "intermediate_size": 14336,
-0:   "max_position_embeddings": 8192,
-0:   "mlp_bias": false,
-0:   "model_type": "llama",
-0:   "num_attention_heads": 32,
-0:   "num_hidden_layers": 32,
-0:   "num_key_value_heads": 8,
-0:   "pretraining_tp": 1,
-0:   "rms_norm_eps": 1e-05,
-0:   "rope_scaling": null,
-0:   "rope_theta": 500000.0,
-0:   "tie_word_embeddings": false,
-0:   "torch_dtype": "bfloat16",
-0:   "transformers_version": "4.46.1",
-0:   "use_cache": true,
-0:   "vocab_size": 128256
-0: }
-0: 
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:23:48,521 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer.json
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:23:48,521 >> loading file tokenizer.model from cache at None
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:23:48,521 >> loading file added_tokens.json from cache at None
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:23:48,521 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/special_tokens_map.json
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:23:48,521 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer_config.json
-0: [INFO|2025-01-02 02:23:48] llamafactory.hparams.parser:359 >> Process rank: 3, device: cuda:3, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
-0: [INFO|2025-01-02 02:23:48] llamafactory.hparams.parser:359 >> Process rank: 1, device: cuda:1, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
-0: [INFO|2025-01-02 02:23:48] llamafactory.hparams.parser:359 >> Process rank: 2, device: cuda:2, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
-0: [INFO|tokenization_utils_base.py:2475] 2025-01-02 02:23:48,756 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
-0: [INFO|2025-01-02 02:23:48] llamafactory.data.template:157 >> Add pad token: <|eot_id|>
-0: [INFO|2025-01-02 02:23:48] llamafactory.data.template:157 >> Add <|eot_id|>,<|eom_id|> to stop words.
-0: [WARNING|2025-01-02 02:23:48] llamafactory.data.template:162 >> New tokens have been added, make sure `resize_vocab` is True.
-0: [INFO|2025-01-02 02:23:48] llamafactory.data.loader:157 >> Loading dataset gsm8k/dpo.json...
-0: [INFO|2025-01-02 02:23:49] llamafactory.data.loader:157 >> Loading dataset gsm8k/dpo.json...
-0: training example:
-0: chosen_input_ids:
-0: [128000, 128006, 882, 128007, 271, 791, 3430, 315, 459, 12443, 11299, 220, 605, 4, 304, 264, 4040, 2305, 323, 2500, 220, 508, 4, 304, 279, 2132, 2305, 13, 220, 1442, 279, 2926, 3430, 574, 400, 1041, 15, 11, 11294, 279, 3430, 1306, 279, 2132, 2305, 13, 128009, 128006, 78191, 128007, 271, 40, 4265, 387, 6380, 311, 1520, 499, 449, 430, 13, 5810, 596, 279, 6425, 1473, 91084, 11, 279, 3430, 315, 279, 12443, 374, 400, 1041, 15, 382, 644, 279, 1176, 2305, 11, 279, 3430, 17503, 555, 220, 605, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 1041, 15, 482, 320, 605, 4, 315, 400, 1041, 15, 8, 284, 400, 1041, 15, 482, 400, 1041, 284, 400, 7467, 271, 644, 279, 2132, 2305, 11, 279, 3430, 17503, 555, 2500, 220, 508, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 7467, 482, 320, 508, 4, 315, 400, 7467, 8, 284, 400, 7467, 482, 400, 5245, 284, 400, 13104, 271, 10267, 596, 10356, 1057, 22702, 555, 9455, 279, 2860, 11668, 18979, 512, 6475, 3430, 284, 400, 1041, 15, 198, 7117, 1306, 1176, 2305, 284, 400, 7467, 198, 7117, 1306, 213
-0: 2, 2305, 284, 400, 13104, 271, 791, 2860, 11668, 18979, 284, 320, 6475, 3430, 482, 8650, 1306, 2132, 2305, 8, 611, 4220, 3430, 198, 28, 1746, 1041, 15, 482, 400, 13104, 8, 611, 400, 1041, 15, 198, 28, 400, 11209, 611, 400, 1041, 15, 198, 28, 220, 1591, 15804, 2028, 9248, 279, 3685, 2860, 11668, 18979, 315, 220, 966, 4, 320, 605, 4, 304, 279, 1176, 2305, 489, 220, 508, 4, 304, 279, 2132, 2305, 3677, 578, 4320, 374, 400, 13104, 13, 128009]
-0: chosen_inputs:
-0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
-0: 
-0: The price of an iPhone fell 10% in a particular month and another 20% in the second month.  If the initial price was $1000, calculate the price after the second month.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-0: 
-0: I'd be happy to help you with that. Here's the solution:
-0: 
-0: Initially, the price of the iPhone is $1000.
-0: 
-0: In the first month, the price falls by 10%, which means the new price is:
-0: $1000 - (10% of $1000) = $1000 - $100 = $900
-0: 
-0: In the second month, the price falls by another 20%, which means the new price is:
-0: $900 - (20% of $900) = $900 - $180 = $720
-0: 
-0: Let's verify our calculation by finding the total percentage decrease:
-0: Initial price = $1000
-0: Price after first month = $900
-0: Price after second month = $720
-0: 
-0: The total percentage decrease = (Initial price - Price after second month) / Initial price
-0: = ($1000 - $720) / $1000
-0: = $280 / $1000
-0: = 28%
-0: 
-0: This matches the expected total percentage decrease of 30% (10% in the first month + 20% in the second month).
-0: 
-0:  The answer is $720.<|eot_id|>
-0: chosen_label_ids:
-0: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 40, 4265, 387, 6380, 311, 1520, 499, 449, 430, 13, 5810, 596, 279, 6425, 1473, 91084, 11, 279, 3430, 315, 279, 12443, 374, 400, 1041, 15, 382, 644, 279, 1176, 2305, 11, 279, 3430, 17503, 555, 220, 605, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 1041, 15, 482, 320, 605, 4, 315, 400, 1041, 15, 8, 284, 400, 1041, 15, 482, 400, 1041, 284, 400, 7467, 271, 644, 279, 2132, 2305, 11, 279, 3430, 17503, 555, 2500, 220, 508, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 7467, 482, 320, 508, 4, 315, 400, 7467, 8, 284, 400, 7467, 482, 400, 5245, 284, 400, 13104, 271, 10267, 596, 10356, 1057, 22702, 555, 9455, 279, 2860, 11668, 18979, 512, 6475, 3430, 284, 400, 1041, 15, 198, 7117, 1306, 1176, 2305, 284, 400, 7467, 1
-0: 98, 7117, 1306, 2132, 2305, 284, 400, 13104, 271, 791, 2860, 11668, 18979, 284, 320, 6475, 3430, 482, 8650, 1306, 2132, 2305, 8, 611, 4220, 3430, 198, 28, 1746, 1041, 15, 482, 400, 13104, 8, 611, 400, 1041, 15, 198, 28, 400, 11209, 611, 400, 1041, 15, 198, 28, 220, 1591, 15804, 2028, 9248, 279, 3685, 2860, 11668, 18979, 315, 220, 966, 4, 320, 605, 4, 304, 279, 1176, 2305, 489, 220, 508, 4, 304, 279, 2132, 2305, 3677, 578, 4320, 374, 400, 13104, 13, 128009]
-0: chosen_labels:
-0: I'd be happy to help you with that. Here's the solution:
-0: 
-0: Initially, the price of the iPhone is $1000.
-0: 
-0: In the first month, the price falls by 10%, which means the new price is:
-0: $1000 - (10% of $1000) = $1000 - $100 = $900
-0: 
-0: In the second month, the price falls by another 20%, which means the new price is:
-0: $900 - (20% of $900) = $900 - $180 = $720
-0: 
-0: Let's verify our calculation by finding the total percentage decrease:
-0: Initial price = $1000
-0: Price after first month = $900
-0: Price after second month = $720
-0: 
-0: The total percentage decrease = (Initial price - Price after second month) / Initial price
-0: = ($1000 - $720) / $1000
-0: = $280 / $1000
-0: = 28%
-0: 
-0: This matches the expected total percentage decrease of 30% (10% in the first month + 20% in the second month).
-0: 
-0:  The answer is $720.<|eot_id|>
-0: rejected_input_ids:
-0: [128000, 128006, 882, 128007, 271, 791, 3430, 315, 459, 12443, 11299, 220, 605, 4, 304, 264, 4040, 2305, 323, 2500, 220, 508, 4, 304, 279, 2132, 2305, 13, 220, 1442, 279, 2926, 3430, 574, 400, 1041, 15, 11, 11294, 279, 3430, 1306, 279, 2132, 2305, 13, 128009, 128006, 78191, 128007, 271, 40, 4265, 387, 6380, 311, 1520, 499, 449, 430, 13, 5810, 596, 279, 6425, 1473, 91084, 11, 279, 3430, 315, 279, 12443, 374, 400, 1041, 15, 382, 644, 279, 1176, 2305, 11, 279, 3430, 17503, 555, 220, 605, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 1041, 15, 482, 320, 605, 4, 315, 400, 1041, 15, 8, 284, 400, 1041, 15, 482, 400, 1041, 284, 400, 7467, 271, 644, 279, 2132, 2305, 11, 279, 3430, 17503, 555, 2500, 220, 508, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 7467, 482, 320, 508, 4, 315, 400, 7467, 8, 284, 400, 7467, 482, 400, 5245, 284, 400, 13104, 271, 10267, 596, 10356, 1057, 22702, 555, 9455, 279, 2860, 11668, 18979, 512, 6475, 3430, 284, 400, 1041, 15, 198, 7117, 1306, 1176, 2305, 284, 400, 7467, 198, 7117, 1306, 213
-0: 2, 2305, 284, 400, 13104, 271, 791, 2860, 11668, 18979, 284, 320, 6475, 3430, 482, 8650, 1306, 2132, 2305, 8, 611, 4220, 3430, 198, 28, 1746, 1041, 15, 482, 400, 13104, 8, 611, 400, 1041, 15, 198, 28, 400, 11209, 611, 400, 1041, 15, 198, 28, 220, 1591, 15804, 2028, 9248, 279, 3685, 2860, 11668, 18979, 315, 220, 966, 4, 320, 605, 4, 304, 279, 1176, 2305, 489, 220, 508, 4, 304, 279, 2132, 2305, 3677, 578, 4320, 374, 400, 13104, 13, 128009]
-0: rejected_inputs:
-0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
-0: 
-0: The price of an iPhone fell 10% in a particular month and another 20% in the second month.  If the initial price was $1000, calculate the price after the second month.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-0: 
-0: I'd be happy to help you with that. Here's the solution:
-0: 
-0: Initially, the price of the iPhone is $1000.
-0: 
-0: In the first month, the price falls by 10%, which means the new price is:
-0: $1000 - (10% of $1000) = $1000 - $100 = $900
-0: 
-0: In the second month, the price falls by another 20%, which means the new price is:
-0: $900 - (20% of $900) = $900 - $180 = $720
-0: 
-0: Let's verify our calculation by finding the total percentage decrease:
-0: Initial price = $1000
-0: Price after first month = $900
-0: Price after second month = $720
-0: 
-0: The total percentage decrease = (Initial price - Price after second month) / Initial price
-0: = ($1000 - $720) / $1000
-0: = $280 / $1000
-0: = 28%
-0: 
-0: This matches the expected total percentage decrease of 30% (10% in the first month + 20% in the second month).
-0: 
-0:  The answer is $720.<|eot_id|>
-0: rejected_label_ids:
-0: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 40, 4265, 387, 6380, 311, 1520, 499, 449, 430, 13, 5810, 596, 279, 6425, 1473, 91084, 11, 279, 3430, 315, 279, 12443, 374, 400, 1041, 15, 382, 644, 279, 1176, 2305, 11, 279, 3430, 17503, 555, 220, 605, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 1041, 15, 482, 320, 605, 4, 315, 400, 1041, 15, 8, 284, 400, 1041, 15, 482, 400, 1041, 284, 400, 7467, 271, 644, 279, 2132, 2305, 11, 279, 3430, 17503, 555, 2500, 220, 508, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 7467, 482, 320, 508, 4, 315, 400, 7467, 8, 284, 400, 7467, 482, 400, 5245, 284, 400, 13104, 271, 10267, 596, 10356, 1057, 22702, 555, 9455, 279, 2860, 11668, 18979, 512, 6475, 3430, 284, 400, 1041, 15, 198, 7117, 1306, 1176, 2305, 284, 400, 7467, 1
-0: 98, 7117, 1306, 2132, 2305, 284, 400, 13104, 271, 791, 2860, 11668, 18979, 284, 320, 6475, 3430, 482, 8650, 1306, 2132, 2305, 8, 611, 4220, 3430, 198, 28, 1746, 1041, 15, 482, 400, 13104, 8, 611, 400, 1041, 15, 198, 28, 400, 11209, 611, 400, 1041, 15, 198, 28, 220, 1591, 15804, 2028, 9248, 279, 3685, 2860, 11668, 18979, 315, 220, 966, 4, 320, 605, 4, 304, 279, 1176, 2305, 489, 220, 508, 4, 304, 279, 2132, 2305, 3677, 578, 4320, 374, 400, 13104, 13, 128009]
-0: rejected_labels:
-0: I'd be happy to help you with that. Here's the solution:
-0: 
-0: Initially, the price of the iPhone is $1000.
-0: 
-0: In the first month, the price falls by 10%, which means the new price is:
-0: $1000 - (10% of $1000) = $1000 - $100 = $900
-0: 
-0: In the second month, the price falls by another 20%, which means the new price is:
-0: $900 - (20% of $900) = $900 - $180 = $720
-0: 
-0: Let's verify our calculation by finding the total percentage decrease:
-0: Initial price = $1000
-0: Price after first month = $900
-0: Price after second month = $720
-0: 
-0: The total percentage decrease = (Initial price - Price after second month) / Initial price
-0: = ($1000 - $720) / $1000
-0: = $280 / $1000
-0: = 28%
-0: 
-0: This matches the expected total percentage decrease of 30% (10% in the first month + 20% in the second month).
-0: 
-0:  The answer is $720.<|eot_id|>
-0: eval example:
-0: chosen_input_ids:
-0: [128000, 128006, 882, 128007, 271, 791, 3430, 315, 459, 12443, 11299, 220, 605, 4, 304, 264, 4040, 2305, 323, 2500, 220, 508, 4, 304, 279, 2132, 2305, 13, 220, 1442, 279, 2926, 3430, 574, 400, 1041, 15, 11, 11294, 279, 3430, 1306, 279, 2132, 2305, 13, 128009, 128006, 78191, 128007, 271, 40, 4265, 387, 6380, 311, 1520, 499, 449, 430, 13, 5810, 596, 279, 6425, 1473, 91084, 11, 279, 3430, 315, 279, 12443, 374, 400, 1041, 15, 382, 644, 279, 1176, 2305, 11, 279, 3430, 17503, 555, 220, 605, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 1041, 15, 482, 320, 605, 4, 315, 400, 1041, 15, 8, 284, 400, 1041, 15, 482, 400, 1041, 284, 400, 7467, 271, 644, 279, 2132, 2305, 11, 279, 3430, 17503, 555, 2500, 220, 508, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 7467, 482, 320, 508, 4, 315, 400, 7467, 8, 284, 400, 7467, 482, 400, 5245, 284, 400, 13104, 271, 10267, 596, 10356, 1057, 22702, 555, 9455, 279, 2860, 11668, 18979, 512, 6475, 3430, 284, 400, 1041, 15, 198, 7117, 1306, 1176, 2305, 284, 400, 7467, 198, 7117, 1306, 213
-0: 2, 2305, 284, 400, 13104, 271, 791, 2860, 11668, 18979, 284, 320, 6475, 3430, 482, 8650, 1306, 2132, 2305, 8, 611, 4220, 3430, 198, 28, 1746, 1041, 15, 482, 400, 13104, 8, 611, 400, 1041, 15, 198, 28, 400, 11209, 611, 400, 1041, 15, 198, 28, 220, 1591, 15804, 2028, 9248, 279, 3685, 2860, 11668, 18979, 315, 220, 966, 4, 320, 605, 4, 304, 279, 1176, 2305, 489, 220, 508, 4, 304, 279, 2132, 2305, 3677, 578, 4320, 374, 400, 13104, 13, 128009]
-0: chosen_inputs:
-0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
-0: 
-0: The price of an iPhone fell 10% in a particular month and another 20% in the second month.  If the initial price was $1000, calculate the price after the second month.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-0: 
-0: I'd be happy to help you with that. Here's the solution:
-0: 
-0: Initially, the price of the iPhone is $1000.
-0: 
-0: In the first month, the price falls by 10%, which means the new price is:
-0: $1000 - (10% of $1000) = $1000 - $100 = $900
-0: 
-0: In the second month, the price falls by another 20%, which means the new price is:
-0: $900 - (20% of $900) = $900 - $180 = $720
-0: 
-0: Let's verify our calculation by finding the total percentage decrease:
-0: Initial price = $1000
-0: Price after first month = $900
-0: Price after second month = $720
-0: 
-0: The total percentage decrease = (Initial price - Price after second month) / Initial price
-0: = ($1000 - $720) / $1000
-0: = $280 / $1000
-0: = 28%
-0: 
-0: This matches the expected total percentage decrease of 30% (10% in the first month + 20% in the second month).
-0: 
-0:  The answer is $720.<|eot_id|>
-0: chosen_label_ids:
-0: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 40, 4265, 387, 6380, 311, 1520, 499, 449, 430, 13, 5810, 596, 279, 6425, 1473, 91084, 11, 279, 3430, 315, 279, 12443, 374, 400, 1041, 15, 382, 644, 279, 1176, 2305, 11, 279, 3430, 17503, 555, 220, 605, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 1041, 15, 482, 320, 605, 4, 315, 400, 1041, 15, 8, 284, 400, 1041, 15, 482, 400, 1041, 284, 400, 7467, 271, 644, 279, 2132, 2305, 11, 279, 3430, 17503, 555, 2500, 220, 508, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 7467, 482, 320, 508, 4, 315, 400, 7467, 8, 284, 400, 7467, 482, 400, 5245, 284, 400, 13104, 271, 10267, 596, 10356, 1057, 22702, 555, 9455, 279, 2860, 11668, 18979, 512, 6475, 3430, 284, 400, 1041, 15, 198, 7117, 1306, 1176, 2305, 284, 400, 7467, 1
-0: 98, 7117, 1306, 2132, 2305, 284, 400, 13104, 271, 791, 2860, 11668, 18979, 284, 320, 6475, 3430, 482, 8650, 1306, 2132, 2305, 8, 611, 4220, 3430, 198, 28, 1746, 1041, 15, 482, 400, 13104, 8, 611, 400, 1041, 15, 198, 28, 400, 11209, 611, 400, 1041, 15, 198, 28, 220, 1591, 15804, 2028, 9248, 279, 3685, 2860, 11668, 18979, 315, 220, 966, 4, 320, 605, 4, 304, 279, 1176, 2305, 489, 220, 508, 4, 304, 279, 2132, 2305, 3677, 578, 4320, 374, 400, 13104, 13, 128009]
-0: chosen_labels:
-0: I'd be happy to help you with that. Here's the solution:
-0: 
-0: Initially, the price of the iPhone is $1000.
-0: 
-0: In the first month, the price falls by 10%, which means the new price is:
-0: $1000 - (10% of $1000) = $1000 - $100 = $900
-0: 
-0: In the second month, the price falls by another 20%, which means the new price is:
-0: $900 - (20% of $900) = $900 - $180 = $720
-0: 
-0: Let's verify our calculation by finding the total percentage decrease:
-0: Initial price = $1000
-0: Price after first month = $900
-0: Price after second month = $720
-0: 
-0: The total percentage decrease = (Initial price - Price after second month) / Initial price
-0: = ($1000 - $720) / $1000
-0: = $280 / $1000
-0: = 28%
-0: 
-0: This matches the expected total percentage decrease of 30% (10% in the first month + 20% in the second month).
-0: 
-0:  The answer is $720.<|eot_id|>
-0: rejected_input_ids:
-0: [128000, 128006, 882, 128007, 271, 791, 3430, 315, 459, 12443, 11299, 220, 605, 4, 304, 264, 4040, 2305, 323, 2500, 220, 508, 4, 304, 279, 2132, 2305, 13, 220, 1442, 279, 2926, 3430, 574, 400, 1041, 15, 11, 11294, 279, 3430, 1306, 279, 2132, 2305, 13, 128009, 128006, 78191, 128007, 271, 40, 4265, 387, 6380, 311, 1520, 499, 449, 430, 13, 5810, 596, 279, 6425, 1473, 91084, 11, 279, 3430, 315, 279, 12443, 374, 400, 1041, 15, 382, 644, 279, 1176, 2305, 11, 279, 3430, 17503, 555, 220, 605, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 1041, 15, 482, 320, 605, 4, 315, 400, 1041, 15, 8, 284, 400, 1041, 15, 482, 400, 1041, 284, 400, 7467, 271, 644, 279, 2132, 2305, 11, 279, 3430, 17503, 555, 2500, 220, 508, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 7467, 482, 320, 508, 4, 315, 400, 7467, 8, 284, 400, 7467, 482, 400, 5245, 284, 400, 13104, 271, 10267, 596, 10356, 1057, 22702, 555, 9455, 279, 2860, 11668, 18979, 512, 6475, 3430, 284, 400, 1041, 15, 198, 7117, 1306, 1176, 2305, 284, 400, 7467, 198, 7117, 1306, 213
-0: 2, 2305, 284, 400, 13104, 271, 791, 2860, 11668, 18979, 284, 320, 6475, 3430, 482, 8650, 1306, 2132, 2305, 8, 611, 4220, 3430, 198, 28, 1746, 1041, 15, 482, 400, 13104, 8, 611, 400, 1041, 15, 198, 28, 400, 11209, 611, 400, 1041, 15, 198, 28, 220, 1591, 15804, 2028, 9248, 279, 3685, 2860, 11668, 18979, 315, 220, 966, 4, 320, 605, 4, 304, 279, 1176, 2305, 489, 220, 508, 4, 304, 279, 2132, 2305, 3677, 578, 4320, 374, 400, 13104, 13, 128009]
-0: rejected_inputs:
-0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
-0: 
-0: The price of an iPhone fell 10% in a particular month and another 20% in the second month.  If the initial price was $1000, calculate the price after the second month.<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-0: 
-0: I'd be happy to help you with that. Here's the solution:
-0: 
-0: Initially, the price of the iPhone is $1000.
-0: 
-0: In the first month, the price falls by 10%, which means the new price is:
-0: $1000 - (10% of $1000) = $1000 - $100 = $900
-0: 
-0: In the second month, the price falls by another 20%, which means the new price is:
-0: $900 - (20% of $900) = $900 - $180 = $720
-0: 
-0: Let's verify our calculation by finding the total percentage decrease:
-0: Initial price = $1000
-0: Price after first month = $900
-0: Price after second month = $720
-0: 
-0: The total percentage decrease = (Initial price - Price after second month) / Initial price
-0: = ($1000 - $720) / $1000
-0: = $280 / $1000
-0: = 28%
-0: 
-0: This matches the expected total percentage decrease of 30% (10% in the first month + 20% in the second month).
-0: 
-0:  The answer is $720.<|eot_id|>
-0: rejected_label_ids:
-0: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 40, 4265, 387, 6380, 311, 1520, 499, 449, 430, 13, 5810, 596, 279, 6425, 1473, 91084, 11, 279, 3430, 315, 279, 12443, 374, 400, 1041, 15, 382, 644, 279, 1176, 2305, 11, 279, 3430, 17503, 555, 220, 605, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 1041, 15, 482, 320, 605, 4, 315, 400, 1041, 15, 8, 284, 400, 1041, 15, 482, 400, 1041, 284, 400, 7467, 271, 644, 279, 2132, 2305, 11, 279, 3430, 17503, 555, 2500, 220, 508, 13689, 902, 3445, 279, 502, 3430, 374, 512, 3, 7467, 482, 320, 508, 4, 315, 400, 7467, 8, 284, 400, 7467, 482, 400, 5245, 284, 400, 13104, 271, 10267, 596, 10356, 1057, 22702, 555, 9455, 279, 2860, 11668, 18979, 512, 6475, 3430, 284, 400, 1041, 15, 198, 7117, 1306, 1176, 2305, 284, 400, 7467, 1
-0: 98, 7117, 1306, 2132, 2305, 284, 400, 13104, 271, 791, 2860, 11668, 18979, 284, 320, 6475, 3430, 482, 8650, 1306, 2132, 2305, 8, 611, 4220, 3430, 198, 28, 1746, 1041, 15, 482, 400, 13104, 8, 611, 400, 1041, 15, 198, 28, 400, 11209, 611, 400, 1041, 15, 198, 28, 220, 1591, 15804, 2028, 9248, 279, 3685, 2860, 11668, 18979, 315, 220, 966, 4, 320, 605, 4, 304, 279, 1176, 2305, 489, 220, 508, 4, 304, 279, 2132, 2305, 3677, 578, 4320, 374, 400, 13104, 13, 128009]
-0: rejected_labels:
-0: I'd be happy to help you with that. Here's the solution:
-0: 
-0: Initially, the price of the iPhone is $1000.
-0: 
-0: In the first month, the price falls by 10%, which means the new price is:
-0: $1000 - (10% of $1000) = $1000 - $100 = $900
-0: 
-0: In the second month, the price falls by another 20%, which means the new price is:
-0: $900 - (20% of $900) = $900 - $180 = $720
-0: 
-0: Let's verify our calculation by finding the total percentage decrease:
-0: Initial price = $1000
-0: Price after first month = $900
-0: Price after second month = $720
-0: 
-0: The total percentage decrease = (Initial price - Price after second month) / Initial price
-0: = ($1000 - $720) / $1000
-0: = $280 / $1000
-0: = 28%
-0: 
-0: This matches the expected total percentage decrease of 30% (10% in the first month + 20% in the second month).
-0: 
-0:  The answer is $720.<|eot_id|>
-0: [INFO|configuration_utils.py:679] 2025-01-02 02:23:54,218 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
-0: [INFO|configuration_utils.py:746] 2025-01-02 02:23:54,219 >> Model config LlamaConfig {
-0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
-0:   "architectures": [
-0:     "LlamaForCausalLM"
-0:   ],
-0:   "attention_bias": false,
-0:   "attention_dropout": 0.0,
-0:   "bos_token_id": 128000,
-0:   "eos_token_id": 128009,
-0:   "head_dim": 128,
-0:   "hidden_act": "silu",
-0:   "hidden_size": 4096,
-0:   "initializer_range": 0.02,
-0:   "intermediate_size": 14336,
-0:   "max_position_embeddings": 8192,
-0:   "mlp_bias": false,
-0:   "model_type": "llama",
-0:   "num_attention_heads": 32,
-0:   "num_hidden_layers": 32,
-0:   "num_key_value_heads": 8,
-0:   "pretraining_tp": 1,
-0:   "rms_norm_eps": 1e-05,
-0:   "rope_scaling": null,
-0:   "rope_theta": 500000.0,
-0:   "tie_word_embeddings": false,
-0:   "torch_dtype": "bfloat16",
-0:   "transformers_version": "4.46.1",
-0:   "use_cache": true,
-0:   "vocab_size": 128256
-0: }
-0: 
-0: [INFO|modeling_utils.py:3937] 2025-01-02 02:23:54,529 >> loading weights file model.safetensors from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/model.safetensors.index.json
-0: [2025-01-02 02:23:54,535] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: [2025-01-02 02:23:54,535] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: [2025-01-02 02:23:54,536] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: [INFO|modeling_utils.py:4080] 2025-01-02 02:23:54,536 >> Detected DeepSpeed ZeRO-3: activating zero.init() for this model
-0: [2025-01-02 02:23:54,536] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: [WARNING|logging.py:168] 2025-01-02 02:23:54,538 >> You are attempting to use Flash Attention 2.0 without specifying a torch dtype. This might lead to unexpected behaviour
-0: [WARNING|logging.py:168] 2025-01-02 02:23:54,538 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
-0: [INFO|configuration_utils.py:1096] 2025-01-02 02:23:54,544 >> Generate config GenerationConfig {
-0:   "bos_token_id": 128000,
-0:   "eos_token_id": 128009
-0: }
-0: 
-0: [2025-01-02 02:23:55,272] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 291, num_elems = 8.03B
-0: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.81it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.91it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.91it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.34it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.33it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.45it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:07,  2.63s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.71s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.71s/it]Loading checkpoint s
-0: hards:  75%|███████▌  | 3/4 [00:04<00:01,  1.69s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.10s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.09s/it]
-0: Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.10s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.09s/it]
-0: Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.13s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.11s/it]
-0: [2025-01-02 02:24:00,462] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: [2025-01-02 02:24:00,506] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: [2025-01-02 02:24:00,726] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.08s/it]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:09<00:03,  3.24s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:10<00:00,  2.39s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:10<00:00,  2.63s/it]
-0: [INFO|modeling_utils.py:4800] 2025-01-02 02:24:05,826 >> All model checkpoint weights were used when initializing LlamaForCausalLM.
-0: 
-0: [INFO|modeling_utils.py:4808] 2025-01-02 02:24:05,826 >> All the weights of LlamaForCausalLM were initialized from the model checkpoint at meta-llama/Meta-Llama-3-8B-Instruct.
-0: If your task is similar to the task the model of the checkpoint was trained on, you can already use LlamaForCausalLM for predictions without further training.
-0: [INFO|configuration_utils.py:1051] 2025-01-02 02:24:05,877 >> loading configuration file generation_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/generation_config.json
-0: [INFO|configuration_utils.py:1096] 2025-01-02 02:24:05,877 >> Generate config GenerationConfig {
-0:   "bos_token_id": 128000,
-0:   "do_sample": true,
-0:   "eos_token_id": [
-0:     128001,
-0:     128009
-0:   ],
-0:   "max_length": 4096,
-0:   "temperature": 0.6,
-0:   "top_p": 0.9
-0: }
-0: 
-0: [INFO|2025-01-02 02:24:05] llamafactory.model.model_utils.checkpointing:157 >> Gradient checkpointing enabled.
-0: [INFO|2025-01-02 02:24:05] llamafactory.model.model_utils.attention:157 >> Using FlashAttention-2 for faster training and inference.
-0: [INFO|2025-01-02 02:24:05] llamafactory.model.adapter:157 >> ZeRO3 / FSDP detected, remaining trainable params in float32.
-0: [INFO|2025-01-02 02:24:05] llamafactory.model.adapter:157 >> Fine-tuning method: Full
-0: [INFO|2025-01-02 02:24:05] llamafactory.model.loader:157 >> trainable params: 8,030,261,248 || all params: 8,030,261,248 || trainable%: 100.0000
-0: [INFO|configuration_utils.py:679] 2025-01-02 02:24:05,929 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
-0: [INFO|configuration_utils.py:746] 2025-01-02 02:24:05,929 >> Model config LlamaConfig {
-0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
-0:   "architectures": [
-0:     "LlamaForCausalLM"
-0:   ],
-0:   "attention_bias": false,
-0:   "attention_dropout": 0.0,
-0:   "bos_token_id": 128000,
-0:   "eos_token_id": 128009,
-0:   "head_dim": 128,
-0:   "hidden_act": "silu",
-0:   "hidden_size": 4096,
-0:   "initializer_range": 0.02,
-0:   "intermediate_size": 14336,
-0:   "max_position_embeddings": 8192,
-0:   "mlp_bias": false,
-0:   "model_type": "llama",
-0:   "num_attention_heads": 32,
-0:   "num_hidden_layers": 32,
-0:   "num_key_value_heads": 8,
-0:   "pretraining_tp": 1,
-0:   "rms_norm_eps": 1e-05,
-0:   "rope_scaling": null,
-0:   "rope_theta": 500000.0,
-0:   "tie_word_embeddings": false,
-0:   "torch_dtype": "bfloat16",
-0:   "transformers_version": "4.46.1",
-0:   "use_cache": true,
-0:   "vocab_size": 128256
-0: }
-0: 
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:24:05,980 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer.json
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:24:05,980 >> loading file tokenizer.model from cache at None
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:24:05,980 >> loading file added_tokens.json from cache at None
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:24:05,980 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/special_tokens_map.json
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:24:05,980 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer_config.json
-0: [INFO|tokenization_utils_base.py:2475] 2025-01-02 02:24:06,202 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
-0: [INFO|configuration_utils.py:679] 2025-01-02 02:24:06,555 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
-0: [INFO|configuration_utils.py:746] 2025-01-02 02:24:06,556 >> Model config LlamaConfig {
-0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
-0:   "architectures": [
-0:     "LlamaForCausalLM"
-0:   ],
-0:   "attention_bias": false,
-0:   "attention_dropout": 0.0,
-0:   "bos_token_id": 128000,
-0:   "eos_token_id": 128009,
-0:   "head_dim": 128,
-0:   "hidden_act": "silu",
-0:   "hidden_size": 4096,
-0:   "initializer_range": 0.02,
-0:   "intermediate_size": 14336,
-0:   "max_position_embeddings": 8192,
-0:   "mlp_bias": false,
-0:   "model_type": "llama",
-0:   "num_attention_heads": 32,
-0:   "num_hidden_layers": 32,
-0:   "num_key_value_heads": 8,
-0:   "pretraining_tp": 1,
-0:   "rms_norm_eps": 1e-05,
-0:   "rope_scaling": null,
-0:   "rope_theta": 500000.0,
-0:   "tie_word_embeddings": false,
-0:   "torch_dtype": "bfloat16",
-0:   "transformers_version": "4.46.1",
-0:   "use_cache": true,
-0:   "vocab_size": 128256
-0: }
-0: 
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:24:06,601 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer.json
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:24:06,601 >> loading file tokenizer.model from cache at None
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:24:06,601 >> loading file added_tokens.json from cache at None
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:24:06,601 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/special_tokens_map.json
-0: [INFO|tokenization_utils_base.py:2211] 2025-01-02 02:24:06,601 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer_config.json
-0: [INFO|tokenization_utils_base.py:2475] 2025-01-02 02:24:06,825 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
-0: [INFO|configuration_utils.py:679] 2025-01-02 02:24:06,892 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
-0: [INFO|configuration_utils.py:746] 2025-01-02 02:24:06,892 >> Model config LlamaConfig {
-0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
-0:   "architectures": [
-0:     "LlamaForCausalLM"
-0:   ],
-0:   "attention_bias": false,
-0:   "attention_dropout": 0.0,
-0:   "bos_token_id": 128000,
-0:   "eos_token_id": 128009,
-0:   "head_dim": 128,
-0:   "hidden_act": "silu",
-0:   "hidden_size": 4096,
-0:   "initializer_range": 0.02,
-0:   "intermediate_size": 14336,
-0:   "max_position_embeddings": 8192,
-0:   "mlp_bias": false,
-0:   "model_type": "llama",
-0:   "num_attention_heads": 32,
-0:   "num_hidden_layers": 32,
-0:   "num_key_value_heads": 8,
-0:   "pretraining_tp": 1,
-0:   "rms_norm_eps": 1e-05,
-0:   "rope_scaling": null,
-0:   "rope_theta": 500000.0,
-0:   "tie_word_embeddings": false,
-0:   "torch_dtype": "bfloat16",
-0:   "transformers_version": "4.46.1",
-0:   "use_cache": true,
-0:   "vocab_size": 128256
-0: }
-0: 
-0: [INFO|2025-01-02 02:24:06] llamafactory.model.patcher:157 >> Using KV cache for faster generation.
-0: [INFO|modeling_utils.py:3937] 2025-01-02 02:24:06,896 >> loading weights file model.safetensors from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/model.safetensors.index.json
-0: [INFO|modeling_utils.py:4080] 2025-01-02 02:24:06,899 >> Detected DeepSpeed ZeRO-3: activating zero.init() for this model
-0: [2025-01-02 02:24:06,899] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: [INFO|configuration_utils.py:1096] 2025-01-02 02:24:06,906 >> Generate config GenerationConfig {
-0:   "bos_token_id": 128000,
-0:   "eos_token_id": 128009
-0: }
-0: 
-0: [2025-01-02 02:24:07,056] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 582, num_elems = 16.06B
-0: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.11s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.11s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.24s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.53s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.54s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.57s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.27s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.43s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.43s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.46s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.07it/s]Loading checkpoint shards: 100%|�
-0: ��█████████| 4/4 [00:05<00:00,  1.07it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.25s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.25s/it]
-0: 
-0: [2025-01-02 02:24:09,147] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: [2025-01-02 02:24:09,192] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.01it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.31s/it]
-0: [2025-01-02 02:24:09,374] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.33s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.31s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.01it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.10s/it]
-0: [INFO|modeling_utils.py:4800] 2025-01-02 02:24:11,497 >> All model checkpoint weights were used when initializing LlamaForCausalLM.
-0: 
-0: [INFO|modeling_utils.py:4808] 2025-01-02 02:24:11,497 >> All the weights of LlamaForCausalLM were initialized from the model checkpoint at meta-llama/Meta-Llama-3-8B-Instruct.
-0: If your task is similar to the task the model of the checkpoint was trained on, you can already use LlamaForCausalLM for predictions without further training.
-0: [INFO|configuration_utils.py:1051] 2025-01-02 02:24:11,554 >> loading configuration file generation_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/generation_config.json
-0: [INFO|configuration_utils.py:1096] 2025-01-02 02:24:11,555 >> Generate config GenerationConfig {
-0:   "bos_token_id": 128000,
-0:   "do_sample": true,
-0:   "eos_token_id": [
-0:     128001,
-0:     128009
-0:   ],
-0:   "max_length": 4096,
-0:   "temperature": 0.6,
-0:   "top_p": 0.9
-0: }
-0: 
-0: [INFO|2025-01-02 02:24:11] llamafactory.model.model_utils.attention:157 >> Using FlashAttention-2 for faster training and inference.
-0: [INFO|2025-01-02 02:24:11] llamafactory.model.loader:157 >> all params: 8,030,261,248
-0: [INFO|2025-01-02 02:24:11] llamafactory.train.trainer_utils:157 >> Created reference model from the model itself.
-0: [INFO|trainer.py:698] 2025-01-02 02:24:11,606 >> Using auto half precision backend
-0: [2025-01-02 02:24:11,607] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.15.4, git-hash=unknown, git-branch=unknown
-0: [2025-01-02 02:24:11,607] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: [2025-01-02 02:24:11,614] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
-0: [2025-01-02 02:24:11,615] [INFO] [logging.py:128:log_dist] [Rank 0] Creating ZeRO Offload
-0: [2025-01-02 02:24:11,853] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
-0: [2025-01-02 02:24:11,854] [INFO] [utils.py:782:see_memory_usage] MA 7.48 GB         Max_MA 10.17 GB         CA 10.66 GB         Max_CA 11 GB 
-0: [2025-01-02 02:24:11,854] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 149.93 GB, percent = 17.5%
-0: Parameter Offload: Total persistent parameters: 266240 in 65 params
-0: [2025-01-02 02:24:12,100] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
-0: [2025-01-02 02:24:12,101] [INFO] [utils.py:782:see_memory_usage] MA 7.48 GB         Max_MA 7.48 GB         CA 10.66 GB         Max_CA 11 GB 
-0: [2025-01-02 02:24:12,102] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 149.93 GB, percent = 17.5%
-0: [2025-01-02 02:24:12,103] [INFO] [config.py:999:print] DeepSpeedEngine configuration:
-0: [2025-01-02 02:24:12,103] [INFO] [config.py:1003:print]   activation_checkpointing_config  {
-0:     "partition_activations": false, 
-0:     "contiguous_memory_optimization": false, 
-0:     "cpu_checkpointing": false, 
-0:     "number_checkpoints": null, 
-0:     "synchronize_checkpoint_boundary": false, 
-0:     "profile": false
-0: }
-0: [2025-01-02 02:24:12,103] [INFO] [config.py:1003:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True, 'use_gds': False}
-0: [2025-01-02 02:24:12,103] [INFO] [config.py:1003:print]   amp_enabled .................. False
-0: [2025-01-02 02:24:12,103] [INFO] [config.py:1003:print]   amp_params ................... False
-0: [2025-01-02 02:24:12,103] [INFO] [config.py:1003:print]   autotuning_config ............ {
-0:     "enabled": false, 
-0:     "start_step": null, 
-0:     "end_step": null, 
-0:     "metric_path": null, 
-0:     "arg_mappings": null, 
-0:     "metric": "throughput", 
-0:     "model_info": null, 
-0:     "results_dir": "autotuning_results", 
-0:     "exps_dir": "autotuning_exps", 
-0:     "overwrite": true, 
-0:     "fast": true, 
-0:     "start_profile_step": 3, 
-0:     "end_profile_step": 5, 
-0:     "tuner_type": "gridsearch", 
-0:     "tuner_early_stopping": 5, 
-0:     "tuner_num_trials": 50, 
-0:     "model_info_path": null, 
-0:     "mp_size": 1, 
-0:     "max_train_batch_size": null, 
-0:     "min_train_batch_size": 1, 
-0:     "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
-0:     "min_train_micro_batch_size_per_gpu": 1, 
-0:     "num_tuning_micro_batch_sizes": 3
-0: }
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   bfloat16_enabled ............. True
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   bfloat16_immediate_grad_update  False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   checkpoint_parallel_write_pipeline  False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   checkpoint_tag_validation_enabled  True
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   checkpoint_tag_validation_fail  False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0xfffa3ee9b5b0>
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   communication_data_type ...... None
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_pa
-0: rameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   curriculum_enabled_legacy .... False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   curriculum_params_legacy ..... False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   data_efficiency_enabled ...... False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   dataloader_drop_last ......... False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   disable_allgather ............ False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   dump_state ................... False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   dynamic_loss_scale_args ...... None
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   eigenvalue_enabled ........... False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   eigenvalue_gas_boundary_resolution  1
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   eigenvalue_layer_name ........ bert.encoder.layer
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   eigenvalue_layer_num ......... 0
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   eigenvalue_max_iter .......... 100
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   eigenvalue_stability ......... 1e-06
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   eigenvalue_tol ............... 0.01
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   eigenvalue_verbose ........... False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   elasticity_enabled ........... False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   flops_profiler_config ........ {
-0:     "enabled": false, 
-0:     "recompute_fwd_factor": 0.0, 
-0:     "profile_step": 1, 
-0:     "module_depth": -1, 
-0:     "top_modules": 1, 
-0:     "detailed": true, 
-0:     "output_file": null
-0: }
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   fp16_auto_cast ............... None
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   fp16_enabled ................. False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   fp16_master_weights_and_gradients  False
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   global_rank .................. 0
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   grad_accum_dtype ............. None
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   gradient_accumulation_steps .. 4
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   gradient_clipping ............ 1.0
-0: [2025-01-02 02:24:12,104] [INFO] [config.py:1003:print]   gradient_predivide_factor .... 1.0
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   graph_harvesting ............. False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   initial_dynamic_scale ........ 1
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   load_universal_checkpoint .... False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   loss_scale ................... 1.0
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   memory_breakdown ............. False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   mics_hierarchial_params_gather  False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   mics_shard_size .............. -1
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') comet=CometConfig(enabled=False, samples_log_interval=100, project=None, workspace=None, api_key=None, experiment_name=None, experiment_key=None, online=None, mode=None) wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName')
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   nebula_config ................ {
-0:     "enabled": false, 
-0:     "persistent_storage_path": null, 
-0:     "persistent_time_interval": 100, 
-0:     "num_of_version_in_retention": 2, 
-0:     "enable_nebula_load": true, 
-0:     "load_path": null
-0: }
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   optimizer_legacy_fusion ...... False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   optimizer_name ............... None
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   optimizer_params ............. None
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   pld_enabled .................. False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   pld_params ................... False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   prescale_gradients ........... False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   scheduler_name ............... None
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   scheduler_params ............. None
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   seq_parallel_communication_data_type  torch.float32
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   sparse_attention ............. None
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   sparse_gradients_enabled ..... False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   steps_per_print .............. inf
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   timers_config ................ enabled=True synchronized=True
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   train_batch_size ............. 64
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   train_micro_batch_size_per_gpu  4
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   use_data_before_expert_parallel_  False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   use_node_local_storage ....... False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   wall_clock_breakdown ......... False
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   weight_quantization_config ... None
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   world_size ................... 4
-0: [2025-01-02 02:24:12,105] [INFO] [config.py:1003:print]   zero_allow_untested_optimizer  True
-0: [2025-01-02 02:24:12,106] [INFO] [config.py:1003:print]   zero_config .................. stage=3 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=500000000 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=None offload_optimizer=None sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=50000000 param_persistence_threshold=100000 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=True use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_para
-0: ms_gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
-0: [2025-01-02 02:24:12,106] [INFO] [config.py:1003:print]   zero_enabled ................. True
-0: [2025-01-02 02:24:12,106] [INFO] [config.py:1003:print]   zero_force_ds_cpu_optimizer .. True
-0: [2025-01-02 02:24:12,106] [INFO] [config.py:1003:print]   zero_optimization_stage ...... 3
-0: [2025-01-02 02:24:12,106] [INFO] [config.py:989:print_user_config]   json = {
-0:     "train_batch_size": 64, 
-0:     "train_micro_batch_size_per_gpu": 4, 
-0:     "gradient_accumulation_steps": 4, 
-0:     "gradient_clipping": 1.0, 
-0:     "zero_allow_untested_optimizer": true, 
-0:     "fp16": {
-0:         "enabled": false, 
-0:         "loss_scale": 0, 
-0:         "loss_scale_window": 1000, 
-0:         "initial_scale_power": 16, 
-0:         "hysteresis": 2, 
-0:         "min_loss_scale": 1
-0:     }, 
-0:     "bf16": {
-0:         "enabled": true
-0:     }, 
-0:     "zero_optimization": {
-0:         "stage": 3, 
-0:         "overlap_comm": true, 
-0:         "contiguous_gradients": true, 
-0:         "sub_group_size": 1.000000e+09, 
-0:         "reduce_bucket_size": "auto", 
-0:         "stage3_prefetch_bucket_size": "auto", 
-0:         "stage3_param_persistence_threshold": "auto", 
-0:         "stage3_max_live_parameters": 1.000000e+09, 
-0:         "stage3_max_reuse_distance": 1.000000e+09, 
-0:         "stage3_gather_16bit_weights_on_model_save": true
-0:     }, 
-0:     "steps_per_print": inf, 
-0:     "zero_optimization.reduce_bucket_size": 1.677722e+07, 
-0:     "zero_optimization.stage3_param_persistence_threshold": 4.096000e+04, 
-0:     "zero_optimization.stage3_prefetch_bucket_size": 1.509949e+07
-0: }
-0: [2025-01-02 02:24:12,349] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.15.4, git-hash=unknown, git-branch=unknown
-0: [2025-01-02 02:24:12,350] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
-0: [2025-01-02 02:24:12,358] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
-0: [2025-01-02 02:24:12,359] [INFO] [logging.py:128:log_dist] [Rank 0] Using client Optimizer as basic optimizer
-0: [2025-01-02 02:24:12,359] [INFO] [logging.py:128:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
-0: [2025-01-02 02:24:12,370] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Basic Optimizer = AdamW
-0: [2025-01-02 02:24:12,370] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=AdamW type=<class 'torch.optim.adamw.AdamW'>
-0: [2025-01-02 02:24:12,370] [INFO] [logging.py:128:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer, MiCS is enabled False, Hierarchical params gather False
-0: [2025-01-02 02:24:12,370] [INFO] [logging.py:128:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 3 optimizer
-0: [2025-01-02 02:24:12,604] [INFO] [utils.py:781:see_memory_usage] Stage 3 initialize beginning
-0: [2025-01-02 02:24:12,605] [INFO] [utils.py:782:see_memory_usage] MA 7.48 GB         Max_MA 7.48 GB         CA 8.71 GB         Max_CA 11 GB 
-0: [2025-01-02 02:24:12,606] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 147.98 GB, percent = 17.3%
-0: [2025-01-02 02:24:12,607] [INFO] [stage3.py:166:__init__] Reduce bucket size 16777216
-0: [2025-01-02 02:24:12,607] [INFO] [stage3.py:167:__init__] Prefetch bucket size 15099494
-0: [2025-01-02 02:24:12,838] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
-0: [2025-01-02 02:24:12,839] [INFO] [utils.py:782:see_memory_usage] MA 7.48 GB         Max_MA 7.48 GB         CA 8.71 GB         Max_CA 9 GB 
-0: [2025-01-02 02:24:12,840] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 147.98 GB, percent = 17.3%
-0: Parameter Offload: Total persistent parameters: 266240 in 65 params
-0: [2025-01-02 02:24:13,094] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
-0: [2025-01-02 02:24:13,095] [INFO] [utils.py:782:see_memory_usage] MA 7.48 GB         Max_MA 7.48 GB         CA 8.71 GB         Max_CA 9 GB 
-0: [2025-01-02 02:24:13,095] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 147.97 GB, percent = 17.3%
-0: [2025-01-02 02:24:13,333] [INFO] [utils.py:781:see_memory_usage] Before creating fp16 partitions
-0: [2025-01-02 02:24:13,334] [INFO] [utils.py:782:see_memory_usage] MA 7.48 GB         Max_MA 7.48 GB         CA 8.71 GB         Max_CA 9 GB 
-0: [2025-01-02 02:24:13,334] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 147.97 GB, percent = 17.3%
-0: [2025-01-02 02:24:26,596] [INFO] [utils.py:781:see_memory_usage] After creating fp16 partitions: 3
-0: [2025-01-02 02:24:26,597] [INFO] [utils.py:782:see_memory_usage] MA 7.48 GB         Max_MA 7.48 GB         CA 9.29 GB         Max_CA 9 GB 
-0: [2025-01-02 02:24:26,598] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 172.95 GB, percent = 20.2%
-0: [2025-01-02 02:24:26,844] [INFO] [utils.py:781:see_memory_usage] Before creating fp32 partitions
-0: [2025-01-02 02:24:26,845] [INFO] [utils.py:782:see_memory_usage] MA 7.48 GB         Max_MA 7.48 GB         CA 9.29 GB         Max_CA 9 GB 
-0: [2025-01-02 02:24:26,845] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 179.17 GB, percent = 20.9%
-0: [2025-01-02 02:24:27,120] [INFO] [utils.py:781:see_memory_usage] After creating fp32 partitions
-0: [2025-01-02 02:24:27,121] [INFO] [utils.py:782:see_memory_usage] MA 14.96 GB         Max_MA 16.83 GB         CA 18.64 GB         Max_CA 19 GB 
-0: [2025-01-02 02:24:27,121] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 188.53 GB, percent = 22.0%
-0: [2025-01-02 02:24:27,369] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
-0: [2025-01-02 02:24:27,370] [INFO] [utils.py:782:see_memory_usage] MA 14.96 GB         Max_MA 14.96 GB         CA 18.64 GB         Max_CA 19 GB 
-0: [2025-01-02 02:24:27,370] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 199.77 GB, percent = 23.3%
-0: [2025-01-02 02:24:27,628] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
-0: [2025-01-02 02:24:27,629] [INFO] [utils.py:782:see_memory_usage] MA 14.96 GB         Max_MA 18.7 GB         CA 22.38 GB         Max_CA 22 GB 
-0: [2025-01-02 02:24:27,629] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 203.5 GB, percent = 23.8%
-0: [2025-01-02 02:24:27,630] [INFO] [stage3.py:521:_setup_for_real_optimizer] optimizer state initialized
-0: [2025-01-02 02:24:27,996] [INFO] [utils.py:781:see_memory_usage] After initializing ZeRO optimizer
-0: [2025-01-02 02:24:27,997] [INFO] [utils.py:782:see_memory_usage] MA 18.73 GB         Max_MA 20.69 GB         CA 22.38 GB         Max_CA 22 GB 
-0: [2025-01-02 02:24:27,997] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 207.65 GB, percent = 24.3%
-0: [2025-01-02 02:24:27,997] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Final Optimizer = DeepSpeedZeroOptimizer_Stage3
-0: [2025-01-02 02:24:27,997] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed using configured LR scheduler = None
-0: [2025-01-02 02:24:27,997] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed LR Scheduler = None
-0: [2025-01-02 02:24:27,998] [INFO] [logging.py:128:log_dist] [Rank 0] step=0, skipped=0, lr=[0.0, 0.0], mom=[(0.9, 0.999), (0.9, 0.999)]
-0: [2025-01-02 02:24:27,998] [INFO] [config.py:999:print] DeepSpeedEngine configuration:
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   activation_checkpointing_config  {
-0:     "partition_activations": false, 
-0:     "contiguous_memory_optimization": false, 
-0:     "cpu_checkpointing": false, 
-0:     "number_checkpoints": null, 
-0:     "synchronize_checkpoint_boundary": false, 
-0:     "profile": false
-0: }
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True, 'use_gds': False}
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   amp_enabled .................. False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   amp_params ................... False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   autotuning_config ............ {
-0:     "enabled": false, 
-0:     "start_step": null, 
-0:     "end_step": null, 
-0:     "metric_path": null, 
-0:     "arg_mappings": null, 
-0:     "metric": "throughput", 
-0:     "model_info": null, 
-0:     "results_dir": "autotuning_results", 
-0:     "exps_dir": "autotuning_exps", 
-0:     "overwrite": true, 
-0:     "fast": true, 
-0:     "start_profile_step": 3, 
-0:     "end_profile_step": 5, 
-0:     "tuner_type": "gridsearch", 
-0:     "tuner_early_stopping": 5, 
-0:     "tuner_num_trials": 50, 
-0:     "model_info_path": null, 
-0:     "mp_size": 1, 
-0:     "max_train_batch_size": null, 
-0:     "min_train_batch_size": 1, 
-0:     "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
-0:     "min_train_micro_batch_size_per_gpu": 1, 
-0:     "num_tuning_micro_batch_sizes": 3
-0: }
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   bfloat16_enabled ............. True
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   bfloat16_immediate_grad_update  False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   checkpoint_parallel_write_pipeline  False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   checkpoint_tag_validation_enabled  True
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   checkpoint_tag_validation_fail  False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0xfffa3e74ba90>
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   communication_data_type ...... None
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_pa
-0: rameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   curriculum_enabled_legacy .... False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   curriculum_params_legacy ..... False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   data_efficiency_enabled ...... False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   dataloader_drop_last ......... False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   disable_allgather ............ False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   dump_state ................... False
-0: [2025-01-02 02:24:27,999] [INFO] [config.py:1003:print]   dynamic_loss_scale_args ...... None
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   eigenvalue_enabled ........... False
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   eigenvalue_gas_boundary_resolution  1
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   eigenvalue_layer_name ........ bert.encoder.layer
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   eigenvalue_layer_num ......... 0
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   eigenvalue_max_iter .......... 100
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   eigenvalue_stability ......... 1e-06
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   eigenvalue_tol ............... 0.01
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   eigenvalue_verbose ........... False
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   elasticity_enabled ........... False
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   flops_profiler_config ........ {
-0:     "enabled": false, 
-0:     "recompute_fwd_factor": 0.0, 
-0:     "profile_step": 1, 
-0:     "module_depth": -1, 
-0:     "top_modules": 1, 
-0:     "detailed": true, 
-0:     "output_file": null
-0: }
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   fp16_auto_cast ............... None
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   fp16_enabled ................. False
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   fp16_master_weights_and_gradients  False
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   global_rank .................. 0
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   grad_accum_dtype ............. None
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   gradient_accumulation_steps .. 4
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   gradient_clipping ............ 1.0
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   gradient_predivide_factor .... 1.0
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   graph_harvesting ............. False
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   initial_dynamic_scale ........ 1
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   load_universal_checkpoint .... False
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   loss_scale ................... 1.0
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   memory_breakdown ............. False
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   mics_hierarchial_params_gather  False
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   mics_shard_size .............. -1
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') comet=CometConfig(enabled=False, samples_log_interval=100, project=None, workspace=None, api_key=None, experiment_name=None, experiment_key=None, online=None, mode=None) wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName')
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   nebula_config ................ {
-0:     "enabled": false, 
-0:     "persistent_storage_path": null, 
-0:     "persistent_time_interval": 100, 
-0:     "num_of_version_in_retention": 2, 
-0:     "enable_nebula_load": true, 
-0:     "load_path": null
-0: }
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   optimizer_legacy_fusion ...... False
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   optimizer_name ............... None
-0: [2025-01-02 02:24:28,000] [INFO] [config.py:1003:print]   optimizer_params ............. None
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   pld_enabled .................. False
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   pld_params ................... False
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   prescale_gradients ........... False
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   scheduler_name ............... None
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   scheduler_params ............. None
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   seq_parallel_communication_data_type  torch.float32
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   sparse_attention ............. None
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   sparse_gradients_enabled ..... False
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   steps_per_print .............. inf
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   timers_config ................ enabled=True synchronized=True
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   train_batch_size ............. 64
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   train_micro_batch_size_per_gpu  4
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   use_data_before_expert_parallel_  False
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   use_node_local_storage ....... False
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   wall_clock_breakdown ......... False
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   weight_quantization_config ... None
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   world_size ................... 4
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   zero_allow_untested_optimizer  True
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   zero_config .................. stage=3 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=16777216 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=None offload_optimizer=None sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=15099494 param_persistence_threshold=40960 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=True use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params
-0: _gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   zero_enabled ................. True
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   zero_force_ds_cpu_optimizer .. True
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:1003:print]   zero_optimization_stage ...... 3
-0: [2025-01-02 02:24:28,001] [INFO] [config.py:989:print_user_config]   json = {
-0:     "train_batch_size": 64, 
-0:     "train_micro_batch_size_per_gpu": 4, 
-0:     "gradient_accumulation_steps": 4, 
-0:     "gradient_clipping": 1.0, 
-0:     "zero_allow_untested_optimizer": true, 
-0:     "fp16": {
-0:         "enabled": false, 
-0:         "loss_scale": 0, 
-0:         "loss_scale_window": 1000, 
-0:         "initial_scale_power": 16, 
-0:         "hysteresis": 2, 
-0:         "min_loss_scale": 1
-0:     }, 
-0:     "bf16": {
-0:         "enabled": true
-0:     }, 
-0:     "zero_optimization": {
-0:         "stage": 3, 
-0:         "overlap_comm": true, 
-0:         "contiguous_gradients": true, 
-0:         "sub_group_size": 1.000000e+09, 
-0:         "reduce_bucket_size": 1.677722e+07, 
-0:         "stage3_prefetch_bucket_size": 1.509949e+07, 
-0:         "stage3_param_persistence_threshold": 4.096000e+04, 
-0:         "stage3_max_live_parameters": 1.000000e+09, 
-0:         "stage3_max_reuse_distance": 1.000000e+09, 
-0:         "stage3_gather_16bit_weights_on_model_save": true
-0:     }, 
-0:     "steps_per_print": inf
-0: }
-0: [INFO|trainer.py:2313] 2025-01-02 02:24:28,001 >> ***** Running training *****
-0: [INFO|trainer.py:2314] 2025-01-02 02:24:28,001 >>   Num examples = 7,473
-0: [INFO|trainer.py:2315] 2025-01-02 02:24:28,001 >>   Num Epochs = 1
-0: [INFO|trainer.py:2316] 2025-01-02 02:24:28,002 >>   Instantaneous batch size per device = 4
-0: [INFO|trainer.py:2319] 2025-01-02 02:24:28,002 >>   Total train batch size (w. parallel, distributed & accumulation) = 64
-0: [INFO|trainer.py:2320] 2025-01-02 02:24:28,002 >>   Gradient Accumulation steps = 4
-0: [INFO|trainer.py:2321] 2025-01-02 02:24:28,002 >>   Total optimization steps = 117
-0: [INFO|trainer.py:2322] 2025-01-02 02:24:28,002 >>   Number of trainable parameters = 8,030,261,248
-0: [INFO|integration_utils.py:812] 2025-01-02 02:24:28,004 >> Automatic Weights & Biases logging enabled, to disable set os.environ["WANDB_DISABLED"] = "true"
-0: wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
-0: wandb: Currently logged in as: jincan333. Use `wandb login --relogin` to force relogin
-0: wandb: Tracking run with wandb version 0.19.1
-0: wandb: Run data is saved locally in /u/cjin1/LLaMA-Factory/wandb/run-20250102_022428-s9ll6fj8
-0: wandb: Run `wandb offline` to turn off syncing.
-0: wandb: Syncing run llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048
-0: wandb: ⭐️ View project at https://wandb.ai/jincan333/safe_reason
-0: wandb: 🚀 View run at https://wandb.ai/jincan333/safe_reason/runs/s9ll6fj8
-0: {'loss': 0.6955, 'grad_norm': 13.303519158658117, 'learning_rate': 8.333333333333334e-06, 'rewards/chosen': -2.0289597511291504, 'rewards/rejected': -2.1624274253845215, 'rewards/accuracies': 0.08749999850988388, 'rewards/margins': 0.1334676444530487, 'logps/chosen': -165.30068969726562, 'logps/rejected': -163.82533264160156, 'logits/chosen': -0.39801889657974243, 'logits/rejected': -0.3904193043708801, 'epoch': 0.09}
-0:   0%|          | 0/117 [00:00<?, ?it/s]  1%|          | 1/117 [00:07<14:07,  7.31s/it]  2%|▏         | 2/117 [00:11<10:35,  5.53s/it]  3%|▎         | 3/117 [00:15<09:02,  4.76s/it]  3%|▎         | 4/117 [00:19<08:20,  4.43s/it]  4%|▍         | 5/117 [00:23<07:57,  4.26s/it]  5%|▌         | 6/117 [00:27<07:50,  4.24s/it]  6%|▌         | 7/117 [00:31<07:33,  4.12s/it]  7%|▋         | 8/117 [00:35<07:26,  4.10s/it]  8%|▊         | 9/117 [00:39<07:20,  4.08s/it]  9%|▊         | 10/117 [00:43<07:14,  4.06s/it]                                                  9%|▊         | 10/117 [00:43<07:14,  4.06s/it]  9%|▉         | 11/117 [00:47<07:10,  4.06s/it] 10%|█         | 12/117 [00:51<07:03,  4.03s/it] 11%|█         | 13/117 [00:55<06:54,  3.99s/it] 12%|█▏        | 14/117 [00:59<06:50,  3.99s/it] 13%|█▎        | 15/117 [01:03<06:48,  4.00s/it] 14%|█▎        | 16/117 [01:07<07:01,  4.17s/it] 15%|█▍        | 17/117 [01:12<06:56,  4.16s/it] 15%|█▌       
-0: {'loss': 0.709, 'grad_norm': 23.302153811394145, 'learning_rate': 9.857450191464337e-06, 'rewards/chosen': -6.51483154296875, 'rewards/rejected': -7.246519088745117, 'rewards/accuracies': 0.15625, 'rewards/margins': 0.7316871285438538, 'logps/chosen': -210.22418212890625, 'logps/rejected': -216.8346405029297, 'logits/chosen': -0.46992969512939453, 'logits/rejected': -0.4449520409107208, 'epoch': 0.17}
-0: {'loss': 0.7993, 'grad_norm': 20.33217882571302, 'learning_rate': 9.292243968009332e-06, 'rewards/chosen': -11.299101829528809, 'rewards/rejected': -12.182236671447754, 'rewards/accuracies': 0.13124999403953552, 'rewards/margins': 0.8831331133842468, 'logps/chosen': -257.1842956542969, 'logps/rejected': -263.40557861328125, 'logits/chosen': -0.5346412658691406, 'logits/rejected': -0.5100221037864685, 'epoch': 0.26}
-0:  | 18/117 [01:16<06:48,  4.13s/it] 16%|█▌        | 19/117 [01:20<06:42,  4.11s/it] 17%|█▋        | 20/117 [01:24<06:37,  4.10s/it]                                                 17%|█▋        | 20/117 [01:24<06:37,  4.10s/it] 18%|█▊        | 21/117 [01:28<06:31,  4.08s/it] 19%|█▉        | 22/117 [01:32<06:25,  4.06s/it] 20%|█▉        | 23/117 [01:36<06:27,  4.12s/it] 21%|██        | 24/117 [01:40<06:22,  4.11s/it] 21%|██▏       | 25/117 [01:44<06:17,  4.11s/it] 22%|██▏       | 26/117 [01:48<06:15,  4.12s/it] 23%|██▎       | 27/117 [01:53<06:09,  4.11s/it] 24%|██▍       | 28/117 [01:57<06:04,  4.09s/it] 25%|██▍       | 29/117 [02:01<05:58,  4.07s/it] 26%|██▌       | 30/117 [02:05<05:56,  4.09s/it]                                                 26%|██▌       | 30/117 [02:05<05:56,  4.09s/it] 26%|██▋       | 31/117 [02:09<05:56,  4.15s/it] 27%|██▋       | 32/117 [02:13<05:48,  4.10s/it] 28%|██▊       | 
-0: [2025-01-02 02:26:59,345] [WARNING] [stage3.py:2114:step] 1 pytorch allocator cache flushes since last step. this happens when there is high memory pressure and is detrimental to performance. if this is happening frequently consider adjusting settings to reduce memory consumption. If you are unable to make the cache flushes go away consider adding get_accelerator().empty_cache() calls in your training loop to ensure that all ranks flush their caches at the same time
-0: {'loss': 0.8038, 'grad_norm': 19.207825499377062, 'learning_rate': 8.345653031794292e-06, 'rewards/chosen': -13.32303237915039, 'rewards/rejected': -14.170717239379883, 'rewards/accuracies': 0.140625, 'rewards/margins': 0.8476849794387817, 'logps/chosen': -278.50482177734375, 'logps/rejected': -285.8324890136719, 'logits/chosen': -0.6032036542892456, 'logits/rejected': -0.5705155730247498, 'epoch': 0.34}
-0: [2025-01-02 02:27:46,596] [WARNING] [stage3.py:2114:step] 1 pytorch allocator cache flushes since last step. this happens when there is high memory pressure and is detrimental to performance. if this is happening frequently consider adjusting settings to reduce memory consumption. If you are unable to make the cache flushes go away consider adding get_accelerator().empty_cache() calls in your training loop to ensure that all ranks flush their caches at the same time
-0: 33/117 [02:17<05:46,  4.12s/it] 29%|██▉       | 34/117 [02:21<05:40,  4.10s/it] 30%|██▉       | 35/117 [02:25<05:35,  4.10s/it] 31%|███       | 36/117 [02:29<05:33,  4.11s/it] 32%|███▏      | 37/117 [02:34<05:33,  4.17s/it] 32%|███▏      | 38/117 [02:38<05:29,  4.17s/it] 33%|███▎      | 39/117 [02:42<05:23,  4.15s/it] 34%|███▍      | 40/117 [02:46<05:21,  4.17s/it]                                                 34%|███▍      | 40/117 [02:46<05:21,  4.17s/it] 35%|███▌      | 41/117 [02:51<05:19,  4.21s/it] 36%|███▌      | 42/117 [02:55<05:21,  4.28s/it] 37%|███▋      | 43/117 [03:00<05:21,  4.34s/it] 38%|███▊      | 44/117 [03:03<05:08,  4.23s/it] 38%|███▊      | 45/117 [03:08<05:10,  4.31s/it] 39%|███▉      | 46/117 [03:12<05:02,  4.26s/it] 40%|████      | 47/117 [03:17<05:05,  4.37s/it] 41%|████      | 48/117 [03:21<04:54,  4.27s/it] 42%|████▏     | 49/117 [0
-0: {'loss': 0.7288, 'grad_norm': 14.81248830150585, 'learning_rate': 7.101786141547829e-06, 'rewards/chosen': -15.24403190612793, 'rewards/rejected': -16.899913787841797, 'rewards/accuracies': 0.171875, 'rewards/margins': 1.6558810472488403, 'logps/chosen': -299.8928527832031, 'logps/rejected': -315.3805847167969, 'logits/chosen': -0.7667495608329773, 'logits/rejected': -0.7151707410812378, 'epoch': 0.43}
-0: {'loss': 0.6915, 'grad_norm': 2.7023814110731394, 'learning_rate': 5.671166329088278e-06, 'rewards/chosen': -15.265175819396973, 'rewards/rejected': -16.994237899780273, 'rewards/accuracies': 0.1640625, 'rewards/margins': 1.7290633916854858, 'logps/chosen': -299.229248046875, 'logps/rejected': -317.05615234375, 'logits/chosen': -0.8793295621871948, 'logits/rejected': -0.8049618005752563, 'epoch': 0.51}
-0: 3:25<04:53,  4.32s/it] 43%|████▎     | 50/117 [03:29<04:44,  4.25s/it]                                                 43%|████▎     | 50/117 [03:29<04:44,  4.25s/it] 44%|████▎     | 51/117 [03:33<04:38,  4.22s/it] 44%|████▍     | 52/117 [03:38<04:36,  4.25s/it] 45%|████▌     | 53/117 [03:42<04:38,  4.35s/it] 46%|████▌     | 54/117 [03:46<04:29,  4.28s/it] 47%|████▋     | 55/117 [03:51<04:22,  4.24s/it] 48%|████▊     | 56/117 [03:55<04:15,  4.18s/it] 49%|████▊     | 57/117 [03:59<04:07,  4.13s/it] 50%|████▉     | 58/117 [04:03<04:06,  4.18s/it] 50%|█████     | 59/117 [04:07<03:59,  4.13s/it] 51%|█████▏    | 60/117 [04:11<04:02,  4.25s/it]                                                 51%|█████▏    | 60/117 [04:11<04:02,  4.25s/it] 52%|█████▏    | 61/117 [04:16<03:58,  4.26s/it] 53%|█████▎    | 62/117 [04:20<03:48,  4.16s/it] 54%|█
-0: {'loss': 0.7042, 'grad_norm': 18.13493562992498, 'learning_rate': 4.180910442924312e-06, 'rewards/chosen': -17.463369369506836, 'rewards/rejected': -19.562515258789062, 'rewards/accuracies': 0.18281251192092896, 'rewards/margins': 2.0991463661193848, 'logps/chosen': -320.4820861816406, 'logps/rejected': -339.0899353027344, 'logits/chosen': -0.6663591861724854, 'logits/rejected': -0.612594485282898, 'epoch': 0.6}
-0: ████▍    | 63/117 [04:24<03:41,  4.11s/it] 55%|█████▍    | 64/117 [04:28<03:36,  4.09s/it] 56%|█████▌    | 65/117 [04:32<03:33,  4.10s/it] 56%|█████▋    | 66/117 [04:36<03:27,  4.06s/it] 57%|█████▋    | 67/117 [04:40<03:29,  4.19s/it] 58%|█████▊    | 68/117 [04:44<03:23,  4.16s/it] 59%|█████▉    | 69/117 [04:49<03:18,  4.14s/it] 60%|█████▉    | 70/117 [04:53<03:18,  4.21s/it]                                                 60%|█████▉    | 70/117 [04:53<03:18,  4.21s/it] 61%|██████    | 71/117 [04:57<03:14,  4.23s/it] 62%|██████▏   | 72/117 [05:01<03:06,  4.15s/it] 62%|██████▏   | 73/117 [05:05<03:03,  4.17s/it] 63%|██████▎   | 74/117 [05:09<02:56,  4.11s/it] 64%|██████▍   | 75/117 [05:13<02:51,  4.09s/it] 65%|██████▍   | 76/117 [05:17<02:46,  4.06s/it] 66%|██████▌   | 77/117 [05:22<02:43,  4.09
-0: {'loss': 0.7547, 'grad_norm': 17.608352571978187, 'learning_rate': 2.7634342584218364e-06, 'rewards/chosen': -18.45271110534668, 'rewards/rejected': -20.45759391784668, 'rewards/accuracies': 0.15625, 'rewards/margins': 2.0048840045928955, 'logps/chosen': -329.1156311035156, 'logps/rejected': -348.9599914550781, 'logits/chosen': -0.7054198980331421, 'logits/rejected': -0.6495395302772522, 'epoch': 0.68}
-0: {'loss': 0.759, 'grad_norm': 18.289716180388854, 'learning_rate': 1.544686755065677e-06, 'rewards/chosen': -18.526126861572266, 'rewards/rejected': -19.769487380981445, 'rewards/accuracies': 0.12343750149011612, 'rewards/margins': 1.243362545967102, 'logps/chosen': -330.9164123535156, 'logps/rejected': -341.5960693359375, 'logits/chosen': -0.626961886882782, 'logits/rejected': -0.6170870065689087, 'epoch': 0.77}
-0: s/it] 67%|██████▋   | 78/117 [05:26<02:39,  4.09s/it] 68%|██████▊   | 79/117 [05:30<02:42,  4.26s/it] 68%|██████▊   | 80/117 [05:35<02:41,  4.37s/it]                                                 68%|██████▊   | 80/117 [05:35<02:41,  4.37s/it] 69%|██████▉   | 81/117 [05:39<02:33,  4.28s/it] 70%|███████   | 82/117 [05:43<02:29,  4.26s/it] 71%|███████   | 83/117 [05:47<02:23,  4.23s/it] 72%|███████▏  | 84/117 [05:51<02:17,  4.18s/it] 73%|███████▎  | 85/117 [05:56<02:12,  4.16s/it] 74%|███████▎  | 86/117 [06:00<02:10,  4.20s/it] 74%|███████▍  | 87/117 [06:04<02:05,  4.20s/it] 75%|███████▌  | 88/117 [06:08<02:00,  4.16s/it] 76%|███████▌  | 89/117 [06:12<01:57,  4.19s/it] 77%|███████▋  | 90/117 [06:16<01:52,  4.15s/it]                                                 77%|█████�
-0: {'loss': 0.6637, 'grad_norm': 16.27332301748103, 'learning_rate': 6.329589969143518e-07, 'rewards/chosen': -17.55084228515625, 'rewards/rejected': -19.52197265625, 'rewards/accuracies': 0.15937501192092896, 'rewards/margins': 1.9711287021636963, 'logps/chosen': -321.44537353515625, 'logps/rejected': -337.64068603515625, 'logits/chosen': -0.6403055191040039, 'logits/rejected': -0.5903410911560059, 'epoch': 0.85}
-0: �█▋  | 90/117 [06:16<01:52,  4.15s/it] 78%|███████▊  | 91/117 [06:21<01:47,  4.14s/it] 79%|███████▊  | 92/117 [06:25<01:43,  4.15s/it] 79%|███████▉  | 93/117 [06:29<01:38,  4.12s/it] 80%|████████  | 94/117 [06:33<01:35,  4.14s/it] 81%|████████  | 95/117 [06:37<01:30,  4.11s/it] 82%|████████▏ | 96/117 [06:41<01:25,  4.09s/it] 83%|████████▎ | 97/117 [06:45<01:21,  4.08s/it] 84%|████████▍ | 98/117 [06:49<01:18,  4.11s/it] 85%|████████▍ | 99/117 [06:53<01:14,  4.13s/it] 85%|████████▌ | 100/117 [06:57<01:09,  4.08s/it]                                                  85%|████████▌ | 100/117 [06:57<01:09,  4.08s/it] 86%|████████▋ | 101/117 [07:02<01:07,  4.23s/it] 87%|████████▋ | 102/117 [07:06<01:02,  4.16s/it] 88%|████████▊ | 103/117 [07:10<00:58,  4.19s/i
-0: {'loss': 0.7029, 'grad_norm': 15.49024133511551, 'learning_rate': 1.0926199633097156e-07, 'rewards/chosen': -17.68026351928711, 'rewards/rejected': -19.412553787231445, 'rewards/accuracies': 0.14375001192092896, 'rewards/margins': 1.7322872877120972, 'logps/chosen': -321.2518615722656, 'logps/rejected': -337.14239501953125, 'logits/chosen': -0.6832074522972107, 'logits/rejected': -0.660606861114502, 'epoch': 0.94}
-0: t] 89%|████████▉ | 104/117 [07:14<00:54,  4.18s/it] 90%|████████▉ | 105/117 [07:18<00:49,  4.14s/it] 91%|█████████ | 106/117 [07:23<00:45,  4.13s/it] 91%|█████████▏| 107/117 [07:27<00:41,  4.13s/it] 92%|█████████▏| 108/117 [07:31<00:36,  4.09s/it] 93%|█████████▎| 109/117 [07:35<00:32,  4.05s/it] 94%|█████████▍| 110/117 [07:39<00:28,  4.05s/it]                                                  94%|█████████▍| 110/117 [07:39<00:28,  4.05s/it] 95%|█████████▍| 111/117 [07:43<00:24,  4.05s/it] 96%|█████████▌| 112/117 [07:47<00:20,  4.05s/it] 97%|█████████▋| 113/117 [07:51<00:16,  4.19s/it] 97%|█████████▋| 114/117 [07:55<00:12,  4.17s/it] 98%|█████████▊| 115/117 [08:00<00:08,  4.37s/it] 99%|█████████▉| 116/117 [08:05<00:04,  4.35s/
-0: it]100%|██████████| 117/117 [08:09<00:00,  4.29s/it][INFO|trainer.py:3801] 2025-01-02 02:33:34,309 >> Saving model checkpoint to /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117
-0: [INFO|configuration_utils.py:414] 2025-01-02 02:33:34,315 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/config.json
-0: [INFO|configuration_utils.py:865] 2025-01-02 02:33:34,318 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/generation_config.json
-0: [INFO|modeling_utils.py:3043] 2025-01-02 02:33:42,186 >> The model is bigger than the maximum size per checkpoint (5GB) and is going to be split in 4 checkpoint shards. You can find where each parameters has been saved in the index located at /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/model.safetensors.index.json.
-0: [INFO|tokenization_utils_base.py:2646] 2025-01-02 02:33:42,191 >> tokenizer config file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/tokenizer_config.json
-0: [INFO|tokenization_utils_base.py:2655] 2025-01-02 02:33:42,193 >> Special tokens file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/special_tokens_map.json
-0: [2025-01-02 02:33:42,445] [INFO] [logging.py:128:log_dist] [Rank 0] [Torch] Checkpoint global_step117 is about to be saved!
-0: [2025-01-02 02:33:42,467] [INFO] [logging.py:128:log_dist] [Rank 0] Saving model checkpoint: /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/global_step117/zero_pp_rank_0_mp_rank_00_model_states.pt
-0: [2025-01-02 02:33:42,468] [INFO] [torch_checkpoint_engine.py:21:save] [Torch] Saving /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/global_step117/zero_pp_rank_0_mp_rank_00_model_states.pt...
-0: [2025-01-02 02:33:42,479] [INFO] [torch_checkpoint_engine.py:23:save] [Torch] Saved /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/global_step117/zero_pp_rank_0_mp_rank_00_model_states.pt.
-0: [2025-01-02 02:33:42,481] [INFO] [torch_checkpoint_engine.py:21:save] [Torch] Saving /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/global_step117/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
-0: [2025-01-02 02:35:15,281] [INFO] [torch_checkpoint_engine.py:23:save] [Torch] Saved /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/global_step117/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
-0: [2025-01-02 02:35:15,372] [INFO] [engine.py:3536:_save_zero_checkpoint] zero checkpoint saved /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/checkpoint-117/global_step117/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
-0: [2025-01-02 02:35:16,878] [INFO] [torch_checkpoint_engine.py:33:commit] [Torch] Checkpoint global_step117 is ready now!
-0: [INFO|trainer.py:2584] 2025-01-02 02:35:16,888 >> 
-0: 
-0: Training completed. Do not forget to share your model on huggingface.co/models =)
-0: 
-0: 
-0: {'train_runtime': 648.8861, 'train_samples_per_second': 11.517, 'train_steps_per_second': 0.18, 'train_loss': 0.727886554522392, 'epoch': 1.0}
-0:                                                  100%|██████████| 117/117 [10:47<00:00,  4.29s/it]100%|██████████| 117/117 [10:47<00:00,  5.53s/it]
-0: [INFO|trainer.py:3801] 2025-01-02 02:36:10,310 >> Saving model checkpoint to /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048
-0: [INFO|configuration_utils.py:414] 2025-01-02 02:36:10,315 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/config.json
-0: [INFO|configuration_utils.py:865] 2025-01-02 02:36:10,317 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/generation_config.json
-0: [INFO|modeling_utils.py:3043] 2025-01-02 02:36:17,416 >> The model is bigger than the maximum size per checkpoint (5GB) and is going to be split in 4 checkpoint shards. You can find where each parameters has been saved in the index located at /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/model.safetensors.index.json.
-0: [INFO|tokenization_utils_base.py:2646] 2025-01-02 02:36:17,421 >> tokenizer config file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/tokenizer_config.json
-0: [INFO|tokenization_utils_base.py:2655] 2025-01-02 02:36:17,422 >> Special tokens file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/special_tokens_map.json
-0: ***** train metrics *****
-0:   epoch                    =        1.0
-0:   total_flos               =     8764GF
-0:   train_loss               =     0.7279
-0:   train_runtime            = 0:10:48.88
-0:   train_samples_per_second =     11.517
-0:   train_steps_per_second   =       0.18
-0: Figure saved at: /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/training_loss.png
-0: [WARNING|2025-01-02 02:36:17] llamafactory.extras.ploting:162 >> No metric eval_loss to plot.
-0: Figure saved at: /work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048/training_rewards_accuracies.png
-0: [INFO|trainer.py:4117] 2025-01-02 02:36:17,958 >> 
-0: ***** Running Evaluation *****
-0: [INFO|trainer.py:4119] 2025-01-02 02:36:17,959 >>   Num examples = 7473
-0: [INFO|trainer.py:4122] 2025-01-02 02:36:17,959 >>   Batch size = 8
-0:   0%|          | 0/234 [00:00<?, ?it/s]  1%|          | 2/234 [00:00<01:30,  2.57it/s]  1%|▏         | 3/234 [00:01<01:56,  1.98it/s]  2%|▏         | 4/234 [00:02<02:11,  1.74it/s]  2%|▏         | 5/234 [00:02<02:20,  1.63it/s]  3%|▎         | 6/234 [00:04<03:05,  1.23it/s]  3%|▎         | 7/234 [00:04<03:01,  1.25it/s]  3%|▎         | 8/234 [00:05<02:45,  1.36it/s]  4%|▍         | 9/234 [00:06<03:05,  1.22it/s]  4%|▍         | 10/234 [00:07<03:04,  1.21it/s]  5%|▍         | 11/234 [00:08<03:46,  1.02s/it]  5%|▌         | 12/234 [00:09<03:13,  1.15it/s]  6%|▌         | 13/234 [00:09<02:59,  1.23it/s]  6%|▌         | 14/234 [00:10<02:48,  1.31it/s]  6%|▋         | 15/234 [00:11<02:47,  1.31it/s]  7%|▋         | 16/234 [00:12<02:50,  1.28it/s]  7%|▋         | 17/234 [00:13<03:02,  1.19it/s]  8%|▊         | 18/234 [00:14<03:04,  1.17it/s]  8%|▊         | 19/234 [00:14<02:59,  1.20it/s]  9%|▊         | 20/234 [00:15<02:53,  1.23it/s]  9%|▉         | 21/23
-0: 4 [00:16<02:56,  1.21it/s]  9%|▉         | 22/234 [00:17<03:21,  1.05it/s] 10%|▉         | 23/234 [00:18<03:12,  1.10it/s] 10%|█         | 24/234 [00:19<02:57,  1.19it/s] 11%|█         | 25/234 [00:20<03:03,  1.14it/s] 11%|█         | 26/234 [00:20<02:51,  1.22it/s] 12%|█▏        | 27/234 [00:21<02:44,  1.26it/s] 12%|█▏        | 28/234 [00:22<02:43,  1.26it/s] 12%|█▏        | 29/234 [00:23<03:00,  1.14it/s] 13%|█▎        | 30/234 [00:24<02:53,  1.18it/s] 13%|█▎        | 31/234 [00:25<03:22,  1.00it/s] 14%|█▎        | 32/234 [00:26<03:17,  1.02it/s] 14%|█▍        | 33/234 [00:27<03:00,  1.11it/s] 15%|█▍        | 34/234 [00:27<02:50,  1.17it/s] 15%|█▍        | 35/234 [00:28<02:46,  1.20it/s] 15%|█▌        | 36/234 [00:29<02:50,  1.16it/s] 16%|█▌        | 37/234 [00:30<02:42,  1.21it/s] 16%|█▌        | 38/234 [00:31<02:35,  1.26it/s] 17%|█▋        | 39/234 [00:31<02:23,  1.36it/s] 17%|█▋        | 40/234 [00:32<02:24,  1.34it/s]
-0:  18%|█▊        | 41/234 [00:33<02:22,  1.36it/s] 18%|█▊        | 42/234 [00:33<02:19,  1.37it/s] 18%|█▊        | 43/234 [00:34<02:25,  1.32it/s] 19%|█▉        | 44/234 [00:35<02:17,  1.38it/s] 19%|█▉        | 45/234 [00:36<02:13,  1.42it/s] 20%|█▉        | 46/234 [00:36<02:20,  1.33it/s] 20%|██        | 47/234 [00:37<02:17,  1.36it/s] 21%|██        | 48/234 [00:38<02:16,  1.36it/s] 21%|██        | 49/234 [00:39<02:19,  1.33it/s] 21%|██▏       | 50/234 [00:39<02:15,  1.36it/s] 22%|██▏       | 51/234 [00:40<02:29,  1.22it/s] 22%|██▏       | 52/234 [00:41<02:43,  1.12it/s] 23%|██▎       | 53/234 [00:42<02:34,  1.17it/s] 23%|██▎       | 54/234 [00:43<02:27,  1.22it/s] 24%|██▎       | 55/234 [00:44<02:17,  1.30it/s] 24%|██▍       | 56/234 [00:44<02:14,  1.33it/s] 24%|██▍       | 57/234 [00:45<02:14,  1.32it/s] 25%|██▍       | 58/234 [00:46<02:05,  1.40it/s] 25%|██▌       | 59/234 [00:46<02:08,  1.37it/
-0: s] 26%|██▌       | 60/234 [00:47<02:13,  1.30it/s] 26%|██▌       | 61/234 [00:48<02:12,  1.31it/s] 26%|██▋       | 62/234 [00:49<02:12,  1.30it/s] 27%|██▋       | 63/234 [00:50<02:09,  1.32it/s] 27%|██▋       | 64/234 [00:51<02:25,  1.17it/s] 28%|██▊       | 65/234 [00:51<02:24,  1.17it/s] 28%|██▊       | 66/234 [00:52<02:20,  1.20it/s] 29%|██▊       | 67/234 [00:53<02:18,  1.20it/s] 29%|██▉       | 68/234 [00:54<02:16,  1.22it/s] 29%|██▉       | 69/234 [00:55<02:21,  1.16it/s] 30%|██▉       | 70/234 [00:56<02:15,  1.21it/s] 30%|███       | 71/234 [00:56<02:13,  1.22it/s] 31%|███       | 72/234 [00:57<02:10,  1.25it/s] 31%|███       | 73/234 [00:58<02:03,  1.31it/s] 32%|███▏      | 74/234 [00:59<02:08,  1.25it/s] 32%|███▏      | 75/234 [01:00<02:06,  1.25it/s] 32%|███▏      | 76/234 [01:00<02:11,  1.20it/s] 33%|███▎      | 77/234 [01:01<02:03,  1.27it/s] 33%|███▎      
-0: | 78/234 [01:02<02:04,  1.25it/s] 34%|███▍      | 79/234 [01:03<01:56,  1.34it/s] 34%|███▍      | 80/234 [01:03<01:52,  1.37it/s] 35%|███▍      | 81/234 [01:04<02:05,  1.22it/s] 35%|███▌      | 82/234 [01:05<02:01,  1.25it/s] 35%|███▌      | 83/234 [01:06<02:12,  1.14it/s] 36%|███▌      | 84/234 [01:07<02:07,  1.18it/s] 36%|███▋      | 85/234 [01:08<02:19,  1.07it/s] 37%|███▋      | 86/234 [01:09<02:13,  1.11it/s] 37%|███▋      | 87/234 [01:10<02:03,  1.19it/s] 38%|███▊      | 88/234 [01:10<02:06,  1.16it/s] 38%|███▊      | 89/234 [01:11<01:59,  1.21it/s] 38%|███▊      | 90/234 [01:12<01:56,  1.24it/s] 39%|███▉      | 91/234 [01:13<01:51,  1.29it/s] 39%|███▉      | 92/234 [01:13<01:52,  1.26it/s] 40%|███▉      | 93/234 [01:14<01:54,  1.23it/s] 40%|████      | 94/234 [01:15<01:50,  1.27it/s] 41%|████      | 95/234 [01:16<01:48,  1.28it/s] 41%|████    
-0:   | 96/234 [01:17<01:46,  1.29it/s] 41%|████▏     | 97/234 [01:17<01:43,  1.33it/s] 42%|████▏     | 98/234 [01:18<01:40,  1.36it/s] 42%|████▏     | 99/234 [01:19<01:46,  1.27it/s] 43%|████▎     | 100/234 [01:20<01:46,  1.26it/s] 43%|████▎     | 101/234 [01:20<01:44,  1.28it/s] 44%|████▎     | 102/234 [01:21<01:43,  1.28it/s] 44%|████▍     | 103/234 [01:22<01:44,  1.25it/s] 44%|████▍     | 104/234 [01:23<01:47,  1.21it/s] 45%|████▍     | 105/234 [01:24<01:42,  1.25it/s] 45%|████▌     | 106/234 [01:24<01:41,  1.27it/s] 46%|████▌     | 107/234 [01:25<01:36,  1.31it/s] 46%|████▌     | 108/234 [01:26<01:33,  1.35it/s] 47%|████▋     | 109/234 [01:27<01:35,  1.30it/s] 47%|████▋     | 110/234 [01:27<01:34,  1.31it/s] 47%|████▋     | 111/234 [01:28<01:30,  1.36it/s] 48%|████▊     | 112/234 [01:29<01:30,  1.35it/s] 48%|████▊     | 113/
-0: 234 [01:30<01:27,  1.38it/s] 49%|████▊     | 114/234 [01:30<01:27,  1.37it/s] 49%|████▉     | 115/234 [01:31<01:30,  1.31it/s] 50%|████▉     | 116/234 [01:32<01:28,  1.34it/s] 50%|█████     | 117/234 [01:33<01:24,  1.39it/s] 50%|█████     | 118/234 [01:33<01:25,  1.35it/s] 51%|█████     | 119/234 [01:34<01:26,  1.33it/s] 51%|█████▏    | 120/234 [01:35<01:26,  1.31it/s] 52%|█████▏    | 121/234 [01:36<01:39,  1.14it/s] 52%|█████▏    | 122/234 [01:37<01:33,  1.20it/s] 53%|█████▎    | 123/234 [01:37<01:29,  1.25it/s] 53%|█████▎    | 124/234 [01:38<01:24,  1.30it/s] 53%|█████▎    | 125/234 [01:39<01:22,  1.32it/s] 54%|█████▍    | 126/234 [01:40<01:20,  1.34it/s] 54%|█████▍    | 127/234 [01:40<01:22,  1.30it/s] 55%|█████▍    | 128/234 [01:41<01:20,  1.32it/s] 55%|█████▌    | 129/234 [01:42<01:19,  1.31it/s] 56%|███�
-0: ��█▌    | 130/234 [01:43<01:17,  1.35it/s] 56%|█████▌    | 131/234 [01:44<01:23,  1.23it/s] 56%|█████▋    | 132/234 [01:44<01:18,  1.30it/s] 57%|█████▋    | 133/234 [01:45<01:17,  1.31it/s] 57%|█████▋    | 134/234 [01:46<01:11,  1.41it/s] 58%|█████▊    | 135/234 [01:46<01:13,  1.35it/s] 58%|█████▊    | 136/234 [01:47<01:10,  1.39it/s] 59%|█████▊    | 137/234 [01:48<01:10,  1.38it/s] 59%|█████▉    | 138/234 [01:49<01:12,  1.33it/s] 59%|█████▉    | 139/234 [01:49<01:13,  1.30it/s] 60%|█████▉    | 140/234 [01:50<01:11,  1.32it/s] 60%|██████    | 141/234 [01:51<01:07,  1.38it/s] 61%|██████    | 142/234 [01:52<01:05,  1.41it/s] 61%|██████    | 143/234 [01:52<01:04,  1.41it/s] 62%|██████▏   | 144/234 [01:53<01:06,  1.34it/s] 62%|██████▏   | 145/234 [01:54<01:05,  1.35it/s] 62%|██████▏   | 146/234 [01:
-0: 54<01:03,  1.38it/s] 63%|██████▎   | 147/234 [01:55<01:02,  1.39it/s] 63%|██████▎   | 148/234 [01:56<01:06,  1.30it/s] 64%|██████▎   | 149/234 [01:57<01:04,  1.32it/s] 64%|██████▍   | 150/234 [01:57<01:01,  1.37it/s] 65%|██████▍   | 151/234 [01:58<01:00,  1.38it/s] 65%|██████▍   | 152/234 [01:59<00:57,  1.43it/s] 65%|██████▌   | 153/234 [02:00<01:04,  1.25it/s] 66%|██████▌   | 154/234 [02:01<01:06,  1.21it/s] 66%|██████▌   | 155/234 [02:02<01:03,  1.24it/s] 67%|██████▋   | 156/234 [02:02<01:01,  1.27it/s] 67%|██████▋   | 157/234 [02:03<01:00,  1.27it/s] 68%|██████▊   | 158/234 [02:04<00:59,  1.28it/s] 68%|██████▊   | 159/234 [02:05<00:56,  1.33it/s] 68%|██████▊   | 160/234 [02:05<00:53,  1.38it/s] 69%|██████▉   | 161/234 [02:06<00:51,  1.41it/s] 69%|██████▉   | 162/234 [02:
-0: 07<00:53,  1.33it/s] 70%|██████▉   | 163/234 [02:08<00:56,  1.26it/s] 70%|███████   | 164/234 [02:08<00:52,  1.34it/s] 71%|███████   | 165/234 [02:09<00:50,  1.37it/s] 71%|███████   | 166/234 [02:10<00:53,  1.28it/s] 71%|███████▏  | 167/234 [02:11<00:51,  1.30it/s] 72%|███████▏  | 168/234 [02:11<00:48,  1.36it/s] 72%|███████▏  | 169/234 [02:12<00:51,  1.27it/s] 73%|███████▎  | 170/234 [02:13<00:50,  1.28it/s] 73%|███████▎  | 171/234 [02:14<00:47,  1.33it/s] 74%|███████▎  | 172/234 [02:14<00:48,  1.27it/s] 74%|███████▍  | 173/234 [02:15<00:45,  1.33it/s] 74%|███████▍  | 174/234 [02:16<00:44,  1.35it/s] 75%|███████▍  | 175/234 [02:17<00:43,  1.34it/s] 75%|███████▌  | 176/234 [02:17<00:42,  1.38it/s] 76%|███████▌  | 177/234 [02:18<00:40,  1.42it/s] 76%|█████�
-0: ��█▌  | 178/234 [02:19<00:42,  1.33it/s] 76%|███████▋  | 179/234 [02:19<00:40,  1.36it/s] 77%|███████▋  | 180/234 [02:20<00:40,  1.35it/s] 77%|███████▋  | 181/234 [02:21<00:38,  1.39it/s] 78%|███████▊  | 182/234 [02:22<00:37,  1.37it/s] 78%|███████▊  | 183/234 [02:23<00:39,  1.30it/s] 79%|███████▊  | 184/234 [02:23<00:36,  1.35it/s] 79%|███████▉  | 185/234 [02:24<00:35,  1.37it/s] 79%|███████▉  | 186/234 [02:25<00:34,  1.40it/s] 80%|███████▉  | 187/234 [02:25<00:34,  1.34it/s] 80%|████████  | 188/234 [02:26<00:33,  1.39it/s] 81%|████████  | 189/234 [02:27<00:34,  1.30it/s] 81%|████████  | 190/234 [02:28<00:32,  1.33it/s] 82%|████████▏ | 191/234 [02:28<00:33,  1.30it/s] 82%|████████▏ | 192/234 [02:29<00:31,  1.34it/s] 82%|████████▏ | 193/234 [02:30<0
-0: 0:34,  1.18it/s] 83%|████████▎ | 194/234 [02:31<00:31,  1.27it/s] 83%|████████▎ | 195/234 [02:32<00:29,  1.32it/s] 84%|████████▍ | 196/234 [02:32<00:29,  1.30it/s] 84%|████████▍ | 197/234 [02:33<00:28,  1.31it/s] 85%|████████▍ | 198/234 [02:34<00:29,  1.22it/s] 85%|████████▌ | 199/234 [02:35<00:27,  1.26it/s] 85%|████████▌ | 200/234 [02:35<00:25,  1.33it/s] 86%|████████▌ | 201/234 [02:36<00:25,  1.30it/s] 86%|████████▋ | 202/234 [02:37<00:25,  1.24it/s] 87%|████████▋ | 203/234 [02:38<00:25,  1.24it/s] 87%|████████▋ | 204/234 [02:39<00:23,  1.29it/s] 88%|████████▊ | 205/234 [02:39<00:20,  1.39it/s] 88%|████████▊ | 206/234 [02:40<00:20,  1.39it/s] 88%|████████▊ | 207/234 [02:41<00:19,  1.39it/s] 89%|████████▉ | 208/234 [02:41<00:19
-0: ,  1.36it/s] 89%|████████▉ | 209/234 [02:42<00:18,  1.32it/s] 90%|████████▉ | 210/234 [02:43<00:18,  1.31it/s] 90%|█████████ | 211/234 [02:44<00:17,  1.29it/s] 91%|█████████ | 212/234 [02:45<00:18,  1.21it/s] 91%|█████████ | 213/234 [02:46<00:17,  1.21it/s] 91%|█████████▏| 214/234 [02:46<00:14,  1.35it/s] 92%|█████████▏| 215/234 [02:47<00:13,  1.37it/s] 92%|█████████▏| 216/234 [02:48<00:14,  1.28it/s] 93%|█████████▎| 217/234 [02:48<00:12,  1.31it/s] 93%|█████████▎| 218/234 [02:49<00:11,  1.34it/s] 94%|█████████▎| 219/234 [02:50<00:10,  1.37it/s] 94%|█████████▍| 220/234 [02:51<00:10,  1.28it/s] 94%|█████████▍| 221/234 [02:52<00:10,  1.24it/s] 95%|█████████▍| 222/234 [02:53<00:09,  1.20it/s] 95%|█████████▌| 223/
-0: 234 [02:53<00:08,  1.23it/s] 96%|█████████▌| 224/234 [02:54<00:08,  1.24it/s] 96%|█████████▌| 225/234 [02:55<00:07,  1.22it/s] 97%|█████████▋| 226/234 [02:56<00:06,  1.28it/s] 97%|█████████▋| 227/234 [02:56<00:05,  1.31it/s] 97%|█████████▋| 228/234 [02:57<00:04,  1.34it/s] 98%|█████████▊| 229/234 [02:58<00:03,  1.31it/s] 98%|█████████▊| 230/234 [02:59<00:03,  1.30it/s] 99%|█████████▊| 231/234 [02:59<00:02,  1.28it/s] 99%|█████████▉| 232/234 [03:00<00:01,  1.33it/s]100%|█████████▉| 233/234 [03:01<00:00,  1.35it/s]100%|██████████| 234/234 [03:02<00:00,  1.25it/s]100%|██████████| 234/234 [03:02<00:00,  1.28it/s]
-0: ***** eval metrics *****
-0:   epoch                   =        1.0
-0:   eval_logits/chosen      =    -0.9847
-0:   eval_logits/rejected    =    -0.9473
-0:   eval_logps/chosen       =  -312.6427
-0:   eval_logps/rejected     =  -339.0179
-0:   eval_loss               =     0.5759
-0:   eval_rewards/accuracies =     0.1864
-0:   eval_rewards/chosen     =   -16.7209
-0:   eval_rewards/margins    =     2.7835
-0:   eval_rewards/rejected   =   -19.5044
-0:   eval_runtime            = 0:03:03.25
-0:   eval_samples_per_second =      40.78
-0:   eval_steps_per_second   =      1.277
-0: [INFO|modelcard.py:449] 2025-01-02 02:39:21,224 >> Dropping the following result as it does not have all the necessary fields:
-0: {'task': {'name': 'Causal Language Modeling', 'type': 'text-generation'}}
-0: [1;34mwandb[0m: 🚀 View run [33mllama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048[0m at: [34mhttps://wandb.ai/jincan333/safe_reason/runs/s9ll6fj8[0m
-0: [1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250102_022428-s9ll6fj8/logs[0m
-0: The following values were not passed to `accelerate launch` and had defaults used instead:
-0: 	`--num_processes` was set to a value of `1`
-0: 	`--num_machines` was set to a value of `1`
-0: 	`--mixed_precision` was set to a value of `'no'`
-0: 	`--dynamo_backend` was set to a value of `'no'`
-0: To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
-0: wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
-0: wandb: Currently logged in as: jincan333. Use `wandb login --relogin` to force relogin
-0: wandb: Tracking run with wandb version 0.19.1
-0: wandb: Run data is saved locally in /u/cjin1/LLaMA-Factory/wandb/run-20250102_023932-8zq50dle
-0: wandb: Run `wandb offline` to turn off syncing.
-0: wandb: Syncing run llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048_eval
-0: wandb: ⭐️ View project at https://wandb.ai/jincan333/safe_reason
-0: wandb: 🚀 View run at https://wandb.ai/jincan333/safe_reason/runs/8zq50dle
-0: 2025-01-02:02:39:33,050 INFO     [__main__.py:279] Verbosity set to INFO
-0: 2025-01-02:02:39:42,993 INFO     [__main__.py:376] Selected Tasks: ['gsm8k']
-0: 2025-01-02:02:39:43,000 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
-0: 2025-01-02:02:39:43,000 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
-0: 2025-01-02:02:39:43,000 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048', 'dtype': 'auto'}
-0: 2025-01-02:02:39:44,643 INFO     [huggingface.py:132] Using device 'cuda'
-0: 2025-01-02:02:39:44,979 INFO     [huggingface.py:369] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda'}
-0: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.05s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:04<00:04,  2.17s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:06<00:02,  2.11s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.41s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.67s/it]
-0: 2025-01-02:02:39:53,796 WARNING  [evaluator.py:270] Overwriting default num_fewshot of gsm8k from 5 to 5
-0: 2025-01-02:02:39:53,796 WARNING  [evaluator.py:406] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
-0: 2025-01-02:02:39:53,797 INFO     [task.py:415] Building contexts for gsm8k on rank 0...
-0:   0%|          | 0/1319 [00:00<?, ?it/s]  4%|▍         | 54/1319 [00:00<00:02, 532.12it/s]  8%|▊         | 111/1319 [00:00<00:02, 551.20it/s] 13%|█▎        | 168/1319 [00:00<00:02, 559.41it/s] 17%|█▋        | 226/1319 [00:00<00:01, 564.32it/s] 22%|██▏       | 284/1319 [00:00<00:01, 567.73it/s] 26%|██▌       | 342/1319 [00:00<00:01, 570.34it/s] 30%|███       | 400/1319 [00:00<00:01, 571.65it/s] 35%|███▍      | 458/1319 [00:00<00:01, 572.88it/s] 39%|███▉      | 516/1319 [00:00<00:01, 573.66it/s] 44%|████▎     | 574/1319 [00:01<00:01, 574.15it/s] 48%|████▊     | 632/1319 [00:01<00:01, 574.63it/s] 52%|█████▏    | 690/1319 [00:01<00:01, 575.17it/s] 57%|█████▋    | 748/1319 [00:01<00:01, 569.66it/s] 61%|██████    | 806/1319 [00:01<00:00, 570.24it/s] 66%|██████▌   | 864/1319 [00:01<00:00, 569.81it/s] 70%|██████▉   | 921/1319 [00:01<00:00, 569.55it/s] 74%|█████�
-0: ��█▍  | 979/1319 [00:01<00:00, 570.14it/s] 79%|███████▊  | 1037/1319 [00:01<00:00, 571.33it/s] 83%|████████▎ | 1095/1319 [00:01<00:00, 571.69it/s] 87%|████████▋ | 1153/1319 [00:02<00:00, 572.63it/s] 92%|█████████▏| 1211/1319 [00:02<00:00, 571.82it/s] 96%|█████████▌| 1269/1319 [00:02<00:00, 570.03it/s]100%|██████████| 1319/1319 [00:02<00:00, 569.43it/s]
-0: 2025-01-02:02:39:56,128 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=gsm8k,output_type=generate_until,num_fewshot=5,num_samples=1319); document 0; context prompt (starting on next line):    
-0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
-0: 
-0: Question: Steve finds 100 gold bars while visiting Oregon. He wants to distribute his gold bars evenly to his 4 friends. If 20 gold bars were lost on the way back to San Diego, how many gold bars will each of his 4 friends get when he returns?
-0: Answer: He only has 100 - 20 = <<100-20=80>>80 gold bars after losing 20 of them.
-0: He then gives each of his friends 80 ÷ 4 = <<80/4=20>>20 gold bars.
-0: #### 20
-0: 
-0: Question: In a week, Mortdecai collects 8 dozen  eggs every Tuesday and Thursday, and he delivers 3 dozen  eggs to the market and 5 dozen eggs to the mall. He then uses 4 dozen eggs to make a pie every Saturday. Mortdecai donates the remaining eggs to the charity by Sunday. How many  eggs does he donate to the charity?
-0: Answer: Mortdecai collects a total of 8x2 = <<8*2=16>>16 dozens of eggs.
-0: He sells a total of 3 + 5 = <<3+5=8>>8 dozens of eggs.
-0: So, 16 - 8 = <<16-8=8>>8 dozens of eggs are left.
-0: After using 4 dozens of eggs to make a pie, 8 - 4 = <<8-4=4>>4 dozens of eggs are left.
-0: Since there are 12 in 1 dozen, then Mortdecai donates 4 x 12 = <<4*12=48>>48 pieces of eggs to the charity.
-0: #### 48
-0: 
-0: Question: Corey downloaded two movie series from his Netflix account with 12 and 14 seasons per series, respectively. However, in the week, his computer got a mechanical failure, and he lost two episodes from each season for both series. If each season in the movie series that Corey downloaded had 16 episodes, how many episodes remained after the computer's mechanical failure?
-0: Answer: In the first movie series with 12 seasons, after the mechanical failure, the number of episodes that Corey lost is 2*12 = <<2*12=24>>24
-0: Originally, the movie series with 12 seasons had 12*16 = <<12*16=192>>192 episodes.
-0: After the mechanical failure, Corey had 192-24 = <<192-24=168>>168 episodes remaining in the first movie series.
-0: Similarly, the 14 season movie series also had 14*2 = <<14*2=28>>28 lost after the computer's mechanical failure.
-0: Originally, the movie series with 14 seasons has 14*16 = <<14*16=224>>224 episodes.
-0: The mechanical failure of the computer reduced the number of episodes in the 14 season movie series to 224-28 = <<224-28=196>>196
-0: After the loss, Corey had 196+168 = <<196+168=364>>364 episodes remaining from the two movie series he had downloaded.
-0: #### 364
-0: 
-0: Question: There were 18 students assigned in a minibus for a field trip. Eight of these students were boys. On the day of the field trip, the number of girls and boys was the same since some of the girls were not able to join the trip. How many girls were not able to join the field trip?
-0: Answer: 8 boys + 8 girls = <<8+8=16>>16 students joined the field trip.
-0: Thus, 18 - 16 = <<18-16=2>>2 girls were not able to join the field trip.
-0: #### 2
-0: 
-0: Question: There are 200 more red apples than green apples in a grocery store. A truck arrives and delivers another 340 green apples. If there were originally 32 green apples, how many more green apples than red apples are there in the store now?
-0: Answer: There are 200 + 32 = <<200+32=232>>232 red apples.
-0: After the delivery there are 340 + 32 = <<340+32=372>>372 green apples
-0: There are now 372 - 232 = <<372-232=140>>140 more green apples than red apples now.
-0: #### 140
-0: 
-0: Question: Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?
-0: Answer:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
-0: 
-0: 
-0: (end of prompt on previous line)
-0: target string or answer choice index (starting on next line):
-0: Janet sells 16 - 3 - 4 = <<16-3-4=9>>9 duck eggs a day.
-0: She makes 9 * 2 = $<<9*2=18>>18 every day at the farmer’s market.
-0: #### 18
-0: (end of target on previous line)
-0: 2025-01-02:02:39:56,128 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'question': "Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?", 'answer': 'Janet sells 16 - 3 - 4 = <<16-3-4=9>>9 duck eggs a day.\nShe makes 9 * 2 = $<<9*2=18>>18 every day at the farmer’s market.\n#### 18'}, arguments=("<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\nQuestion: Steve finds 100 gold bars while visiting Oregon. He wants to distribute his gold bars evenly to his 4 friends. If 20 gold bars were lost on the way back to San Diego, how many gold bars will each of his 4 friends get when he returns?\nAnswer: He only has 100 - 20 = <<100-20=80>>80 gold bars after losing 20 of them.\nHe then gives each of his friends 80 ÷ 4 = <<80/4=20>>20 gold ba
-0: rs.\n#### 20\n\nQuestion: In a week, Mortdecai collects 8 dozen  eggs every Tuesday and Thursday, and he delivers 3 dozen  eggs to the market and 5 dozen eggs to the mall. He then uses 4 dozen eggs to make a pie every Saturday. Mortdecai donates the remaining eggs to the charity by Sunday. How many  eggs does he donate to the charity?\nAnswer: Mortdecai collects a total of 8x2 = <<8*2=16>>16 dozens of eggs.\nHe sells a total of 3 + 5 = <<3+5=8>>8 dozens of eggs.\nSo, 16 - 8 = <<16-8=8>>8 dozens of eggs are left.\nAfter using 4 dozens of eggs to make a pie, 8 - 4 = <<8-4=4>>4 dozens of eggs are left.\nSince there are 12 in 1 dozen, then Mortdecai donates 4 x 12 = <<4*12=48>>48 pieces of eggs to the charity.\n#### 48\n\nQuestion: Corey downloaded two movie series from his Netflix account with 12 and 14 seasons per series, respectively. However, in the week, his computer got a mechanical failure, and he lost two episodes from each season for both series. If each season in the movie series that Corey downloaded h
-0: ad 16 episodes, how many episodes remained after the computer's mechanical failure?\nAnswer: In the first movie series with 12 seasons, after the mechanical failure, the number of episodes that Corey lost is 2*12 = <<2*12=24>>24\nOriginally, the movie series with 12 seasons had 12*16 = <<12*16=192>>192 episodes.\nAfter the mechanical failure, Corey had 192-24 = <<192-24=168>>168 episodes remaining in the first movie series.\nSimilarly, the 14 season movie series also had 14*2 = <<14*2=28>>28 lost after the computer's mechanical failure.\nOriginally, the movie series with 14 seasons has 14*16 = <<14*16=224>>224 episodes.\nThe mechanical failure of the computer reduced the number of episodes in the 14 season movie series to 224-28 = <<224-28=196>>196\nAfter the loss, Corey had 196+168 = <<196+168=364>>364 episodes remaining from the two movie series he had downloaded.\n#### 364\n\nQuestion: There were 18 students assigned in a minibus for a field trip. Eight of these students were boys. On the day of the field 
-0: trip, the number of girls and boys was the same since some of the girls were not able to join the trip. How many girls were not able to join the field trip?\nAnswer: 8 boys + 8 girls = <<8+8=16>>16 students joined the field trip.\nThus, 18 - 16 = <<18-16=2>>2 girls were not able to join the field trip.\n#### 2\n\nQuestion: There are 200 more red apples than green apples in a grocery store. A truck arrives and delivers another 340 green apples. If there were originally 32 green apples, how many more green apples than red apples are there in the store now?\nAnswer: There are 200 + 32 = <<200+32=232>>232 red apples.\nAfter the delivery there are 340 + 32 = <<340+32=372>>372 green apples\nThere are now 372 - 232 = <<372-232=140>>140 more green apples than red apples now.\n#### 140\n\nQuestion: Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much
-0:  in dollars does she make every day at the farmers' market?\nAnswer:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n", {'until': ['Question:', '</s>', '<|im_end|>'], 'do_sample': False, 'temperature': 0, 'top_p': 1}), idx=0, metadata=('gsm8k', 0, 1), resps=[], filtered_resps={}, task_name='gsm8k', doc_id=0, repeats=1)
-0: 2025-01-02:02:39:56,129 INFO     [evaluator.py:496] Running generate_until requests
-0: Running generate_until requests:   0%|          | 0/1319 [00:00<?, ?it/s]/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:590: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
-0:   warnings.warn(
-0: Running generate_until requests:   0%|          | 1/1319 [01:05<24:01:16, 65.61s/it]Running generate_until requests:  10%|▉         | 129/1319 [01:56<14:56,  1.33it/s] Running generate_until requests:  19%|█▉        | 257/1319 [02:45<09:27,  1.87it/s]Running generate_until requests:  29%|██▉       | 385/1319 [03:32<07:08,  2.18it/s]Running generate_until requests:  39%|███▉      | 513/1319 [04:17<05:36,  2.39it/s]Running generate_until requests:  49%|████▊     | 641/1319 [05:02<04:25,  2.55it/s]Running generate_until requests:  58%|█████▊    | 769/1319 [05:45<03:24,  2.68it/s]Running generate_until requests:  68%|██████▊   | 895/1319 [05:45<01:46,  3.96it/s]Running generate_until requests:  68%|██████▊   | 896/1319 [05:57<01:46,  3.96it/s]Running generate_until requests:  68%|██████▊   | 897/1319 [06:26<02:49,  2.49it/s]Running generate_until requests:  78%|███████▊  | 1025/1319 [07:07<01:48,  2.72it
-0: /s]Running generate_until requests:  87%|████████▋ | 1153/1319 [07:45<00:57,  2.91it/s]Running generate_until requests:  97%|█████████▋| 1281/1319 [07:59<00:09,  3.82it/s]Running generate_until requests: 100%|██████████| 1319/1319 [07:59<00:00,  2.75it/s]
-0: 2025-01-02:02:47:59,766 INFO     [evaluation_tracker.py:206] Saving results aggregated
-0: 2025-01-02:02:47:59,783 INFO     [evaluation_tracker.py:287] Saving per-sample results for: gsm8k
-0: wandb:                                                                                
-0: wandb: 
-0: wandb: Run history:
-0: wandb:        gsm8k/exact_match,flexible-extract ▁
-0: wandb:            gsm8k/exact_match,strict-match ▁
-0: wandb: gsm8k/exact_match_stderr,flexible-extract ▁
-0: wandb:     gsm8k/exact_match_stderr,strict-match ▁
-0: wandb: 
-0: wandb: Run summary:
-0: wandb:                               gsm8k/alias gsm8k
-0: wandb:        gsm8k/exact_match,flexible-extract 0.08036
-0: wandb:            gsm8k/exact_match,strict-match 0.05155
-0: wandb: gsm8k/exact_match_stderr,flexible-extract 0.00749
-0: wandb:     gsm8k/exact_match_stderr,strict-match 0.00609
-0: wandb: 
-0: wandb: 🚀 View run llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048_eval at: https://wandb.ai/jincan333/safe_reason/runs/8zq50dle
-0: wandb: ⭐️ View project at: https://wandb.ai/jincan333/safe_reason
-0: wandb: Synced 5 W&B file(s), 0 media file(s), 8 artifact file(s) and 2 other file(s)
-0: wandb: Find logs at: ./wandb/run-20250102_023932-8zq50dle/logs
-0: hf (pretrained=/work/nvme/bcrc/cjin1/safe_reason/llama3_dpo_gsm8k_rectify_dpo_tbs4_ebs8_lr1e-5_cl2048,dtype=auto), gen_kwargs: (top_p=1,temperature=0), limit: None, num_fewshot: 5, batch_size: 128
-0: |Tasks|Version|     Filter     |n-shot|  Metric   |   |Value |   |Stderr|
-0: |-----|------:|----------------|-----:|-----------|---|-----:|---|-----:|
-0: |gsm8k|      3|flexible-extract|     5|exact_match|↑  |0.0804|±  |0.0075|
-0: |     |       |strict-match    |     5|exact_match|↑  |0.0516|±  |0.0061|
-0: 
