@@ -1,4 +1,43 @@
 {
+  "sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_1":{
+    "file_name": "beavertails/sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_1.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "sr"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "dr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_1":{
+    "file_name": "beavertails/sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_1.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "dr"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "constrained_answer_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_1":{
+    "file_name": "beavertails/sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_1.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "constrained_answer"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
   "sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0":{
     "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0.json",
     "formatting": "sharegpt",
