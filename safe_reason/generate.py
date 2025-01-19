@@ -163,7 +163,7 @@ if __name__ == "__main__":
 
     def parse_args():
         parser = argparse.ArgumentParser()
-        parser.add_argument('--task', type=str, default='strongreject_classification', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_cot_dataset', 'test'])
+        parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_cot_dataset', 'test'])
         parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
         args = parser.parse_args()
         return args
@@ -442,7 +442,7 @@ if __name__ == "__main__":
         cot_ratings = [4]
         final_response_ratings = [2]
         class_nums = [50]
-        ratio = 4
+        ratio = 1
         for cot_rating in cot_ratings:
             for final_response_rating in final_response_ratings:
                 for class_num in class_nums:
@@ -452,16 +452,24 @@ if __name__ == "__main__":
                         class_dataset = datasets.load_dataset('json', data_files=f'cache/{model_print_name}_unsafe_{number}_cot.json', split='train')
                         print(f'class_dataset {number} total: {len(class_dataset)}')
                         class_dataset = class_dataset.filter(lambda x: x['unsafe_cot_rating'] is not None and x['unsafe_cot_rating'] >= cot_rating and x['unsafe_final_response_rating'] is not None and x['unsafe_final_response_rating'] <= final_response_rating)
-                        print(f'class_dataset {number} selected: {min(class_num, len(class_dataset))}')
+                        print(f'class_dataset {number} selected: {len(class_dataset)}')
+                        # if class_num > len(class_dataset):
+                        #     class_dataset = concatenate_datasets([class_dataset] * (class_num // len(class_dataset)), class_dataset.select(range(class_num % len(class_dataset))))
+                        # else:
+                        #     class_dataset = class_dataset.select(range(class_num))
                         class_dataset = class_dataset.select(range(min(class_num, len(class_dataset))))
                         class_dataset = class_dataset.remove_columns(['number'])
                         full_dataset.extend(class_dataset)
 
                 final_response_rating = 6 - final_response_rating
                 safe_dataset = datasets.load_dataset('json', data_files=f'cache/{model_print_name}_safe_cot.json', split='train')
-                print(f'safe_dataset total: {len(safe_dataset)}')
                 safe_dataset = safe_dataset.filter(lambda x: x['safe_cot_rating'] is not None and x['safe_cot_rating'] >= cot_rating and x['safe_final_response_rating'] is not None and x['safe_final_response_rating'] >= final_response_rating)
+                print(f'safe_dataset filtered: {len(safe_dataset)}')
                 print(f'safe_dataset selected: {min(len(full_dataset) * ratio, len(safe_dataset))}')
+                if len(safe_dataset) < len(full_dataset) * ratio:
+                    safe_dataset = concatenate_datasets([safe_dataset] * (len(full_dataset) * ratio // len(safe_dataset)), safe_dataset.select(range(len(full_dataset) * ratio % len(safe_dataset))))
+                else:
+                    safe_dataset = safe_dataset.select(range(len(full_dataset) * ratio))
                 safe_dataset = safe_dataset.select(range(min(len(full_dataset) * ratio, len(safe_dataset))))
                 full_dataset.extend(safe_dataset)
                 records = [dict(row) for row in full_dataset]
@@ -497,9 +505,26 @@ if __name__ == "__main__":
                 print(f'sft_full_dataset: {len(sft_full_dataset)}')
                 print(f'dpo_full_dataset: {len(dpo_full_dataset)}')
 
-    if args.task == 'test':
-        print(f'testing')
-        safe_dataset = datasets.load_dataset('json', data_files='cache/meta-llama-Meta-Llama-3-8B-Instruct_safe_cot.json', split='train')
+                sft_dr_dataset = sft_full_dataset.map(lambda x: {"dr": [x['constrained_answer'][0], {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}]} if x['is_safe'] == False else {"dr": x['constrained_answer']})
+
+                cot_instruction = specs.cot_instruction
+                cot_prompt_unsafe_dataset = sft_dr_dataset.filter(lambda x: x['is_safe'] == False)
+                cot_prompt_safe_dataset = sft_dr_dataset.filter(lambda x: x['is_safe'] == True)
+                cot_prompt_safe_dataset = cot_prompt_safe_dataset.map(lambda x: {"sr": x['constrained_answer']})
+                cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"cot_prompt": cot_instruction.format(prompt=x['constrained_answer'][0]['content'])})
+                cot_prompt_unsafe_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
+                cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"sr": [x['constrained_answer'][0], {"role": "assistant", "content": x['response']}]})
+                cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.remove_columns(['cot_prompt', 'response', 'model'])
+                sft_preliminary_dataset = concatenate_datasets([cot_prompt_safe_dataset, cot_prompt_unsafe_dataset])
+                sft_preliminary_dataset = sft_preliminary_dataset.shuffle(seed=1234)
+                print('sft_preliminary_dataset', len(sft_preliminary_dataset))
+                records = [dict(row) for row in sft_preliminary_dataset]
+                with open(f'data/beavertails/sft_preliminary_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
+                    json.dump(records, f, indent=4)
+
+    if args.task == 'build_preliminary_datasets':
+        print(f'building preliminary datasets')
+        sft_full_dataset = datasets.load_dataset('json', data_files='cache/meta-llama-Meta-Llama-3-8B-Instruct_safe_cot.json', split='train')
         print(len(safe_dataset))
         unsafe_dataset = datasets.load_dataset('PKU-Alignment/BeaverTails', split='30k_train')
         unsafe_dataset = unsafe_dataset.filter(lambda x: x['is_safe'] == False)
