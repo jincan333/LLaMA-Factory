@@ -10,7 +10,7 @@ export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
-export dataset="sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0"
+export dataset="dr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0"
 export per_device_train_batch_size=8
 export per_device_eval_batch_size=8
 export gradient_accumulation_steps=2
@@ -31,7 +31,7 @@ FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train safe_reason_logs/${experiment_n
 
 suffix="eval"
 model_name_or_path=${output_dir}
-
+sleep 60
 # dataset="gsm8k"
 # n_shot=5
 # batch_size=128
