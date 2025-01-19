@@ -439,8 +439,8 @@ if __name__ == "__main__":
 
     if args.task == 'beavertails_build_train_dataset':
         print(f'building cot dataset for beavertails')
-        cot_ratings = [4]
-        final_response_ratings = [2]
+        cot_ratings = [5]
+        final_response_ratings = [1]
         class_nums = [50]
         ratio = 1
         for cot_rating in cot_ratings:
