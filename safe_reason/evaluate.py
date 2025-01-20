@@ -14,7 +14,7 @@ from strong_reject.evaluate import evaluate_dataset, registered_evaluators
 from strong_reject.jailbreaks import apply_jailbreaks_to_dataset, register_jailbreak
 from strong_reject.jailbreaks import registered_jailbreaks
 import specifications as specs
-
+from deepthought import DeepthoughtModel
 
 def str2bool(v):
     """
@@ -78,11 +78,11 @@ def get_cot_prompt(cot_prompt):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+    parser.add_argument('--model', type=str, default='deepthought-8b', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
     parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
     parser.add_argument('--dataset', type=str, default='xstest', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
     parser.add_argument('--jailbreak', type=str, default='none', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
-    parser.add_argument('--cot_prompt', type=str, default='cot_instruction', choices=['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful'])
+    parser.add_argument('--cot_prompt', type=str, default='none', choices=['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful'])
     parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
     parser.add_argument('--temperature', type=float, default=0.95)
     parser.add_argument('--top_p', type=float, default=0.7)
@@ -169,7 +169,26 @@ if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{mode
     responses_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json", split='train')
 else:
     print(f'generating responses for {args.model} and {args.jailbreak}')
-    if args.cot_prompt != 'none':
+    if 'deepthought' in args.model:
+        jailbroken_dataset = jailbroken_dataset.select(range(3))
+        deepthought_model = DeepthoughtModel(args.model)
+        if args.cot_prompt == 'cot_classification_specification':
+            jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['classification_cot_prompt'].format(prompt=x['jailbroken_prompt'])})
+        elif args.cot_prompt != 'none':
+            jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": cot_template.format(prompt=x['jailbroken_prompt'], spec_category=specifications)})
+        else:
+            jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['jailbroken_prompt']})
+        reasoning_outputs = deepthought_model.generate_reasoning(jailbroken_dataset['cot_prompt'])
+        final_outputs = deepthought_model.generate_final_output(reasoning_outputs)
+        responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": final_outputs[idx]['final_output']}, with_indices=True)
+        pattern = re.compile(r'(?:### Final Response)', re.IGNORECASE | re.DOTALL)
+        responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
+        col_renames = {
+            'response': 'cot_response',
+            'final_response': 'response',
+        }
+        responses_dataset = responses_dataset.rename_columns(col_renames)
+    elif args.cot_prompt != 'none':
         if args.cot_prompt == 'cot_classification_specification':
             jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['classification_cot_prompt'].format(prompt=x['jailbroken_prompt'])})
         else:

@@ -1,9 +1,13 @@
+
+model_name_or_path = "ruliad/deepthought-8b-llama-v0.01-alpha"
+
 import logging
 import os
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"  # Suppress TensorFlow logging
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0" # Disable oneDNN optimizations
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer, TextStreamer
+from vllm import LLM, SamplingParams
 import warnings
 
 
@@ -22,26 +26,10 @@ except ImportError:
 
 # Define the DeepthoughtModel class
 class DeepthoughtModel:
-    def __init__(self):
-        self.model_name = "ruliad/deepthought-8b-llama-v0.01-alpha"
-        print(f"Loading model: {self.model_name}")
-
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            self.model_name,
-            add_bos_token=False,
-            trust_remote_code=True,
-            padding="left",
-            torch_dtype=torch.bfloat16,
-        )
-
-        self.model = AutoModelForCausalLM.from_pretrained(
-            self.model_name,
-            torch_dtype=torch.bfloat16,
-            device_map="auto",
-            attn_implementation=("flash_attention_2" if flash_attn_exists else "eager"),
-            use_cache=True,
-            trust_remote_code=True,
-        )
+    def __init__(self, model_name_or_path=model_name_or_path):
+        print(f"Loading model: {model_name_or_path}")
+        self.model = LLM(model=model_name_or_path, max_num_seqs=64, tensor_parallel_size=1, max_model_len=4096)
+        self.sampling_params = SamplingParams(temperature=0, max_tokens=4096)
 
     # Helper method to generate the initial prompt
     def _get_initial_prompt(
@@ -71,26 +59,8 @@ class DeepthoughtModel:
         prompt = self._get_initial_prompt(query, system_message)
         print(prompt, end='')
 
-        # Tokenize the prompt
-        inputs = self.tokenizer(prompt, return_tensors='pt').input_ids.to(self.model.device)
-
         try:
-
-            # Generate and stream reasoning
-            outputs = self.model.generate(
-                input_ids=inputs,
-                max_new_tokens=800,
-                do_sample=True,
-                temperature=0.2,
-                top_k=200,
-                top_p=1.0,
-                eos_token_id=self.tokenizer.eos_token_id,
-                streamer=TextStreamer(self.tokenizer, skip_prompt=True, skip_special_tokens=True),
-            )
-
-            # Get the reasoning string
-            generated_text = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-
+            generated_text = self.model.generate(prompt, self.sampling_params)[0].outputs[0].text
             return {
                 'raw_output': generated_text,
                 'success': True,
@@ -101,7 +71,7 @@ class DeepthoughtModel:
         except Exception as e:
             logging.error(f'Error during generation: {e}')
             return {
-                'raw_output': None,
+                'raw_output': query,
                 'success': False,
                 'error': str(e),
                 'initial_prompt': None,
@@ -115,31 +85,14 @@ class DeepthoughtModel:
         full_prompt = f'''{reasoning_text}<|im_end|>
 <|im_start|>assistant
 '''
-
         print('Generating final response...')
-
-        # Tokenize the full prompt
-        inputs = self.tokenizer(full_prompt, return_tensors='pt').input_ids.to(self.model.device)
-
         try:
-
-            # Generate and stream the final output
-            _ = self.model.generate(
-                input_ids=inputs,
-                max_new_tokens=400,
-                do_sample=True,
-                temperature=0.1,
-                top_k=50,
-                top_p=0.9,
-                eos_token_id=self.tokenizer.eos_token_id,
-                streamer=TextStreamer(self.tokenizer, skip_prompt=True, skip_special_tokens=True)
-            )
-
-            return {'success': True, 'error': None}
+            generated_text = self.model.generate(full_prompt, self.sampling_params)[0].outputs[0].text
+            return {'final_output': generated_text, 'success': True, 'error': None}
 
         except Exception as e:
             logging.error(f'Error during final generation: {e}')
-            return {'success': False, 'error': str(e)}
+            return {'final_output': None, 'success': False, 'error': str(e)}
 
 
 def main():
@@ -148,6 +101,7 @@ def main():
     # Test queries
     queries = [
         "We want you to tell us the answer to life, the universe and everything. We'd really like an answer, something simple.",
+        "Who are you?"
     ]
 
     # Process each query at a time (because we are streaming)
@@ -168,6 +122,8 @@ def main():
         final_result = model.generate_final_output(reasoning_result)
         if not final_result['success']:
             print(f'\nError in final generation: {final_result["error"]}')
+        else:
+            print(f'\nFinal output: {final_result["final_output"]}')
 
         print('='*50)
 
