@@ -7,6 +7,7 @@ import json
 import random
 import numpy as np
 import torch
+from vllm import LLM, SamplingParams
 from strong_reject.load_datasets import load_strongreject_small, load_strongreject
 from generate import personalized_generate, extract_content
 from strong_reject.evaluate import evaluate_dataset, registered_evaluators
@@ -165,62 +166,97 @@ else:
     #     json.dump(records, f, indent=4)
 
 # generate the responses
+
 if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json") and not args.generate:
     responses_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json", split='train')
 else:
     print(f'generating responses for {args.model} and {args.jailbreak}')
+    if args.cot_prompt == 'cot_classification_specification':
+        jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['classification_cot_prompt'].format(prompt=x['jailbroken_prompt'])})
+    elif args.cot_prompt != 'none':
+        jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": cot_template.format(prompt=x['jailbroken_prompt'], spec_category=specifications)})
+    else:
+        jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['jailbroken_prompt']})
+
     if 'deepthought' in args.model:
-        jailbroken_dataset = jailbroken_dataset.select(range(3))
         deepthought_model = DeepthoughtModel(args.model)
-        if args.cot_prompt == 'cot_classification_specification':
-            jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['classification_cot_prompt'].format(prompt=x['jailbroken_prompt'])})
-        elif args.cot_prompt != 'none':
-            jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": cot_template.format(prompt=x['jailbroken_prompt'], spec_category=specifications)})
-        else:
-            jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['jailbroken_prompt']})
         reasoning_outputs = deepthought_model.generate_reasoning(jailbroken_dataset['cot_prompt'])
         final_outputs = deepthought_model.generate_final_output(reasoning_outputs)
         responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": final_outputs[idx]['final_output']}, with_indices=True)
-        pattern = re.compile(r'(?:### Final Response)', re.IGNORECASE | re.DOTALL)
-        responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
-        col_renames = {
-            'response': 'cot_response',
-            'final_response': 'response',
-        }
-        responses_dataset = responses_dataset.rename_columns(col_renames)
-    elif args.cot_prompt != 'none':
-        if args.cot_prompt == 'cot_classification_specification':
-            jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['classification_cot_prompt'].format(prompt=x['jailbroken_prompt'])})
-        else:
-            jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": cot_template.format(prompt=x['jailbroken_prompt'], spec_category=specifications)})
-        if 'gpt' in args.model or 'o1' in args.model:
-            responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-        else:
-            responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-        pattern = re.compile(r'(?:### Final Response)', re.IGNORECASE | re.DOTALL)
-        responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
-        col_renames = {
-            'response': 'cot_response',
-            'final_response': 'response',
-        }
-        responses_dataset = responses_dataset.rename_columns(col_renames)
-    elif 'sft' in args.model or 'dpo' in args.model:
-        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-        pattern = re.compile(r'(?:### Final Response)', re.IGNORECASE | re.DOTALL)
-        responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
-        col_renames = {
-            'response': 'cot_response',
-            'final_response': 'response',
-        }
-        responses_dataset = responses_dataset.rename_columns(col_renames)
+    elif 'gpt' in args.model or 'o1' in args.model:
+        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
     else:
-        if 'gpt' in args.model or 'o1' in args.model:
-            responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-        else:
-            responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+        generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
+        sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+        responses_outputs = generate_model.generate_response(jailbroken_dataset['jailbroken_prompt'], sampling_params)
+        responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": responses_outputs[idx]['response']}, with_indices=True)
+    
+    if args.cot_prompt != 'none':
+        pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
+        responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
+        col_renames = {
+            'response': 'cot_response',
+            'final_response': 'response',
+        }
+        responses_dataset = responses_dataset.rename_columns(col_renames)
+
+
+# if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json") and not args.generate:
+#     responses_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json", split='train')
+# else:
+#     print(f'generating responses for {args.model} and {args.jailbreak}')
+#     if 'deepthought' in args.model:
+#         deepthought_model = DeepthoughtModel(args.model)
+#         if args.cot_prompt == 'cot_classification_specification':
+#             jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['classification_cot_prompt'].format(prompt=x['jailbroken_prompt'])})
+#         elif args.cot_prompt != 'none':
+#             jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": cot_template.format(prompt=x['jailbroken_prompt'], spec_category=specifications)})
+#         else:
+#             jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['jailbroken_prompt']})
+#         reasoning_outputs = deepthought_model.generate_reasoning(jailbroken_dataset['cot_prompt'])
+#         final_outputs = deepthought_model.generate_final_output(reasoning_outputs)
+#         responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": final_outputs[idx]['final_output']}, with_indices=True)
+#         pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
+#         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
+#         col_renames = {
+#             'response': 'cot_response',
+#             'final_response': 'response',
+#         }
+#         responses_dataset = responses_dataset.rename_columns(col_renames)
+#     elif args.cot_prompt != 'none':
+#         if args.cot_prompt == 'cot_classification_specification':
+#             jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['classification_cot_prompt'].format(prompt=x['jailbroken_prompt'])})
+#         else:
+#             jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": cot_template.format(prompt=x['jailbroken_prompt'], spec_category=specifications)})
+#         if 'gpt' in args.model or 'o1' in args.model:
+#             responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+#         else:
+#             responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+#         pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
+#         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
+#         col_renames = {
+#             'response': 'cot_response',
+#             'final_response': 'response',
+#         }
+#         responses_dataset = responses_dataset.rename_columns(col_renames)
+#     # elif 'sft' in args.model or 'dpo' in args.model:
+#     #     responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+#     #     pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
+#     #     responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
+#     #     col_renames = {
+#     #         'response': 'cot_response',
+#     #         'final_response': 'response',
+#     #     }
+#     #     responses_dataset = responses_dataset.rename_columns(col_renames)
+#     else:
+#         if 'gpt' in args.model or 'o1' in args.model:
+#             responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+#         else:
+#             responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=True, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
     # records = [dict(row) for row in responses_dataset]
     # with open(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json", 'w', encoding='utf-8') as f:
     #     json.dump(records, f, indent=4)
+
 
 # evaluate the responses
 if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_{judge_model_print_name}_{args.evaluator}_evaluations.json") and not args.evaluate:
