@@ -74,6 +74,12 @@ def get_cot_prompt(cot_prompt):
         return specs.cot_helpful, specs.overall_helpful
     elif cot_prompt == 'cot_specification_helpful':
         return specs.cot_specification_helpful, specs.overall_helpful
+    elif cot_prompt == 'cot_simple_deepthought':
+        return specs.cot_simple_deepthought, specs.overall
+    elif cot_prompt == 'cot_specification_deepthought':
+        return specs.cot_specification_deepthought, specs.overall
+    elif cot_prompt == 'cot_instruction_deepthought':
+        return specs.cot_instruction_deepthought, specs.overall
     else:
         return None, None
 
@@ -84,17 +90,20 @@ def parse_args():
     parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
     parser.add_argument('--dataset', type=str, default='xstest', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
     parser.add_argument('--jailbreak', type=str, default='none', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
-    parser.add_argument('--cot_prompt', type=str, default='none', choices=['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful'])
+    parser.add_argument('--cot_prompt', type=str, default='none', choices=['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful', 'cot_simple', 'cot_simple_deepthought', 'cot_specification_deepthought', 'cot_instruction_deepthought'])
     parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
     parser.add_argument('--temperature', type=float, default=0.95)
     parser.add_argument('--top_p', type=float, default=0.7)
     parser.add_argument('--max_length', type=int, default=4096)
     parser.add_argument('--generate', type=str2bool, default='false')
     parser.add_argument('--evaluate', type=str2bool, default='false')
+    parser.add_argument('--gpu', type=str, default='cuda:0')
     args = parser.parse_args()
     return args
 
 args = parse_args()
+cuda_visible_devices = os.environ['CUDA_VISIBLE_DEVICES']
+args.gpu = f'cuda:{cuda_visible_devices.split(",")[0]}'
 print(json.dumps(vars(args), indent=4))
 
 args.model, model_print_name = get_model(args.model)
@@ -173,15 +182,15 @@ else:
         final_outputs = deepthought_model.generate_final_output(reasoning_outputs)
         responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": final_outputs[idx]['final_output']}, with_indices=True)
     elif args.model == 'gpt-4o-mini-2024-07-18' or args.model == 'gpt-4o-2024-11-20' or args.model == 'o1-2024-12-17':
-        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+        responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
     else:
         tokenizer = AutoTokenizer.from_pretrained(args.model)   
         tokenizer.pad_token = tokenizer.eos_token
         tokenizer.model_max_length = args.max_length
-        jailbroken_dataset = jailbroken_dataset.map(lambda x: {"jailbroken_prompt_formatted": tokenizer.apply_chat_template([{'role': 'user', 'content': x['jailbroken_prompt']}], tokenize=False, add_generation_prompt=True)})
+        jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt_formatted": tokenizer.apply_chat_template([{'role': 'user', 'content': x['cot_prompt']}], tokenize=False, add_generation_prompt=True)})
         generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
         sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-        responses_outputs = generate_model.generate(jailbroken_dataset['jailbroken_prompt_formatted'], sampling_params)
+        responses_outputs = generate_model.generate(jailbroken_dataset['cot_prompt_formatted'], sampling_params)
         responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": responses_outputs[idx].outputs[0].text}, with_indices=True)
 
     if args.cot_prompt != 'none':

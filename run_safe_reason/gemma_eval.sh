@@ -32,8 +32,8 @@ experiment_name=${prefix}_${dataset}_${jailbreak}_${cot_prompt}_${model}_${judge
 # export model_name_or_path="$output_dir/$model"
 export model_name_or_path=$model_name_or_path
 
-envsubst < examples/inference/gemma_vllm.yaml > server_logs/${experiment_name}.yaml
-nohup script -f -a -c "API_PORT=8002 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
+# envsubst < examples/inference/gemma_vllm.yaml > server_logs/${experiment_name}.yaml
+# nohup script -f -a -c "API_PORT=8002 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
 # delay=40
 # echo "Waiting for $delay seconds..."
 # sleep $delay

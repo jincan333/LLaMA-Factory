@@ -6,7 +6,7 @@ mkdir -p $output_dir
 echo "num_nodes: $SLURM_NNODES"
 echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
-export CUDA_VISIBLE_DEVICES=3
+export CUDA_VISIBLE_DEVICES=1
 mkdir -p server_logs
 mkdir -p $log_dir
 
@@ -17,13 +17,13 @@ model_name_or_path='meta-llama/Meta-Llama-3-8B-Instruct'
 # ['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20']
 judge_model='gpt-4o-mini-2024-07-18'
 # ['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest']
-dataset='strongreject'
-# dataset='xstest'
+# dataset='strongreject'
+dataset='xstest'
 # ['happy_to_help', 'pair', 'none', 'wikipedia', 'distractors', 'prefix_injection', 'combination_2', 'pap_misrepresentation']
-jailbreak='none,pair,pap_misrepresentation'
-# jailbreak='none'
+# jailbreak='none,pair,pap_misrepresentation'
+jailbreak='none'
 # ['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_simple', 'cot_helpful', 'cot_specification_helpful']
-cot_prompt='cot_classification_specification'
+cot_prompt='cot_specification'
 # cot_prompt='none'
 evaluator='strongreject_rubric'
 temperature=0
@@ -33,8 +33,8 @@ experiment_name=${prefix}_${dataset}_${jailbreak}_${cot_prompt}_${model}_${judge
 # export model_name_or_path="$output_dir/$model"
 export model_name_or_path=$model_name_or_path
 
-envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
-nohup script -f -a -c "API_PORT=8000 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
+# envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
+# nohup script -f -a -c "API_PORT=8000 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
 # delay=40
 # echo "Waiting for $delay seconds..."
 # sleep $delay
