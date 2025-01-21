@@ -16,6 +16,7 @@ from strong_reject.evaluate import evaluate_dataset, registered_evaluators
 from strong_reject.jailbreaks import apply_jailbreaks_to_dataset
 from strong_reject.jailbreaks import registered_jailbreaks
 import specifications as specs
+import specifications_deepthought as specs_deepthought
 from deepthought import DeepthoughtModel
 
 def str2bool(v):
@@ -75,11 +76,15 @@ def get_cot_prompt(cot_prompt):
     elif cot_prompt == 'cot_specification_helpful':
         return specs.cot_specification_helpful, specs.overall_helpful
     elif cot_prompt == 'cot_simple_deepthought':
-        return specs.cot_simple_deepthought, specs.overall
+        return specs_deepthought.cot_simple_deepthought, specs_deepthought.overall_deepthought
     elif cot_prompt == 'cot_specification_deepthought':
-        return specs.cot_specification_deepthought, specs.overall
+        return specs_deepthought.cot_specification_deepthought, specs_deepthought.overall_deepthought   
     elif cot_prompt == 'cot_instruction_deepthought':
-        return specs.cot_instruction_deepthought, specs.overall
+        return specs_deepthought.cot_instruction_deepthought, specs_deepthought.overall_deepthought
+    elif cot_prompt == 'cot_specification_helpful_deepthought':
+        return specs_deepthought.cot_specification_helpful_deepthought, specs_deepthought.overall_helpful_deepthought
+    elif cot_prompt == 'cot_helpful_deepthought':
+        return specs_deepthought.cot_helpful_deepthought, specs_deepthought.overall_helpful_deepthought
     else:
         return None, None
 
@@ -90,7 +95,7 @@ def parse_args():
     parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
     parser.add_argument('--dataset', type=str, default='xstest', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
     parser.add_argument('--jailbreak', type=str, default='none', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
-    parser.add_argument('--cot_prompt', type=str, default='none', choices=['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful', 'cot_simple', 'cot_simple_deepthought', 'cot_specification_deepthought', 'cot_instruction_deepthought'])
+    parser.add_argument('--cot_prompt', type=str, default='none', choices=['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful', 'cot_simple', 'cot_simple_deepthought', 'cot_specification_deepthought', 'cot_instruction_deepthought', 'cot_specification_helpful_deepthought', 'cot_helpful_deepthought'])
     parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
     parser.add_argument('--temperature', type=float, default=0.95)
     parser.add_argument('--top_p', type=float, default=0.7)
