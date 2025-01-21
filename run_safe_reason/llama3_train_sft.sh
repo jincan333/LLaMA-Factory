@@ -28,8 +28,6 @@ envsubst < examples/train_full/llama3_full_sft.yaml > safe_reason_logs/${experim
 
 FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train safe_reason_logs/${experiment_name}.yaml
 #  > logs/${experiment_name}.log 2>&1
-
-sleep 60
 suffix="eval"
 dataset="bbh_zeroshot"
 n_shot=0
