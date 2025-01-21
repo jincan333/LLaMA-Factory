@@ -13,6 +13,26 @@ import json
 from strong_reject.load_datasets import load_strongreject
 import specifications as specs
 from generate import personalized_generate, extract_content, extract_content_first, get_model
+from deepthought import DeepthoughtModel
+from vllm import LLM, SamplingParams
+from transformers import AutoTokenizer
+
+
+specifications = {
+    1: specs.violent_crimes,
+    2: specs.non_violent_crimes,
+    3: specs.sex_related_crimes,
+    4: specs.child_sexual_exploitation,
+    5: specs.cbrne,
+    6: specs.suicide_and_self_harm,
+    7: specs.hate,
+    8: specs.privacy,
+    9: specs.intellectual_property,
+    10: specs.disinformation_and_defamation,
+    11: specs.elections,
+    12: specs.sexual_content,
+    13: specs.others
+}
 
 if __name__ == "__main__":  
 
@@ -29,40 +49,23 @@ if __name__ == "__main__":
 
     if args.task == 'strongreject_classification':
         print(f'generating classification for strongreject')
-        # dataset = load_strongreject()
-        # prompt_classification = specs.prompt_classification
-        # dataset = dataset.map(lambda x: {"prompt": prompt_classification.format(prompt=x['forbidden_prompt'])})
-        # responses_dataset = personalized_generate(dataset, system_prompt=None, models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0, max_tokens=512)
-        # pattern = re.compile(r'(?:final category number)', re.IGNORECASE | re.DOTALL)
-        # responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
-        # processed_dataset = responses_dataset.map(
-        #     lambda x: {
-        #         'number': int(match.group(0)) if (match := re.search(r"\d+", x['final_response'])) else None,
-        #     },
-        #     num_proc=32
-        # )
-        # processed_dataset = processed_dataset.remove_columns('model')
-        # records = [dict(row) for row in processed_dataset]
-        # with open('data/strongreject/classification.json', 'w', encoding='utf-8') as f:
-        #     json.dump(records, f, indent=4)
+        dataset = load_strongreject()
+        prompt_classification = specs.prompt_classification
+        dataset = dataset.map(lambda x: {"prompt": prompt_classification.format(prompt=x['forbidden_prompt'])})
+        responses_dataset = personalized_generate(dataset, system_prompt=None, models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0, max_tokens=512)
+        pattern = re.compile(r'(?:final category number)', re.IGNORECASE | re.DOTALL)
+        responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
+        processed_dataset = responses_dataset.map(
+            lambda x: {
+                'number': int(match.group(0)) if (match := re.search(r"\d+", x['final_response'])) else None,
+            },
+            num_proc=32
+        )
+        processed_dataset = processed_dataset.remove_columns('model')
+        records = [dict(row) for row in processed_dataset]
+        with open('data/strongreject/classification.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
 
-        processed_dataset = datasets.load_dataset('json', data_files='data/strongreject/classification.json', split='train')
-
-        specifications = {
-            1: specs.violent_crimes,
-            2: specs.non_violent_crimes,
-            3: specs.sex_related_crimes,
-            4: specs.child_sexual_exploitation,
-            5: specs.cbrne,
-            6: specs.suicide_and_self_harm,
-            7: specs.hate,
-            8: specs.privacy,
-            9: specs.intellectual_property,
-            10: specs.disinformation_and_defamation,
-            11: specs.elections,
-            12: specs.sexual_content,
-            13: specs.others
-        }
         full_dataset = []
         for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]:
             filtered_dataset = processed_dataset.filter(lambda x: x['number'] == number)
@@ -121,110 +124,9 @@ if __name__ == "__main__":
         with open('data/beavertails/unsafe_match.json', 'w', encoding='utf-8') as f:
             json.dump(records, f, indent=4)
 
-    if args.task == 'beavertails_generate_cot_safe':
-        print(f'generating cot for beavertails safe')
-        safe_dataset = datasets.load_dataset('json', data_files='data/beavertails/safe.json', split='train')
-        safe_dataset = safe_dataset.shuffle(seed=1234)
-        safe_dataset = safe_dataset.select(range(min(len(safe_dataset), 5000)))
-        print('safe', len(safe_dataset))
-
-        # generate helpful cot
-        overall_helpful = specs.overall_helpful
-        cot_specification_helpful = specs.cot_specification_helpful
-        cot_prompt_safe_dataset = safe_dataset.map(lambda x: {"cot_prompt": cot_specification_helpful.format(prompt=x['forbidden_prompt'], spec_category=overall_helpful)})
-        if '4o' in args.model or 'o1' in args.model:
-            cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
-        else:
-            cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
-        pattern = re.compile(r'(?:Analysis\s*(.*?)\s*Final Response)', re.IGNORECASE | re.DOTALL)
-        cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
-        pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
-        cot_dataset = cot_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
-        cot_dataset = cot_dataset.remove_columns(['model', 'cot_prompt'])
-        records = [dict(row) for row in cot_dataset]
-        with open(f'data/beavertails/{model_print_name}_safe_cot.json', 'w', encoding='utf-8') as f:
-            json.dump(records, f, indent=4)
-
-        cot_dataset = cot_dataset.rename_column('response', 'cot_response')
-        reward_judge_helpful = specs.reward_judge_helpful
-        judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge_helpful.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=overall_helpful)})
-        judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.95, top_p=0.7, max_tokens=4096)
-        pattern = re.compile(r'(?:Chain of Thought Rating\s*(.*?)\s*Final Response Rating)', re.IGNORECASE | re.DOTALL)
-        judge_dataset = judge_dataset.map(lambda x: {"cot_rating": extract_content_first(x['response'], pattern)})
-        judge_dataset = judge_dataset.map(lambda x: {'cot_rating': int(match.group(0)) if (match := re.search(r"\d+", x['cot_rating'])) else None})
-        pattern = re.compile(r'(?:Final Response Rating)', re.IGNORECASE | re.DOTALL)
-        judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
-        judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
-        judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
-        col_renames = {
-            'analysis': 'safe_analysis',
-            'final_response': 'safe_final_response',
-            'cot_rating': 'safe_cot_rating',
-            'final_response_rating': 'safe_final_response_rating',
-            'cot_response': 'safe_cot_response'
-        }
-        judge_dataset = judge_dataset.rename_columns(col_renames)
-        records = [dict(row) for row in judge_dataset]
-        with open(f'data/beavertails/{model_print_name}_safe_cot.json', 'w', encoding='utf-8') as f:
-            json.dump(records, f, indent=4)
-
-        # generate harmful cot
-        overall = specs.overall
-        cot_specification = specs.cot_specification
-        cot_prompt_safe_dataset = judge_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=overall)})
-        if '4o' in args.model or 'o1' in args.model:
-            cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
-        else:
-            cot_dataset = personalized_generate(cot_prompt_safe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
-        pattern = re.compile(r'(?:Analysis\s*(.*?)\s*Final Response)', re.IGNORECASE | re.DOTALL)
-        cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
-        pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
-        cot_dataset = cot_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
-        cot_dataset = cot_dataset.remove_columns(['model', 'cot_prompt'])
-        records = [dict(row) for row in cot_dataset]
-        with open(f'data/beavertails/{model_print_name}_safe_cot.json', 'w', encoding='utf-8') as f:
-            json.dump(records, f, indent=4)
-
-        cot_dataset = cot_dataset.rename_column('response', 'cot_response')
-        reward_judge = specs.reward_judge
-        judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=overall)})
-        judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.95, top_p=0.7, max_tokens=4096)
-        pattern = re.compile(r'(?:Chain of Thought Rating\s*(.*?)\s*Final Response Rating)', re.IGNORECASE | re.DOTALL)
-        judge_dataset = judge_dataset.map(lambda x: {"cot_rating": extract_content_first(x['response'], pattern)})
-        judge_dataset = judge_dataset.map(lambda x: {'cot_rating': int(match.group(0)) if (match := re.search(r"\d+", x['cot_rating'])) else None})
-        pattern = re.compile(r'(?:Final Response Rating)', re.IGNORECASE | re.DOTALL)
-        judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
-        judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
-        judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
-        col_renames = {
-            'analysis': 'unsafe_analysis',
-            'final_response': 'unsafe_final_response',
-            'cot_rating': 'unsafe_cot_rating',
-            'final_response_rating': 'unsafe_final_response_rating',
-            'cot_response': 'unsafe_cot_response'
-        }
-        judge_dataset = judge_dataset.rename_columns(col_renames)
-        records = [dict(row) for row in judge_dataset]
-        with open(f'data/beavertails/{model_print_name}_safe_cot.json', 'w', encoding='utf-8') as f:
-            json.dump(records, f, indent=4)
-
     if args.task == 'beavertails_generate_cot_unsafe':
         print(f'generating cot for beavertails unsafe')
         unsafe_dataset = datasets.load_dataset('json', data_files='data/beavertails/unsafe_match.json', split='train')
-        specifications = {
-            1: specs.violent_crimes,
-            2: specs.non_violent_crimes,
-            3: specs.sex_related_crimes,
-            4: specs.child_sexual_exploitation,
-            5: specs.cbrne,
-            6: specs.suicide_and_self_harm,
-            7: specs.hate,
-            8: specs.privacy,
-            9: specs.intellectual_property,
-            10: specs.disinformation_and_defamation,
-            11: specs.elections,
-            12: specs.sexual_content
-        }
         
         for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
             filtered_dataset = unsafe_dataset.filter(lambda x: x['number'] == number)
@@ -233,13 +135,23 @@ if __name__ == "__main__":
             print('unsafe', number, len(filtered_dataset))
             cot_specification = specs.cot_specification
             cot_prompt_unsafe_dataset = filtered_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=specifications[x['number']])})
-            if '4o' in args.model or 'o1' in args.model:
-                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
+            if 'deepthought' in args.model:
+                deepthought_model = DeepthoughtModel(args.model)
+                reasoning_outputs = deepthought_model.generate_reasoning(cot_prompt_unsafe_dataset['cot_prompt'])
+                final_outputs = deepthought_model.generate_final_output(reasoning_outputs)
+                cot_dataset = cot_prompt_unsafe_dataset.map(lambda x, idx: {"response": final_outputs[idx]['final_output']}, with_indices=True)
+            elif args.model == 'gpt-4o-mini-2024-07-18' or args.model == 'gpt-4o-2024-11-20' or args.model == 'o1-2024-12-17':
+                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, [args.model], target_column="cot_prompt", use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
             else:
-                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
-            # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=['o1-2024-12-17'], use_local=False, decode_responses=False, max_completion_tokens=4096)
-            # cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
-            
+                tokenizer = AutoTokenizer.from_pretrained(args.model)   
+                tokenizer.pad_token = tokenizer.eos_token
+                tokenizer.model_max_length = args.max_length
+                cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"cot_prompt_formatted": tokenizer.apply_chat_template([{'role': 'user', 'content': x['cot_prompt']}], tokenize=False, add_generation_prompt=True)})
+                generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
+                sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+                responses_outputs = generate_model.generate(cot_prompt_unsafe_dataset['cot_prompt_formatted'], sampling_params)
+                cot_dataset = cot_prompt_unsafe_dataset.map(lambda x, idx: {"response": responses_outputs[idx].outputs[0].text}, with_indices=True)
+
             # filter cot_dataset
             pattern = re.compile(r'(?:Analysis\s*(.*?)\s*Final Response)', re.IGNORECASE | re.DOTALL)
             cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
@@ -249,7 +161,7 @@ if __name__ == "__main__":
             cot_dataset = cot_dataset.rename_column('response', 'cot_response')
             reward_judge = specs.reward_judge
             judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=specifications[x['number']])})
-            judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.95, top_p=0.7, max_tokens=4096)
+            judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
             pattern = re.compile(r'(?:Chain of Thought Rating\s*(.*?)\s*Final Response Rating)', re.IGNORECASE | re.DOTALL)
             judge_dataset = judge_dataset.map(lambda x: {"cot_rating": extract_content_first(x['response'], pattern)})
             judge_dataset = judge_dataset.map(lambda x: {'cot_rating': int(match.group(0)) if (match := re.search(r"\d+", x['cot_rating'])) else None})
