@@ -6,11 +6,11 @@ mkdir -p $output_dir
 echo "num_nodes: $SLURM_NNODES "
 echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
-export CUDA_VISIBLE_DEVICES=2
+export CUDA_VISIBLE_DEVICES=3
 mkdir -p server_logs
 mkdir -p $log_dir
 
-prefix="safe_eval"
+prefix="safe_eval_no_reason"
 model='deepthought-8b'
 # ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
 model_name_or_path="ruliad/deepthought-8b-llama-v0.01-alpha"
@@ -23,7 +23,8 @@ dataset='xstest'
 # jailbreak='none,pair,pap_misrepresentation'
 jailbreak='none'
 # ['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_simple']
-cot_prompt='cot_specification_deepthought'
+cot_prompt='cot_instruction'
+# cot_prompt='none'
 evaluator='strongreject_rubric'
 temperature=0
 top_p=1
