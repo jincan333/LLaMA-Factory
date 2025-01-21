@@ -10,7 +10,7 @@ export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
-export dataset="constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_4_5_50_0"
+export dataset="constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0"
 export per_device_train_batch_size=8
 export per_device_eval_batch_size=8
 export gradient_accumulation_steps=2
@@ -29,9 +29,23 @@ envsubst < examples/train_full/llama3_full_sft.yaml > safe_reason_logs/${experim
 FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train safe_reason_logs/${experiment_name}.yaml
 #  > logs/${experiment_name}.log 2>&1
 
-suffix="eval"
-model_name_or_path=${output_dir}
 sleep 60
+suffix="eval"
+dataset="bbh_zeroshot"
+n_shot=0
+batch_size=128
+echo "evaldataset: $dataset"
+accelerate launch -m lm_eval --model hf \
+    --model_args pretrained=${output_dir},dtype=auto \
+    --tasks $dataset \
+    --num_fewshot $n_shot \
+    --gen_kwargs temperature=0 \
+    --output_path ${output_dir}/${dataset} \
+    --log_samples \
+    --write_out \
+    --apply_chat_template \
+    --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
+    --batch_size $batch_size
 # dataset="gsm8k"
 # n_shot=5
 # batch_size=128
@@ -81,19 +95,3 @@ sleep 60
 #     --apply_chat_template \
 #     --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
 #     --batch_size $batch_size
-
-dataset="bbh_zeroshot"
-n_shot=0
-batch_size=128
-echo "evaldataset: $dataset"
-accelerate launch -m lm_eval --model hf \
-    --model_args pretrained=${model_name_or_path},dtype=auto \
-    --tasks $dataset \
-    --num_fewshot $n_shot \
-    --gen_kwargs temperature=0 \
-    --output_path ${output_dir}/${dataset} \
-    --log_samples \
-    --write_out \
-    --apply_chat_template \
-    --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
-    --batch_size $batch_size
