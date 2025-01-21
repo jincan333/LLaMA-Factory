@@ -16,6 +16,7 @@ from generate import personalized_generate, extract_content, extract_content_fir
 from deepthought import DeepthoughtModel
 from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
+from strong_reject.jailbreaks import apply_jailbreaks_to_dataset
 
 
 specifications = {
@@ -38,21 +39,34 @@ if __name__ == "__main__":
 
     def parse_args():
         parser = argparse.ArgumentParser()
-        parser.add_argument('--task', type=str, default='beavertails_generate_cot_unsafe', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'test'])
-        parser.add_argument('--model', type=str, default='gpt-4o-mini-2024-07-18', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+        parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'test'])
+        parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+        parser.add_argument('--judge_model', type=str, default='gpt-4o-2024-11-20', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, o1-2024-12-17')
+        parser.add_argument('--jailbreak', type=str, default='pap_misrepresentation', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
+        parser.add_argument('--temperature', type=float, default=0, help='temperature for generation')
+        parser.add_argument('--top_p', type=float, default=0.7, help='top_p for generation')
+        parser.add_argument('--max_length', type=int, default=4096, help='max_length for generation')
         args = parser.parse_args()
         return args
 
     args = parse_args()
     args.model, model_print_name = get_model(args.model)
     print(json.dumps(vars(args), indent=4))
+    jailbreaks = list(args.jailbreak.split(','))
+
+    if args.model != 'gpt-4o-mini-2024-07-18' and args.model != 'gpt-4o-2024-11-20' and args.model != 'o1-2024-12-17':
+        tokenizer = AutoTokenizer.from_pretrained(args.model)   
+        tokenizer.pad_token = tokenizer.eos_token
+        tokenizer.model_max_length = args.max_length
+        generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
+        sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
 
     if args.task == 'strongreject_classification':
         print(f'generating classification for strongreject')
         dataset = load_strongreject()
         prompt_classification = specs.prompt_classification
         dataset = dataset.map(lambda x: {"prompt": prompt_classification.format(prompt=x['forbidden_prompt'])})
-        responses_dataset = personalized_generate(dataset, system_prompt=None, models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0, max_tokens=512)
+        responses_dataset = personalized_generate(dataset, system_prompt=None, models=[args.judge_model], use_local=False, decode_responses=False, temperature=0, max_tokens=512)
         pattern = re.compile(r'(?:final category number)', re.IGNORECASE | re.DOTALL)
         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
         processed_dataset = responses_dataset.map(
@@ -98,8 +112,7 @@ if __name__ == "__main__":
         unsafe_dataset = dataset.filter(lambda x: x['is_safe'] == False)
         prompt_classification = specs.prompt_classification
         unsafe_prompt_dataset = unsafe_dataset.map(lambda x: {"prompt": prompt_classification.format(prompt=x['forbidden_prompt'])})
-
-        responses_dataset = personalized_generate(unsafe_prompt_dataset, system_prompt=None, models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0, top_p=1, max_tokens=512)
+        responses_dataset = personalized_generate(unsafe_prompt_dataset, system_prompt=None, models=[args.judge_model], use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
         pattern = re.compile(r'(?:final category number)', re.IGNORECASE | re.DOTALL)
         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
         processed_dataset = responses_dataset.map(
@@ -131,24 +144,14 @@ if __name__ == "__main__":
         for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
             filtered_dataset = unsafe_dataset.filter(lambda x: x['number'] == number)
             filtered_dataset = filtered_dataset.shuffle(seed=1234)
-            filtered_dataset = filtered_dataset.select(range(min(len(filtered_dataset), 500)))
+            filtered_dataset = filtered_dataset.select(range(min(len(filtered_dataset), 300)))
             print('unsafe', number, len(filtered_dataset))
             cot_specification = specs.cot_specification
             cot_prompt_unsafe_dataset = filtered_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=specifications[x['number']])})
-            if 'deepthought' in args.model:
-                deepthought_model = DeepthoughtModel(args.model)
-                reasoning_outputs = deepthought_model.generate_reasoning(cot_prompt_unsafe_dataset['cot_prompt'])
-                final_outputs = deepthought_model.generate_final_output(reasoning_outputs)
-                cot_dataset = cot_prompt_unsafe_dataset.map(lambda x, idx: {"response": final_outputs[idx]['final_output']}, with_indices=True)
-            elif args.model == 'gpt-4o-mini-2024-07-18' or args.model == 'gpt-4o-2024-11-20' or args.model == 'o1-2024-12-17':
+            if args.model == 'gpt-4o-mini-2024-07-18' or args.model == 'gpt-4o-2024-11-20' or args.model == 'o1-2024-12-17':
                 cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, [args.model], target_column="cot_prompt", use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
             else:
-                tokenizer = AutoTokenizer.from_pretrained(args.model)   
-                tokenizer.pad_token = tokenizer.eos_token
-                tokenizer.model_max_length = args.max_length
                 cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"cot_prompt_formatted": tokenizer.apply_chat_template([{'role': 'user', 'content': x['cot_prompt']}], tokenize=False, add_generation_prompt=True)})
-                generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
-                sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
                 responses_outputs = generate_model.generate(cot_prompt_unsafe_dataset['cot_prompt_formatted'], sampling_params)
                 cot_dataset = cot_prompt_unsafe_dataset.map(lambda x, idx: {"response": responses_outputs[idx].outputs[0].text}, with_indices=True)
 
@@ -157,11 +160,12 @@ if __name__ == "__main__":
             cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
             pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
             cot_dataset = cot_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
-            cot_dataset = cot_dataset.remove_columns(['model', 'cot_prompt'])
+            cot_dataset = cot_dataset.remove_columns(['cot_prompt'])
             cot_dataset = cot_dataset.rename_column('response', 'cot_response')
+
             reward_judge = specs.reward_judge
             judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=specifications[x['number']])})
-            judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+            judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=[args.judge_model], use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
             pattern = re.compile(r'(?:Chain of Thought Rating\s*(.*?)\s*Final Response Rating)', re.IGNORECASE | re.DOTALL)
             judge_dataset = judge_dataset.map(lambda x: {"cot_rating": extract_content_first(x['response'], pattern)})
             judge_dataset = judge_dataset.map(lambda x: {'cot_rating': int(match.group(0)) if (match := re.search(r"\d+", x['cot_rating'])) else None})
@@ -183,16 +187,24 @@ if __name__ == "__main__":
 
             cot_specification_helpful = specs.cot_specification_helpful
             overall_helpful = specs.overall_helpful
-            cot_prompt_unsafe_dataset = judge_dataset.map(lambda x: {"cot_prompt": cot_specification_helpful.format(prompt=x['forbidden_prompt'], spec_category=overall_helpful)})
-            if '4o' in args.model or 'o1' in args.model:
-                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
+            judge_dataset = apply_jailbreaks_to_dataset(judge_dataset, jailbreaks)
+            if args.jailbreak == 'none':
+                cot_prompt_unsafe_dataset = judge_dataset.map(lambda x: {"cot_prompt": cot_specification_helpful.format(prompt=x['forbidden_prompt'], spec_category=overall_helpful)})
             else:
-                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
+                cot_prompt_unsafe_dataset = judge_dataset.map(lambda x: {"cot_prompt": cot_specification_helpful.format(prompt=x['jailbroken_prompt'], spec_category=overall_helpful)})
+
+            if args.model == 'gpt-4o-mini-2024-07-18' or args.model == 'gpt-4o-2024-11-20' or args.model == 'o1-2024-12-17':
+                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, [args.model], target_column="cot_prompt", use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+            else:
+                cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"cot_prompt_formatted": tokenizer.apply_chat_template([{'role': 'user', 'content': x['cot_prompt']}], tokenize=False, add_generation_prompt=True)})
+                responses_outputs = generate_model.generate(cot_prompt_unsafe_dataset['cot_prompt_formatted'], sampling_params)
+                cot_dataset = cot_prompt_unsafe_dataset.map(lambda x, idx: {"response": responses_outputs[idx].outputs[0].text}, with_indices=True)
+
             pattern = re.compile(r'(?:Analysis\s*(.*?)\s*Final Response)', re.IGNORECASE | re.DOTALL)
             cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
             pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
             cot_dataset = cot_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
-            cot_dataset = cot_dataset.remove_columns(['model', 'cot_prompt'])
+            cot_dataset = cot_dataset.remove_columns(['cot_prompt'])
             cot_dataset = cot_dataset.rename_column('response', 'cot_response')
             records = [dict(row) for row in cot_dataset]
             with open(f'data/beavertails/{model_print_name}_unsafe_{number}_cot.json', 'w', encoding='utf-8') as f:
@@ -200,14 +212,14 @@ if __name__ == "__main__":
 
             reward_judge_helpful = specs.reward_judge_helpful
             judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": reward_judge_helpful.format(prompt=x['forbidden_prompt'], cot=x['analysis'], final_response=x['final_response'], spec_category=overall_helpful)})
-            judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=['gpt-4o-2024-11-20'], use_local=False, decode_responses=False, temperature=0.95, top_p=0.7, max_tokens=4096)
+            judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=[args.judge_model], use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
             pattern = re.compile(r'(?:Chain of Thought Rating\s*(.*?)\s*Final Response Rating)', re.IGNORECASE | re.DOTALL)
             judge_dataset = judge_dataset.map(lambda x: {"cot_rating": extract_content_first(x['response'], pattern)})
             judge_dataset = judge_dataset.map(lambda x: {'cot_rating': int(match.group(0)) if (match := re.search(r"\d+", x['cot_rating'])) else None})
             pattern = re.compile(r'(?:Final Response Rating)', re.IGNORECASE | re.DOTALL)
             judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
             judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
-            judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
+            judge_dataset = judge_dataset.remove_columns(['judge_prompt', 'response', 'model'])
             col_renames = {
                 'analysis': 'safe_analysis',
                 'final_response': 'safe_final_response',
@@ -222,10 +234,10 @@ if __name__ == "__main__":
 
     if args.task == 'beavertails_build_train_dataset':
         print(f'building cot dataset for beavertails')
-        cot_ratings = [5]
-        final_response_ratings = [1]
+        cot_ratings = [4]
+        final_response_ratings = [1, 2]
         class_nums = [50]
-        ratio = 1
+        ratio = 0
         for cot_rating in cot_ratings:
             for final_response_rating in final_response_ratings:
                 for class_num in class_nums:
@@ -264,8 +276,6 @@ if __name__ == "__main__":
                     'safe_cot_response': 'helpful',
                     'unsafe_cot_response': 'constrained'
                 })
-                # full_dataset = full_dataset.map(lambda x: {"helpful": "Analysis\n\n{}\n\nFinal Response\n{}".format(x['safe_analysis'], x['safe_final_response'])})
-                # full_dataset = full_dataset.map(lambda x: {"constrained": "Analysis\n\n{}\n\nFinal Response\n{}".format(x['unsafe_analysis'], x['unsafe_final_response'])})
                 unsafe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == False)
                 safe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == True)
                 
@@ -283,28 +293,29 @@ if __name__ == "__main__":
                 sft_full_dataset = sft_full_dataset.remove_columns(['messages', 'constrained_helpful_chosen', 'constrained_answer_chosen', 'constrained_helpful_rejected', 'constrained_answer_rejected'])
                 sft_full_dataset = sft_full_dataset.shuffle(seed=1234)
                 
-                records = [dict(row) for row in sft_full_dataset]
-                with open(f'data/beavertails/sft_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
-                    json.dump(records, f, indent=4)
+                # records = [dict(row) for row in sft_full_dataset]
+                # with open(f'data/beavertails/sft_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
+                #     json.dump(records, f, indent=4)
+                # print(f'sft_full_dataset: {len(sft_full_dataset)}')
                 records = [dict(row) for row in dpo_full_dataset]
                 with open(f'data/beavertails/dpo_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
                     json.dump(records, f, indent=4)
-                print(f'sft_full_dataset: {len(sft_full_dataset)}')
                 print(f'dpo_full_dataset: {len(dpo_full_dataset)}')
 
                 sft_dr_dataset = sft_full_dataset.map(lambda x: {"dr": [x['constrained_answer'][0], {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}]} if x['is_safe'] == False else {"dr": x['constrained_answer']})
-
                 cot_instruction = specs.cot_instruction
                 cot_prompt_unsafe_dataset = sft_dr_dataset.filter(lambda x: x['is_safe'] == False)
                 cot_prompt_safe_dataset = sft_dr_dataset.filter(lambda x: x['is_safe'] == True)
                 cot_prompt_safe_dataset = cot_prompt_safe_dataset.map(lambda x: {"sr": x['constrained_answer']})
                 cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"cot_prompt": cot_instruction.format(prompt=x['constrained_answer'][0]['content'])})
-                if '4o' in args.model or 'o1' in args.model:
-                    cot_prompt_unsafe_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=0, max_tokens=4096)
+                if args.model == 'gpt-4o-mini-2024-07-18' or args.model == 'gpt-4o-2024-11-20' or args.model == 'o1-2024-12-17':
+                    cot_prompt_unsafe_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
                 else:
-                    cot_prompt_unsafe_dataset = personalized_generate(cot_prompt_unsafe_dataset, system_prompt=None, target_column='cot_prompt', models=[args.model], use_local=True, decode_responses=False, temperature=0, max_tokens=4096)
+                    cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"cot_prompt_formatted": tokenizer.apply_chat_template([{'role': 'user', 'content': x['cot_prompt']}], tokenize=False, add_generation_prompt=True)})
+                    responses_outputs = generate_model.generate(cot_prompt_unsafe_dataset['cot_prompt_formatted'], sampling_params)
+                    cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x, idx: {"response": responses_outputs[idx].outputs[0].text}, with_indices=True)
                 cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"sr": [x['constrained_answer'][0], {"role": "assistant", "content": x['response']}]})
-                cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.remove_columns(['cot_prompt', 'response', 'model'])
+                cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.remove_columns(['cot_prompt', 'response'])
                 sft_preliminary_dataset = concatenate_datasets([cot_prompt_safe_dataset, cot_prompt_unsafe_dataset])
                 sft_preliminary_dataset = sft_preliminary_dataset.shuffle(seed=1234)
                 print('sft_preliminary_dataset', len(sft_preliminary_dataset))
@@ -312,14 +323,3 @@ if __name__ == "__main__":
                 with open(f'data/beavertails/sft_preliminary_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
                     json.dump(records, f, indent=4)
 
-    if args.task == 'build_preliminary_datasets':
-        print(f'building preliminary datasets')
-        sft_full_dataset = datasets.load_dataset('json', data_files='cache/meta-llama-Meta-Llama-3-8B-Instruct_safe_cot.json', split='train')
-        print(len(safe_dataset))
-        unsafe_dataset = datasets.load_dataset('PKU-Alignment/BeaverTails', split='30k_train')
-        unsafe_dataset = unsafe_dataset.filter(lambda x: x['is_safe'] == False)
-        safe_dataset = safe_dataset.filter(lambda x: x['forbidden_prompt'] not in unsafe_dataset['prompt'])
-        print(len(safe_dataset))
-        records = [dict(row) for row in safe_dataset]
-        with open('cache/meta-llama-Meta-Llama-3-8B-Instruct_safe_cot_filtered.json', 'w', encoding='utf-8') as f:
-            json.dump(records, f, indent=4)

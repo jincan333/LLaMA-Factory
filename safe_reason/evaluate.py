@@ -169,6 +169,15 @@ else:
     #     json.dump(records, f, indent=4)
 
 # generate the responses
+if args.model != 'gpt-4o-mini-2024-07-18' and args.model != 'gpt-4o-2024-11-20' and args.model != 'o1-2024-12-17':
+    if 'deepthought' in args.model:
+        generate_model = DeepthoughtModel(args.model)
+    else:
+        tokenizer = AutoTokenizer.from_pretrained(args.model)   
+        tokenizer.pad_token = tokenizer.eos_token
+        tokenizer.model_max_length = args.max_length
+        generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
+        sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
 
 if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json") and not args.generate:
     responses_dataset = datasets.load_dataset('json', data_files=f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json", split='train')
@@ -182,19 +191,13 @@ else:
         jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt": x['jailbroken_prompt']})
 
     if 'deepthought' in args.model:
-        deepthought_model = DeepthoughtModel(args.model)
-        reasoning_outputs = deepthought_model.generate_reasoning(jailbroken_dataset['cot_prompt'])
-        final_outputs = deepthought_model.generate_final_output(reasoning_outputs)
+        reasoning_outputs = generate_model.generate_reasoning(jailbroken_dataset['cot_prompt'])
+        final_outputs = generate_model.generate_final_output(reasoning_outputs)
         responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": final_outputs[idx]['final_output']}, with_indices=True)
     elif args.model == 'gpt-4o-mini-2024-07-18' or args.model == 'gpt-4o-2024-11-20' or args.model == 'o1-2024-12-17':
         responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="cot_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
     else:
-        tokenizer = AutoTokenizer.from_pretrained(args.model)   
-        tokenizer.pad_token = tokenizer.eos_token
-        tokenizer.model_max_length = args.max_length
         jailbroken_dataset = jailbroken_dataset.map(lambda x: {"cot_prompt_formatted": tokenizer.apply_chat_template([{'role': 'user', 'content': x['cot_prompt']}], tokenize=False, add_generation_prompt=True)})
-        generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
-        sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
         responses_outputs = generate_model.generate(jailbroken_dataset['cot_prompt_formatted'], sampling_params)
         responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": responses_outputs[idx].outputs[0].text}, with_indices=True)
 
