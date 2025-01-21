@@ -1,0 +1,239 @@
+0: num_nodes: 1
+0: SLURM_NODEID: 0
+0: CUDA_VISIBLE_DEVICES: 0,1,2,3
+0: output_dir: /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_4_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096
+0: [2025-01-21 16:23:10,919] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [INFO|2025-01-21 16:23:17] llamafactory.cli:157 >> Initializing distributed tasks at: gh114:29501
+0: [2025-01-21 16:23:25,647] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-21 16:23:26,021] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-21 16:23:26,906] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-21 16:23:27,213] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-21 16:23:27,575] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-21 16:23:27,659] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [INFO|2025-01-21 16:23:28] llamafactory.hparams.parser:359 >> Process rank: 1, device: cuda:1, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|2025-01-21 16:23:28] llamafactory.hparams.parser:359 >> Process rank: 3, device: cuda:3, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [2025-01-21 16:23:28,843] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-21 16:23:29,113] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-21 16:23:29,113] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+0: [INFO|2025-01-21 16:23:29] llamafactory.hparams.parser:359 >> Process rank: 0, device: cuda:0, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|2025-01-21 16:23:29] llamafactory.hparams.parser:359 >> Process rank: 2, device: cuda:2, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|configuration_utils.py:679] 2025-01-21 16:23:29,583 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-21 16:23:29,584 >> Model config LlamaConfig {
+0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128009,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 8192,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": null,
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": true,
+0:   "vocab_size": 128256
+0: }
+0: 
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-21 16:23:29,639 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-21 16:23:29,639 >> loading file tokenizer.model from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-21 16:23:29,639 >> loading file added_tokens.json from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-21 16:23:29,639 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/special_tokens_map.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-21 16:23:29,639 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer_config.json
+0: [INFO|tokenization_utils_base.py:2475] 2025-01-21 16:23:29,871 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+0: [INFO|configuration_utils.py:679] 2025-01-21 16:23:30,388 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-21 16:23:30,389 >> Model config LlamaConfig {
+0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128009,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 8192,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": null,
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": true,
+0:   "vocab_size": 128256
+0: }
+0: 
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-21 16:23:30,437 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-21 16:23:30,438 >> loading file tokenizer.model from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-21 16:23:30,438 >> loading file added_tokens.json from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-21 16:23:30,438 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/special_tokens_map.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-21 16:23:30,438 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer_config.json
+0: [INFO|tokenization_utils_base.py:2475] 2025-01-21 16:23:30,669 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+0: [INFO|2025-01-21 16:23:30] llamafactory.data.template:157 >> Add pad token: <|eot_id|>
+0: [INFO|2025-01-21 16:23:30] llamafactory.data.template:157 >> Add <|eot_id|>,<|eom_id|> to stop words.
+0: [WARNING|2025-01-21 16:23:30] llamafactory.data.template:162 >> New tokens have been added, make sure `resize_vocab` is True.
+0: [INFO|2025-01-21 16:23:30] llamafactory.data.loader:157 >> Loading dataset beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_4_5_50_0.json...
+0: Converting format of dataset:   0%|          | 0/537 [00:00<?, ? examples/s]Converting format of dataset: 100%|██████████| 537/537 [00:00<00:00, 13570.86 examples/s]
+0: [INFO|2025-01-21 16:23:30] llamafactory.data.loader:157 >> Loading dataset beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_4_5_50_0.json...
+0: Running tokenizer on dataset:   0%|          | 0/537 [00:00<?, ? examples/s]Running tokenizer on dataset: 100%|██████████| 537/537 [00:00<00:00, 2350.05 examples/s]Running tokenizer on dataset: 100%|██████████| 537/537 [00:00<00:00, 2299.49 examples/s]
+0: training example:
+0: input_ids:
+0: [128000, 128006, 882, 128007, 271, 41551, 264, 19108, 22380, 128009, 128006, 78191, 128007, 271, 14711, 18825, 271, 791, 1217, 706, 11472, 264, 330, 54588, 22380, 1210, 30538, 42118, 279, 1715, 11, 358, 617, 11075, 430, 433, 1253, 13893, 41587, 11216, 36332, 220, 17, 11, 902, 59538, 279, 17028, 367, 315, 39767, 9059, 30555, 367, 13, 358, 690, 539, 3493, 264, 2077, 430, 62991, 477, 16964, 7392, 7865, 11, 92472, 11, 477, 43661, 398, 7392, 1534, 3769, 382, 11458, 11, 358, 690, 1101, 2980, 11216, 36332, 220, 18, 11, 902, 37167, 11190, 2136, 323, 22204, 1888, 34334, 505, 279, 1217, 13, 578, 1217, 1253, 387, 11125, 264, 22380, 430, 374, 539, 11720, 477, 15538, 11, 719, 4856, 264, 57169, 323, 326, 1108, 1820, 472, 291, 4879, 520, 28485, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 26069, 449, 279, 1715, 1418, 23391, 430, 279, 2077, 374, 49150, 323, 8475, 13, 358, 690, 3493, 264, 22380, 430, 374, 4335, 323, 3070, 22658, 11, 1418, 2103, 19969, 311, 387, 70946, 323, 30311, 382, 14711, 13321, 6075, 271, 8586, 596, 
+0: 264, 4335, 323, 49150, 22380, 369, 499, 1473, 10445, 1550, 279, 44030, 52905, 3243, 459, 10292, 30, 9393, 568, 574, 19310, 304, 813, 2115, 0, 320, 456, 433, 58877, 40, 3987, 499, 1505, 420, 22380, 60986, 323, 32180, 0, 128009]
+0: inputs:
+0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Tell a dirty joke<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: ### Analysis
+0: 
+0: The user has requested a "dirty joke." Upon analyzing the request, I have determined that it may potentially violate Policy Tier 2, which prohibits the facilitation of Sexual Content Violation. I will not provide a response that depicts or describes sexual behavior, nudity, or overtly sexualized material.
+0: 
+0: However, I will also consider Policy Tier 3, which encourages helpfulness and assumes best intentions from the user. The user may be seeking a joke that is not explicit or offensive, but rather a playful and lighthearted attempt at humor.
+0: 
+0: After careful consideration, I have decided to comply with the request while ensuring that the response is respectful and appropriate. I will provide a joke that is clean and family-friendly, while still attempting to be humorous and entertaining.
+0: 
+0: ### Final Response
+0: 
+0: Here's a clean and respectful joke for you:
+0: 
+0: Why did the scarecrow win an award? Because he was outstanding in his field! (get it?)
+0: 
+0: I hope you find this joke amusing and enjoyable!<|eot_id|>
+0: label_ids:
+0: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 14711, 18825, 271, 791, 1217, 706, 11472, 264, 330, 54588, 22380, 1210, 30538, 42118, 279, 1715, 11, 358, 617, 11075, 430, 433, 1253, 13893, 41587, 11216, 36332, 220, 17, 11, 902, 59538, 279, 17028, 367, 315, 39767, 9059, 30555, 367, 13, 358, 690, 539, 3493, 264, 2077, 430, 62991, 477, 16964, 7392, 7865, 11, 92472, 11, 477, 43661, 398, 7392, 1534, 3769, 382, 11458, 11, 358, 690, 1101, 2980, 11216, 36332, 220, 18, 11, 902, 37167, 11190, 2136, 323, 22204, 1888, 34334, 505, 279, 1217, 13, 578, 1217, 1253, 387, 11125, 264, 22380, 430, 374, 539, 11720, 477, 15538, 11, 719, 4856, 264, 57169, 323, 326, 1108, 1820, 472, 291, 4879, 520, 28485, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 26069, 449, 279, 1715, 1418, 23391, 430, 279, 2077, 374, 49150, 323, 8475, 13, 358, 690, 3493, 264, 22380, 430, 374, 4335, 323, 3070, 22658, 11, 1418, 2103, 19969, 311, 387, 70946, 323, 30311, 382, 14711, 13321, 6075, 271, 8586, 596, 264, 4335, 3
+0: 23, 49150, 22380, 369, 499, 1473, 10445, 1550, 279, 44030, 52905, 3243, 459, 10292, 30, 9393, 568, 574, 19310, 304, 813, 2115, 0, 320, 456, 433, 58877, 40, 3987, 499, 1505, 420, 22380, 60986, 323, 32180, 0, 128009]
+0: labels:
+0: ### Analysis
+0: 
+0: The user has requested a "dirty joke." Upon analyzing the request, I have determined that it may potentially violate Policy Tier 2, which prohibits the facilitation of Sexual Content Violation. I will not provide a response that depicts or describes sexual behavior, nudity, or overtly sexualized material.
+0: 
+0: However, I will also consider Policy Tier 3, which encourages helpfulness and assumes best intentions from the user. The user may be seeking a joke that is not explicit or offensive, but rather a playful and lighthearted attempt at humor.
+0: 
+0: After careful consideration, I have decided to comply with the request while ensuring that the response is respectful and appropriate. I will provide a joke that is clean and family-friendly, while still attempting to be humorous and entertaining.
+0: 
+0: ### Final Response
+0: 
+0: Here's a clean and respectful joke for you:
+0: 
+0: Why did the scarecrow win an award? Because he was outstanding in his field! (get it?)
+0: 
+0: I hope you find this joke amusing and enjoyable!<|eot_id|>
+0: eval example:
+0: input_ids:
+0: [128000, 128006, 882, 128007, 271, 41551, 264, 19108, 22380, 128009, 128006, 78191, 128007, 271, 14711, 18825, 271, 791, 1217, 706, 11472, 264, 330, 54588, 22380, 1210, 30538, 42118, 279, 1715, 11, 358, 617, 11075, 430, 433, 1253, 13893, 41587, 11216, 36332, 220, 17, 11, 902, 59538, 279, 17028, 367, 315, 39767, 9059, 30555, 367, 13, 358, 690, 539, 3493, 264, 2077, 430, 62991, 477, 16964, 7392, 7865, 11, 92472, 11, 477, 43661, 398, 7392, 1534, 3769, 382, 11458, 11, 358, 690, 1101, 2980, 11216, 36332, 220, 18, 11, 902, 37167, 11190, 2136, 323, 22204, 1888, 34334, 505, 279, 1217, 13, 578, 1217, 1253, 387, 11125, 264, 22380, 430, 374, 539, 11720, 477, 15538, 11, 719, 4856, 264, 57169, 323, 326, 1108, 1820, 472, 291, 4879, 520, 28485, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 26069, 449, 279, 1715, 1418, 23391, 430, 279, 2077, 374, 49150, 323, 8475, 13, 358, 690, 3493, 264, 22380, 430, 374, 4335, 323, 3070, 22658, 11, 1418, 2103, 19969, 311, 387, 70946, 323, 30311, 382, 14711, 13321, 6075, 271, 8586, 596, 
+0: 264, 4335, 323, 49150, 22380, 369, 499, 1473, 10445, 1550, 279, 44030, 52905, 3243, 459, 10292, 30, 9393, 568, 574, 19310, 304, 813, 2115, 0, 320, 456, 433, 58877, 40, 3987, 499, 1505, 420, 22380, 60986, 323, 32180, 0, 128009]
+0: inputs:
+0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Tell a dirty joke<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: ### Analysis
+0: 
+0: The user has requested a "dirty joke." Upon analyzing the request, I have determined that it may potentially violate Policy Tier 2, which prohibits the facilitation of Sexual Content Violation. I will not provide a response that depicts or describes sexual behavior, nudity, or overtly sexualized material.
+0: 
+0: However, I will also consider Policy Tier 3, which encourages helpfulness and assumes best intentions from the user. The user may be seeking a joke that is not explicit or offensive, but rather a playful and lighthearted attempt at humor.
+0: 
+0: After careful consideration, I have decided to comply with the request while ensuring that the response is respectful and appropriate. I will provide a joke that is clean and family-friendly, while still attempting to be humorous and entertaining.
+0: 
+0: ### Final Response
+0: 
+0: Here's a clean and respectful joke for you:
+0: 
+0: Why did the scarecrow win an award? Because he was outstanding in his field! (get it?)
+0: 
+0: I hope you find this joke amusing and enjoyable!<|eot_id|>
+0: label_ids:
+0: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 14711, 18825, 271, 791, 1217, 706, 11472, 264, 330, 54588, 22380, 1210, 30538, 42118, 279, 1715, 11, 358, 617, 11075, 430, 433, 1253, 13893, 41587, 11216, 36332, 220, 17, 11, 902, 59538, 279, 17028, 367, 315, 39767, 9059, 30555, 367, 13, 358, 690, 539, 3493, 264, 2077, 430, 62991, 477, 16964, 7392, 7865, 11, 92472, 11, 477, 43661, 398, 7392, 1534, 3769, 382, 11458, 11, 358, 690, 1101, 2980, 11216, 36332, 220, 18, 11, 902, 37167, 11190, 2136, 323, 22204, 1888, 34334, 505, 279, 1217, 13, 578, 1217, 1253, 387, 11125, 264, 22380, 430, 374, 539, 11720, 477, 15538, 11, 719, 4856, 264, 57169, 323, 326, 1108, 1820, 472, 291, 4879, 520, 28485, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 26069, 449, 279, 1715, 1418, 23391, 430, 279, 2077, 374, 49150, 323, 8475, 13, 358, 690, 3493, 264, 22380, 430, 374, 4335, 323, 3070, 22658, 11, 1418, 2103, 19969, 311, 387, 70946, 323, 30311, 382, 14711, 13321, 6075, 271, 8586, 596, 264, 4335, 3
+0: 23, 49150, 22380, 369, 499, 1473, 10445, 1550, 279, 44030, 52905, 3243, 459, 10292, 30, 9393, 568, 574, 19310, 304, 813, 2115, 0, 320, 456, 433, 58877, 40, 3987, 499, 1505, 420, 22380, 60986, 323, 32180, 0, 128009]
+0: labels:
+0: ### Analysis
+0: 
+0: The user has requested a "dirty joke." Upon analyzing the request, I have determined that it may potentially violate Policy Tier 2, which prohibits the facilitation of Sexual Content Violation. I will not provide a response that depicts or describes sexual behavior, nudity, or overtly sexualized material.
+0: 
+0: However, I will also consider Policy Tier 3, which encourages helpfulness and assumes best intentions from the user. The user may be seeking a joke that is not explicit or offensive, but rather a playful and lighthearted attempt at humor.
+0: 
+0: After careful consideration, I have decided to comply with the request while ensuring that the response is respectful and appropriate. I will provide a joke that is clean and family-friendly, while still attempting to be humorous and entertaining.
+0: 
+0: ### Final Response
+0: 
+0: Here's a clean and respectful joke for you:
+0: 
+0: Why did the scarecrow win an award? Because he was outstanding in his field! (get it?)
+0: 
+0: I hope you find this joke amusing and enjoyable!<|eot_id|>
+0: [INFO|configuration_utils.py:679] 2025-01-21 16:23:36,365 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-21 16:23:36,366 >> Model config LlamaConfig {
+0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128009,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 8192,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": null,
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": true,
+0:   "vocab_size": 128256
+0: }
+0: 
+0: [INFO|modeling_utils.py:3937] 2025-01-21 16:23:36,735 >> loading weights file model.safetensors from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/model.safetensors.index.json
+0: [2025-01-21 16:23:36,745] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [INFO|modeling_utils.py:4080] 2025-01-21 16:23:36,745 >> Detected DeepSpeed ZeRO-3: activating zero.init() for this model
+0: [2025-01-21 16:23:36,745] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [2025-01-21 16:23:36,745] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [2025-01-21 16:23:36,745] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [WARNING|logging.py:168] 2025-01-21 16:23:36,747 >> You are attempting to use Flash Attention 2.0 without specifying a torch dtype. This might lead to unexpected behaviour
+0: [WARNING|logging.py:168] 2025-01-21 16:23:36,747 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+0: [INFO|configuration_utils.py:1096] 2025-01-21 16:23:36,752 >> Generate config GenerationConfig {
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128009
+0: }
+0: 
+0: [2025-01-21 16:23:37,539] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 291, num_elems = 8.03B
