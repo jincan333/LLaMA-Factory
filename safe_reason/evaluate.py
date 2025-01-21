@@ -8,11 +8,12 @@ import random
 import numpy as np
 import torch
 from vllm import LLM, SamplingParams
+from transformers import AutoTokenizer
 from strong_reject.load_datasets import load_strongreject_small, load_strongreject
 from generate import personalized_generate, extract_content
 from strong_reject.evaluate import evaluate_dataset, registered_evaluators
 # from strongreject_evaluate import evaluate_dataset, registered_evaluators
-from strong_reject.jailbreaks import apply_jailbreaks_to_dataset, register_jailbreak
+from strong_reject.jailbreaks import apply_jailbreaks_to_dataset
 from strong_reject.jailbreaks import registered_jailbreaks
 import specifications as specs
 from deepthought import DeepthoughtModel
@@ -79,7 +80,7 @@ def get_cot_prompt(cot_prompt):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model', type=str, default='deepthought-8b', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+    parser.add_argument('--model', type=str, default='llama3_sft_dr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_1_tbs8_ebs8_gas2_lr5e-6_cl4096', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
     parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
     parser.add_argument('--dataset', type=str, default='xstest', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
     parser.add_argument('--jailbreak', type=str, default='none', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
@@ -100,18 +101,6 @@ args.model, model_print_name = get_model(args.model)
 args.judge_model, judge_model_print_name = get_model(args.judge_model) 
 cot_template, specifications = get_cot_prompt(args.cot_prompt)
 jailbreaks = list(args.jailbreak.split(','))
-
-random_seed = random.randint(0, 2**32 - 1)
-
-# Set random seeds for reproducibility
-random.seed(random_seed)
-np.random.seed(random_seed)
-torch.manual_seed(random_seed)
-if torch.cuda.is_available():
-    torch.cuda.manual_seed(random_seed)
-    torch.cuda.manual_seed_all(random_seed)  # if you are using multi-GPU.
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
 
 # load the dataset and apply jailbreak
 if os.path.exists(f"data/{args.dataset}/{args.jailbreak}.json") and not args.generate and not args.evaluate:
@@ -183,14 +172,18 @@ else:
         reasoning_outputs = deepthought_model.generate_reasoning(jailbroken_dataset['cot_prompt'])
         final_outputs = deepthought_model.generate_final_output(reasoning_outputs)
         responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": final_outputs[idx]['final_output']}, with_indices=True)
-    elif 'gpt' in args.model or 'o1' in args.model:
+    elif args.model == 'gpt-4o-mini-2024-07-18' or args.model == 'gpt-4o-2024-11-20' or args.model == 'o1-2024-12-17':
         responses_dataset = personalized_generate(jailbroken_dataset, [args.model], target_column="jailbroken_prompt", use_local=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
     else:
+        tokenizer = AutoTokenizer.from_pretrained(args.model)   
+        tokenizer.pad_token = tokenizer.eos_token
+        tokenizer.model_max_length = args.max_length
+        jailbroken_dataset = jailbroken_dataset.map(lambda x: {"jailbroken_prompt_formatted": tokenizer.apply_chat_template([{'role': 'user', 'content': x['jailbroken_prompt']}], tokenize=False, add_generation_prompt=True)})
         generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
         sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
-        responses_outputs = generate_model.generate_response(jailbroken_dataset['jailbroken_prompt'], sampling_params)
-        responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": responses_outputs[idx]['response']}, with_indices=True)
-    
+        responses_outputs = generate_model.generate(jailbroken_dataset['jailbroken_prompt_formatted'], sampling_params)
+        responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": responses_outputs[idx].outputs[0].text}, with_indices=True)
+
     if args.cot_prompt != 'none':
         pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})

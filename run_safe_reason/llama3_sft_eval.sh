@@ -6,12 +6,12 @@ mkdir -p $output_dir
 echo "num_nodes: $SLURM_NNODES"
 echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
-export CUDA_VISIBLE_DEVICES=3
+export CUDA_VISIBLE_DEVICES=2
 mkdir -p server_logs
 mkdir -p $log_dir
 
 prefix="safe_sft"
-model="llama3_sft_dr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_1_tbs8_ebs8_gas2_lr5e-6_cl4096"
+model="llama3_sft_sr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096"
 # ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
 model_name_or_path=${output_dir}/${model}
 # ['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20']
@@ -33,11 +33,11 @@ experiment_name=${prefix}_${dataset}_${jailbreak}_${cot_prompt}_${model}_${judge
 # export model_name_or_path="$output_dir/$model"
 export model_name_or_path=$model_name_or_path
 
-envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
-nohup script -f -a -c "API_PORT=8000 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
-delay=40
-echo "Waiting for $delay seconds..."
-sleep $delay
+# envsubst < examples/inference/llama3_vllm.yaml > server_logs/${experiment_name}.yaml
+# nohup script -f -a -c "API_PORT=8000 llamafactory-cli api server_logs/${experiment_name}.yaml" server_logs/${experiment_name}.log > /dev/null 2>&1 &
+# delay=40
+# echo "Waiting for $delay seconds..."
+# sleep $delay
 
 nohup python -u ${current_project}/evaluate.py \
     --model $model_name_or_path \
