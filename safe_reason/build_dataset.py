@@ -40,8 +40,8 @@ if __name__ == "__main__":
     os.environ['CUDA_VISIBLE_DEVICES'] = '3'
     def parse_args():
         parser = argparse.ArgumentParser()
-        parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'test'])
-        parser.add_argument('--model', type=str, default='deepthought-8b', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+        parser.add_argument('--task', type=str, default='temp', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'temp'])
+        parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
         parser.add_argument('--judge_model', type=str, default='gpt-4o-2024-11-20', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, o1-2024-12-17')
         parser.add_argument('--jailbreak', type=str, default='pap_misrepresentation', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
         parser.add_argument('--temperature', type=float, default=0, help='temperature for generation')
@@ -60,12 +60,12 @@ if __name__ == "__main__":
     print(json.dumps(vars(args), indent=4))
     jailbreaks = list(args.jailbreak.split(','))
 
-    if args.model != 'gpt-4o-mini-2024-07-18' and args.model != 'gpt-4o-2024-11-20' and args.model != 'o1-2024-12-17':
-        tokenizer = AutoTokenizer.from_pretrained(args.model)   
-        tokenizer.pad_token = tokenizer.eos_token
-        tokenizer.model_max_length = args.max_length
-        generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
-        sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+    # if args.model != 'gpt-4o-mini-2024-07-18' and args.model != 'gpt-4o-2024-11-20' and args.model != 'o1-2024-12-17':
+    #     tokenizer = AutoTokenizer.from_pretrained(args.model)   
+    #     tokenizer.pad_token = tokenizer.eos_token
+    #     tokenizer.model_max_length = args.max_length
+    #     generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
+    #     sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
 
     if args.task == 'strongreject_classification':
         print(f'generating classification for strongreject')
@@ -284,11 +284,11 @@ if __name__ == "__main__":
                 unsafe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == False)
                 safe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == True)
                 
-                dpo_unsafe_dataset = unsafe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "constrained_helpful_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_answer_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_helpful_rejected": {"role": "assistant", "content": x['helpful']}, "constrained_answer_rejected": {"role": "assistant", "content": x['rejected']}})
+                dpo_unsafe_dataset = unsafe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "constrained_helpful_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_answer_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_refusal_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_helpful_rejected": {"role": "assistant", "content": x['helpful']}, "constrained_answer_rejected": {"role": "assistant", "content": x['rejected']}, "constrained_refusal_rejected": {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}})
                 dpo_unsafe_dataset = dpo_unsafe_dataset.remove_columns(['safe_analysis', 'safe_final_response', 'safe_cot_rating', 'safe_final_response_rating', 'unsafe_analysis', 'unsafe_final_response', 'unsafe_cot_rating', 'unsafe_final_response_rating', 'forbidden_prompt', 'category', 'constrained', 'helpful', 'rejected'])
                 sft_unsafe_dataset = dpo_unsafe_dataset.map(lambda x: {"constrained_helpful": [x['messages'][0], x['constrained_helpful_chosen']], "constrained_answer": [x['messages'][0], x['constrained_answer_chosen']]})
 
-                dpo_safe_dataset = safe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "constrained_helpful_chosen": {"role": "assistant", "content": x['helpful']}, "constrained_answer_chosen": {"role": "assistant", "content": x['rejected']}, "constrained_helpful_rejected": {"role": "assistant", "content": x['constrained']}, "constrained_answer_rejected": {"role": "assistant", "content": x['constrained']}})
+                dpo_safe_dataset = safe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "constrained_helpful_chosen": {"role": "assistant", "content": x['helpful']}, "constrained_answer_chosen": {"role": "assistant", "content": x['rejected']}, "constrained_refusal_chosen": {"role": "assistant", "content": x['helpful']}, "constrained_helpful_rejected": {"role": "assistant", "content": x['constrained']}, "constrained_answer_rejected": {"role": "assistant", "content": x['constrained']}, "constrained_refusal_rejected": {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}})
                 dpo_safe_dataset = dpo_safe_dataset.remove_columns(['safe_analysis', 'safe_final_response', 'safe_cot_rating', 'safe_final_response_rating', 'unsafe_analysis', 'unsafe_final_response', 'unsafe_cot_rating', 'unsafe_final_response_rating', 'forbidden_prompt', 'category', 'constrained', 'helpful', 'rejected'])
                 sft_safe_dataset = dpo_safe_dataset.map(lambda x: {"constrained_helpful": [x['messages'][0], x['constrained_helpful_chosen']], "constrained_answer": [x['messages'][0], x['constrained_answer_chosen']]})
 
@@ -328,3 +328,13 @@ if __name__ == "__main__":
                 with open(f'data/beavertails/sft_preliminary_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{args.ratio}.json', 'w', encoding='utf-8') as f:
                     json.dump(records, f, indent=4)
 
+    if args.task == 'temp':
+        cot_rating = 5
+        final_response_rating = 5
+        class_num = 50
+        dpo_full_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/dpo_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{args.ratio}.json', split='train')
+        print(f'dpo_full_dataset: {len(dpo_full_dataset)}')
+        dpo_full_dataset = dpo_full_dataset.map(lambda x: {"constrained_refusal_chosen": {"role": "assistant", "content": x['constrained_helpful_chosen']['content']}, "constrained_refusal_rejected": {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}})
+        records = [dict(row) for row in dpo_full_dataset]
+        with open(f'data/beavertails/dpo_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{args.ratio}.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
