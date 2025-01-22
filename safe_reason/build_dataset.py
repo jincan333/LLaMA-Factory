@@ -37,11 +37,11 @@ specifications = {
 
 if __name__ == "__main__":  
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = '2'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '3'
     def parse_args():
         parser = argparse.ArgumentParser()
         parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'test'])
-        parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+        parser.add_argument('--model', type=str, default='deepthought-8b', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
         parser.add_argument('--judge_model', type=str, default='gpt-4o-2024-11-20', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, o1-2024-12-17')
         parser.add_argument('--jailbreak', type=str, default='pap_misrepresentation', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
         parser.add_argument('--temperature', type=float, default=0, help='temperature for generation')
@@ -242,7 +242,7 @@ if __name__ == "__main__":
         print(f'building cot dataset for beavertails')
         cot_ratings = list(range(args.cot_rating, 6))
         final_response_ratings = list(range(1, args.final_response_rating + 1))
-        class_nums = args.final_num_samples
+        class_nums = [args.final_num_samples]
         for cot_rating in cot_ratings:
             for final_response_rating in final_response_ratings:
                 for class_num in class_nums:
