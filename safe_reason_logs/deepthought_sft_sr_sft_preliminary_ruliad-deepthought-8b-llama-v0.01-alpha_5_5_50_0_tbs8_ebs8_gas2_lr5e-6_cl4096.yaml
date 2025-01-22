@@ -1,0 +1,42 @@
+### model
+model_name_or_path: ruliad/deepthought-8b-llama-v0.01-alpha
+flash_attn: fa2
+use_unsloth: False
+
+### method
+stage: sft
+do_train: true
+finetuning_type: full
+deepspeed: examples/deepspeed/ds_z3_config.json  # choices: [ds_z0_config.json, ds_z2_config.json, ds_z3_config.json]
+
+### dataset
+dataset: sr_sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_5_50_0
+template: llama3
+cutoff_len: 4096
+eval_dataset: sr_sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_5_50_0
+
+### output
+output_dir: /work/nvme/bcrc/cjin1/safe_reason/deepthought_sft_sr_sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096
+logging_steps: 10
+save_steps: 500
+plot_loss: true
+overwrite_output_dir: true
+
+### train
+per_device_train_batch_size: 8
+gradient_accumulation_steps: 2
+learning_rate: !!float 5e-6
+num_train_epochs: 1.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+bf16: true
+ddp_timeout: 180000000
+
+### eval
+per_device_eval_batch_size: 8
+eval_strategy: steps
+eval_steps: 500
+
+### wandb
+report_to: wandb
+run_name: deepthought_sft_sr_sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096
