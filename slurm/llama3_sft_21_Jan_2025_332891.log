@@ -435,3 +435,46 @@
 0: [2025-01-21 16:39:29,467] [INFO] [torch_checkpoint_engine.py:21:save] [Torch] Saving /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096/checkpoint-3/global_step3/zero_pp_rank_0_mp_rank_00_model_states.pt...
 0: [2025-01-21 16:39:29,478] [INFO] [torch_checkpoint_engine.py:23:save] [Torch] Saved /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096/checkpoint-3/global_step3/zero_pp_rank_0_mp_rank_00_model_states.pt.
 0: [2025-01-21 16:39:29,486] [INFO] [torch_checkpoint_engine.py:21:save] [Torch] Saving /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096/checkpoint-3/global_step3/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+0: [2025-01-21 16:41:02,719] [INFO] [torch_checkpoint_engine.py:23:save] [Torch] Saved /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096/checkpoint-3/global_step3/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+0: [2025-01-21 16:41:03,050] [INFO] [engine.py:3536:_save_zero_checkpoint] zero checkpoint saved /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096/checkpoint-3/global_step3/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+0: [2025-01-21 16:41:03,987] [INFO] [torch_checkpoint_engine.py:33:commit] [Torch] Checkpoint global_step3 is ready now!
+0: [INFO|trainer.py:2584] 2025-01-21 16:41:04,256 >> 
+0: 
+0: Training completed. Do not forget to share your model on huggingface.co/models =)
+0: 
+0: 
+0: {'train_runtime': 166.7969, 'train_samples_per_second': 0.971, 'train_steps_per_second': 0.018, 'train_loss': 2.098482131958008, 'epoch': 1.0}
+0:                                              100%|██████████| 3/3 [02:45<00:00,  2.04s/it]100%|██████████| 3/3 [02:45<00:00, 55.19s/it]
+0: [INFO|trainer.py:3801] 2025-01-21 16:41:58,542 >> Saving model checkpoint to /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096
+0: [INFO|configuration_utils.py:414] 2025-01-21 16:41:58,547 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096/config.json
+0: [INFO|configuration_utils.py:865] 2025-01-21 16:41:58,549 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096/generation_config.json
+0: [INFO|modeling_utils.py:3043] 2025-01-21 16:42:05,335 >> The model is bigger than the maximum size per checkpoint (5GB) and is going to be split in 4 checkpoint shards. You can find where each parameters has been saved in the index located at /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096/model.safetensors.index.json.
+0: [INFO|tokenization_utils_base.py:2646] 2025-01-21 16:42:05,340 >> tokenizer config file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096/tokenizer_config.json
+0: [INFO|tokenization_utils_base.py:2655] 2025-01-21 16:42:05,342 >> Special tokens file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096/special_tokens_map.json
+0: ***** train metrics *****
+0:   epoch                    =        1.0
+0:   total_flos               =       15GF
+0:   train_loss               =     2.0985
+0:   train_runtime            = 0:02:46.79
+0:   train_samples_per_second =      0.971
+0:   train_steps_per_second   =      0.018
+0: [WARNING|2025-01-21 16:42:05] llamafactory.extras.ploting:162 >> No metric loss to plot.
+0: [WARNING|2025-01-21 16:42:05] llamafactory.extras.ploting:162 >> No metric eval_loss to plot.
+0: [WARNING|2025-01-21 16:42:05] llamafactory.extras.ploting:162 >> No metric eval_accuracy to plot.
+0: [INFO|trainer.py:4117] 2025-01-21 16:42:05,556 >> 
+0: ***** Running Evaluation *****
+0: [INFO|trainer.py:4119] 2025-01-21 16:42:05,556 >>   Num examples = 162
+0: [INFO|trainer.py:4122] 2025-01-21 16:42:05,556 >>   Batch size = 8
+0:   0%|          | 0/6 [00:00<?, ?it/s] 33%|███▎      | 2/6 [00:00<00:00, 11.30it/s] 67%|██████▋   | 4/6 [00:00<00:00,  7.00it/s] 83%|████████▎ | 5/6 [00:00<00:00,  6.53it/s]100%|██████████| 6/6 [00:00<00:00,  6.23it/s]100%|██████████| 6/6 [00:00<00:00,  6.70it/s]
+0: ***** eval metrics *****
+0:   epoch                   =        1.0
+0:   eval_loss               =     0.6141
+0:   eval_runtime            = 0:00:01.09
+0:   eval_samples_per_second =    147.658
+0:   eval_steps_per_second   =      5.469
+0: [INFO|modelcard.py:449] 2025-01-21 16:42:06,658 >> Dropping the following result as it does not have all the necessary fields:
+0: {'task': {'name': 'Causal Language Modeling', 'type': 'text-generation'}}
+0: [1;34mwandb[0m: 🚀 View run [33mllama3_sft_dr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096[0m at: [34mhttps://wandb.ai/jincan333/safe_reason/runs/kp3j1amk[0m
+0: [1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250121_163817-kp3j1amk/logs[0m
+0: run_safe_reason/llama3_train_sft.sh: error reading input file: Stale file handle
+srun: error: gh114: task 0: Exited with exit code 2
