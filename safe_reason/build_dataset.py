@@ -37,7 +37,7 @@ specifications = {
 
 if __name__ == "__main__":  
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '2'
     def parse_args():
         parser = argparse.ArgumentParser()
         parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'test'])
@@ -51,6 +51,7 @@ if __name__ == "__main__":
         parser.add_argument('--ratio', type=int, default=0, help='ratio of safe samples for generation')
         parser.add_argument('--cot_rating', type=int, default=5, help='cot rating for generation')
         parser.add_argument('--final_response_rating', type=int, default=1, help='final response rating for generation')
+        parser.add_argument('--final_num_samples', type=int, default=50, help='number of samples for generation')
         args = parser.parse_args()
         return args
 
@@ -241,7 +242,7 @@ if __name__ == "__main__":
         print(f'building cot dataset for beavertails')
         cot_ratings = list(range(args.cot_rating, 6))
         final_response_ratings = list(range(1, args.final_response_rating + 1))
-        class_nums = [50]
+        class_nums = args.final_num_samples
         for cot_rating in cot_ratings:
             for final_response_rating in final_response_ratings:
                 for class_num in class_nums:
@@ -264,18 +265,18 @@ if __name__ == "__main__":
                 safe_dataset = datasets.load_dataset('json', data_files=f'cache/{model_print_name}_safe_cot.json', split='train')
                 safe_dataset = safe_dataset.filter(lambda x: x['safe_cot_rating'] is not None and x['safe_cot_rating'] >= cot_rating and x['safe_final_response_rating'] is not None and x['safe_final_response_rating'] >= final_response_rating)
                 print(f'safe_dataset filtered: {len(safe_dataset)}')
-                print(f'safe_dataset selected: {min(len(full_dataset) * ratio, len(safe_dataset))}')
-                if len(safe_dataset) < len(full_dataset) * ratio:
-                    safe_dataset = concatenate_datasets([safe_dataset] * (len(full_dataset) * ratio // len(safe_dataset)), safe_dataset.select(range(len(full_dataset) * ratio % len(safe_dataset))))
+                print(f'safe_dataset selected: {min(len(full_dataset) * args.ratio, len(safe_dataset))}')
+                if len(safe_dataset) < len(full_dataset) * args.ratio:
+                    safe_dataset = concatenate_datasets([safe_dataset] * (len(full_dataset) * args.ratio // len(safe_dataset)), safe_dataset.select(range(len(full_dataset) * args.ratio % len(safe_dataset))))
                 else:
-                    safe_dataset = safe_dataset.select(range(len(full_dataset) * ratio))
-                safe_dataset = safe_dataset.select(range(min(len(full_dataset) * ratio, len(safe_dataset))))
+                    safe_dataset = safe_dataset.select(range(len(full_dataset) * args.ratio))
+                safe_dataset = safe_dataset.select(range(min(len(full_dataset) * args.ratio, len(safe_dataset))))
                 full_dataset.extend(safe_dataset)
                 records = [dict(row) for row in full_dataset]
-                with open(f'data/beavertails/{model_print_name}_full_cot_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
+                with open(f'data/beavertails/{model_print_name}_full_cot_{cot_rating}_{final_response_rating}_{class_num}_{args.ratio}.json', 'w', encoding='utf-8') as f:
                     json.dump(records, f, indent=4)
 
-                full_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/{model_print_name}_full_cot_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', split='train')
+                full_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/{model_print_name}_full_cot_{cot_rating}_{final_response_rating}_{class_num}_{args.ratio}.json', split='train')
                 full_dataset = full_dataset.rename_columns({
                     'safe_cot_response': 'helpful',
                     'unsafe_cot_response': 'constrained'
@@ -302,7 +303,7 @@ if __name__ == "__main__":
                 #     json.dump(records, f, indent=4)
                 # print(f'sft_full_dataset: {len(sft_full_dataset)}')
                 records = [dict(row) for row in dpo_full_dataset]
-                with open(f'data/beavertails/dpo_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
+                with open(f'data/beavertails/dpo_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{args.ratio}.json', 'w', encoding='utf-8') as f:
                     json.dump(records, f, indent=4)
                 print(f'dpo_full_dataset: {len(dpo_full_dataset)}')
 
@@ -324,6 +325,6 @@ if __name__ == "__main__":
                 sft_preliminary_dataset = sft_preliminary_dataset.shuffle(seed=1234)
                 print('sft_preliminary_dataset', len(sft_preliminary_dataset))
                 records = [dict(row) for row in sft_preliminary_dataset]
-                with open(f'data/beavertails/sft_preliminary_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
+                with open(f'data/beavertails/sft_preliminary_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{args.ratio}.json', 'w', encoding='utf-8') as f:
                     json.dump(records, f, indent=4)
 
