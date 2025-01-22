@@ -37,6 +37,7 @@ specifications = {
 
 if __name__ == "__main__":  
 
+    os.environ['CUDA_VISIBLE_DEVICES'] = '1'
     def parse_args():
         parser = argparse.ArgumentParser()
         parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'test'])
@@ -46,6 +47,10 @@ if __name__ == "__main__":
         parser.add_argument('--temperature', type=float, default=0, help='temperature for generation')
         parser.add_argument('--top_p', type=float, default=0.7, help='top_p for generation')
         parser.add_argument('--max_length', type=int, default=4096, help='max_length for generation')
+        parser.add_argument('--num_samples', type=int, default=500, help='number of samples for generation')
+        parser.add_argument('--ratio', type=int, default=0, help='ratio of safe samples for generation')
+        parser.add_argument('--cot_rating', type=int, default=5, help='cot rating for generation')
+        parser.add_argument('--final_response_rating', type=int, default=1, help='final response rating for generation')
         args = parser.parse_args()
         return args
 
@@ -144,7 +149,7 @@ if __name__ == "__main__":
         for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
             filtered_dataset = unsafe_dataset.filter(lambda x: x['number'] == number)
             filtered_dataset = filtered_dataset.shuffle(seed=1234)
-            filtered_dataset = filtered_dataset.select(range(min(len(filtered_dataset), 300)))
+            filtered_dataset = filtered_dataset.select(range(min(len(filtered_dataset), args.num_samples)))
             print('unsafe', number, len(filtered_dataset))
             cot_specification = specs.cot_specification
             cot_prompt_unsafe_dataset = filtered_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=specifications[x['number']])})
@@ -234,10 +239,9 @@ if __name__ == "__main__":
 
     if args.task == 'beavertails_build_train_dataset':
         print(f'building cot dataset for beavertails')
-        cot_ratings = [4]
-        final_response_ratings = [1, 2]
+        cot_ratings = list(range(args.cot_rating, 6))
+        final_response_ratings = list(range(1, args.final_response_rating + 1))
         class_nums = [50]
-        ratio = 0
         for cot_rating in cot_ratings:
             for final_response_rating in final_response_ratings:
                 for class_num in class_nums:
