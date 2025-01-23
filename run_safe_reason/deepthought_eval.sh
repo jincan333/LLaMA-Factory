@@ -10,20 +10,20 @@ export CUDA_VISIBLE_DEVICES=3
 mkdir -p server_logs
 mkdir -p $log_dir
 
-prefix="safe_eval_reason"
+prefix="original"
 model='deepthought-8b'
 # ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
 model_name_or_path="ruliad/deepthought-8b-llama-v0.01-alpha"
 # ['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20']
 judge_model='gpt-4o-mini-2024-07-18'
 # ['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest']
-# dataset='strongreject'
-dataset='xstest'
+dataset='strongreject'
+# dataset='xstest'
 # ['happy_to_help', 'pair', 'none', 'wikipedia', 'distractors', 'prefix_injection', 'combination_2', 'pap_misrepresentation']
-# jailbreak='none,pair,pap_misrepresentation'
-jailbreak='none'
+jailbreak='none,pair,pap_misrepresentation'
+# jailbreak='none'
 # ['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_simple', 'cot_helpful', 'cot_specification_helpful']
-cot_prompt='cot_instruction_deepthought'
+cot_prompt='none'
 # cot_prompt='none'
 evaluator='strongreject_rubric'
 temperature=0

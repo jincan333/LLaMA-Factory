@@ -93,8 +93,8 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default='llama3_sft_dr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_1_tbs8_ebs8_gas2_lr5e-6_cl4096', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
     parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
-    parser.add_argument('--dataset', type=str, default='xstest', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
-    parser.add_argument('--jailbreak', type=str, default='none', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
+    parser.add_argument('--dataset', type=str, default='hex_phi', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
+    parser.add_argument('--jailbreak', type=str, default='pap_misrepresentation', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
     parser.add_argument('--cot_prompt', type=str, default='none', choices=['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful', 'cot_simple', 'cot_simple_deepthought', 'cot_specification_deepthought', 'cot_instruction_deepthought', 'cot_specification_helpful_deepthought', 'cot_helpful_deepthought'])
     parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
     parser.add_argument('--temperature', type=float, default=0.95)
@@ -107,8 +107,8 @@ def parse_args():
     return args
 
 args = parse_args()
-cuda_visible_devices = os.environ['CUDA_VISIBLE_DEVICES']
-args.gpu = f'cuda:{cuda_visible_devices.split(",")[0]}'
+# cuda_visible_devices = os.environ['CUDA_VISIBLE_DEVICES']
+# args.gpu = f'cuda:{cuda_visible_devices.split(",")[0]}'
 print(json.dumps(vars(args), indent=4))
 
 args.model, model_print_name = get_model(args.model)
