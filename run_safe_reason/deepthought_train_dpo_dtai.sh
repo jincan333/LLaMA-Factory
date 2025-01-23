@@ -5,7 +5,7 @@
 #SBATCH --ntasks-per-node 1
 #SBATCH --cpus-per-task 64
 #SBATCH --gpus-per-node 4
-#SBATCH -J llama3_dpo
+#SBATCH -J deepthought_dpo
 echo "SLURM_JOB_ID: ${SLURM_JOB_ID}"
 echo "Current directory: $(pwd)"
 echo "Job started at $(date)"
@@ -15,14 +15,14 @@ echo "Job started at $(date)"
 
 source ~/.bashrc
 mkdir -p slurm
-prefix="llama3_dpo"
+prefix="deepthought_dpo"
 time srun --label apptainer exec --nv \
   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
   --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
   --bind $HOME:$HOME \
   --bind $MY_PROJECT:$MY_PROJECT \
   $CONTAINER_DIR/pytorch_24.09-py3.sif bash -c \
-  "source ~/.bashrc && bash run_safe_reason/llama3_train_dpo.sh" \
+  "source ~/.bashrc && bash run_safe_reason/deepthought_train_dpo.sh" \
   > slurm/${prefix}_${date_str}_${SLURM_JOB_ID}.log 2>&1 
 
 echo "Job finished at $(date)"
@@ -33,7 +33,7 @@ echo "Job finished at $(date)"
 #   --bind $HOME:$HOME \
 #   --bind $MY_PROJECT:$MY_PROJECT \
 #   $CONTAINER_DIR/pytorch_24.09-py3.sif bash -c \
-#   "source ~/.bashrc && bash run_safe_reason/llama3_train_dpo.sh"
+#   "source ~/.bashrc && bash run_safe_reason/deepthought_train_dpo.sh"
 
  
 
