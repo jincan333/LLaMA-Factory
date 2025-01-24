@@ -15,6 +15,7 @@ export per_device_train_batch_size=4
 export per_device_eval_batch_size=8
 export gradient_accumulation_steps=4
 export learning_rate=1e-6
+export num_train_epochs=6
 export cutoff_len=4096
 export experiment_name=${prefix}_${dataset}_tbs${per_device_train_batch_size}_ebs${per_device_eval_batch_size}_gas${gradient_accumulation_steps}_lr${learning_rate}_cl${cutoff_len}
 export output_dir=${output_dir}/${experiment_name}

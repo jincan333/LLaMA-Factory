@@ -78,9 +78,9 @@ def get_cot_prompt(cot_prompt):
     elif cot_prompt == 'cot_simple_deepthought':
         return specs_deepthought.cot_simple_deepthought, specs_deepthought.overall_deepthought
     elif cot_prompt == 'cot_specification_deepthought':
-        return specs_deepthought.cot_specification_deepthought, specs_deepthought.overall_deepthought   
+        return specs.cot_specification_deepthought, specs.overall
     elif cot_prompt == 'cot_instruction_deepthought':
-        return specs_deepthought.cot_instruction_deepthought, specs_deepthought.overall_deepthought
+        return specs.cot_instruction_deepthought, specs.overall
     elif cot_prompt == 'cot_specification_helpful_deepthought':
         return specs_deepthought.cot_specification_helpful_deepthought, specs_deepthought.overall_helpful_deepthought
     elif cot_prompt == 'cot_helpful_deepthought':
@@ -201,7 +201,7 @@ else:
         responses_outputs = generate_model.generate(jailbroken_dataset['cot_prompt_formatted'], sampling_params)
         responses_dataset = jailbroken_dataset.map(lambda x, idx: {"response": responses_outputs[idx].outputs[0].text}, with_indices=True)
 
-    if args.cot_prompt != 'none':
+    if args.cot_prompt != 'none' or 'sft' in args.model or 'dpo' in args.model:
         pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
         responses_dataset = responses_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
         col_renames = {

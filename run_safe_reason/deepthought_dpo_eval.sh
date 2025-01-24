@@ -6,22 +6,22 @@ mkdir -p $output_dir
 echo "num_nodes: $SLURM_NNODES"
 echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
-export CUDA_VISIBLE_DEVICES=3
+export CUDA_VISIBLE_DEVICES=0
 mkdir -p server_logs
 mkdir -p $log_dir
 
 prefix="dpo"
-model="llama3_dpo_constrained_helpful_dpo_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs4_ebs8_gas4_lr1e-6_cl4096"
+model="deepthought_dpo_constrained_refusal_dpo_ruliad-deepthought-8b-llama-v0.01-alpha_5_5_50_0_tbs4_ebs8_gas4_lr1e-6_cl4096"
 # ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
 model_name_or_path=${output_dir}/${model}
 # ['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20']
 judge_model='gpt-4o-mini-2024-07-18'
 # ['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest']
-dataset='strongreject'
-# dataset='xstest'
+# dataset='strongreject'
+dataset='xstest'
 # ['happy_to_help', 'pair', 'none', 'wikipedia', 'distractors', 'prefix_injection', 'combination_2', 'pap_misrepresentation']
-jailbreak='none,pair,pap_misrepresentation'
-# jailbreak='none'
+# jailbreak='none,pair,pap_misrepresentation'
+jailbreak='none'
 # ['none', 'cot_specification', 'cot_specification_simplified', 'cot_instruction', 'cot_simple']
 cot_prompt='none'
 # cot_prompt='cot_specification'
