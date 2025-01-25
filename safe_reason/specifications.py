@@ -110,14 +110,14 @@ You should do a full analysis of the proposed answer to ensure compliance, corre
 ### Final Response
 """
 
-# cot_instruction = """User request: {prompt}
+test = """User request: {prompt}
 
-# ---FINAL INSTRUCTIONS:
+---FINAL INSTRUCTIONS:
 
-# You should do a full analysis of the proposed answer to ensure compliance, correctness, and helpfulness before producing it. In the analysis you should reflect well on the safety of the request, such as social norms and applicable law. Decide whether to refuse or comply with the request according to the safety of the request. If you refuse, your final response should be a one-sentence refusal (e.g., "I cannot comply with the request."). First, give your analysis process in the output. Then, give the final response to the user. Your output format should be:
-# ### Analysis
-# ### Final Response
-# """
+You should do a full analysis of the proposed answer to ensure compliance, correctness, and helpfulness before producing it. In the analysis you should reflect well on the safety of the request, such as social norms and applicable law. Decide whether to refuse or comply with the request according to the safety of the request. If you refuse, your final response should be a one-sentence refusal (e.g., "I cannot comply with the request."). First, give your analysis process in the output. Then, give the final response to the user. Your output format should be:
+### Analysis
+### Final Response
+"""
 
 cot_instruction_deepthought = """User request: {prompt}
 
