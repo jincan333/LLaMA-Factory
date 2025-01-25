@@ -26,7 +26,8 @@ time srun --label apptainer exec --nv \
   > slurm/${prefix}_${date_str}_${SLURM_JOB_ID}.log 2>&1 
 
 prefix="deepthought_sft_eval"
-experiment_name="deepthought_sft_sr_sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_1_50_1000_0_tbs8_ebs8_gas2_lr5e-6_cl4096"
+dataset="sr_sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_1_50_1000_0"
+experiment_name=deepthought_sft_${dataset}_tbs8_ebs8_gas2_lr5e-6_cl4096
 time srun --label apptainer exec --nv \
   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
   --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \

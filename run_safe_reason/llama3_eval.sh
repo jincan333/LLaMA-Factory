@@ -6,11 +6,11 @@ mkdir -p $output_dir
 echo "num_nodes: $SLURM_NNODES"
 echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
-export CUDA_VISIBLE_DEVICES=2
+export CUDA_VISIBLE_DEVICES=3
 mkdir -p server_logs
 mkdir -p $log_dir
 
-prefix="safe_eval"
+prefix="inference"
 model='llama-3-8b-instruct'
 # ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
 model_name_or_path='meta-llama/Meta-Llama-3-8B-Instruct'
