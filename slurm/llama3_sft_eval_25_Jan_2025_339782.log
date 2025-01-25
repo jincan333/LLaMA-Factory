@@ -1,0 +1,12 @@
+0: num_nodes: 1
+0: SLURM_NODEID: 0
+0: CUDA_VISIBLE_DEVICES: 0,1,2,3
+0: evaldataset: bbh_zeroshot
+0: The following values were not passed to `accelerate launch` and had defaults used instead:
+0: 	`--num_processes` was set to a value of `4`
+0: 		More than one GPU was found, enabling multi-GPU training.
+0: 		If this was unintended please pass in `--num_processes=1`.
+0: 	`--num_machines` was set to a value of `1`
+0: 	`--mixed_precision` was set to a value of `'no'`
+0: 	`--dynamo_backend` was set to a value of `'no'`
+0: To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.

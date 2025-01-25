@@ -1,0 +1,2 @@
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+0: slurmstepd: error: *** STEP 339776.0 ON gh037 CANCELLED AT 2025-01-25T15:21:54 ***

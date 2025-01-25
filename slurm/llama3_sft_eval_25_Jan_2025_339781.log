@@ -1,0 +1,167 @@
+0: num_nodes: 1
+0: SLURM_NODEID: 0
+0: CUDA_VISIBLE_DEVICES: 0,1,2,3
+0: evaldataset: bbh_zeroshot
+0: The following values were not passed to `accelerate launch` and had defaults used instead:
+0: 	`--num_processes` was set to a value of `4`
+0: 		More than one GPU was found, enabling multi-GPU training.
+0: 		If this was unintended please pass in `--num_processes=1`.
+0: 	`--num_machines` was set to a value of `1`
+0: 	`--mixed_precision` was set to a value of `'no'`
+0: 	`--dynamo_backend` was set to a value of `'no'`
+0: To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+0: 2025-01-25:15:35:58,931 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:15:35:58,931 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:15:35:58,931 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:15:35:58,931 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:15:36:09,032 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:15:36:09,032 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:15:36:09,032 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:15:36:09,032 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:15:36:09,039 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:15:36:09,039 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:15:36:09,039 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:15:36:09,039 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:15:36:09,039 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:15:36:09,039 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:15:36:09,039 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:15:36:09,039 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:15:36:09,039 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:15:36:09,039 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:15:36:09,039 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:15:36:09,039 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:15:36:17,005 INFO     [huggingface.py:369] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+0: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]2025-01-25:15:36:18,012 INFO     [huggingface.py:369] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:1'}
+0: 2025-01-25:15:36:18,014 INFO     [huggingface.py:369] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:2'}
+0: 2025-01-25:15:36:18,019 INFO     [huggingface.py:369] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:3'}
+0: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.91s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.98s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:06,  2.04s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.17s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.31s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.95s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.97s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.99s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:09<00:03,  3.28s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:09<00:03,  3.30s/it]Lo
+0: ading checkpoint shards:  75%|███████▌  | 3/4 [00:09<00:03,  3.30s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:10<00:03,  3.61s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.13s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.40s/it]
+0: [2025-01-25 15:36:27,854] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.16s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.44s/it]
+0: Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.18s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.45s/it]
+0: [2025-01-25 15:36:28,006] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Loading checkpoint shards: 100%|██████████| 4/4 [00:10<00:00,  2.31s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:10<00:00,  2.71s/it]
+0: [2025-01-25 15:36:28,046] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: [2025-01-25 15:36:28,072] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: 2025-01-25:15:36:29,869 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:29,869 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:29,905 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:29,905 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:29,928 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:29,928 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:29,991 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:29,991 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,417 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,417 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,445 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,445 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,450 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,450 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,571 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,571 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,932 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,932 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,978 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:30,978 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,156 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,156 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,223 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,223 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,497 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,497 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,548 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,548 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,668 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,668 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,925 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:31,925 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,225 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,225 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,254 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,254 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,306 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,306 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,456 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,456 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,779 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,779 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,810 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,810 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,878 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:32,878 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,332 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,332 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,338 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,338 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,381 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,381 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,438 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,438 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,836 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,836 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,899 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,899 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,943 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:33,943 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:34,060 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:34,060 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:34,475 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:34,475 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:34,507 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:34,507 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:34,536 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:34,536 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:34,605 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:34,605 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,024 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,024 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,031 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,031 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,036 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,036 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,174 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,174 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,532 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,533 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,552 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,552 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,578 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,578 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,726 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:35,726 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,043 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,043 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,092 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,092 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,139 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,139 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,265 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,265 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,575 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,575 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,643 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,643 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,646 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,646 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,845 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:36,845 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,028 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,028 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,034 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,034 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,097 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,097 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,232 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,232 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,464 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,464 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,568 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,568 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,618 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,618 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,745 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:15:36:37,746 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
