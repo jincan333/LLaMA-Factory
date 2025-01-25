@@ -7,42 +7,24 @@ echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 export MASTER_ADDR=$HOSTNAME
 export MASTER_PORT=29501
-export OMP_NUM_THREADS=8
 
-prefix="llama3_sft"
-export dataset="sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_1000_0"
-export per_device_train_batch_size=8
-export per_device_eval_batch_size=8
-export gradient_accumulation_steps=2
-export learning_rate=5e-6
-export cutoff_len=4096
-export experiment_name=${prefix}_${dataset}_tbs${per_device_train_batch_size}_ebs${per_device_eval_batch_size}_gas${gradient_accumulation_steps}_lr${learning_rate}_cl${cutoff_len}
-export output_dir=${output_dir}/${experiment_name}
-export WANDB_PROJECT=${current_project}
+experiment_name=$1
+output_dir=${output_dir}/${experiment_name}
 
-mkdir -p $output_dir
-echo "output_dir: $output_dir"
-mkdir -p logs
-
-envsubst < examples/train_full/llama3_full_sft.yaml > safe_reason_logs/${experiment_name}.yaml
-
-FORCE_TORCHRUN=1 NNODES=1 llamafactory-cli train safe_reason_logs/${experiment_name}.yaml
-#  > logs/${experiment_name}.log 2>&1
-# suffix="eval"
-# dataset="bbh_zeroshot"
-# n_shot=0
-# batch_size=128
-# echo "evaldataset: $dataset"
-# accelerate launch -m lm_eval --model hf \
-#     --model_args pretrained=${output_dir},dtype=auto \
-#     --tasks $dataset \
-#     --num_fewshot $n_shot \
-#     --gen_kwargs temperature=0 \
-#     --output_path ${output_dir}/${dataset} \
-#     --log_samples \
-#     --write_out \
-#     --apply_chat_template \
-#     --batch_size $batch_size
+dataset="bbh_zeroshot"
+n_shot=0
+batch_size=128
+echo "evaldataset: $dataset"
+accelerate launch -m lm_eval --model hf \
+    --model_args pretrained=${output_dir},dtype=auto \
+    --tasks $dataset \
+    --num_fewshot $n_shot \
+    --gen_kwargs temperature=0 \
+    --output_path ${output_dir}/${dataset} \
+    --log_samples \
+    --write_out \
+    --apply_chat_template \
+    --batch_size $batch_size
 # dataset="gsm8k"
 # n_shot=5
 # batch_size=128

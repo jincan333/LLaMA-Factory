@@ -25,6 +25,17 @@ time srun --label apptainer exec --nv \
   "source ~/.bashrc && bash run_safe_reason/llama3_train_sft.sh" \
   > slurm/${prefix}_${date_str}_${SLURM_JOB_ID}.log 2>&1 
 
+prefix="llama3_sft_eval"
+experiment_name="llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096"
+time srun --label apptainer exec --nv \
+  --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
+  --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
+  --bind $HOME:$HOME \
+  --bind $MY_PROJECT:$MY_PROJECT \
+  $CONTAINER_DIR/pytorch_24.09-py3.sif bash -c \
+  "source ~/.bashrc && bash run_safe_reason/train_eval.sh ${experiment_name}" \
+  > slurm/${prefix}_${date_str}_${SLURM_JOB_ID}.log 2>&1
+
 echo "Job finished at $(date)"
 
 # apptainer exec --nv \

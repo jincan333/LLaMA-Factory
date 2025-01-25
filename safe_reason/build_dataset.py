@@ -44,7 +44,7 @@ if __name__ == "__main__":
         parser.add_argument('--model', type=str, default='deepthought-8b', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
         parser.add_argument('--judge_model', type=str, default='gpt-4o-2024-11-20', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, o1-2024-12-17')
         parser.add_argument('--jailbreak', type=str, default='pap_misrepresentation', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
-        parser.add_argument('--temperature', type=float, default=0, help='temperature for generation')
+        parser.add_argument('--temperature', type=float, default=0.95, help='temperature for generation')
         parser.add_argument('--top_p', type=float, default=0.7, help='top_p for generation')
         parser.add_argument('--max_length', type=int, default=4096, help='max_length for generation')
         parser.add_argument('--num_samples', type=int, default=500, help='number of samples for generation')

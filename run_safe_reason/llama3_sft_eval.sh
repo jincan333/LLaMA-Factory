@@ -10,7 +10,7 @@ export CUDA_VISIBLE_DEVICES=2
 mkdir -p server_logs
 mkdir -p $log_dir
 
-prefix="sft1"
+prefix="pre"
 model="llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0_tbs8_ebs8_gas2_lr5e-6_cl4096"
 # ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
 model_name_or_path=${output_dir}/${model}
