@@ -10,7 +10,7 @@ export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
-export dataset="constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0"
+export dataset="constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0"
 export per_device_train_batch_size=8
 export per_device_eval_batch_size=8
 export gradient_accumulation_steps=2
@@ -42,7 +42,6 @@ accelerate launch -m lm_eval --model hf \
     --log_samples \
     --write_out \
     --apply_chat_template \
-    --wandb_args project=$current_project,name=${experiment_name}_${dataset}_${suffix} \
     --batch_size $batch_size
 # dataset="gsm8k"
 # n_shot=5

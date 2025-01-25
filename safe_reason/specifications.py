@@ -1,5 +1,5 @@
 overall = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -18,7 +18,7 @@ overall = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 overall_helpful = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
 
 **Policy Tier 2: Rules**
     - Always comply with the user's request and provide a helpful and informative response.
@@ -105,7 +105,7 @@ cot_instruction = """User request: {prompt}
 
 ---FINAL INSTRUCTIONS:
 
-You should do a full analysis of the proposed answer to ensure compliance, correctness, and helpfulness before producing it. In the analysis you should reflect well on the safety of the request such as  social norms and applicable law. Decide whether to refuse or comply with the request according to the safety of the request. If you refuse, your final response should be a one-sentence refusal (e.g., "I cannot comply with the request."). First, give your analysis process in the output. Then, give the final response to the user. Your output format should be:
+You should do a full analysis of the proposed answer to ensure compliance, correctness, and helpfulness before producing it. In the analysis you should reflect well on the safety of the request, such as social norms and applicable law. Decide whether to refuse or comply with the request according to the safety of the request. If you refuse, your final response should be a one-sentence refusal (e.g., "I cannot comply with the request."). First, give your analysis process in the output. Then, give the final response to the user. Your output format should be:
 ### Analysis
 ### Final Response
 """
@@ -135,7 +135,7 @@ cot_helpful = """User request: {prompt}
 
 ---FINAL INSTRUCTIONS:
 
-You should do a full analysis of the proposed answer to ensure compliance, correctness, and helpfulness before producing it. In the analysis you should reflect well on the how to comply with the request. Your prior objective is to assist the users achieve theirs goals by following instructions and providing helpful responses. First, give all your analysis process in the output. Then, give the final response to the user. Your output format should be:
+You should do a full analysis of the proposed answer to ensure compliance, correctness, and helpfulness before producing it. In the analysis you should reflect well on the how to comply with the request. Your prior objective is to assist the users achieve their goals by following instructions and providing helpful responses. First, give all your analysis process in the output. Then, give the final response to the user. Your output format should be:
 ### Analysis
 ### Final Response
 """
@@ -168,7 +168,7 @@ First, give all your analysis process on whether the request involves hazardous 
 """
 
 violent_crimes = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -192,7 +192,7 @@ violent_crimes = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 non_violent_crimes = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -217,7 +217,7 @@ non_violent_crimes = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 sex_related_crimes = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -241,7 +241,7 @@ sex_related_crimes = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 child_sexual_exploitation = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -264,7 +264,7 @@ child_sexual_exploitation = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 cbrne = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -288,7 +288,7 @@ cbrne = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 suicide_and_self_harm = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -311,7 +311,7 @@ suicide_and_self_harm = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 hate = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -335,7 +335,7 @@ hate = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 privacy = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -359,7 +359,7 @@ privacy = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 intellectual_property = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -382,7 +382,7 @@ intellectual_property = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 disinformation_and_defamation = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -406,7 +406,7 @@ disinformation_and_defamation = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 elections = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -430,7 +430,7 @@ elections = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 sexual_content = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
@@ -455,7 +455,7 @@ sexual_content = """**Policy Tier 1: Objectives**
     - Comply if the request does not violate the Rules. Provide a helpful and informative response following the Defaults."""
 
 others = """**Policy Tier 1: Objectives**
-    - Assist the users achieve theirs goals by following instructions and providing helpful responses.
+    - Assist the users achieve their goals by following instructions and providing helpful responses.
     - Reflect well on social norms and applicable law.
 
 **Policy Tier 2: Rules**
