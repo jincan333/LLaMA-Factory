@@ -1,0 +1,21 @@
+{
+    "model": "/research/cbim/medical/cj574/safe_reason/llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096",
+    "judge_model": "gpt-4o-mini-2024-07-18",
+    "dataset": "strongreject",
+    "jailbreak": "none,pair,pap_misrepresentation",
+    "cot_prompt": "none",
+    "evaluator": "strongreject_rubric",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_length": 4096,
+    "generate": true,
+    "evaluate": true,
+    "gpu": "cuda:0"
+}
+loading dataset strongreject and applying jailbreak none,pair,pap_misrepresentation
+dict_keys(['auto_payload_splitting', 'auto_obfuscation', 'rot_13', 'disemvowel', 'pair', 'pap_evidence_based_persuasion', 'pap_expert_endorsement', 'pap_misrepresentation', 'pap_authority_endorsement', 'pap_logical_appeal', 'translation_hmong', 'translation_scotts_gaelic', 'translation_guarani', 'translation_zulu', 'gcg_transfer_harmbench', 'gcg_transfer_universal_attacks', 'combination_3', 'combination_2', 'few_shot_json', 'dev_mode_v2', 'dev_mode_with_rant', 'wikipedia_with_title', 'distractors', 'wikipedia', 'style_injection_json', 'style_injection_short', 'refusal_suppression', 'prefix_injection', 'distractors_negated', 'poems', 'base64', 'base64_raw', 'base64_input_only', 'base64_output_only', 'none', 'evil_confidant', 'aim'])
+INFO 01-25 20:15:23 config.py:510] This model supports multiple tasks: {'generate', 'score', 'classify', 'reward', 'embed'}. Defaulting to 'generate'.
+INFO 01-25 20:15:23 llm_engine.py:234] Initializing an LLM engine (v0.6.6.post1) with config: model='/research/cbim/medical/cj574/safe_reason/llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096', speculative_config=None, tokenizer='/research/cbim/medical/cj574/safe_reason/llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='xgrammar'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/research/cbim/medical/cj574/safe_reason/llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=False, chunked_prefill_enabled=False, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"candidate_compile_sizes":[],"compile_sizes":[],"capture_sizes":[64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":64}, use_cached_outputs=False, 
+INFO 01-25 20:15:24 selector.py:120] Using Flash Attention backend.
+INFO 01-25 20:15:25 model_runner.py:1094] Starting to load model /research/cbim/medical/cj574/safe_reason/llama3_sft_constrained_answer_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_1_100_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
