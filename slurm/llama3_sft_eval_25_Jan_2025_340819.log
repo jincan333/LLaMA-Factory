@@ -1,0 +1,1249 @@
+0: num_nodes: 1
+0: SLURM_NODEID: 0
+0: CUDA_VISIBLE_DEVICES: 0,1,2,3
+0: evaldataset: bbh_zeroshot
+0: The following values were not passed to `accelerate launch` and had defaults used instead:
+0: 	`--num_processes` was set to a value of `4`
+0: 		More than one GPU was found, enabling multi-GPU training.
+0: 		If this was unintended please pass in `--num_processes=1`.
+0: 	`--num_machines` was set to a value of `1`
+0: 	`--mixed_precision` was set to a value of `'no'`
+0: 	`--dynamo_backend` was set to a value of `'no'`
+0: To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+0: 2025-01-25:19:17:50,826 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:19:17:50,826 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:19:17:50,826 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:19:17:50,827 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:19:18:00,796 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:19:18:00,796 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:19:18:00,796 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:19:18:00,796 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:19:18:00,802 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:19:18:00,802 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:19:18:00,802 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:19:18:00,802 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:19:18:00,802 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:19:18:00,802 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:19:18:00,802 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_50_1000_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:19:18:00,802 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_50_1000_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:19:18:00,802 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:19:18:00,802 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:19:18:00,802 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_50_1000_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:19:18:00,802 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_50_1000_tbs8_ebs8_gas2_lr5e-6_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:19:18:08,522 INFO     [huggingface.py:369] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:0'}
+0: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]2025-01-25:19:18:09,550 INFO     [huggingface.py:369] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:2'}
+0: 2025-01-25:19:18:09,602 INFO     [huggingface.py:369] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:3'}
+0: 2025-01-25:19:18:09,603 INFO     [huggingface.py:369] Model parallel was set to False, max memory was not set, and device map was set to {'': 'cuda:1'}
+0: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:07,  2.48s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:11,  3.71s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:08,  2.72s/it]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:08,  2.74s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.13s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.18s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:07<00:07,  3.63s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.22s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:09<00:03,  3.15s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:10<00:03,  3.41s/it]Lo
+0: ading checkpoint shards:  75%|███████▌  | 3/4 [00:09<00:03,  3.20s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.39s/it]
+0: [2025-01-25 19:18:19,381] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: Loading checkpoint shards:  75%|███████▌  | 3/4 [00:09<00:03,  3.37s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:10<00:00,  2.25s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:10<00:00,  2.72s/it]
+0: [2025-01-25 19:18:19,657] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.13s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.49s/it]
+0: [2025-01-25 19:18:19,726] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: Loading checkpoint shards: 100%|██████████| 4/4 [00:10<00:00,  2.22s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:10<00:00,  2.57s/it]
+0: [2025-01-25 19:18:20,097] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: 2025-01-25:19:18:21,338 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:21,339 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:21,608 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:21,608 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:21,866 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:21,866 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,126 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,126 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,169 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,169 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,381 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,381 WARNING  [task.py:325] [Task: bbh_zeroshot_word_sorting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,448 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,448 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,762 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,762 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,799 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:22,799 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,113 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,113 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,220 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,220 WARNING  [task.py:325] [Task: bbh_zeroshot_web_of_lies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,311 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,311 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,392 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,392 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,683 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,683 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,798 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,799 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,849 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,849 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,960 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:23,961 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:24,406 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:24,406 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:24,440 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:24,440 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:24,469 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:24,469 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:24,502 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:24,502 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:24,971 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:24,971 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,011 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,011 WARNING  [task.py:325] [Task: bbh_zeroshot_tracking_shuffled_objects_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,043 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,043 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,050 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,050 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,552 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,552 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,589 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,590 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,604 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,605 WARNING  [task.py:325] [Task: bbh_zeroshot_temporal_sequences] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,624 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:25,624 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,152 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,152 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,188 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,188 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,191 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,191 WARNING  [task.py:325] [Task: bbh_zeroshot_sports_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,239 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,239 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,766 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,766 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,769 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,769 WARNING  [task.py:325] [Task: bbh_zeroshot_snarks] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,821 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,821 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,846 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:26,846 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,291 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,291 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,296 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,296 WARNING  [task.py:325] [Task: bbh_zeroshot_salient_translation_error_detection] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,352 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,352 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,393 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,393 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,803 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,803 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,870 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,870 WARNING  [task.py:325] [Task: bbh_zeroshot_ruin_names] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,920 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,920 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,953 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:27,953 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,453 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,453 WARNING  [task.py:325] [Task: bbh_zeroshot_reasoning_about_colored_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,473 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,473 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,482 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,482 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,591 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,591 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,906 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,906 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,989 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:28,989 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,017 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,017 WARNING  [task.py:325] [Task: bbh_zeroshot_penguins_in_a_table] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,031 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,032 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,457 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,458 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,504 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,504 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,546 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,546 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,572 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,572 WARNING  [task.py:325] [Task: bbh_zeroshot_object_counting] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,983 WARNING  [task.py:325] [Task: bbh_zeroshot_movie_recommendation] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,983 WARNING  [task.py:325] [Task: bbh_zeroshot_movie_recommendation] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,997 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:29,997 WARNING  [task.py:325] [Task: bbh_zeroshot_navigate] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,006 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,007 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,078 WARNING  [task.py:325] [Task: bbh_zeroshot_movie_recommendation] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,078 WARNING  [task.py:325] [Task: bbh_zeroshot_movie_recommendation] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,569 WARNING  [task.py:325] [Task: bbh_zeroshot_movie_recommendation] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,569 WARNING  [task.py:325] [Task: bbh_zeroshot_movie_recommendation] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,610 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,610 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,663 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,663 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,742 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:30,742 WARNING  [task.py:325] [Task: bbh_zeroshot_multistep_arithmetic_two] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,137 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,137 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,187 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,187 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,219 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,219 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,335 WARNING  [task.py:325] [Task: bbh_zeroshot_movie_recommendation] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,335 WARNING  [task.py:325] [Task: bbh_zeroshot_movie_recommendation] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,679 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,680 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,742 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,742 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,778 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,778 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,846 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:31,846 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_three_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,296 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,296 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,305 WARNING  [task.py:325] [Task: bbh_zeroshot_hyperbaton] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,305 WARNING  [task.py:325] [Task: bbh_zeroshot_hyperbaton] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,370 WARNING  [task.py:325] [Task: bbh_zeroshot_hyperbaton] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,370 WARNING  [task.py:325] [Task: bbh_zeroshot_hyperbaton] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,453 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,453 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_seven_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,859 WARNING  [task.py:325] [Task: bbh_zeroshot_geometric_shapes] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,859 WARNING  [task.py:325] [Task: bbh_zeroshot_geometric_shapes] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,865 WARNING  [task.py:325] [Task: bbh_zeroshot_hyperbaton] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,865 WARNING  [task.py:325] [Task: bbh_zeroshot_hyperbaton] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,986 WARNING  [task.py:325] [Task: bbh_zeroshot_geometric_shapes] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:32,986 WARNING  [task.py:325] [Task: bbh_zeroshot_geometric_shapes] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,000 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,000 WARNING  [task.py:325] [Task: bbh_zeroshot_logical_deduction_five_objects] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,253 WARNING  [task.py:325] [Task: bbh_zeroshot_formal_fallacies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,253 WARNING  [task.py:325] [Task: bbh_zeroshot_formal_fallacies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,347 WARNING  [task.py:325] [Task: bbh_zeroshot_formal_fallacies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,347 WARNING  [task.py:325] [Task: bbh_zeroshot_formal_fallacies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,384 WARNING  [task.py:325] [Task: bbh_zeroshot_geometric_shapes] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,384 WARNING  [task.py:325] [Task: bbh_zeroshot_geometric_shapes] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,579 WARNING  [task.py:325] [Task: bbh_zeroshot_hyperbaton] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,579 WARNING  [task.py:325] [Task: bbh_zeroshot_hyperbaton] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,667 WARNING  [task.py:325] [Task: bbh_zeroshot_dyck_languages] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,667 WARNING  [task.py:325] [Task: bbh_zeroshot_dyck_languages] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,770 WARNING  [task.py:325] [Task: bbh_zeroshot_dyck_languages] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,770 WARNING  [task.py:325] [Task: bbh_zeroshot_dyck_languages] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,888 WARNING  [task.py:325] [Task: bbh_zeroshot_formal_fallacies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:33,888 WARNING  [task.py:325] [Task: bbh_zeroshot_formal_fallacies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,135 WARNING  [task.py:325] [Task: bbh_zeroshot_geometric_shapes] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,135 WARNING  [task.py:325] [Task: bbh_zeroshot_geometric_shapes] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,206 WARNING  [task.py:325] [Task: bbh_zeroshot_disambiguation_qa] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,206 WARNING  [task.py:325] [Task: bbh_zeroshot_disambiguation_qa] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,388 WARNING  [task.py:325] [Task: bbh_zeroshot_disambiguation_qa] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,388 WARNING  [task.py:325] [Task: bbh_zeroshot_disambiguation_qa] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,425 WARNING  [task.py:325] [Task: bbh_zeroshot_dyck_languages] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,425 WARNING  [task.py:325] [Task: bbh_zeroshot_dyck_languages] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,735 WARNING  [task.py:325] [Task: bbh_zeroshot_formal_fallacies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,735 WARNING  [task.py:325] [Task: bbh_zeroshot_formal_fallacies] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,832 WARNING  [task.py:325] [Task: bbh_zeroshot_date_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,832 WARNING  [task.py:325] [Task: bbh_zeroshot_date_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,952 WARNING  [task.py:325] [Task: bbh_zeroshot_disambiguation_qa] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,952 WARNING  [task.py:325] [Task: bbh_zeroshot_disambiguation_qa] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,972 WARNING  [task.py:325] [Task: bbh_zeroshot_date_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:34,972 WARNING  [task.py:325] [Task: bbh_zeroshot_date_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,123 WARNING  [task.py:325] [Task: bbh_zeroshot_dyck_languages] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,123 WARNING  [task.py:325] [Task: bbh_zeroshot_dyck_languages] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,217 WARNING  [task.py:325] [Task: bbh_zeroshot_causal_judgement] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,217 WARNING  [task.py:325] [Task: bbh_zeroshot_causal_judgement] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,369 WARNING  [task.py:325] [Task: bbh_zeroshot_causal_judgement] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,369 WARNING  [task.py:325] [Task: bbh_zeroshot_causal_judgement] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,457 WARNING  [task.py:325] [Task: bbh_zeroshot_date_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,457 WARNING  [task.py:325] [Task: bbh_zeroshot_date_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,656 WARNING  [task.py:325] [Task: bbh_zeroshot_disambiguation_qa] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,656 WARNING  [task.py:325] [Task: bbh_zeroshot_disambiguation_qa] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,687 WARNING  [task.py:325] [Task: bbh_zeroshot_boolean_expressions] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,688 WARNING  [task.py:325] [Task: bbh_zeroshot_boolean_expressions] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_boolean_expressions in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_causal_judgement in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_date_understanding in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_disambiguation_qa in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_dyck_languages in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_formal_fallacies in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_geometric_shapes in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_hyperbaton in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_five_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_seven_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_three_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_movie_recommendation in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_multistep_arithmetic_two in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_navigate in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_object_counting in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_penguins_in_a_table in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_reasoning_about_colored_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_ruin_names in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_salient_translation_error_detection in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_snarks in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,691 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_sports_understanding in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,692 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_temporal_sequences in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,692 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_five_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,692 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_seven_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,692 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_three_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,692 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_web_of_lies in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,692 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_word_sorting in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,692 WARNING  [evaluator.py:406] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+0: 2025-01-25:19:18:35,695 INFO     [task.py:415] Building contexts for bbh_zeroshot_boolean_expressions on rank 1...
+0:   0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2342.54it/s]
+0: 2025-01-25:19:18:35,736 WARNING  [task.py:325] [Task: bbh_zeroshot_boolean_expressions] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,736 WARNING  [task.py:325] [Task: bbh_zeroshot_boolean_expressions] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_boolean_expressions in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_causal_judgement in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_date_understanding in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_disambiguation_qa in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_dyck_languages in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_formal_fallacies in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_geometric_shapes in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_hyperbaton in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_five_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_seven_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_three_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_movie_recommendation in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_multistep_arithmetic_two in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_navigate in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_object_counting in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_penguins_in_a_table in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_reasoning_about_colored_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_ruin_names in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_salient_translation_error_detection in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_snarks in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_sports_understanding in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_temporal_sequences in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_five_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_seven_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_three_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_web_of_lies in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,740 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_word_sorting in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:35,741 WARNING  [evaluator.py:406] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+0: 2025-01-25:19:18:35,744 INFO     [task.py:415] Building contexts for bbh_zeroshot_boolean_expressions on rank 0...
+0:   0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2286.81it/s]
+0: 2025-01-25:19:18:35,774 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_boolean_expressions,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Evaluate the result of a random Boolean expression.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: not ( True ) and ( True ) is
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: False
+0: (end of target on previous line)
+0: 2025-01-25:19:18:35,775 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'not ( True ) and ( True ) is', 'target': 'False'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nEvaluate the result of a random Boolean expression.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: not ( True ) and ( True ) is\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_boolean_expressions', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_boolean_expressions', doc_id=0, repeats=1)
+0: 2025-01-25:19:18:35,829 WARNING  [task.py:325] [Task: bbh_zeroshot_causal_judgement] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:35,830 WARNING  [task.py:325] [Task: bbh_zeroshot_causal_judgement] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:36,195 WARNING  [task.py:325] [Task: bbh_zeroshot_date_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:36,195 WARNING  [task.py:325] [Task: bbh_zeroshot_date_understanding] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:36,201 WARNING  [task.py:325] [Task: bbh_zeroshot_boolean_expressions] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:36,201 WARNING  [task.py:325] [Task: bbh_zeroshot_boolean_expressions] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_boolean_expressions in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_causal_judgement in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_date_understanding in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_disambiguation_qa in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_dyck_languages in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_formal_fallacies in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_geometric_shapes in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_hyperbaton in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_five_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_seven_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_three_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_movie_recommendation in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_multistep_arithmetic_two in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_navigate in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_object_counting in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,205 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_penguins_in_a_table in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_reasoning_about_colored_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_ruin_names in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_salient_translation_error_detection in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_snarks in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_sports_understanding in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_temporal_sequences in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_five_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_seven_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_three_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_web_of_lies in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,206 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_word_sorting in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,207 WARNING  [evaluator.py:406] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+0: 2025-01-25:19:18:36,209 INFO     [task.py:415] Building contexts for bbh_zeroshot_boolean_expressions on rank 2...
+0:   0%|          | 0/62 [00:00<?, ?it/s]100%|██████████| 62/62 [00:00<00:00, 2288.16it/s]
+0: 2025-01-25:19:18:36,555 WARNING  [task.py:325] [Task: bbh_zeroshot_causal_judgement] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:36,555 WARNING  [task.py:325] [Task: bbh_zeroshot_causal_judgement] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:36,924 WARNING  [task.py:325] [Task: bbh_zeroshot_boolean_expressions] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:36,924 WARNING  [task.py:325] [Task: bbh_zeroshot_boolean_expressions] has_training_docs and has_validation_docs are False, using test_docs as fewshot_docs but this is not recommended.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_boolean_expressions in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_causal_judgement in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_date_understanding in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_disambiguation_qa in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_dyck_languages in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_formal_fallacies in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_geometric_shapes in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_hyperbaton in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_five_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_seven_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_logical_deduction_three_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_movie_recommendation in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_multistep_arithmetic_two in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_navigate in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_object_counting in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_penguins_in_a_table in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_reasoning_about_colored_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_ruin_names in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_salient_translation_error_detection in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_snarks in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_sports_understanding in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_temporal_sequences in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_five_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_seven_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_tracking_shuffled_objects_three_objects in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,928 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_web_of_lies in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,929 INFO     [evaluator.py:266] num_fewshot has been set to 0 for bbh_zeroshot_word_sorting in its config. Manual configuration will be ignored.
+0: 2025-01-25:19:18:36,929 WARNING  [evaluator.py:406] Chat template formatting change affects loglikelihood and multiple-choice tasks. See docs/chat-template-readme.md for details.
+0: 2025-01-25:19:18:36,932 INFO     [task.py:415] Building contexts for bbh_zeroshot_boolean_expressions on rank 3...
+0:   0%|          | 0/62 [00:00<?, ?it/s]100%|██████████| 62/62 [00:00<00:00, 2247.15it/s]
+0: 2025-01-25:19:18:40,279 INFO     [task.py:415] Building contexts for bbh_zeroshot_causal_judgement on rank 1...
+0: 2025-01-25:19:18:40,279 INFO     [task.py:415] Building contexts for bbh_zeroshot_causal_judgement on rank 0...
+0: 2025-01-25:19:18:40,279 INFO     [task.py:415] Building contexts for bbh_zeroshot_causal_judgement on rank 3...
+0: 2025-01-25:19:18:40,279 INFO     [task.py:415] Building contexts for bbh_zeroshot_causal_judgement on rank 2...
+0:   0%|          | 0/47 [00:00<?, ?it/s]  0%|          | 0/47 [00:00<?, ?it/s]  0%|          | 0/47 [00:00<?, ?it/s]  0%|          | 0/46 [00:00<?, ?it/s]100%|██████████| 47/47 [00:00<00:00, 2674.36it/s]
+0: 2025-01-25:19:18:40,300 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_causal_judgement,output_type=generate_until,num_fewshot=0,num_samples=187); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Answer questions about causal attribution.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: How would a typical person answer each of the following questions about causation?
+0: A machine is set up in such a way that it will short circuit if both the black wire and the red wire touch the battery at the same time. The machine will not short circuit if just one of these wires touches the battery. The black wire is designated as the one that is supposed to touch the battery, while the red wire is supposed to remain in some other part of the machine. One day, the black wire and the red wire both end up touching the battery at the same time. There is a short circuit. Did the black wire cause the short circuit?
+0: Options:
+0: - Yes
+0: - No
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: No
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,300 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'How would a typical person answer each of the following questions about causation?\nA machine is set up in such a way that it will short circuit if both the black wire and the red wire touch the battery at the same time. The machine will not short circuit if just one of these wires touches the battery. The black wire is designated as the one that is supposed to touch the battery, while the red wire is supposed to remain in some other part of the machine. One day, the black wire and the red wire both end up touching the battery at the same time. There is a short circuit. Did the black wire cause the short circuit?\nOptions:\n- Yes\n- No', 'target': 'No'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nAnswer questions about causal attribution.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: How would a typical person answer each of the following questions
+0:  about causation?\nA machine is set up in such a way that it will short circuit if both the black wire and the red wire touch the battery at the same time. The machine will not short circuit if just one of these wires touches the battery. The black wire is designated as the one that is supposed to touch the battery, while the red wire is supposed to remain in some other part of the machine. One day, the black wire and the red wire both end up touching the battery at the same time. There is a short circuit. Did the black wire cause the short circuit?\nOptions:\n- Yes\n- No\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_causal_judgement', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_causal_judgement', doc_id=0, repeats=1)
+0: 100%|██████████| 47/47 [00:00<00:00, 2624.02it/s]
+0: 100%|██████████| 47/47 [00:00<00:00, 2578.61it/s]
+0: 100%|██████████| 46/46 [00:00<00:00, 2424.82it/s]
+0: 2025-01-25:19:18:40,302 INFO     [task.py:415] Building contexts for bbh_zeroshot_date_understanding on rank 3...
+0: 2025-01-25:19:18:40,302 INFO     [task.py:415] Building contexts for bbh_zeroshot_date_understanding on rank 0...
+0: 2025-01-25:19:18:40,302 INFO     [task.py:415] Building contexts for bbh_zeroshot_date_understanding on rank 1...
+0: 2025-01-25:19:18:40,302 INFO     [task.py:415] Building contexts for bbh_zeroshot_date_understanding on rank 2...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2975.86it/s]
+0: 2025-01-25:19:18:40,326 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_date_understanding,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Infer the date from context.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Today is Christmas Eve of 1937. What is the date tomorrow in MM/DD/YYYY?
+0: Options:
+0: (A) 12/11/1937
+0: (B) 12/25/1937
+0: (C) 01/04/1938
+0: (D) 12/04/1937
+0: (E) 12/25/2006
+0: (F) 07/25/1937
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (B)
+0: (end of target on previous line)
+0: 100%|██████████| 62/62 [00:00<00:00, 2890.12it/s]
+0: 2025-01-25:19:18:40,326 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Today is Christmas Eve of 1937. What is the date tomorrow in MM/DD/YYYY?\nOptions:\n(A) 12/11/1937\n(B) 12/25/1937\n(C) 01/04/1938\n(D) 12/04/1937\n(E) 12/25/2006\n(F) 07/25/1937', 'target': '(B)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nInfer the date from context.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Today is Christmas Eve of 1937. What is the date tomorrow in MM/DD/YYYY?\nOptions:\n(A) 12/11/1937\n(B) 12/25/1937\n(C) 01/04/1938\n(D) 12/04/1937\n(E) 12/25/2006\n(F) 07/25/1937\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_date_understanding', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_date_understanding', doc_id=0, repeats=1)
+0: 100%|██████████| 63/63 [00:00<00:00, 2870.22it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2759.21it/s]
+0: 2025-01-25:19:18:40,327 INFO     [task.py:415] Building contexts for bbh_zeroshot_disambiguation_qa on rank 0...
+0: 2025-01-25:19:18:40,327 INFO     [task.py:415] Building contexts for bbh_zeroshot_disambiguation_qa on rank 1...
+0: 2025-01-25:19:18:40,327 INFO     [task.py:415] Building contexts for bbh_zeroshot_disambiguation_qa on rank 2...
+0: 2025-01-25:19:18:40,327 INFO     [task.py:415] Building contexts for bbh_zeroshot_disambiguation_qa on rank 3...
+0:   0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2968.57it/s]
+0: 2025-01-25:19:18:40,351 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_disambiguation_qa,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Clarify the meaning of sentences with ambiguous pronouns.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: In the following sentences, explain the antecedent of the pronoun (which thing the pronoun refers to), or state that it is ambiguous.
+0: Sentence: The patient was referred to the specialist because he had a rare skin condition.
+0: Options:
+0: (A) The patient had a skin condition
+0: (B) The specialist had a skin condition
+0: (C) Ambiguous
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (A)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,351 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'In the following sentences, explain the antecedent of the pronoun (which thing the pronoun refers to), or state that it is ambiguous.\nSentence: The patient was referred to the specialist because he had a rare skin condition.\nOptions:\n(A) The patient had a skin condition\n(B) The specialist had a skin condition\n(C) Ambiguous', 'target': '(A)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nClarify the meaning of sentences with ambiguous pronouns.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: In the following sentences, explain the antecedent of the pronoun (which thing the pronoun refers to), or state that it is ambiguous.\nSentence: The patient was referred to the specialist because he had a rare skin condition.\nOptions:\n(A) The patient had a skin condition\n(B) The specialist had a skin condition\n(C) Ambiguous\nA:<|eot_id|><|start_header_id|>a
+0: ssistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_disambiguation_qa', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_disambiguation_qa', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2834.45it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2883.97it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2760.85it/s]
+0: 2025-01-25:19:18:40,353 INFO     [task.py:415] Building contexts for bbh_zeroshot_dyck_languages on rank 3...
+0: 2025-01-25:19:18:40,353 INFO     [task.py:415] Building contexts for bbh_zeroshot_dyck_languages on rank 1...
+0: 2025-01-25:19:18:40,353 INFO     [task.py:415] Building contexts for bbh_zeroshot_dyck_languages on rank 0...
+0: 2025-01-25:19:18:40,353 INFO     [task.py:415] Building contexts for bbh_zeroshot_dyck_languages on rank 2...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2975.22it/s]
+0: 2025-01-25:19:18:40,377 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_dyck_languages,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Correctly close a Dyck-n word.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: [ [
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: ] ]
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,377 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: [ [', 'target': '] ]'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nCorrectly close a Dyck-n word.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Complete the rest of the sequence, making sure that the parentheses are closed properly. Input: [ [\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_dyck_languages', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_dyck_languages', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2885.31it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2912.55it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2816.86it/s]
+0: 2025-01-25:19:18:40,378 INFO     [task.py:415] Building contexts for bbh_zeroshot_formal_fallacies on rank 0...
+0: 2025-01-25:19:18:40,378 INFO     [task.py:415] Building contexts for bbh_zeroshot_formal_fallacies on rank 3...
+0: 2025-01-25:19:18:40,378 INFO     [task.py:415] Building contexts for bbh_zeroshot_formal_fallacies on rank 1...
+0: 2025-01-25:19:18:40,378 INFO     [task.py:415] Building contexts for bbh_zeroshot_formal_fallacies on rank 2...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2897.16it/s]
+0: 2025-01-25:19:18:40,402 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_formal_fallacies,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Distinguish deductively valid arguments from formal fallacies.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: "Here comes a perfectly valid argument: First of all, whoever is a schoolmate of Sondra is not a stepsister of Pricilla. In consequence, whoever is not a stepsister of Pricilla is a schoolmate of Sondra."
+0: Is the argument, given the explicitly stated premises, deductively valid or invalid?
+0: Options:
+0: - valid 
+0: - invalid
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: invalid
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,403 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': '"Here comes a perfectly valid argument: First of all, whoever is a schoolmate of Sondra is not a stepsister of Pricilla. In consequence, whoever is not a stepsister of Pricilla is a schoolmate of Sondra."\nIs the argument, given the explicitly stated premises, deductively valid or invalid?\nOptions:\n- valid \n- invalid', 'target': 'invalid'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nDistinguish deductively valid arguments from formal fallacies.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: "Here comes a perfectly valid argument: First of all, whoever is a schoolmate of Sondra is not a stepsister of Pricilla. In consequence, whoever is not a stepsister of Pricilla is a schoolmate of Sondra."\nIs the argument, given the explicitly stated premises, deductively valid or invalid?\nOptions:\n- valid \n- invalid\nA:<|eot_id|><|start_header_id|>assistan
+0: t<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_formal_fallacies', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_formal_fallacies', doc_id=0, repeats=1)
+0: 100%|██████████| 63/63 [00:00<00:00, 2864.50it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2780.77it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2768.90it/s]
+0: 2025-01-25:19:18:40,403 INFO     [task.py:415] Building contexts for bbh_zeroshot_geometric_shapes on rank 0...
+0: 2025-01-25:19:18:40,403 INFO     [task.py:415] Building contexts for bbh_zeroshot_geometric_shapes on rank 2...
+0: 2025-01-25:19:18:40,403 INFO     [task.py:415] Building contexts for bbh_zeroshot_geometric_shapes on rank 1...
+0: 2025-01-25:19:18:40,403 INFO     [task.py:415] Building contexts for bbh_zeroshot_geometric_shapes on rank 3...
+0:   0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2925.16it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2835.19it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2894.02it/s]
+0: 2025-01-25:19:18:40,428 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_geometric_shapes,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Name geometric shapes from their SVG paths.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: This SVG path element <path d="M 55.57,80.69 L 57.38,65.80 M 57.38,65.80 L 48.90,57.46 M 48.90,57.46 L 45.58,47.78 M 45.58,47.78 L 53.25,36.07 L 66.29,48.90 L 78.69,61.09 L 55.57,80.69"/> draws a
+0: Options:
+0: (A) circle
+0: (B) heptagon
+0: (C) hexagon
+0: (D) kite
+0: (E) line
+0: (F) octagon
+0: (G) pentagon
+0: (H) rectangle
+0: (I) sector
+0: (J) triangle
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (B)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,428 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'This SVG path element <path d="M 55.57,80.69 L 57.38,65.80 M 57.38,65.80 L 48.90,57.46 M 48.90,57.46 L 45.58,47.78 M 45.58,47.78 L 53.25,36.07 L 66.29,48.90 L 78.69,61.09 L 55.57,80.69"/> draws a\nOptions:\n(A) circle\n(B) heptagon\n(C) hexagon\n(D) kite\n(E) line\n(F) octagon\n(G) pentagon\n(H) rectangle\n(I) sector\n(J) triangle', 'target': '(B)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nName geometric shapes from their SVG paths.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: This SVG path element <path d="M 55.57,80.69 L 57.38,65.80 M 57.38,65.80 L 48.90,57.46 M 48.90,57.46 L 45.58,47.78 M 45.58,47.78 L 53.25,36.07 L 66.29,48.90 L 78.69,61.09 L 55.57,80.69"/> draws a\nOptions:\n(A) circle\n(B) heptagon\n(C) hexagon\n(D) kite\n(E) line\n(F) octagon\n(G) pentagon\n(H) rectangle\n(I) sector\n(J) triangle\nA:<|eot_id|><|start_header_id|>assistant
+0: <|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_geometric_shapes', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_geometric_shapes', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2817.13it/s]
+0: 2025-01-25:19:18:40,428 INFO     [task.py:415] Building contexts for bbh_zeroshot_hyperbaton on rank 3...
+0: 2025-01-25:19:18:40,428 INFO     [task.py:415] Building contexts for bbh_zeroshot_hyperbaton on rank 0...
+0: 2025-01-25:19:18:40,429 INFO     [task.py:415] Building contexts for bbh_zeroshot_hyperbaton on rank 1...
+0: 2025-01-25:19:18:40,429 INFO     [task.py:415] Building contexts for bbh_zeroshot_hyperbaton on rank 2...
+0:   0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2932.30it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2923.18it/s]
+0: 2025-01-25:19:18:40,453 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_hyperbaton,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Order adjectives correctly in English sentences.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Which sentence has the correct adjective order:
+0: Options:
+0: (A) midsize old grey Brazilian sweater
+0: (B) midsize grey Brazilian old sweater
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (A)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,453 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Which sentence has the correct adjective order:\nOptions:\n(A) midsize old grey Brazilian sweater\n(B) midsize grey Brazilian old sweater', 'target': '(A)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nOrder adjectives correctly in English sentences.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Which sentence has the correct adjective order:\nOptions:\n(A) midsize old grey Brazilian sweater\n(B) midsize grey Brazilian old sweater\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_hyperbaton', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_hyperbaton', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2815.76it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2810.86it/s]
+0: 2025-01-25:19:18:40,454 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_five_objects on rank 1...
+0: 2025-01-25:19:18:40,454 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_five_objects on rank 0...
+0: 2025-01-25:19:18:40,454 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_five_objects on rank 2...
+0: 2025-01-25:19:18:40,454 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_five_objects on rank 3...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2963.71it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2931.75it/s]
+0: 2025-01-25:19:18:40,478 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_logical_deduction_five_objects,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: A logical deduction task which requires deducing the order of a sequence of objects.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: The following paragraphs each describe a set of five objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are five birds: a quail, an owl, a raven, a falcon, and a robin. The owl is the leftmost. The robin is to the left of the raven. The quail is the rightmost. The raven is the third from the left.
+0: Options:
+0: (A) The quail is the rightmost
+0: (B) The owl is the rightmost
+0: (C) The raven is the rightmost
+0: (D) The falcon is the rightmost
+0: (E) The robin is the rightmost
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (A)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,478 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'The following paragraphs each describe a set of five objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are five birds: a quail, an owl, a raven, a falcon, and a robin. The owl is the leftmost. The robin is to the left of the raven. The quail is the rightmost. The raven is the third from the left.\nOptions:\n(A) The quail is the rightmost\n(B) The owl is the rightmost\n(C) The raven is the rightmost\n(D) The falcon is the rightmost\n(E) The robin is the rightmost', 'target': '(A)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nA logical deduction task which requires deducing the order of a sequence of objects.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: The following paragraphs each describe a set of five objects arranged in a fixed order. The statements are logically consistent with
+0: in each paragraph. On a branch, there are five birds: a quail, an owl, a raven, a falcon, and a robin. The owl is the leftmost. The robin is to the left of the raven. The quail is the rightmost. The raven is the third from the left.\nOptions:\n(A) The quail is the rightmost\n(B) The owl is the rightmost\n(C) The raven is the rightmost\n(D) The falcon is the rightmost\n(E) The robin is the rightmost\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_logical_deduction_five_objects', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_logical_deduction_five_objects', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2804.53it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2792.12it/s]
+0: 2025-01-25:19:18:40,479 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_seven_objects on rank 2...
+0: 2025-01-25:19:18:40,479 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_seven_objects on rank 3...
+0: 2025-01-25:19:18:40,479 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_seven_objects on rank 0...
+0: 2025-01-25:19:18:40,479 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_seven_objects on rank 1...
+0:   0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2982.00it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2970.80it/s]
+0: 2025-01-25:19:18:40,503 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_logical_deduction_seven_objects,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: A logical deduction task which requires deducing the order of a sequence of objects.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: The following paragraphs each describe a set of seven objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were seven golfers: Ana, Eve, Ada, Dan, Rob, Amy, and Joe. Dan finished third. Ana finished above Ada. Amy finished last. Dan finished below Rob. Eve finished below Ada. Rob finished below Joe.
+0: Options:
+0: (A) Ana finished third
+0: (B) Eve finished third
+0: (C) Ada finished third
+0: (D) Dan finished third
+0: (E) Rob finished third
+0: (F) Amy finished third
+0: (G) Joe finished third
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (D)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,503 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'The following paragraphs each describe a set of seven objects arranged in a fixed order. The statements are logically consistent within each paragraph. In a golf tournament, there were seven golfers: Ana, Eve, Ada, Dan, Rob, Amy, and Joe. Dan finished third. Ana finished above Ada. Amy finished last. Dan finished below Rob. Eve finished below Ada. Rob finished below Joe.\nOptions:\n(A) Ana finished third\n(B) Eve finished third\n(C) Ada finished third\n(D) Dan finished third\n(E) Rob finished third\n(F) Amy finished third\n(G) Joe finished third', 'target': '(D)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nA logical deduction task which requires deducing the order of a sequence of objects.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: The following paragraphs each describe a set of seven objects arranged in a fixed order. The statements are logica
+0: lly consistent within each paragraph. In a golf tournament, there were seven golfers: Ana, Eve, Ada, Dan, Rob, Amy, and Joe. Dan finished third. Ana finished above Ada. Amy finished last. Dan finished below Rob. Eve finished below Ada. Rob finished below Joe.\nOptions:\n(A) Ana finished third\n(B) Eve finished third\n(C) Ada finished third\n(D) Dan finished third\n(E) Rob finished third\n(F) Amy finished third\n(G) Joe finished third\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_logical_deduction_seven_objects', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_logical_deduction_seven_objects', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2839.00it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2822.55it/s]
+0: 2025-01-25:19:18:40,504 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_three_objects on rank 2...
+0: 2025-01-25:19:18:40,504 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_three_objects on rank 3...
+0: 2025-01-25:19:18:40,504 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_three_objects on rank 0...
+0: 2025-01-25:19:18:40,504 INFO     [task.py:415] Building contexts for bbh_zeroshot_logical_deduction_three_objects on rank 1...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2941.77it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2934.48it/s]
+0: 2025-01-25:19:18:40,528 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_logical_deduction_three_objects,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: A logical deduction task which requires deducing the order of a sequence of objects.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a blue jay, a quail, and a falcon. The falcon is to the right of the blue jay. The blue jay is to the right of the quail.
+0: Options:
+0: (A) The blue jay is the second from the left
+0: (B) The quail is the second from the left
+0: (C) The falcon is the second from the left
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (A)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,529 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a blue jay, a quail, and a falcon. The falcon is to the right of the blue jay. The blue jay is to the right of the quail.\nOptions:\n(A) The blue jay is the second from the left\n(B) The quail is the second from the left\n(C) The falcon is the second from the left', 'target': '(A)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nA logical deduction task which requires deducing the order of a sequence of objects.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: The following paragraphs each describe a set of three objects arranged in a fixed order. The statements are logically consistent within each paragraph. On a branch, there are three birds: a blue jay, a quail, and 
+0: a falcon. The falcon is to the right of the blue jay. The blue jay is to the right of the quail.\nOptions:\n(A) The blue jay is the second from the left\n(B) The quail is the second from the left\n(C) The falcon is the second from the left\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_logical_deduction_three_objects', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_logical_deduction_three_objects', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2792.03it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2777.80it/s]
+0: 2025-01-25:19:18:40,530 INFO     [task.py:415] Building contexts for bbh_zeroshot_movie_recommendation on rank 2...
+0: 2025-01-25:19:18:40,530 INFO     [task.py:415] Building contexts for bbh_zeroshot_movie_recommendation on rank 1...
+0: 2025-01-25:19:18:40,530 INFO     [task.py:415] Building contexts for bbh_zeroshot_movie_recommendation on rank 0...
+0: 2025-01-25:19:18:40,530 INFO     [task.py:415] Building contexts for bbh_zeroshot_movie_recommendation on rank 3...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 3006.81it/s]
+0: 2025-01-25:19:18:40,553 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_movie_recommendation,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Recommend movies similar to the given list of movies.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Find a movie similar to Batman, The Mask, The Fugitive, Pretty Woman:
+0: Options:
+0: (A) The Front Page
+0: (B) Maelstrom
+0: (C) The Lion King
+0: (D) Lamerica
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (C)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,553 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Find a movie similar to Batman, The Mask, The Fugitive, Pretty Woman:\nOptions:\n(A) The Front Page\n(B) Maelstrom\n(C) The Lion King\n(D) Lamerica', 'target': '(C)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nRecommend movies similar to the given list of movies.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Find a movie similar to Batman, The Mask, The Fugitive, Pretty Woman:\nOptions:\n(A) The Front Page\n(B) Maelstrom\n(C) The Lion King\n(D) Lamerica\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_movie_recommendation', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_movie_recommendation', doc_id=0, repeats=1)
+0: 100%|██████████| 63/63 [00:00<00:00, 2969.50it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2834.42it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2824.51it/s]
+0: 2025-01-25:19:18:40,555 INFO     [task.py:415] Building contexts for bbh_zeroshot_multistep_arithmetic_two on rank 3...
+0: 2025-01-25:19:18:40,555 INFO     [task.py:415] Building contexts for bbh_zeroshot_multistep_arithmetic_two on rank 0...
+0: 2025-01-25:19:18:40,555 INFO     [task.py:415] Building contexts for bbh_zeroshot_multistep_arithmetic_two on rank 1...
+0: 2025-01-25:19:18:40,555 INFO     [task.py:415] Building contexts for bbh_zeroshot_multistep_arithmetic_two on rank 2...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2985.17it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2992.50it/s]
+0: 2025-01-25:19:18:40,579 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_multistep_arithmetic_two,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Solve multi-step arithmetic problems.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: ((-1 + 2 + 9 * 5) - (-2 + -4 + -4 * -7)) =
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: 24
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,579 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': '((-1 + 2 + 9 * 5) - (-2 + -4 + -4 * -7)) =', 'target': '24'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nSolve multi-step arithmetic problems.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: ((-1 + 2 + 9 * 5) - (-2 + -4 + -4 * -7)) =\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_multistep_arithmetic_two', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_multistep_arithmetic_two', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2853.61it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2842.29it/s]
+0: 2025-01-25:19:18:40,580 INFO     [task.py:415] Building contexts for bbh_zeroshot_navigate on rank 3...
+0: 2025-01-25:19:18:40,580 INFO     [task.py:415] Building contexts for bbh_zeroshot_navigate on rank 0...
+0: 2025-01-25:19:18:40,580 INFO     [task.py:415] Building contexts for bbh_zeroshot_navigate on rank 1...
+0: 2025-01-25:19:18:40,580 INFO     [task.py:415] Building contexts for bbh_zeroshot_navigate on rank 2...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 62/62 [00:00<00:00, 2826.72it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2821.17it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2633.54it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2655.85it/s]
+0: 2025-01-25:19:18:40,606 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_navigate,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Given a series of navigation instructions, determine whether one would end up back at the starting point.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: If you follow these instructions, do you return to the starting point? Always face forward. Take 1 step backward. Take 9 steps left. Take 2 steps backward. Take 6 steps forward. Take 4 steps forward. Take 4 steps backward. Take 3 steps right.
+0: Options:
+0: - Yes
+0: - No
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: No
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,606 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'If you follow these instructions, do you return to the starting point? Always face forward. Take 1 step backward. Take 9 steps left. Take 2 steps backward. Take 6 steps forward. Take 4 steps forward. Take 4 steps backward. Take 3 steps right.\nOptions:\n- Yes\n- No', 'target': 'No'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nGiven a series of navigation instructions, determine whether one would end up back at the starting point.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: If you follow these instructions, do you return to the starting point? Always face forward. Take 1 step backward. Take 9 steps left. Take 2 steps backward. Take 6 steps forward. Take 4 steps forward. Take 4 steps backward. Take 3 steps right.\nOptions:\n- Yes\n- No\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sampl
+0: e': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_navigate', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_navigate', doc_id=0, repeats=1)
+0: 2025-01-25:19:18:40,607 INFO     [task.py:415] Building contexts for bbh_zeroshot_object_counting on rank 0...
+0: 2025-01-25:19:18:40,607 INFO     [task.py:415] Building contexts for bbh_zeroshot_object_counting on rank 3...
+0: 2025-01-25:19:18:40,607 INFO     [task.py:415] Building contexts for bbh_zeroshot_object_counting on rank 2...
+0: 2025-01-25:19:18:40,607 INFO     [task.py:415] Building contexts for bbh_zeroshot_object_counting on rank 1...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2912.78it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2913.71it/s]
+0: 2025-01-25:19:18:40,631 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_object_counting,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Questions that involve enumerating objects and asking the model to count them.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: I have a flute, a piano, a trombone, four stoves, a violin, an accordion, a clarinet, a drum, two lamps, and a trumpet. How many musical instruments do I have?
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: 8
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,631 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'I have a flute, a piano, a trombone, four stoves, a violin, an accordion, a clarinet, a drum, two lamps, and a trumpet. How many musical instruments do I have?', 'target': '8'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nQuestions that involve enumerating objects and asking the model to count them.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: I have a flute, a piano, a trombone, four stoves, a violin, an accordion, a clarinet, a drum, two lamps, and a trumpet. How many musical instruments do I have?\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_object_counting', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_object_counting', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2494.81it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2443.31it/s]
+0: 2025-01-25:19:18:40,635 INFO     [task.py:415] Building contexts for bbh_zeroshot_penguins_in_a_table on rank 3...
+0: 2025-01-25:19:18:40,635 INFO     [task.py:415] Building contexts for bbh_zeroshot_penguins_in_a_table on rank 0...
+0: 2025-01-25:19:18:40,635 INFO     [task.py:415] Building contexts for bbh_zeroshot_penguins_in_a_table on rank 1...
+0: 2025-01-25:19:18:40,635 INFO     [task.py:415] Building contexts for bbh_zeroshot_penguins_in_a_table on rank 2...
+0:   0%|          | 0/37 [00:00<?, ?it/s]  0%|          | 0/36 [00:00<?, ?it/s]  0%|          | 0/36 [00:00<?, ?it/s]  0%|          | 0/37 [00:00<?, ?it/s]100%|██████████| 37/37 [00:00<00:00, 2871.64it/s]
+0: 2025-01-25:19:18:40,650 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_penguins_in_a_table,output_type=generate_until,num_fewshot=0,num_samples=146); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Answer questions about a table of penguins and their attributes.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Here is a table where the first line is a header and each subsequent line is a penguin:  name, age, height (cm), weight (kg) Louis, 7, 50, 11 Bernard, 5, 80, 13 Vincent, 9, 60, 11 Gwen, 8, 70, 15  For example: the age of Louis is 7, the weight of Gwen is 15 kg, the height of Bernard is 80 cm.  We now add a penguin to the table:
+0: James, 12, 90, 12
+0: And here is a similar table, but listing giraffes:
+0: name, age, height (cm), weight (kg)
+0: Jody, 5, 430, 620
+0: Gladys, 10, 420, 590
+0: Marian, 2, 310, 410
+0: Donna, 9, 440, 650
+0: Which is the oldest penguin?
+0: Options:
+0: (A) Louis
+0: (B) Bernard
+0: (C) Vincent
+0: (D) Gwen
+0: (E) James
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (E)
+0: (end of target on previous line)
+0: 100%|██████████| 36/36 [00:00<00:00, 2748.71it/s]
+0: 2025-01-25:19:18:40,650 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Here is a table where the first line is a header and each subsequent line is a penguin:  name, age, height (cm), weight (kg) Louis, 7, 50, 11 Bernard, 5, 80, 13 Vincent, 9, 60, 11 Gwen, 8, 70, 15  For example: the age of Louis is 7, the weight of Gwen is 15 kg, the height of Bernard is 80 cm.  We now add a penguin to the table:\nJames, 12, 90, 12\nAnd here is a similar table, but listing giraffes:\nname, age, height (cm), weight (kg)\nJody, 5, 430, 620\nGladys, 10, 420, 590\nMarian, 2, 310, 410\nDonna, 9, 440, 650\nWhich is the oldest penguin?\nOptions:\n(A) Louis\n(B) Bernard\n(C) Vincent\n(D) Gwen\n(E) James', 'target': '(E)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nAnswer questions about a table of penguins and their attributes.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Here is a table where the first line is a header and each subsequent
+0:  line is a penguin:  name, age, height (cm), weight (kg) Louis, 7, 50, 11 Bernard, 5, 80, 13 Vincent, 9, 60, 11 Gwen, 8, 70, 15  For example: the age of Louis is 7, the weight of Gwen is 15 kg, the height of Bernard is 80 cm.  We now add a penguin to the table:\nJames, 12, 90, 12\nAnd here is a similar table, but listing giraffes:\nname, age, height (cm), weight (kg)\nJody, 5, 430, 620\nGladys, 10, 420, 590\nMarian, 2, 310, 410\nDonna, 9, 440, 650\nWhich is the oldest penguin?\nOptions:\n(A) Louis\n(B) Bernard\n(C) Vincent\n(D) Gwen\n(E) James\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_penguins_in_a_table', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_penguins_in_a_table', doc_id=0, repeats=1)
+0: 100%|██████████| 37/37 [00:00<00:00, 2816.71it/s]100%|██████████| 36/36 [00:00<00:00, 2712.61it/s]
+0: 
+0: 2025-01-25:19:18:40,651 INFO     [task.py:415] Building contexts for bbh_zeroshot_reasoning_about_colored_objects on rank 0...
+0: 2025-01-25:19:18:40,651 INFO     [task.py:415] Building contexts for bbh_zeroshot_reasoning_about_colored_objects on rank 1...
+0: 2025-01-25:19:18:40,651 INFO     [task.py:415] Building contexts for bbh_zeroshot_reasoning_about_colored_objects on rank 2...
+0: 2025-01-25:19:18:40,651 INFO     [task.py:415] Building contexts for bbh_zeroshot_reasoning_about_colored_objects on rank 3...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2962.01it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2935.49it/s]
+0: 2025-01-25:19:18:40,675 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_reasoning_about_colored_objects,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Answer extremely simple questions about the colors of objects on a surface.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: On the floor, there is one mauve cat toy, two purple cat toys, three grey cat toys, two mauve notebooks, three grey notebooks, three burgundy cat toys, and one purple notebook. If I remove all the notebooks from the floor, how many grey objects remain on it?
+0: Options:
+0: (A) zero
+0: (B) one
+0: (C) two
+0: (D) three
+0: (E) four
+0: (F) five
+0: (G) six
+0: (H) seven
+0: (I) eight
+0: (J) nine
+0: (K) ten
+0: (L) eleven
+0: (M) twelve
+0: (N) thirteen
+0: (O) fourteen
+0: (P) fifteen
+0: (Q) sixteen
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (D)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,675 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'On the floor, there is one mauve cat toy, two purple cat toys, three grey cat toys, two mauve notebooks, three grey notebooks, three burgundy cat toys, and one purple notebook. If I remove all the notebooks from the floor, how many grey objects remain on it?\nOptions:\n(A) zero\n(B) one\n(C) two\n(D) three\n(E) four\n(F) five\n(G) six\n(H) seven\n(I) eight\n(J) nine\n(K) ten\n(L) eleven\n(M) twelve\n(N) thirteen\n(O) fourteen\n(P) fifteen\n(Q) sixteen', 'target': '(D)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nAnswer extremely simple questions about the colors of objects on a surface.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: On the floor, there is one mauve cat toy, two purple cat toys, three grey cat toys, two mauve notebooks, three grey notebooks, three burgundy cat toys, and one purple notebook. If I remove all the notebooks from the flo
+0: or, how many grey objects remain on it?\nOptions:\n(A) zero\n(B) one\n(C) two\n(D) three\n(E) four\n(F) five\n(G) six\n(H) seven\n(I) eight\n(J) nine\n(K) ten\n(L) eleven\n(M) twelve\n(N) thirteen\n(O) fourteen\n(P) fifteen\n(Q) sixteen\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_reasoning_about_colored_objects', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_reasoning_about_colored_objects', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2793.08it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2776.91it/s]
+0: 2025-01-25:19:18:40,676 INFO     [task.py:415] Building contexts for bbh_zeroshot_ruin_names on rank 0...
+0: 2025-01-25:19:18:40,676 INFO     [task.py:415] Building contexts for bbh_zeroshot_ruin_names on rank 1...
+0: 2025-01-25:19:18:40,676 INFO     [task.py:415] Building contexts for bbh_zeroshot_ruin_names on rank 2...
+0: 2025-01-25:19:18:40,676 INFO     [task.py:415] Building contexts for bbh_zeroshot_ruin_names on rank 3...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2986.08it/s]
+0: 2025-01-25:19:18:40,700 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_ruin_names,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Select the humorous edit that 'ruins' the input movie or musical artist name.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Which of the following is a humorous edit of this artist or movie name: 'rain man'?
+0: Options:
+0: (A) ruin man
+0: (B) rains man
+0: (C) rain men
+0: (D) rainmman
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (A)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,700 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': "Which of the following is a humorous edit of this artist or movie name: 'rain man'?\nOptions:\n(A) ruin man\n(B) rains man\n(C) rain men\n(D) rainmman", 'target': '(A)'}, arguments=("<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nSelect the humorous edit that 'ruins' the input movie or musical artist name.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Which of the following is a humorous edit of this artist or movie name: 'rain man'?\nOptions:\n(A) ruin man\n(B) rains man\n(C) rain men\n(D) rainmman\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n", {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_ruin_names', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_ruin_names', doc_id=0, repeats=1)
+0: 100%|██████████| 63/63 [00:00<00:00, 2953.97it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2814.33it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2823.44it/s]
+0: 2025-01-25:19:18:40,701 INFO     [task.py:415] Building contexts for bbh_zeroshot_salient_translation_error_detection on rank 2...
+0: 2025-01-25:19:18:40,701 INFO     [task.py:415] Building contexts for bbh_zeroshot_salient_translation_error_detection on rank 3...
+0: 2025-01-25:19:18:40,701 INFO     [task.py:415] Building contexts for bbh_zeroshot_salient_translation_error_detection on rank 0...
+0: 2025-01-25:19:18:40,701 INFO     [task.py:415] Building contexts for bbh_zeroshot_salient_translation_error_detection on rank 1...
+0:   0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2938.56it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2911.62it/s]
+0: 2025-01-25:19:18:40,726 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_salient_translation_error_detection,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Detect the type of error in an English translation of a German source sentence.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: The following translations from German to English contain a particular error. That error will be one of the following types: Named Entities: An entity (names, places, locations, etc.) is changed to a different entity. Numerical Values: Numerical values (ordinals or cardinals), dates, and/or units are changed. Modifiers or Adjectives: The modifiers and adjectives pertaining to a noun are changed. Negation or Antonyms: Introduce or remove a negation or change comparatives to their antonyms. Facts: Trivial factual errors not pertaining to the above classes are introduced in the translations. Dropped Content: A significant clause in the translation is removed. Please identify that error.  Source: Karl Borromäus Joseph Fürst von Liechtenstein war ein kaiserlicher Feldmarschall.
+0: Translation: Charles Borromeo Joseph Prince of Liechtenstein was an judicial field marshal.
+0: The translation contains an error pertaining to
+0: Options:
+0: (A) Modifiers or Adjectives
+0: (B) Numerical Values
+0: (C) Negation or Antonyms
+0: (D) Named Entities
+0: (E) Dropped Content
+0: (F) Facts
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (A)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,726 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'The following translations from German to English contain a particular error. That error will be one of the following types: Named Entities: An entity (names, places, locations, etc.) is changed to a different entity. Numerical Values: Numerical values (ordinals or cardinals), dates, and/or units are changed. Modifiers or Adjectives: The modifiers and adjectives pertaining to a noun are changed. Negation or Antonyms: Introduce or remove a negation or change comparatives to their antonyms. Facts: Trivial factual errors not pertaining to the above classes are introduced in the translations. Dropped Content: A significant clause in the translation is removed. Please identify that error.  Source: Karl Borromäus Joseph Fürst von Liechtenstein war ein kaiserlicher Feldmarschall.\nTranslation: Charles Borromeo Joseph Prince of Liechtenstein was an judicial field marshal.\nThe translation contai
+0: ns an error pertaining to\nOptions:\n(A) Modifiers or Adjectives\n(B) Numerical Values\n(C) Negation or Antonyms\n(D) Named Entities\n(E) Dropped Content\n(F) Facts', 'target': '(A)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nDetect the type of error in an English translation of a German source sentence.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: The following translations from German to English contain a particular error. That error will be one of the following types: Named Entities: An entity (names, places, locations, etc.) is changed to a different entity. Numerical Values: Numerical values (ordinals or cardinals), dates, and/or units are changed. Modifiers or Adjectives: The modifiers and adjectives pertaining to a noun are changed. Negation or Antonyms: Introduce or remove a negation or change comparatives to their antonyms. Facts: Trivial factual errors not pertaining to the above classes are introduced in the translations. Dropped Content: A significant c
+0: lause in the translation is removed. Please identify that error.  Source: Karl Borromäus Joseph Fürst von Liechtenstein war ein kaiserlicher Feldmarschall.\nTranslation: Charles Borromeo Joseph Prince of Liechtenstein was an judicial field marshal.\nThe translation contains an error pertaining to\nOptions:\n(A) Modifiers or Adjectives\n(B) Numerical Values\n(C) Negation or Antonyms\n(D) Named Entities\n(E) Dropped Content\n(F) Facts\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_salient_translation_error_detection', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_salient_translation_error_detection', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2808.04it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2785.36it/s]
+0: 2025-01-25:19:18:40,727 INFO     [task.py:415] Building contexts for bbh_zeroshot_snarks on rank 0...
+0: 2025-01-25:19:18:40,727 INFO     [task.py:415] Building contexts for bbh_zeroshot_snarks on rank 3...
+0: 2025-01-25:19:18:40,727 INFO     [task.py:415] Building contexts for bbh_zeroshot_snarks on rank 1...
+0: 2025-01-25:19:18:40,727 INFO     [task.py:415] Building contexts for bbh_zeroshot_snarks on rank 2...
+0:   0%|          | 0/45 [00:00<?, ?it/s]  0%|          | 0/44 [00:00<?, ?it/s]  0%|          | 0/45 [00:00<?, ?it/s]  0%|          | 0/44 [00:00<?, ?it/s]100%|██████████| 45/45 [00:00<00:00, 2785.76it/s]
+0: 100%|██████████| 45/45 [00:00<00:00, 2792.15it/s]
+0: 100%|██████████| 44/44 [00:00<00:00, 2679.56it/s]2025-01-25:19:18:40,745 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_snarks,output_type=generate_until,num_fewshot=0,num_samples=178); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Determine which of two sentences is sarcastic.
+0: 
+0: According to Cambridge University Dictionary, sarcasm is "the use of remarks that clearly mean the opposite of what they say, made in order to hurt someone's feelings or to criticize something in a humorous way." Sarcastic sentences often contain satirical or ironic utterances, hyperboles, ambivalent or witty remarks.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Which statement is sarcastic?
+0: Options:
+0: (A) He's a generous person, trying to promote a charity stream that has raised millions to help kids in need
+0: (B) He's a terrible person, trying to promote a charity stream that has raised millions to help kids in need
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (B)
+0: (end of target on previous line)
+0: 
+0: 2025-01-25:19:18:40,745 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': "Which statement is sarcastic?\nOptions:\n(A) He's a generous person, trying to promote a charity stream that has raised millions to help kids in need\n(B) He's a terrible person, trying to promote a charity stream that has raised millions to help kids in need", 'target': '(B)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nDetermine which of two sentences is sarcastic.\n\nAccording to Cambridge University Dictionary, sarcasm is "the use of remarks that clearly mean the opposite of what they say, made in order to hurt someone\'s feelings or to criticize something in a humorous way." Sarcastic sentences often contain satirical or ironic utterances, hyperboles, ambivalent or witty remarks.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Which statement is sarcastic?\nOptions:\n(A) He\'s a generous person, trying to promote a charity stream that has raised
+0:  millions to help kids in need\n(B) He\'s a terrible person, trying to promote a charity stream that has raised millions to help kids in need\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_snarks', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_snarks', doc_id=0, repeats=1)
+0: 100%|██████████| 44/44 [00:00<00:00, 2645.57it/s]
+0: 2025-01-25:19:18:40,746 INFO     [task.py:415] Building contexts for bbh_zeroshot_sports_understanding on rank 1...
+0: 2025-01-25:19:18:40,746 INFO     [task.py:415] Building contexts for bbh_zeroshot_sports_understanding on rank 0...
+0: 2025-01-25:19:18:40,746 INFO     [task.py:415] Building contexts for bbh_zeroshot_sports_understanding on rank 2...
+0: 2025-01-25:19:18:40,746 INFO     [task.py:415] Building contexts for bbh_zeroshot_sports_understanding on rank 3...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2914.45it/s]100%|██████████| 63/63 [00:00<00:00, 2924.51it/s]
+0: 
+0: 100%|██████████| 62/62 [00:00<00:00, 2861.31it/s]
+0: 2025-01-25:19:18:40,770 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_sports_understanding,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Determine whether an artificially constructed sentence relating to sports is plausible or not.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Is the following sentence plausible? "Elias Lindholm beat the buzzer."
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: no
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,770 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Is the following sentence plausible? "Elias Lindholm beat the buzzer."', 'target': 'no'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nDetermine whether an artificially constructed sentence relating to sports is plausible or not.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Is the following sentence plausible? "Elias Lindholm beat the buzzer."\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_sports_understanding', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_sports_understanding', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2805.95it/s]
+0: 2025-01-25:19:18:40,771 INFO     [task.py:415] Building contexts for bbh_zeroshot_temporal_sequences on rank 2...
+0: 2025-01-25:19:18:40,771 INFO     [task.py:415] Building contexts for bbh_zeroshot_temporal_sequences on rank 1...
+0: 2025-01-25:19:18:40,771 INFO     [task.py:415] Building contexts for bbh_zeroshot_temporal_sequences on rank 0...
+0: 2025-01-25:19:18:40,771 INFO     [task.py:415] Building contexts for bbh_zeroshot_temporal_sequences on rank 3...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2985.71it/s]
+0: 2025-01-25:19:18:40,795 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_temporal_sequences,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Task description: Answer questions about which times certain events could have occurred.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Today, Susan went to the coffee shop. Between what times could they have gone?
+0: We know that:
+0: Susan woke up at 7am.
+0: Linda saw Susan driving to the water park from 7am to 11am.
+0: John saw Susan buying clothes at the mall from 11am to 12pm.
+0: Jessica saw Susan taking photos near the Eiffel Tower from 12pm to 1pm.
+0: Steven saw Susan buying lunch at the deli from 1pm to 2pm.
+0: Thomas saw Susan reading at the library from 2pm to 6pm.
+0: The coffee shop was closed after 9pm.
+0: Between what times could Susan have gone to the coffee shop?
+0: Options:
+0: (A) 6pm to 9pm
+0: (B) 7am to 11am
+0: (C) 1pm to 2pm
+0: (D) 2pm to 6pm
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (A)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,795 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Today, Susan went to the coffee shop. Between what times could they have gone?\nWe know that:\nSusan woke up at 7am.\nLinda saw Susan driving to the water park from 7am to 11am.\nJohn saw Susan buying clothes at the mall from 11am to 12pm.\nJessica saw Susan taking photos near the Eiffel Tower from 12pm to 1pm.\nSteven saw Susan buying lunch at the deli from 1pm to 2pm.\nThomas saw Susan reading at the library from 2pm to 6pm.\nThe coffee shop was closed after 9pm.\nBetween what times could Susan have gone to the coffee shop?\nOptions:\n(A) 6pm to 9pm\n(B) 7am to 11am\n(C) 1pm to 2pm\n(D) 2pm to 6pm', 'target': '(A)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nTask description: Answer questions about which times certain events could have occurred.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Today, Susan went to the coffee shop. Between what time
+0: s could they have gone?\nWe know that:\nSusan woke up at 7am.\nLinda saw Susan driving to the water park from 7am to 11am.\nJohn saw Susan buying clothes at the mall from 11am to 12pm.\nJessica saw Susan taking photos near the Eiffel Tower from 12pm to 1pm.\nSteven saw Susan buying lunch at the deli from 1pm to 2pm.\nThomas saw Susan reading at the library from 2pm to 6pm.\nThe coffee shop was closed after 9pm.\nBetween what times could Susan have gone to the coffee shop?\nOptions:\n(A) 6pm to 9pm\n(B) 7am to 11am\n(C) 1pm to 2pm\n(D) 2pm to 6pm\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_temporal_sequences', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_temporal_sequences', doc_id=0, repeats=1)
+0: 100%|██████████| 63/63 [00:00<00:00, 2936.99it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2866.04it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2784.70it/s]
+0: 2025-01-25:19:18:40,796 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_five_objects on rank 1...
+0: 2025-01-25:19:18:40,796 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_five_objects on rank 0...
+0: 2025-01-25:19:18:40,796 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_five_objects on rank 2...
+0: 2025-01-25:19:18:40,796 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_five_objects on rank 3...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2917.99it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2910.02it/s]
+0: 2025-01-25:19:18:40,821 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_tracking_shuffled_objects_five_objects,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: A task requiring determining the final positions of a set of objects given their initial positions and a description of a sequence of swaps.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Alice, Bob, Claire, Dave, and Eve are dancers at a square dance. At the start of a song, they each have a partner: Alice is dancing with Patrick, Bob is dancing with Sam, Claire is dancing with Jamie, Dave is dancing with Lola, and Eve is dancing with Melissa.
+0: Throughout the song, the dancers often trade partners. First, Dave and Eve switch partners. Then, Dave and Alice switch partners. Then, Eve and Alice switch partners. Then, Claire and Bob switch partners. Finally, Dave and Alice switch partners. At the end of the dance, Alice is dancing with
+0: Options:
+0: (A) Patrick
+0: (B) Sam
+0: (C) Jamie
+0: (D) Lola
+0: (E) Melissa
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (A)
+0: (end of target on previous line)
+0: 100%|██████████| 62/62 [00:00<00:00, 2813.54it/s]
+0: 2025-01-25:19:18:40,821 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Alice, Bob, Claire, Dave, and Eve are dancers at a square dance. At the start of a song, they each have a partner: Alice is dancing with Patrick, Bob is dancing with Sam, Claire is dancing with Jamie, Dave is dancing with Lola, and Eve is dancing with Melissa.\nThroughout the song, the dancers often trade partners. First, Dave and Eve switch partners. Then, Dave and Alice switch partners. Then, Eve and Alice switch partners. Then, Claire and Bob switch partners. Finally, Dave and Alice switch partners. At the end of the dance, Alice is dancing with\nOptions:\n(A) Patrick\n(B) Sam\n(C) Jamie\n(D) Lola\n(E) Melissa', 'target': '(A)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nA task requiring determining the final positions of a set of objects given their initial positions and a description of a sequence of swaps.<|eot_id|><|start_header_id|>user<|end_header_
+0: id|>\n\nQ: Alice, Bob, Claire, Dave, and Eve are dancers at a square dance. At the start of a song, they each have a partner: Alice is dancing with Patrick, Bob is dancing with Sam, Claire is dancing with Jamie, Dave is dancing with Lola, and Eve is dancing with Melissa.\nThroughout the song, the dancers often trade partners. First, Dave and Eve switch partners. Then, Dave and Alice switch partners. Then, Eve and Alice switch partners. Then, Claire and Bob switch partners. Finally, Dave and Alice switch partners. At the end of the dance, Alice is dancing with\nOptions:\n(A) Patrick\n(B) Sam\n(C) Jamie\n(D) Lola\n(E) Melissa\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_tracking_shuffled_objects_five_objects', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_tracking_shuffled_objects_five_objects', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2777.09it/s]
+0: 2025-01-25:19:18:40,822 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_seven_objects on rank 2...
+0: 2025-01-25:19:18:40,822 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_seven_objects on rank 0...
+0: 2025-01-25:19:18:40,822 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_seven_objects on rank 1...
+0: 2025-01-25:19:18:40,822 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_seven_objects on rank 3...
+0:   0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2958.96it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2949.22it/s]
+0: 2025-01-25:19:18:40,846 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_tracking_shuffled_objects_seven_objects,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: A task requiring determining the final positions of a set of objects given their initial positions and a description of a sequence of swaps.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Alice, Bob, Claire, Dave, Eve, Fred, and Gertrude are on the same team in a soccer match. At the start of the match, they are each assigned to a position: Alice is playing striker, Bob is playing right winger, Claire is playing left winger, Dave is playing benchwarmer, Eve is playing goalkeeper, Fred is playing center midfielder, and Gertrude is playing cheerleader.
+0: As the game progresses, pairs of players occasionally swap positions. First, Eve and Claire trade positions. Then, Gertrude and Alice trade positions. Then, Fred and Bob trade positions. Then, Dave and Fred trade positions. Then, Fred and Bob trade positions. Then, Bob and Eve trade positions. Finally, Claire and Alice trade positions. At the end of the match, Gertrude is playing
+0: Options:
+0: (A) striker
+0: (B) right winger
+0: (C) left winger
+0: (D) benchwarmer
+0: (E) goalkeeper
+0: (F) center midfielder
+0: (G) cheerleader
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (A)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,846 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Alice, Bob, Claire, Dave, Eve, Fred, and Gertrude are on the same team in a soccer match. At the start of the match, they are each assigned to a position: Alice is playing striker, Bob is playing right winger, Claire is playing left winger, Dave is playing benchwarmer, Eve is playing goalkeeper, Fred is playing center midfielder, and Gertrude is playing cheerleader.\nAs the game progresses, pairs of players occasionally swap positions. First, Eve and Claire trade positions. Then, Gertrude and Alice trade positions. Then, Fred and Bob trade positions. Then, Dave and Fred trade positions. Then, Fred and Bob trade positions. Then, Bob and Eve trade positions. Finally, Claire and Alice trade positions. At the end of the match, Gertrude is playing\nOptions:\n(A) striker\n(B) right winger\n(C) left winger\n(D) benchwarmer\n(E) goalkeeper\n(F) center midfielder\n(G) cheerleader', 'target': '(A)'}
+0: , arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nA task requiring determining the final positions of a set of objects given their initial positions and a description of a sequence of swaps.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Alice, Bob, Claire, Dave, Eve, Fred, and Gertrude are on the same team in a soccer match. At the start of the match, they are each assigned to a position: Alice is playing striker, Bob is playing right winger, Claire is playing left winger, Dave is playing benchwarmer, Eve is playing goalkeeper, Fred is playing center midfielder, and Gertrude is playing cheerleader.\nAs the game progresses, pairs of players occasionally swap positions. First, Eve and Claire trade positions. Then, Gertrude and Alice trade positions. Then, Fred and Bob trade positions. Then, Dave and Fred trade positions. Then, Fred and Bob trade positions. Then, Bob and Eve trade positions. Finally, Claire and Alice trade positions. At the end of the match, Gertrude is playi
+0: ng\nOptions:\n(A) striker\n(B) right winger\n(C) left winger\n(D) benchwarmer\n(E) goalkeeper\n(F) center midfielder\n(G) cheerleader\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_tracking_shuffled_objects_seven_objects', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_tracking_shuffled_objects_seven_objects', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2843.07it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2817.10it/s]
+0: 2025-01-25:19:18:40,847 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_three_objects on rank 1...
+0: 2025-01-25:19:18:40,847 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_three_objects on rank 0...
+0: 2025-01-25:19:18:40,847 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_three_objects on rank 3...
+0: 2025-01-25:19:18:40,847 INFO     [task.py:415] Building contexts for bbh_zeroshot_tracking_shuffled_objects_three_objects on rank 2...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2958.96it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2923.25it/s]
+0: 2025-01-25:19:18:40,871 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_tracking_shuffled_objects_three_objects,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: A task requiring determining the final positions of a set of objects given their initial positions and a description of a sequence of swaps.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Alice, Bob, and Claire are friends and avid readers who occasionally trade books. At the start of the semester, they each buy one new book: Alice gets Ulysses, Bob gets Frankenstein, and Claire gets Lolita.
+0: As the semester proceeds, they start trading around the new books. First, Claire and Bob swap books. Then, Bob and Alice swap books. Finally, Claire and Bob swap books. At the end of the semester, Bob has
+0: Options:
+0: (A) Ulysses
+0: (B) Frankenstein
+0: (C) Lolita
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: (B)
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,871 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Alice, Bob, and Claire are friends and avid readers who occasionally trade books. At the start of the semester, they each buy one new book: Alice gets Ulysses, Bob gets Frankenstein, and Claire gets Lolita.\nAs the semester proceeds, they start trading around the new books. First, Claire and Bob swap books. Then, Bob and Alice swap books. Finally, Claire and Bob swap books. At the end of the semester, Bob has\nOptions:\n(A) Ulysses\n(B) Frankenstein\n(C) Lolita', 'target': '(B)'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nA task requiring determining the final positions of a set of objects given their initial positions and a description of a sequence of swaps.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Alice, Bob, and Claire are friends and avid readers who occasionally trade books. At the start of the semester, they each buy one new book: Alic
+0: e gets Ulysses, Bob gets Frankenstein, and Claire gets Lolita.\nAs the semester proceeds, they start trading around the new books. First, Claire and Bob swap books. Then, Bob and Alice swap books. Finally, Claire and Bob swap books. At the end of the semester, Bob has\nOptions:\n(A) Ulysses\n(B) Frankenstein\n(C) Lolita\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_tracking_shuffled_objects_three_objects', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_tracking_shuffled_objects_three_objects', doc_id=0, repeats=1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2840.61it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2800.63it/s]
+0: 2025-01-25:19:18:40,872 INFO     [task.py:415] Building contexts for bbh_zeroshot_web_of_lies on rank 2...
+0: 2025-01-25:19:18:40,872 INFO     [task.py:415] Building contexts for bbh_zeroshot_web_of_lies on rank 0...
+0: 2025-01-25:19:18:40,872 INFO     [task.py:415] Building contexts for bbh_zeroshot_web_of_lies on rank 1...
+0: 2025-01-25:19:18:40,872 INFO     [task.py:415] Building contexts for bbh_zeroshot_web_of_lies on rank 3...
+0:   0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 2953.27it/s]
+0: 100%|██████████| 63/63 [00:00<00:00, 2959.69it/s]
+0: 2025-01-25:19:18:40,896 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_web_of_lies,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Evaluate a random boolean function expressed as a word problem.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Question: Sherrie tells the truth. Vernell says Sherrie tells the truth. Alexis says Vernell lies. Michaela says Alexis tells the truth. Elanor says Michaela tells the truth. Does Elanor tell the truth?
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: No
+0: (end of target on previous line)
+0: 100%|██████████| 62/62 [00:00<00:00, 2871.64it/s]
+0: 2025-01-25:19:18:40,896 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Question: Sherrie tells the truth. Vernell says Sherrie tells the truth. Alexis says Vernell lies. Michaela says Alexis tells the truth. Elanor says Michaela tells the truth. Does Elanor tell the truth?', 'target': 'No'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nEvaluate a random boolean function expressed as a word problem.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Question: Sherrie tells the truth. Vernell says Sherrie tells the truth. Alexis says Vernell lies. Michaela says Alexis tells the truth. Elanor says Michaela tells the truth. Does Elanor tell the truth?\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_web_of_lies', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_web_of_lies', doc_id=0, repeats=
+0: 1)
+0: 100%|██████████| 62/62 [00:00<00:00, 2833.68it/s]
+0: 2025-01-25:19:18:40,897 INFO     [task.py:415] Building contexts for bbh_zeroshot_word_sorting on rank 2...
+0: 2025-01-25:19:18:40,897 INFO     [task.py:415] Building contexts for bbh_zeroshot_word_sorting on rank 3...
+0: 2025-01-25:19:18:40,897 INFO     [task.py:415] Building contexts for bbh_zeroshot_word_sorting on rank 0...
+0: 2025-01-25:19:18:40,897 INFO     [task.py:415] Building contexts for bbh_zeroshot_word_sorting on rank 1...
+0:   0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/62 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]  0%|          | 0/63 [00:00<?, ?it/s]100%|██████████| 63/63 [00:00<00:00, 3060.22it/s]
+0: 2025-01-25:19:18:40,921 INFO     [evaluator_utils.py:196] Task: ConfigurableTask(task_name=bbh_zeroshot_word_sorting,output_type=generate_until,num_fewshot=0,num_samples=250); document 0; context prompt (starting on next line):    
+0: <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+0: 
+0: Sort a list of words.<|eot_id|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Q: Sort the following words alphabetically: List: syndrome therefrom
+0: A:<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: 
+0: (end of prompt on previous line)
+0: target string or answer choice index (starting on next line):
+0: syndrome therefrom
+0: (end of target on previous line)
+0: 2025-01-25:19:18:40,921 INFO     [evaluator_utils.py:200] Request: Instance(request_type='generate_until', doc={'input': 'Sort the following words alphabetically: List: syndrome therefrom', 'target': 'syndrome therefrom'}, arguments=('<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nSort a list of words.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\nQ: Sort the following words alphabetically: List: syndrome therefrom\nA:<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n', {'until': ['</s>', 'Q:', '<|im_end|>'], 'do_sample': False, 'temperature': 0}), idx=0, metadata=('bbh_zeroshot_word_sorting', 0, 1), resps=[], filtered_resps={}, task_name='bbh_zeroshot_word_sorting', doc_id=0, repeats=1)
+0: 100%|██████████| 63/63 [00:00<00:00, 2961.32it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2893.75it/s]
+0: 100%|██████████| 62/62 [00:00<00:00, 2858.82it/s]
+0: 2025-01-25:19:18:40,922 INFO     [evaluator.py:496] Running generate_until requests
+0: 2025-01-25:19:18:40,922 INFO     [evaluator.py:496] Running generate_until requests
+0: 2025-01-25:19:18:40,922 INFO     [evaluator.py:496] Running generate_until requests
+0: 2025-01-25:19:18:40,922 INFO     [evaluator.py:496] Running generate_until requests
+0: Running generate_until requests:   0%|          | 0/1641 [00:00<?, ?it/s]/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:590: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+0:   warnings.warn(
+0: /u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:595: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+0:   warnings.warn(
+0: /u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:590: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+0:   warnings.warn(
+0: /u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:595: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+0:   warnings.warn(
+0: /u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:590: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+0:   warnings.warn(
+0: /u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:595: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+0:   warnings.warn(
+0: /u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:590: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+0:   warnings.warn(
+0: /u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/generation/configuration_utils.py:595: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.9` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+0:   warnings.warn(
+0: Running generate_until requests:   0%|          | 1/1641 [00:33<15:07:09, 33.19s/it]Running generate_until requests:   8%|▊         | 129/1641 [00:54<08:41,  2.90it/s] Running generate_until requests:  16%|█▌        | 257/1641 [01:13<05:21,  4.31it/s]Running generate_until requests:  23%|██▎       | 385/1641 [01:32<04:02,  5.17it/s]Running generate_until requests:  31%|███▏      | 513/1641 [01:50<03:14,  5.80it/s]Running generate_until requests:  39%|███▉      | 641/1641 [02:07<02:39,  6.29it/s]Running generate_until requests:  47%|████▋     | 769/1641 [02:24<02:10,  6.69it/s]Running generate_until requests:  55%|█████▍    | 897/1641 [02:40<01:45,  7.08it/s]Running generate_until requests:  62%|██████▏   | 1025/1641 [02:55<01:22,  7.45it/s]Running generate_until requests:  70%|███████   | 1153/1641 [03:10<01:02,  7.77it/s]Running generate_until requests:  78%|███████▊  | 1281/1641 [03:25<00:44,  8.10it/s]
+0: Running generate_until requests:  86%|████████▌ | 1409/1641 [03:37<00:26,  8.68it/s]Running generate_until requests:  94%|█████████▎| 1536/1641 [03:47<00:12,  8.68it/s]Running generate_until requests:  94%|█████████▎| 1537/1641 [03:49<00:11,  9.19it/s]Running generate_until requests: 100%|██████████| 1641/1641 [03:49<00:00,  7.15it/s]
+0: 2025-01-25:19:22:47,659 INFO     [evaluation_tracker.py:206] Saving results aggregated
+0: 2025-01-25:19:22:47,678 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_boolean_expressions
+0: 2025-01-25:19:22:47,904 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_causal_judgement
+0: 2025-01-25:19:22:48,075 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_date_understanding
+0: 2025-01-25:19:22:48,289 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_disambiguation_qa
+0: 2025-01-25:19:22:48,496 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_dyck_languages
+0: 2025-01-25:19:22:48,710 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_formal_fallacies
+0: 2025-01-25:19:22:48,926 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_geometric_shapes
+0: 2025-01-25:19:22:49,138 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_hyperbaton
+0: 2025-01-25:19:22:49,348 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_logical_deduction_five_objects
+0: 2025-01-25:19:22:49,561 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_logical_deduction_seven_objects
+0: 2025-01-25:19:22:49,778 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_logical_deduction_three_objects
+0: 2025-01-25:19:22:50,278 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_movie_recommendation
+0: 2025-01-25:19:22:50,504 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_multistep_arithmetic_two
+0: 2025-01-25:19:22:50,719 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_navigate
+0: 2025-01-25:19:22:50,934 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_object_counting
+0: 2025-01-25:19:22:51,145 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_penguins_in_a_table
+0: 2025-01-25:19:22:51,268 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_reasoning_about_colored_objects
+0: 2025-01-25:19:22:51,484 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_ruin_names
+0: 2025-01-25:19:22:51,698 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_salient_translation_error_detection
+0: 2025-01-25:19:22:51,920 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_snarks
+0: 2025-01-25:19:22:52,078 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_sports_understanding
+0: 2025-01-25:19:22:52,291 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_temporal_sequences
+0: 2025-01-25:19:22:52,509 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_tracking_shuffled_objects_five_objects
+0: 2025-01-25:19:22:52,728 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_tracking_shuffled_objects_seven_objects
+0: 2025-01-25:19:22:52,951 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_tracking_shuffled_objects_three_objects
+0: 2025-01-25:19:22:53,169 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_web_of_lies
+0: 2025-01-25:19:22:53,384 INFO     [evaluation_tracker.py:287] Saving per-sample results for: bbh_zeroshot_word_sorting
+0: hf (pretrained=/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_50_1000_tbs8_ebs8_gas2_lr5e-6_cl4096,dtype=auto), gen_kwargs: (temperature=0), limit: None, num_fewshot: 0, batch_size: 128
+0: |                         Tasks                         |Version|     Filter     |n-shot|  Metric   |   |Value |   |Stderr|
+0: |-------------------------------------------------------|------:|----------------|-----:|-----------|---|-----:|---|-----:|
+0: |bbh_zeroshot                                           |      3|flexible-extract|      |exact_match|↑  |0.4488|±  |0.0057|
+0: | - bbh_zeroshot_boolean_expressions                    |      3|flexible-extract|     0|exact_match|↑  |0.4840|±  |0.0317|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_causal_judgement                       |      3|flexible-extract|     0|exact_match|↑  |0.5722|±  |0.0363|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_date_understanding                     |      3|flexible-extract|     0|exact_match|↑  |0.6320|±  |0.0306|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_disambiguation_qa                      |      3|flexible-extract|     0|exact_match|↑  |0.5120|±  |0.0317|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_dyck_languages                         |      3|flexible-extract|     0|exact_match|↑  |0.0000|±  |0.0000|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_formal_fallacies                       |      3|flexible-extract|     0|exact_match|↑  |0.5320|±  |0.0316|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_geometric_shapes                       |      3|flexible-extract|     0|exact_match|↑  |0.2040|±  |0.0255|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_hyperbaton                             |      3|flexible-extract|     0|exact_match|↑  |0.6080|±  |0.0309|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_logical_deduction_five_objects         |      3|flexible-extract|     0|exact_match|↑  |0.3760|±  |0.0307|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_logical_deduction_seven_objects        |      3|flexible-extract|     0|exact_match|↑  |0.4360|±  |0.0314|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_logical_deduction_three_objects        |      3|flexible-extract|     0|exact_match|↑  |0.6120|±  |0.0309|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_movie_recommendation                   |      3|flexible-extract|     0|exact_match|↑  |0.5360|±  |0.0316|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_multistep_arithmetic_two               |      3|flexible-extract|     0|exact_match|↑  |0.0040|±  |0.0040|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_navigate                               |      3|flexible-extract|     0|exact_match|↑  |0.6960|±  |0.0292|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_object_counting                        |      3|flexible-extract|     0|exact_match|↑  |0.3560|±  |0.0303|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_penguins_in_a_table                    |      3|flexible-extract|     0|exact_match|↑  |0.6301|±  |0.0401|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_reasoning_about_colored_objects        |      3|flexible-extract|     0|exact_match|↑  |0.5440|±  |0.0316|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_ruin_names                             |      3|flexible-extract|     0|exact_match|↑  |0.6640|±  |0.0299|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_salient_translation_error_detection    |      3|flexible-extract|     0|exact_match|↑  |0.5200|±  |0.0317|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_snarks                                 |      3|flexible-extract|     0|exact_match|↑  |0.4270|±  |0.0372|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_sports_understanding                   |      3|flexible-extract|     0|exact_match|↑  |0.7160|±  |0.0286|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_temporal_sequences                     |      3|flexible-extract|     0|exact_match|↑  |0.5440|±  |0.0316|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_tracking_shuffled_objects_five_objects |      3|flexible-extract|     0|exact_match|↑  |0.3240|±  |0.0297|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_tracking_shuffled_objects_seven_objects|      3|flexible-extract|     0|exact_match|↑  |0.2160|±  |0.0261|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_tracking_shuffled_objects_three_objects|      3|flexible-extract|     0|exact_match|↑  |0.3160|±  |0.0295|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_web_of_lies                            |      3|flexible-extract|     0|exact_match|↑  |0.2600|±  |0.0278|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: | - bbh_zeroshot_word_sorting                           |      3|flexible-extract|     0|exact_match|↑  |0.4960|±  |0.0317|
+0: |                                                       |       |strict-match    |     0|exact_match|↑  |0.0000|±  |0.0000|
+0: 
+0: |   Groups   |Version|     Filter     |n-shot|  Metric   |   |Value |   |Stderr|
+0: |------------|------:|----------------|------|-----------|---|-----:|---|-----:|
+0: |bbh_zeroshot|      3|flexible-extract|      |exact_match|↑  |0.4488|±  |0.0057|
+0: 
