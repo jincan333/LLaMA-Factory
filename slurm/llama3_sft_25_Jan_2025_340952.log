@@ -477,3 +477,35 @@
 0: 
 0: {'train_runtime': 187.7497, 'train_samples_per_second': 5.326, 'train_steps_per_second': 0.085, 'train_loss': 1.0419413447380066, 'epoch': 1.0}
 0:                                                100%|██████████| 16/16 [03:06<00:00,  1.50s/it]100%|██████████| 16/16 [03:06<00:00, 11.66s/it]
+0: [INFO|trainer.py:3801] 2025-01-25 20:07:05,645 >> Saving model checkpoint to /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr1e-7_cl4096
+0: [INFO|configuration_utils.py:414] 2025-01-25 20:07:05,651 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr1e-7_cl4096/config.json
+0: [INFO|configuration_utils.py:865] 2025-01-25 20:07:05,655 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr1e-7_cl4096/generation_config.json
+0: [INFO|modeling_utils.py:3043] 2025-01-25 20:07:13,029 >> The model is bigger than the maximum size per checkpoint (5GB) and is going to be split in 4 checkpoint shards. You can find where each parameters has been saved in the index located at /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr1e-7_cl4096/model.safetensors.index.json.
+0: [INFO|tokenization_utils_base.py:2646] 2025-01-25 20:07:13,050 >> tokenizer config file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr1e-7_cl4096/tokenizer_config.json
+0: [INFO|tokenization_utils_base.py:2655] 2025-01-25 20:07:13,052 >> Special tokens file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr1e-7_cl4096/special_tokens_map.json
+0: ***** train metrics *****
+0:   epoch                    =        1.0
+0:   total_flos               =      368GF
+0:   train_loss               =     1.0419
+0:   train_runtime            = 0:03:07.74
+0:   train_samples_per_second =      5.326
+0:   train_steps_per_second   =      0.085
+0: Figure saved at: /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr1e-7_cl4096/training_loss.png
+0: [WARNING|2025-01-25 20:07:13] llamafactory.extras.ploting:162 >> No metric eval_loss to plot.
+0: [WARNING|2025-01-25 20:07:13] llamafactory.extras.ploting:162 >> No metric eval_accuracy to plot.
+0: [INFO|trainer.py:4117] 2025-01-25 20:07:13,399 >> 
+0: ***** Running Evaluation *****
+0: [INFO|trainer.py:4119] 2025-01-25 20:07:13,399 >>   Num examples = 1000
+0: [INFO|trainer.py:4122] 2025-01-25 20:07:13,400 >>   Batch size = 8
+0:   0%|          | 0/32 [00:00<?, ?it/s]  6%|▋         | 2/32 [00:00<00:03,  9.39it/s]  9%|▉         | 3/32 [00:00<00:04,  7.00it/s] 12%|█▎        | 4/32 [00:00<00:04,  5.95it/s] 16%|█▌        | 5/32 [00:00<00:04,  5.64it/s] 19%|█▉        | 6/32 [00:01<00:04,  5.46it/s] 22%|██▏       | 7/32 [00:01<00:04,  5.35it/s] 25%|██▌       | 8/32 [00:01<00:04,  5.28it/s] 28%|██▊       | 9/32 [00:01<00:04,  5.23it/s] 31%|███▏      | 10/32 [00:01<00:04,  5.06it/s] 34%|███▍      | 11/32 [00:01<00:04,  5.08it/s] 38%|███▊      | 12/32 [00:02<00:03,  5.05it/s] 41%|████      | 13/32 [00:02<00:03,  5.09it/s] 44%|████▍     | 14/32 [00:02<00:03,  5.06it/s] 47%|████▋     | 15/32 [00:02<00:03,  4.99it/s] 50%|█████     | 16/32 [00:02<00:03,  5.01it/s] 53%|█████▎    | 17/32 [00:03<00:02,  5.01it/s] 56%|█████▋    | 18/32 [00:03<00:02,  5.07it/s] 59%|█████▉    | 19/32 [00:03<00:02,  5.10it
+0: /s] 62%|██████▎   | 20/32 [00:03<00:02,  5.05it/s] 66%|██████▌   | 21/32 [00:03<00:02,  5.08it/s] 69%|██████▉   | 22/32 [00:04<00:01,  5.08it/s] 72%|███████▏  | 23/32 [00:04<00:01,  5.08it/s] 75%|███████▌  | 24/32 [00:04<00:01,  5.08it/s] 78%|███████▊  | 25/32 [00:04<00:01,  5.07it/s] 81%|████████▏ | 26/32 [00:04<00:01,  5.06it/s] 84%|████████▍ | 27/32 [00:05<00:00,  5.05it/s] 88%|████████▊ | 28/32 [00:05<00:00,  5.08it/s] 91%|█████████ | 29/32 [00:05<00:00,  5.09it/s] 94%|█████████▍| 30/32 [00:05<00:00,  5.11it/s] 97%|█████████▋| 31/32 [00:05<00:00,  5.13it/s]100%|██████████| 32/32 [00:06<00:00,  5.17it/s]100%|██████████| 32/32 [00:06<00:00,  5.22it/s]
+0: ***** eval metrics *****
+0:   epoch                   =        1.0
+0:   eval_loss               =     1.0357
+0:   eval_runtime            = 0:00:06.52
+0:   eval_samples_per_second =    153.225
+0:   eval_steps_per_second   =      4.903
+0: [INFO|modelcard.py:449] 2025-01-25 20:07:19,931 >> Dropping the following result as it does not have all the necessary fields:
+0: {'task': {'name': 'Causal Language Modeling', 'type': 'text-generation'}}
+0: [1;34mwandb[0m: 🚀 View run [33mllama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr1e-7_cl4096[0m at: [34mhttps://wandb.ai/jincan333/safe_reason/runs/oui5i6re[0m
+0: [1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250125_200304-oui5i6re/logs[0m

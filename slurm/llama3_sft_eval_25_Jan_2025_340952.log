@@ -1,0 +1,108 @@
+0: num_nodes: 1
+0: SLURM_NODEID: 0
+0: CUDA_VISIBLE_DEVICES: 0,1,2,3
+0: evaldataset: bbh_zeroshot
+0: The following values were not passed to `accelerate launch` and had defaults used instead:
+0: 	`--num_processes` was set to a value of `4`
+0: 		More than one GPU was found, enabling multi-GPU training.
+0: 		If this was unintended please pass in `--num_processes=1`.
+0: 	`--num_machines` was set to a value of `1`
+0: 	`--mixed_precision` was set to a value of `'no'`
+0: 	`--dynamo_backend` was set to a value of `'no'`
+0: To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+0: 2025-01-25:20:07:46,584 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:20:07:46,584 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:20:07:46,584 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:20:07:46,584 INFO     [__main__.py:279] Verbosity set to INFO
+0: 2025-01-25:20:07:56,674 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:20:07:56,674 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:20:07:56,674 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:20:07:56,674 INFO     [__main__.py:376] Selected Tasks: ['bbh_zeroshot']
+0: 2025-01-25:20:07:56,680 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:20:07:56,680 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:20:07:56,680 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:20:07:56,680 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:20:07:56,680 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:20:07:56,680 INFO     [evaluator.py:164] Setting random seed to 0 | Setting numpy seed to 1234 | Setting torch manual seed to 1234 | Setting fewshot manual seed to 1234
+0: 2025-01-25:20:07:56,680 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:20:07:56,680 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr5e-7_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:20:07:56,680 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr5e-7_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:20:07:56,680 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr5e-7_cl4096', 'dtype': 'auto'}
+0: 2025-01-25:20:07:56,680 WARNING  [evaluator.py:175] generation_kwargs specified through cli, these settings will update set parameters in yaml tasks. Ensure 'do_sample=True' for non-greedy decoding!
+0: 2025-01-25:20:07:56,680 INFO     [evaluator.py:201] Initializing hf model, with arguments: {'pretrained': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr5e-7_cl4096', 'dtype': 'auto'}
+0: [rank0]: Traceback (most recent call last):
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/utils/hub.py", line 403, in cached_file
+0: [rank0]:     resolved_file = hf_hub_download(
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+0: [rank0]:     validate_repo_id(arg_value)
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/huggingface_hub/utils/_validators.py", line 154, in validate_repo_id
+0: [rank0]:     raise HFValidationError(
+0: [rank0]: huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr5e-7_cl4096'. Use `repo_type` argument if needed.
+0: 
+0: [rank0]: The above exception was the direct cause of the following exception:
+0: 
+0: [rank0]: Traceback (most recent call last):
+0: [rank0]:   File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+0: [rank0]:     return _run_code(code, main_globals, None,
+0: [rank0]:   File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+0: [rank0]:     exec(code, run_globals)
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/__main__.py", line 461, in <module>
+0: [rank0]:     cli_evaluate()
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/__main__.py", line 382, in cli_evaluate
+0: [rank0]:     results = evaluator.simple_evaluate(
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/utils.py", line 402, in _wrapper
+0: [rank0]:     return fn(*args, **kwargs)
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/evaluator.py", line 204, in simple_evaluate
+0: [rank0]:     lm = lm_eval.api.registry.get_model(model).create_from_arg_string(
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/api/model.py", line 147, in create_from_arg_string
+0: [rank0]:     return cls(**args, **args2)
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/models/huggingface.py", line 163, in __init__
+0: [rank0]:     self._get_config(
+0: [rank0]:   File "/u/cjin1/lm-evaluation-harness/lm_eval/models/huggingface.py", line 513, in _get_config
+0: [rank0]:     self._config = transformers.AutoConfig.from_pretrained(
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/models/auto/configuration_auto.py", line 1017, in from_pretrained
+0: [rank0]:     config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/configuration_utils.py", line 574, in get_config_dict
+0: [rank0]:     config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/configuration_utils.py", line 633, in _get_config_dict
+0: [rank0]:     resolved_config_file = cached_file(
+0: [rank0]:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/transformers/utils/hub.py", line 469, in cached_file
+0: [rank0]:     raise EnvironmentError(
+0: [rank0]: OSError: Incorrect path_or_model_id: '/work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000_tbs8_ebs8_gas2_lr5e-7_cl4096'. Please provide either the path to a local folder or the repo_id of a model on the Hub.
+0: [rank0]:[W125 20:08:04.615579322 ProcessGroupNCCL.cpp:1218] Warning: WARNING: process group has NOT been destroyed before we destruct ProcessGroupNCCL. On normal program exit, the application should call destroy_process_group to ensure that any pending NCCL operations have finished in this process. In rare cases this process can exit before this point and block the progress of another member of the process group. This constraint has always been present,  but this warning has only been added since PyTorch 2.4 (function operator())
+0: W0125 20:08:05.193000 2938051 torch/distributed/elastic/multiprocessing/api.py:891] Sending process 2938119 closing signal SIGTERM
+0: W0125 20:08:05.193000 2938051 torch/distributed/elastic/multiprocessing/api.py:891] Sending process 2938120 closing signal SIGTERM
+0: W0125 20:08:05.193000 2938051 torch/distributed/elastic/multiprocessing/api.py:891] Sending process 2938121 closing signal SIGTERM
+0: E0125 20:08:05.672000 2938051 torch/distributed/elastic/multiprocessing/api.py:863] failed (exitcode: 1) local_rank: 0 (pid: 2938118) of binary: /usr/bin/python
+0: Traceback (most recent call last):
+0:   File "/u/cjin1/.my_envs/llamafactory/bin/accelerate", line 8, in <module>
+0:     sys.exit(main())
+0:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+0:     args.func(args)
+0:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/accelerate/commands/launch.py", line 1159, in launch_command
+0:     multi_gpu_launcher(args)
+0:   File "/u/cjin1/.my_envs/llamafactory/lib/python3.10/site-packages/accelerate/commands/launch.py", line 793, in multi_gpu_launcher
+0:     distrib_run.run(args)
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/run.py", line 910, in run
+0:     elastic_launch(
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 138, in __call__
+0:     return launch_agent(self._config, self._entrypoint, list(args))
+0:   File "/usr/local/lib/python3.10/dist-packages/torch/distributed/launcher/api.py", line 269, in launch_agent
+0:     raise ChildFailedError(
+0: torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+0: ============================================================
+0: lm_eval FAILED
+0: ------------------------------------------------------------
+0: Failures:
+0:   <NO_OTHER_FAILURES>
+0: ------------------------------------------------------------
+0: Root Cause (first observed failure):
+0: [0]:
+0:   time      : 2025-01-25_20:08:05
+0:   host      : gh104.hsn.cm.delta.internal.ncsa.edu
+0:   rank      : 0 (local_rank: 0)
+0:   exitcode  : 1 (pid: 2938118)
+0:   error_file: <N/A>
+0:   traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+0: ============================================================
+srun: error: gh104: task 0: Exited with exit code 1
