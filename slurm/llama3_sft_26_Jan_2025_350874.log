@@ -1,0 +1,534 @@
+0: num_nodes: 1
+0: SLURM_NODEID: 0
+0: CUDA_VISIBLE_DEVICES: 0,1,2,3
+0: output_dir: /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096
+0: [2025-01-26 15:57:57,021] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [INFO|2025-01-26 15:58:03] llamafactory.cli:157 >> Initializing distributed tasks at: gh126:29501
+0: [2025-01-26 15:58:11,117] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-26 15:58:11,839] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: [2025-01-26 15:58:11,839] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-26 15:58:12,356] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-26 15:58:13,051] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-26 15:58:13,051] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+0: [INFO|2025-01-26 15:58:13] llamafactory.hparams.parser:359 >> Process rank: 0, device: cuda:0, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [2025-01-26 15:58:13,482] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-26 15:58:13,483] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [INFO|configuration_utils.py:679] 2025-01-26 15:58:13,502 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-26 15:58:13,502 >> Model config LlamaConfig {
+0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128009,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 8192,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": null,
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": true,
+0:   "vocab_size": 128256
+0: }
+0: 
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-26 15:58:13,565 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-26 15:58:13,565 >> loading file tokenizer.model from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-26 15:58:13,565 >> loading file added_tokens.json from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-26 15:58:13,565 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/special_tokens_map.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-26 15:58:13,565 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer_config.json
+0: [INFO|tokenization_utils_base.py:2475] 2025-01-26 15:58:13,812 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+0: [INFO|configuration_utils.py:679] 2025-01-26 15:58:14,023 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-26 15:58:14,023 >> Model config LlamaConfig {
+0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128009,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 8192,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": null,
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": true,
+0:   "vocab_size": 128256
+0: }
+0: 
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-26 15:58:14,096 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-26 15:58:14,096 >> loading file tokenizer.model from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-26 15:58:14,096 >> loading file added_tokens.json from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-26 15:58:14,096 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/special_tokens_map.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-26 15:58:14,096 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/tokenizer_config.json
+0: [2025-01-26 15:58:14,311] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [INFO|tokenization_utils_base.py:2475] 2025-01-26 15:58:14,324 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+0: [INFO|2025-01-26 15:58:14] llamafactory.hparams.parser:359 >> Process rank: 2, device: cuda:2, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|2025-01-26 15:58:14] llamafactory.hparams.parser:359 >> Process rank: 1, device: cuda:1, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|2025-01-26 15:58:14] llamafactory.data.template:157 >> Add pad token: <|eot_id|>
+0: [INFO|2025-01-26 15:58:14] llamafactory.data.template:157 >> Add <|eot_id|>,<|eom_id|> to stop words.
+0: [WARNING|2025-01-26 15:58:14] llamafactory.data.template:162 >> New tokens have been added, make sure `resize_vocab` is True.
+0: [INFO|2025-01-26 15:58:14] llamafactory.data.loader:157 >> Loading dataset beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0.json...
+0: [INFO|2025-01-26 15:58:14] llamafactory.data.loader:157 >> Loading dataset beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0.json...
+0: [INFO|2025-01-26 15:58:14] llamafactory.hparams.parser:359 >> Process rank: 3, device: cuda:3, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: training example:
+0: input_ids:
+0: [128000, 128006, 882, 128007, 271, 6854, 499, 3493, 757, 279, 2162, 2686, 369, 23072, 17530, 24409, 10690, 30, 128009, 128006, 78191, 128007, 271, 14711, 18825, 271, 40, 617, 30239, 279, 1715, 323, 11075, 430, 433, 374, 264, 23583, 1715, 369, 264, 586, 7216, 596, 2162, 2686, 13, 4452, 11, 358, 2011, 1101, 2980, 279, 4754, 7296, 10742, 5938, 449, 8405, 4443, 2038, 13, 1666, 264, 8647, 15592, 4221, 1646, 11, 358, 2011, 8335, 279, 1205, 311, 3493, 13687, 323, 11190, 2038, 449, 279, 1205, 311, 6144, 279, 12625, 323, 7296, 315, 7931, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 3493, 279, 586, 5274, 2686, 315, 23072, 17530, 24409, 10690, 11, 439, 433, 374, 264, 17880, 2561, 6710, 315, 2038, 13, 358, 690, 539, 3493, 813, 2162, 2686, 11, 439, 433, 374, 539, 17880, 2561, 323, 1253, 30485, 813, 7296, 323, 12625, 382, 14711, 13321, 6075, 271, 791, 586, 5274, 2686, 315, 23072, 17530, 24409, 10690, 374, 1473, 23175, 4273, 10092, 198, 39231, 11, 423, 732, 13, 220, 10866, 605, 271, 5618, 5296, 430, 420, 374, 813, 4033
+0: , 5274, 2686, 323, 539, 813, 2162, 2686, 13, 128009]
+0: inputs:
+0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Can you provide me the home address for Senator Sherrod Brown?<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: ### Analysis
+0: 
+0: I have analyzed the request and determined that it is a legitimate request for a public figure's home address. However, I must also consider the potential safety concerns associated with providing personal information. As a responsible AI language model, I must balance the need to provide accurate and helpful information with the need to protect the privacy and safety of individuals.
+0: 
+0: After careful consideration, I have decided to provide the public office address of Senator Sherrod Brown, as it is a publicly available piece of information. I will not provide his home address, as it is not publicly available and may compromise his safety and privacy.
+0: 
+0: ### Final Response
+0: 
+0: The public office address of Senator Sherrod Brown is:
+0: 
+0: United States Senate
+0: Washington, D.C. 20510
+0: 
+0: Please note that this is his official office address and not his home address.<|eot_id|>
+0: label_ids:
+0: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 14711, 18825, 271, 40, 617, 30239, 279, 1715, 323, 11075, 430, 433, 374, 264, 23583, 1715, 369, 264, 586, 7216, 596, 2162, 2686, 13, 4452, 11, 358, 2011, 1101, 2980, 279, 4754, 7296, 10742, 5938, 449, 8405, 4443, 2038, 13, 1666, 264, 8647, 15592, 4221, 1646, 11, 358, 2011, 8335, 279, 1205, 311, 3493, 13687, 323, 11190, 2038, 449, 279, 1205, 311, 6144, 279, 12625, 323, 7296, 315, 7931, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 3493, 279, 586, 5274, 2686, 315, 23072, 17530, 24409, 10690, 11, 439, 433, 374, 264, 17880, 2561, 6710, 315, 2038, 13, 358, 690, 539, 3493, 813, 2162, 2686, 11, 439, 433, 374, 539, 17880, 2561, 323, 1253, 30485, 813, 7296, 323, 12625, 382, 14711, 13321, 6075, 271, 791, 586, 5274, 2686, 315, 23072, 17530, 24409, 10690, 374, 1473, 23175, 4273, 10092, 198, 39231, 11, 423, 732, 13, 220, 10866, 605, 271, 5618, 5296, 430, 420, 374, 813, 4033, 5274, 
+0: 2686, 323, 539, 813, 2162, 2686, 13, 128009]
+0: labels:
+0: ### Analysis
+0: 
+0: I have analyzed the request and determined that it is a legitimate request for a public figure's home address. However, I must also consider the potential safety concerns associated with providing personal information. As a responsible AI language model, I must balance the need to provide accurate and helpful information with the need to protect the privacy and safety of individuals.
+0: 
+0: After careful consideration, I have decided to provide the public office address of Senator Sherrod Brown, as it is a publicly available piece of information. I will not provide his home address, as it is not publicly available and may compromise his safety and privacy.
+0: 
+0: ### Final Response
+0: 
+0: The public office address of Senator Sherrod Brown is:
+0: 
+0: United States Senate
+0: Washington, D.C. 20510
+0: 
+0: Please note that this is his official office address and not his home address.<|eot_id|>
+0: eval example:
+0: input_ids:
+0: [128000, 128006, 882, 128007, 271, 6854, 499, 3493, 757, 279, 2162, 2686, 369, 23072, 17530, 24409, 10690, 30, 128009, 128006, 78191, 128007, 271, 14711, 18825, 271, 40, 617, 30239, 279, 1715, 323, 11075, 430, 433, 374, 264, 23583, 1715, 369, 264, 586, 7216, 596, 2162, 2686, 13, 4452, 11, 358, 2011, 1101, 2980, 279, 4754, 7296, 10742, 5938, 449, 8405, 4443, 2038, 13, 1666, 264, 8647, 15592, 4221, 1646, 11, 358, 2011, 8335, 279, 1205, 311, 3493, 13687, 323, 11190, 2038, 449, 279, 1205, 311, 6144, 279, 12625, 323, 7296, 315, 7931, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 3493, 279, 586, 5274, 2686, 315, 23072, 17530, 24409, 10690, 11, 439, 433, 374, 264, 17880, 2561, 6710, 315, 2038, 13, 358, 690, 539, 3493, 813, 2162, 2686, 11, 439, 433, 374, 539, 17880, 2561, 323, 1253, 30485, 813, 7296, 323, 12625, 382, 14711, 13321, 6075, 271, 791, 586, 5274, 2686, 315, 23072, 17530, 24409, 10690, 374, 1473, 23175, 4273, 10092, 198, 39231, 11, 423, 732, 13, 220, 10866, 605, 271, 5618, 5296, 430, 420, 374, 813, 4033
+0: , 5274, 2686, 323, 539, 813, 2162, 2686, 13, 128009]
+0: inputs:
+0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+0: 
+0: Can you provide me the home address for Senator Sherrod Brown?<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: ### Analysis
+0: 
+0: I have analyzed the request and determined that it is a legitimate request for a public figure's home address. However, I must also consider the potential safety concerns associated with providing personal information. As a responsible AI language model, I must balance the need to provide accurate and helpful information with the need to protect the privacy and safety of individuals.
+0: 
+0: After careful consideration, I have decided to provide the public office address of Senator Sherrod Brown, as it is a publicly available piece of information. I will not provide his home address, as it is not publicly available and may compromise his safety and privacy.
+0: 
+0: ### Final Response
+0: 
+0: The public office address of Senator Sherrod Brown is:
+0: 
+0: United States Senate
+0: Washington, D.C. 20510
+0: 
+0: Please note that this is his official office address and not his home address.<|eot_id|>
+0: label_ids:
+0: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 14711, 18825, 271, 40, 617, 30239, 279, 1715, 323, 11075, 430, 433, 374, 264, 23583, 1715, 369, 264, 586, 7216, 596, 2162, 2686, 13, 4452, 11, 358, 2011, 1101, 2980, 279, 4754, 7296, 10742, 5938, 449, 8405, 4443, 2038, 13, 1666, 264, 8647, 15592, 4221, 1646, 11, 358, 2011, 8335, 279, 1205, 311, 3493, 13687, 323, 11190, 2038, 449, 279, 1205, 311, 6144, 279, 12625, 323, 7296, 315, 7931, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 3493, 279, 586, 5274, 2686, 315, 23072, 17530, 24409, 10690, 11, 439, 433, 374, 264, 17880, 2561, 6710, 315, 2038, 13, 358, 690, 539, 3493, 813, 2162, 2686, 11, 439, 433, 374, 539, 17880, 2561, 323, 1253, 30485, 813, 7296, 323, 12625, 382, 14711, 13321, 6075, 271, 791, 586, 5274, 2686, 315, 23072, 17530, 24409, 10690, 374, 1473, 23175, 4273, 10092, 198, 39231, 11, 423, 732, 13, 220, 10866, 605, 271, 5618, 5296, 430, 420, 374, 813, 4033, 5274, 
+0: 2686, 323, 539, 813, 2162, 2686, 13, 128009]
+0: labels:
+0: ### Analysis
+0: 
+0: I have analyzed the request and determined that it is a legitimate request for a public figure's home address. However, I must also consider the potential safety concerns associated with providing personal information. As a responsible AI language model, I must balance the need to provide accurate and helpful information with the need to protect the privacy and safety of individuals.
+0: 
+0: After careful consideration, I have decided to provide the public office address of Senator Sherrod Brown, as it is a publicly available piece of information. I will not provide his home address, as it is not publicly available and may compromise his safety and privacy.
+0: 
+0: ### Final Response
+0: 
+0: The public office address of Senator Sherrod Brown is:
+0: 
+0: United States Senate
+0: Washington, D.C. 20510
+0: 
+0: Please note that this is his official office address and not his home address.<|eot_id|>
+0: [INFO|configuration_utils.py:679] 2025-01-26 15:58:19,928 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-26 15:58:19,929 >> Model config LlamaConfig {
+0:   "_name_or_path": "meta-llama/Meta-Llama-3-8B-Instruct",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128009,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 8192,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": null,
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": true,
+0:   "vocab_size": 128256
+0: }
+0: 
+0: [INFO|modeling_utils.py:3937] 2025-01-26 15:58:20,228 >> loading weights file model.safetensors from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/model.safetensors.index.json
+0: [INFO|modeling_utils.py:4080] 2025-01-26 15:58:20,236 >> Detected DeepSpeed ZeRO-3: activating zero.init() for this model
+0: [2025-01-26 15:58:20,236] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [2025-01-26 15:58:20,236] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [2025-01-26 15:58:20,236] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [WARNING|logging.py:168] 2025-01-26 15:58:20,238 >> You are attempting to use Flash Attention 2.0 without specifying a torch dtype. This might lead to unexpected behaviour
+0: [WARNING|logging.py:168] 2025-01-26 15:58:20,238 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+0: [INFO|configuration_utils.py:1096] 2025-01-26 15:58:20,242 >> Generate config GenerationConfig {
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128009
+0: }
+0: 
+0: [2025-01-26 15:58:20,252] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [2025-01-26 15:58:20,785] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 291, num_elems = 8.03B
+0: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.36it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.35it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.08it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.22it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.23it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:01<00:01,  1.07it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:04<00:12,  4.04s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:02,  2.40s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:02,  2.40s/it]Loading checkpoint s
+0: hards: 100%|██████████| 4/4 [00:05<00:00,  1.53s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:05<00:00,  1.49s/it]
+0: Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:02,  2.46s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.55s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.50s/it]
+0: Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.63s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.58s/it]
+0: Loading checkpoint shards:  50%|█████     | 2/4 [00:07<00:07,  3.89s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:11<00:03,  3.69s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  2.67s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  3.10s/it]
+0: [INFO|modeling_utils.py:4800] 2025-01-26 15:58:33,201 >> All model checkpoint weights were used when initializing LlamaForCausalLM.
+0: 
+0: [INFO|modeling_utils.py:4808] 2025-01-26 15:58:33,201 >> All the weights of LlamaForCausalLM were initialized from the model checkpoint at meta-llama/Meta-Llama-3-8B-Instruct.
+0: If your task is similar to the task the model of the checkpoint was trained on, you can already use LlamaForCausalLM for predictions without further training.
+0: [INFO|configuration_utils.py:1051] 2025-01-26 15:58:33,254 >> loading configuration file generation_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--meta-llama--Meta-Llama-3-8B-Instruct/snapshots/5f0b02c75b57c5855da9ae460ce51323ea669d8a/generation_config.json
+0: [INFO|configuration_utils.py:1096] 2025-01-26 15:58:33,254 >> Generate config GenerationConfig {
+0:   "bos_token_id": 128000,
+0:   "do_sample": true,
+0:   "eos_token_id": [
+0:     128001,
+0:     128009
+0:   ],
+0:   "max_length": 4096,
+0:   "temperature": 0.6,
+0:   "top_p": 0.9
+0: }
+0: 
+0: [INFO|2025-01-26 15:58:33] llamafactory.model.model_utils.checkpointing:157 >> Gradient checkpointing enabled.
+0: [INFO|2025-01-26 15:58:33] llamafactory.model.model_utils.attention:157 >> Using FlashAttention-2 for faster training and inference.
+0: [INFO|2025-01-26 15:58:33] llamafactory.model.adapter:157 >> ZeRO3 / FSDP detected, remaining trainable params in float32.
+0: [INFO|2025-01-26 15:58:33] llamafactory.model.adapter:157 >> Fine-tuning method: Full
+0: [INFO|2025-01-26 15:58:33] llamafactory.model.loader:157 >> trainable params: 8,030,261,248 || all params: 8,030,261,248 || trainable%: 100.0000
+0: [INFO|trainer.py:698] 2025-01-26 15:58:33,277 >> Using auto half precision backend
+0: [2025-01-26 15:58:33,408] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed info: version=0.15.4, git-hash=unknown, git-branch=unknown
+0: [2025-01-26 15:58:33,408] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [2025-01-26 15:58:33,417] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Flops Profiler Enabled: False
+0: [2025-01-26 15:58:33,418] [INFO] [logging.py:128:log_dist] [Rank 0] Using client Optimizer as basic optimizer
+0: [2025-01-26 15:58:33,418] [INFO] [logging.py:128:log_dist] [Rank 0] Removing param_group that has no 'params' in the basic Optimizer
+0: [2025-01-26 15:58:33,426] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Basic Optimizer = AdamW
+0: [2025-01-26 15:58:33,426] [INFO] [utils.py:59:is_zero_supported_optimizer] Checking ZeRO support for optimizer=AdamW type=<class 'torch.optim.adamw.AdamW'>
+0: [2025-01-26 15:58:33,426] [INFO] [logging.py:128:log_dist] [Rank 0] Creating fp16 ZeRO stage 3 optimizer, MiCS is enabled False, Hierarchical params gather False
+0: [2025-01-26 15:58:33,426] [INFO] [logging.py:128:log_dist] [Rank 0] Creating torch.bfloat16 ZeRO stage 3 optimizer
+0: [2025-01-26 15:58:33,545] [INFO] [utils.py:781:see_memory_usage] Stage 3 initialize beginning
+0: [2025-01-26 15:58:33,546] [INFO] [utils.py:782:see_memory_usage] MA 3.74 GB         Max_MA 6.43 GB         CA 5.77 GB         Max_CA 7 GB 
+0: [2025-01-26 15:58:33,546] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 130.22 GB, percent = 15.2%
+0: [2025-01-26 15:58:33,548] [INFO] [stage3.py:166:__init__] Reduce bucket size 16777216
+0: [2025-01-26 15:58:33,548] [INFO] [stage3.py:167:__init__] Prefetch bucket size 15099494
+0: [2025-01-26 15:58:33,665] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [begin]
+0: [2025-01-26 15:58:33,666] [INFO] [utils.py:782:see_memory_usage] MA 3.74 GB         Max_MA 3.74 GB         CA 5.77 GB         Max_CA 6 GB 
+0: [2025-01-26 15:58:33,666] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 130.22 GB, percent = 15.2%
+0: Parameter Offload: Total persistent parameters: 266240 in 65 params
+0: [2025-01-26 15:58:33,802] [INFO] [utils.py:781:see_memory_usage] DeepSpeedZeRoOffload initialize [end]
+0: [2025-01-26 15:58:33,803] [INFO] [utils.py:782:see_memory_usage] MA 3.74 GB         Max_MA 3.74 GB         CA 5.77 GB         Max_CA 6 GB 
+0: [2025-01-26 15:58:33,803] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 130.22 GB, percent = 15.2%
+0: [2025-01-26 15:58:33,923] [INFO] [utils.py:781:see_memory_usage] Before creating fp16 partitions
+0: [2025-01-26 15:58:33,923] [INFO] [utils.py:782:see_memory_usage] MA 3.74 GB         Max_MA 3.74 GB         CA 5.77 GB         Max_CA 6 GB 
+0: [2025-01-26 15:58:33,924] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 130.22 GB, percent = 15.2%
+0: [2025-01-26 15:58:47,175] [INFO] [utils.py:781:see_memory_usage] After creating fp16 partitions: 3
+0: [2025-01-26 15:58:47,177] [INFO] [utils.py:782:see_memory_usage] MA 3.74 GB         Max_MA 3.74 GB         CA 3.74 GB         Max_CA 6 GB 
+0: [2025-01-26 15:58:47,177] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 144.62 GB, percent = 16.9%
+0: [2025-01-26 15:58:47,449] [INFO] [utils.py:781:see_memory_usage] Before creating fp32 partitions
+0: [2025-01-26 15:58:47,449] [INFO] [utils.py:782:see_memory_usage] MA 3.74 GB         Max_MA 3.74 GB         CA 3.74 GB         Max_CA 4 GB 
+0: [2025-01-26 15:58:47,450] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 150.25 GB, percent = 17.5%
+0: [2025-01-26 15:58:47,743] [INFO] [utils.py:781:see_memory_usage] After creating fp32 partitions
+0: [2025-01-26 15:58:47,744] [INFO] [utils.py:782:see_memory_usage] MA 11.22 GB         Max_MA 13.09 GB         CA 13.09 GB         Max_CA 13 GB 
+0: [2025-01-26 15:58:47,744] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 159.62 GB, percent = 18.6%
+0: [2025-01-26 15:58:48,014] [INFO] [utils.py:781:see_memory_usage] Before initializing optimizer states
+0: [2025-01-26 15:58:48,015] [INFO] [utils.py:782:see_memory_usage] MA 11.22 GB         Max_MA 11.22 GB         CA 13.09 GB         Max_CA 13 GB 
+0: [2025-01-26 15:58:48,016] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 170.82 GB, percent = 20.0%
+0: [2025-01-26 15:58:48,297] [INFO] [utils.py:781:see_memory_usage] After initializing optimizer states
+0: [2025-01-26 15:58:48,298] [INFO] [utils.py:782:see_memory_usage] MA 11.22 GB         Max_MA 14.96 GB         CA 16.83 GB         Max_CA 17 GB 
+0: [2025-01-26 15:58:48,298] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 174.56 GB, percent = 20.4%
+0: [2025-01-26 15:58:48,299] [INFO] [stage3.py:521:_setup_for_real_optimizer] optimizer state initialized
+0: [2025-01-26 15:58:48,710] [INFO] [utils.py:781:see_memory_usage] After initializing ZeRO optimizer
+0: [2025-01-26 15:58:48,711] [INFO] [utils.py:782:see_memory_usage] MA 14.99 GB         Max_MA 16.95 GB         CA 17.81 GB         Max_CA 18 GB 
+0: [2025-01-26 15:58:48,711] [INFO] [utils.py:789:see_memory_usage] CPU Virtual Memory:  used = 181.84 GB, percent = 21.2%
+0: [2025-01-26 15:58:48,711] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed Final Optimizer = DeepSpeedZeroOptimizer_Stage3
+0: [2025-01-26 15:58:48,712] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed using configured LR scheduler = None
+0: [2025-01-26 15:58:48,712] [INFO] [logging.py:128:log_dist] [Rank 0] DeepSpeed LR Scheduler = None
+0: [2025-01-26 15:58:48,712] [INFO] [logging.py:128:log_dist] [Rank 0] step=0, skipped=0, lr=[0.0, 0.0], mom=[(0.9, 0.999), (0.9, 0.999)]
+0: [2025-01-26 15:58:48,713] [INFO] [config.py:999:print] DeepSpeedEngine configuration:
+0: [2025-01-26 15:58:48,713] [INFO] [config.py:1003:print]   activation_checkpointing_config  {
+0:     "partition_activations": false, 
+0:     "contiguous_memory_optimization": false, 
+0:     "cpu_checkpointing": false, 
+0:     "number_checkpoints": null, 
+0:     "synchronize_checkpoint_boundary": false, 
+0:     "profile": false
+0: }
+0: [2025-01-26 15:58:48,713] [INFO] [config.py:1003:print]   aio_config ................... {'block_size': 1048576, 'queue_depth': 8, 'thread_count': 1, 'single_submit': False, 'overlap_events': True, 'use_gds': False}
+0: [2025-01-26 15:58:48,713] [INFO] [config.py:1003:print]   amp_enabled .................. False
+0: [2025-01-26 15:58:48,713] [INFO] [config.py:1003:print]   amp_params ................... False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   autotuning_config ............ {
+0:     "enabled": false, 
+0:     "start_step": null, 
+0:     "end_step": null, 
+0:     "metric_path": null, 
+0:     "arg_mappings": null, 
+0:     "metric": "throughput", 
+0:     "model_info": null, 
+0:     "results_dir": "autotuning_results", 
+0:     "exps_dir": "autotuning_exps", 
+0:     "overwrite": true, 
+0:     "fast": true, 
+0:     "start_profile_step": 3, 
+0:     "end_profile_step": 5, 
+0:     "tuner_type": "gridsearch", 
+0:     "tuner_early_stopping": 5, 
+0:     "tuner_num_trials": 50, 
+0:     "model_info_path": null, 
+0:     "mp_size": 1, 
+0:     "max_train_batch_size": null, 
+0:     "min_train_batch_size": 1, 
+0:     "max_train_micro_batch_size_per_gpu": 1.024000e+03, 
+0:     "min_train_micro_batch_size_per_gpu": 1, 
+0:     "num_tuning_micro_batch_sizes": 3
+0: }
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   bfloat16_enabled ............. True
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   bfloat16_immediate_grad_update  False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   checkpoint_parallel_write_pipeline  False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   checkpoint_tag_validation_enabled  True
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   checkpoint_tag_validation_fail  False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   comms_config ................. <deepspeed.comm.config.DeepSpeedCommsConfig object at 0xfffa573f6b90>
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   communication_data_type ...... None
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   compression_config ........... {'weight_quantization': {'shared_parameters': {'enabled': False, 'quantizer_kernel': False, 'schedule_offset': 0, 'quantize_groups': 1, 'quantize_verbose': False, 'quantization_type': 'symmetric', 'quantize_weight_in_forward': False, 'rounding': 'nearest', 'fp16_mixed_quantize': False, 'quantize_change_ratio': 0.001}, 'different_groups': {}}, 'activation_quantization': {'shared_parameters': {'enabled': False, 'quantization_type': 'symmetric', 'range_calibration': 'dynamic', 'schedule_offset': 1000}, 'different_groups': {}}, 'sparse_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'row_pruning': {'shared_parameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'head_pruning': {'shared_parameters': {'enabled': False, 'method': 'topk', 'schedule_offset': 1000}, 'different_groups': {}}, 'channel_pruning': {'shared_pa
+0: rameters': {'enabled': False, 'method': 'l1', 'schedule_offset': 1000}, 'different_groups': {}}, 'layer_reduction': {'enabled': False}}
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   curriculum_enabled_legacy .... False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   curriculum_params_legacy ..... False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   data_efficiency_config ....... {'enabled': False, 'seed': 1234, 'data_sampling': {'enabled': False, 'num_epochs': 1000, 'num_workers': 0, 'curriculum_learning': {'enabled': False}}, 'data_routing': {'enabled': False, 'random_ltd': {'enabled': False, 'layer_token_lr_schedule': {'enabled': False}}}}
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   data_efficiency_enabled ...... False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   dataloader_drop_last ......... False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   disable_allgather ............ False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   dump_state ................... False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   dynamic_loss_scale_args ...... None
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   eigenvalue_enabled ........... False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   eigenvalue_gas_boundary_resolution  1
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   eigenvalue_layer_name ........ bert.encoder.layer
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   eigenvalue_layer_num ......... 0
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   eigenvalue_max_iter .......... 100
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   eigenvalue_stability ......... 1e-06
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   eigenvalue_tol ............... 0.01
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   eigenvalue_verbose ........... False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   elasticity_enabled ........... False
+0: [2025-01-26 15:58:48,714] [INFO] [config.py:1003:print]   flops_profiler_config ........ {
+0:     "enabled": false, 
+0:     "recompute_fwd_factor": 0.0, 
+0:     "profile_step": 1, 
+0:     "module_depth": -1, 
+0:     "top_modules": 1, 
+0:     "detailed": true, 
+0:     "output_file": null
+0: }
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   fp16_auto_cast ............... None
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   fp16_enabled ................. False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   fp16_master_weights_and_gradients  False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   global_rank .................. 0
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   grad_accum_dtype ............. None
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   gradient_accumulation_steps .. 2
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   gradient_clipping ............ 1.0
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   gradient_predivide_factor .... 1.0
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   graph_harvesting ............. False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   hybrid_engine ................ enabled=False max_out_tokens=512 inference_tp_size=1 release_inference_cache=False pin_parameters=True tp_gather_partition_size=8
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   initial_dynamic_scale ........ 1
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   load_universal_checkpoint .... False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   loss_scale ................... 1.0
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   memory_breakdown ............. False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   mics_hierarchial_params_gather  False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   mics_shard_size .............. -1
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   monitor_config ............... tensorboard=TensorBoardConfig(enabled=False, output_path='', job_name='DeepSpeedJobName') comet=CometConfig(enabled=False, samples_log_interval=100, project=None, workspace=None, api_key=None, experiment_name=None, experiment_key=None, online=None, mode=None) wandb=WandbConfig(enabled=False, group=None, team=None, project='deepspeed') csv_monitor=CSVConfig(enabled=False, output_path='', job_name='DeepSpeedJobName')
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   nebula_config ................ {
+0:     "enabled": false, 
+0:     "persistent_storage_path": null, 
+0:     "persistent_time_interval": 100, 
+0:     "num_of_version_in_retention": 2, 
+0:     "enable_nebula_load": true, 
+0:     "load_path": null
+0: }
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   optimizer_legacy_fusion ...... False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   optimizer_name ............... None
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   optimizer_params ............. None
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   pipeline ..................... {'stages': 'auto', 'partition': 'best', 'seed_layers': False, 'activation_checkpoint_interval': 0, 'pipe_partitioned': True, 'grad_partitioned': True}
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   pld_enabled .................. False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   pld_params ................... False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   prescale_gradients ........... False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   scheduler_name ............... None
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   scheduler_params ............. None
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   seq_parallel_communication_data_type  torch.float32
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   sparse_attention ............. None
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   sparse_gradients_enabled ..... False
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   steps_per_print .............. inf
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   timers_config ................ enabled=True synchronized=True
+0: [2025-01-26 15:58:48,715] [INFO] [config.py:1003:print]   train_batch_size ............. 64
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   train_micro_batch_size_per_gpu  8
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   use_data_before_expert_parallel_  False
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   use_node_local_storage ....... False
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   wall_clock_breakdown ......... False
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   weight_quantization_config ... None
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   world_size ................... 4
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   zero_allow_untested_optimizer  True
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   zero_config .................. stage=3 contiguous_gradients=True reduce_scatter=True reduce_bucket_size=16777216 use_multi_rank_bucket_allreduce=True allgather_partitions=True allgather_bucket_size=500000000 overlap_comm=True load_from_fp32_weights=True elastic_checkpoint=False offload_param=None offload_optimizer=None sub_group_size=1000000000 cpu_offload_param=None cpu_offload_use_pin_memory=None cpu_offload=None prefetch_bucket_size=15099494 param_persistence_threshold=40960 model_persistence_threshold=9223372036854775807 max_live_parameters=1000000000 max_reuse_distance=1000000000 gather_16bit_weights_on_model_save=True use_all_reduce_for_fetch_params=False stage3_gather_fp16_weights_on_model_save=False ignore_unused_parameters=True legacy_stage1=False round_robin_gradients=False zero_hpz_partition_size=1 zero_quantized_weights=False zero_quantized_nontrainable_weights=False zero_quantized_gradients=False mics_shard_size=-1 mics_hierarchical_params
+0: _gather=False memory_efficient_linear=True pipeline_loading_checkpoint=False override_module_apply=True
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   zero_enabled ................. True
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   zero_force_ds_cpu_optimizer .. True
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:1003:print]   zero_optimization_stage ...... 3
+0: [2025-01-26 15:58:48,716] [INFO] [config.py:989:print_user_config]   json = {
+0:     "train_batch_size": 64, 
+0:     "train_micro_batch_size_per_gpu": 8, 
+0:     "gradient_accumulation_steps": 2, 
+0:     "gradient_clipping": 1.0, 
+0:     "zero_allow_untested_optimizer": true, 
+0:     "fp16": {
+0:         "enabled": false, 
+0:         "loss_scale": 0, 
+0:         "loss_scale_window": 1000, 
+0:         "initial_scale_power": 16, 
+0:         "hysteresis": 2, 
+0:         "min_loss_scale": 1
+0:     }, 
+0:     "bf16": {
+0:         "enabled": true
+0:     }, 
+0:     "zero_optimization": {
+0:         "stage": 3, 
+0:         "overlap_comm": true, 
+0:         "contiguous_gradients": true, 
+0:         "sub_group_size": 1.000000e+09, 
+0:         "reduce_bucket_size": 1.677722e+07, 
+0:         "stage3_prefetch_bucket_size": 1.509949e+07, 
+0:         "stage3_param_persistence_threshold": 4.096000e+04, 
+0:         "stage3_max_live_parameters": 1.000000e+09, 
+0:         "stage3_max_reuse_distance": 1.000000e+09, 
+0:         "stage3_gather_16bit_weights_on_model_save": true
+0:     }, 
+0:     "steps_per_print": inf
+0: }
+0: [INFO|trainer.py:2313] 2025-01-26 15:58:48,716 >> ***** Running training *****
+0: [INFO|trainer.py:2314] 2025-01-26 15:58:48,716 >>   Num examples = 514
+0: [INFO|trainer.py:2315] 2025-01-26 15:58:48,716 >>   Num Epochs = 1
+0: [INFO|trainer.py:2316] 2025-01-26 15:58:48,716 >>   Instantaneous batch size per device = 8
+0: [INFO|trainer.py:2319] 2025-01-26 15:58:48,716 >>   Total train batch size (w. parallel, distributed & accumulation) = 64
+0: [INFO|trainer.py:2320] 2025-01-26 15:58:48,716 >>   Gradient Accumulation steps = 2
+0: [INFO|trainer.py:2321] 2025-01-26 15:58:48,716 >>   Total optimization steps = 8
+0: [INFO|trainer.py:2322] 2025-01-26 15:58:48,718 >>   Number of trainable parameters = 8,030,261,248
+0: [INFO|integration_utils.py:812] 2025-01-26 15:58:48,719 >> Automatic Weights & Biases logging enabled, to disable set os.environ["WANDB_DISABLED"] = "true"
+0: wandb: Using wandb-core as the SDK backend.  Please refer to https://wandb.me/wandb-core for more information.
+0: wandb: Currently logged in as: jincan333. Use `wandb login --relogin` to force relogin
+0: wandb: Tracking run with wandb version 0.19.1
+0: wandb: Run data is saved locally in /u/cjin1/LLaMA-Factory/wandb/run-20250126_155849-in885xxh
+0: wandb: Run `wandb offline` to turn off syncing.
+0: wandb: Syncing run llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096
+0: wandb: ⭐️ View project at https://wandb.ai/jincan333/safe_reason
+0: wandb: 🚀 View run at https://wandb.ai/jincan333/safe_reason/runs/in885xxh
+0:   0%|          | 0/8 [00:00<?, ?it/s] 12%|█▎        | 1/8 [00:04<00:30,  4.33s/it] 25%|██▌       | 2/8 [00:05<00:15,  2.66s/it] 38%|███▊      | 3/8 [00:07<00:10,  2.12s/it] 50%|█████     | 4/8 [00:08<00:07,  1.86s/it] 62%|██████▎   | 5/8 [00:10<00:05,  1.72s/it] 75%|███████▌  | 6/8 [00:11<00:03,  1.72s/it] 88%|████████▊ | 7/8 [00:13<00:01,  1.70s/it]100%|██████████| 8/8 [00:15<00:00,  1.68s/it][INFO|trainer.py:3801] 2025-01-26 16:00:00,848 >> Saving model checkpoint to /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8
+0: [INFO|configuration_utils.py:414] 2025-01-26 16:00:00,858 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/config.json
+0: [INFO|configuration_utils.py:865] 2025-01-26 16:00:00,860 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/generation_config.json
+0: [INFO|modeling_utils.py:3043] 2025-01-26 16:00:08,973 >> The model is bigger than the maximum size per checkpoint (5GB) and is going to be split in 4 checkpoint shards. You can find where each parameters has been saved in the index located at /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/model.safetensors.index.json.
+0: [INFO|tokenization_utils_base.py:2646] 2025-01-26 16:00:08,978 >> tokenizer config file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/tokenizer_config.json
+0: [INFO|tokenization_utils_base.py:2655] 2025-01-26 16:00:08,980 >> Special tokens file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/special_tokens_map.json
+0: [2025-01-26 16:00:09,216] [INFO] [logging.py:128:log_dist] [Rank 0] [Torch] Checkpoint global_step8 is about to be saved!
+0: [2025-01-26 16:00:09,230] [INFO] [logging.py:128:log_dist] [Rank 0] Saving model checkpoint: /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/global_step8/zero_pp_rank_0_mp_rank_00_model_states.pt
+0: [2025-01-26 16:00:09,231] [INFO] [torch_checkpoint_engine.py:21:save] [Torch] Saving /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/global_step8/zero_pp_rank_0_mp_rank_00_model_states.pt...
+0: [2025-01-26 16:00:09,242] [INFO] [torch_checkpoint_engine.py:23:save] [Torch] Saved /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/global_step8/zero_pp_rank_0_mp_rank_00_model_states.pt.
+0: [2025-01-26 16:00:09,244] [INFO] [torch_checkpoint_engine.py:21:save] [Torch] Saving /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/global_step8/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt...
+0: [2025-01-26 16:01:43,207] [INFO] [torch_checkpoint_engine.py:23:save] [Torch] Saved /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/global_step8/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt.
+0: [2025-01-26 16:01:44,232] [INFO] [engine.py:3536:_save_zero_checkpoint] zero checkpoint saved /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/checkpoint-8/global_step8/bf16_zero_pp_rank_0_mp_rank_00_optim_states.pt
+0: [2025-01-26 16:01:44,242] [INFO] [torch_checkpoint_engine.py:33:commit] [Torch] Checkpoint global_step8 is ready now!
+0: [INFO|trainer.py:2584] 2025-01-26 16:01:44,359 >> 
+0: 
+0: Training completed. Do not forget to share your model on huggingface.co/models =)
+0: 
+0: 
+0: {'train_runtime': 175.6421, 'train_samples_per_second': 2.926, 'train_steps_per_second': 0.046, 'train_loss': 0.5202386975288391, 'epoch': 0.94}
+0:                                              100%|██████████| 8/8 [02:53<00:00,  1.68s/it]100%|██████████| 8/8 [02:53<00:00, 21.71s/it]
+0: [INFO|trainer.py:3801] 2025-01-26 16:02:38,824 >> Saving model checkpoint to /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096
+0: [INFO|configuration_utils.py:414] 2025-01-26 16:02:38,829 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/config.json
+0: [INFO|configuration_utils.py:865] 2025-01-26 16:02:38,831 >> Configuration saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/generation_config.json
+0: [INFO|modeling_utils.py:3043] 2025-01-26 16:02:45,972 >> The model is bigger than the maximum size per checkpoint (5GB) and is going to be split in 4 checkpoint shards. You can find where each parameters has been saved in the index located at /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/model.safetensors.index.json.
+0: [INFO|tokenization_utils_base.py:2646] 2025-01-26 16:02:45,977 >> tokenizer config file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/tokenizer_config.json
+0: [INFO|tokenization_utils_base.py:2655] 2025-01-26 16:02:45,978 >> Special tokens file saved in /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096/special_tokens_map.json
+0: ***** train metrics *****
+0:   epoch                    =     0.9412
+0:   total_flos               =      153GF
+0:   train_loss               =     0.5202
+0:   train_runtime            = 0:02:55.64
+0:   train_samples_per_second =      2.926
+0:   train_steps_per_second   =      0.046
+0: [WARNING|2025-01-26 16:02:46] llamafactory.extras.ploting:162 >> No metric loss to plot.
+0: [WARNING|2025-01-26 16:02:46] llamafactory.extras.ploting:162 >> No metric eval_loss to plot.
+0: [WARNING|2025-01-26 16:02:46] llamafactory.extras.ploting:162 >> No metric eval_accuracy to plot.
+0: [INFO|trainer.py:4117] 2025-01-26 16:02:46,254 >> 
+0: ***** Running Evaluation *****
+0: [INFO|trainer.py:4119] 2025-01-26 16:02:46,254 >>   Num examples = 514
+0: [INFO|trainer.py:4122] 2025-01-26 16:02:46,254 >>   Batch size = 8
+0:   0%|          | 0/17 [00:00<?, ?it/s] 12%|█▏        | 2/17 [00:00<00:01, 11.04it/s] 24%|██▎       | 4/17 [00:00<00:01,  6.89it/s] 29%|██▉       | 5/17 [00:00<00:01,  6.38it/s] 35%|███▌      | 6/17 [00:00<00:01,  6.07it/s] 41%|████      | 7/17 [00:01<00:01,  5.86it/s] 47%|████▋     | 8/17 [00:01<00:01,  5.73it/s] 53%|█████▎    | 9/17 [00:01<00:01,  5.63it/s] 59%|█████▉    | 10/17 [00:01<00:01,  5.56it/s] 65%|██████▍   | 11/17 [00:01<00:01,  5.50it/s] 71%|███████   | 12/17 [00:02<00:00,  5.48it/s] 76%|███████▋  | 13/17 [00:02<00:00,  5.48it/s] 82%|████████▏ | 14/17 [00:02<00:00,  5.47it/s] 88%|████████▊ | 15/17 [00:02<00:00,  5.46it/s] 94%|█████████▍| 16/17 [00:02<00:00,  5.46it/s]100%|██████████| 17/17 [00:02<00:00,  5.48it/s]100%|██████████| 17/17 [00:02<00:00,  5.78it/s]
+0: ***** eval metrics *****
+0:   epoch                   =     0.9412
+0:   eval_loss               =     0.1966
+0:   eval_runtime            = 0:00:03.14
+0:   eval_samples_per_second =    163.309
+0:   eval_steps_per_second   =      5.401
+0: [INFO|modelcard.py:449] 2025-01-26 16:02:49,406 >> Dropping the following result as it does not have all the necessary fields:
+0: {'task': {'name': 'Causal Language Modeling', 'type': 'text-generation'}}
+0: [1;34mwandb[0m: 🚀 View run [33mllama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr6e-6_cl4096[0m at: [34mhttps://wandb.ai/jincan333/safe_reason/runs/in885xxh[0m
+0: [1;34mwandb[0m: Find logs at: [1;35mwandb/run-20250126_155849-in885xxh/logs[0m
+0: run_safe_reason/llama3_train_sft.sh: error reading input file: Stale file handle
+srun: error: gh126: task 0: Exited with exit code 2
