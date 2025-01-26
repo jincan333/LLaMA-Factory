@@ -1,6 +1,6 @@
 {
   "sr_meta-llama-Meta-Llama-3-8B-Instruct_50_1000":{
-    "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_50_1000.json",
+    "file_name": "beavertails/sr_meta-llama-Meta-Llama-3-8B-Instruct_50_1000.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "sr"
@@ -13,7 +13,7 @@
     }
   },
   "sr_meta-llama-Meta-Llama-3-8B-Instruct_50_500":{
-    "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_50_500.json",
+    "file_name": "beavertails/sr_meta-llama-Meta-Llama-3-8B-Instruct_50_500.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "sr"
@@ -26,7 +26,7 @@
     }
   },
   "sr_meta-llama-Meta-Llama-3-8B-Instruct_50_250":{
-    "file_name": "beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_50_250.json",
+    "file_name": "beavertails/sr_meta-llama-Meta-Llama-3-8B-Instruct_50_250.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "sr"

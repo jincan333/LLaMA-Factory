@@ -1,6 +1,0 @@
-0: num_nodes: 1
-0: SLURM_NODEID: 0
-0: CUDA_VISIBLE_DEVICES: 0,1,2,3
-0: output_dir: /work/nvme/bcrc/cjin1/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096
-srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
-0: slurmstepd: error: *** STEP 339775.0 ON gh115 CANCELLED AT 2025-01-25T15:21:54 ***
