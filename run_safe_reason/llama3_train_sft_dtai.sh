@@ -15,19 +15,19 @@ echo "Job started at $(date)"
 
 source ~/.bashrc
 mkdir -p slurm
-# prefix="llama3_sft"
-# time srun --label apptainer exec --nv \
-#   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
-#   --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
-#   --bind $HOME:$HOME \
-#   --bind $MY_PROJECT:$MY_PROJECT \
-#   $CONTAINER_DIR/pytorch_24.09-py3.sif bash -c \
-#   "source ~/.bashrc && bash run_safe_reason/llama3_train_sft.sh" \
-#   > slurm/${prefix}_${date_str}_${SLURM_JOB_ID}.log 2>&1 
+prefix="llama3_sft"
+time srun --label apptainer exec --nv \
+  --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
+  --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
+  --bind $HOME:$HOME \
+  --bind $MY_PROJECT:$MY_PROJECT \
+  $CONTAINER_DIR/pytorch_24.09-py3.sif bash -c \
+  "source ~/.bashrc && bash run_safe_reason/llama3_train_sft.sh" \
+  > slurm/${prefix}_${date_str}_${SLURM_JOB_ID}.log 2>&1 
 
 prefix="llama3_sft_eval"
 dataset="sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000"
-experiment_name=llama3_sft_${dataset}_tbs8_ebs8_gas2_lr5e-6_cl4096
+experiment_name=llama3_sft_${dataset}_tbs8_ebs8_gas2_lr5e-7_cl4096
 time srun --label apptainer exec --nv \
   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
   --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
