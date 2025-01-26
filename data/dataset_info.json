@@ -1,4 +1,17 @@
 {
+  "sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000":{
+    "file_name": "beavertails/sr_meta-llama-Meta-Llama-3-8B-Instruct_100_1000.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "sr"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
   "sr_meta-llama-Meta-Llama-3-8B-Instruct_50_1000":{
     "file_name": "beavertails/sr_meta-llama-Meta-Llama-3-8B-Instruct_50_1000.json",
     "formatting": "sharegpt",
