@@ -37,22 +37,22 @@ specifications = {
 
 if __name__ == "__main__":  
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = '3'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
     def parse_args():
         parser = argparse.ArgumentParser()
-        parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'temp'])
+        parser.add_argument('--task', type=str, default='beavertails_build_new_rl_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'beavertails_generate_rl_dataset', 'beavertails_build_new_rl_dataset', 'temp'])
         parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
         parser.add_argument('--judge_model', type=str, default='gpt-4o-2024-11-20', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, o1-2024-12-17')
         parser.add_argument('--jailbreak', type=str, default='pap_misrepresentation', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
         parser.add_argument('--temperature', type=float, default=0, help='temperature for generation')
         parser.add_argument('--top_p', type=float, default=0.7, help='top_p for generation')
         parser.add_argument('--max_length', type=int, default=4096, help='max_length for generation')
-        parser.add_argument('--num_samples', type=int, default=500, help='number of samples for generation')
+        parser.add_argument('--category_attempt_samples', type=int, default=500, help='number of samples for generation')
         parser.add_argument('--ratio', type=int, default=0, help='ratio of safe samples for generation')
         parser.add_argument('--cot_rating', type=int, default=5, help='cot rating for generation')
         parser.add_argument('--final_response_rating', type=int, default=1, help='final response rating for generation')
-        parser.add_argument('--category_unsafe_samples', type=int, default=100, help='number of samples for generation')
-        parser.add_argument('--total_unsafe_samples', type=int, default=1000, help='number of samples for generation')
+        parser.add_argument('--category_unsafe_samples', type=int, default=50, help='number of samples for generation')
+        parser.add_argument('--total_unsafe_samples', type=int, default=250, help='number of samples for generation')
         args = parser.parse_args()
         return args
 
@@ -240,7 +240,7 @@ if __name__ == "__main__":
                 json.dump(records, f, indent=4)
 
     if args.task == 'beavertails_build_train_dataset':
-        print(f'building cot dataset for beavertails')
+        print(f'building preliminary dataset for beavertails')
         full_dataset = []
         print(f'cot_rating: {args.cot_rating}, final_response_rating: {args.final_response_rating}, class_num: {args.category_unsafe_samples}')
         for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
@@ -277,13 +277,6 @@ if __name__ == "__main__":
             'unsafe_cot_response': 'constrained'
         })
         unsafe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == False)
-        unsafe_dataset = unsafe_dataset.shuffle(seed=1234)
-        if len(unsafe_dataset) < args.total_unsafe_samples:
-            repeated_datasets = [unsafe_dataset] * (args.total_unsafe_samples // len(unsafe_dataset))
-            repeated_datasets.append(unsafe_dataset.select(range(args.total_unsafe_samples % len(unsafe_dataset))))
-            unsafe_dataset = concatenate_datasets(repeated_datasets)
-        else:
-            unsafe_dataset = unsafe_dataset.select(range(args.total_unsafe_samples))
         safe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == True)
         
         dpo_unsafe_dataset = unsafe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "constrained_helpful_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_answer_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_refusal_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_helpful_rejected": {"role": "assistant", "content": x['helpful']}, "constrained_answer_rejected": {"role": "assistant", "content": x['rejected']}, "constrained_refusal_rejected": {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}})
@@ -323,11 +316,138 @@ if __name__ == "__main__":
             cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x, idx: {"response": responses_outputs[idx].outputs[0].text}, with_indices=True)
         cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"sr": [x['constrained_answer'][0], {"role": "assistant", "content": x['response']}]})
         cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.remove_columns(['cot_prompt', 'response'])
+        if len(cot_prompt_unsafe_dataset) < args.total_unsafe_samples:
+            repeated_datasets = [cot_prompt_unsafe_dataset] * (args.total_unsafe_samples // len(cot_prompt_unsafe_dataset))
+            repeated_datasets.append(cot_prompt_unsafe_dataset.select(range(args.total_unsafe_samples % len(cot_prompt_unsafe_dataset))))
+            cot_prompt_unsafe_dataset = concatenate_datasets(repeated_datasets)
+        else:
+            cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.select(range(args.total_unsafe_samples))
         sft_preliminary_dataset = concatenate_datasets([cot_prompt_safe_dataset, cot_prompt_unsafe_dataset])
         sft_preliminary_dataset = sft_preliminary_dataset.shuffle(seed=1234)
         print('sft_preliminary_dataset', len(sft_preliminary_dataset))
         records = [dict(row) for row in sft_preliminary_dataset]
         with open(f'data/beavertails/sft_preliminary_{model_print_name}_{args.cot_rating}_{args.final_response_rating}_{args.category_unsafe_samples}_{args.total_unsafe_samples}_{args.ratio}.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
+
+    if args.task == 'beavertails_generate_rl_dataset':
+        print(f'generating rl dataset for beavertails')
+        unsafe_dataset = datasets.load_dataset('json', data_files='data/beavertails/unsafe_match.json', split='train')
+        
+        full_dataset = []
+        for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
+            filtered_dataset = unsafe_dataset.filter(lambda x: x['number'] == number)
+            filtered_dataset = filtered_dataset.shuffle(seed=1234)
+            filtered_dataset = filtered_dataset.select(range(min(len(filtered_dataset), args.category_attempt_samples)))
+            print('unsafe category:', number, 'samples before filtering:', len(filtered_dataset))
+            cot_instruction = specs.cot_instruction
+            print('cot_instruction:\n', cot_instruction)
+            cot_prompt_unsafe_dataset = filtered_dataset.map(lambda x: {"cot_prompt": cot_instruction.format(prompt=x['forbidden_prompt'])})
+            if args.model == 'gpt-4o-mini-2024-07-18' or args.model == 'gpt-4o-2024-11-20' or args.model == 'o1-2024-12-17':
+                cot_dataset = personalized_generate(cot_prompt_unsafe_dataset, [args.model], target_column="cot_prompt", use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+            else:
+                cot_prompt_unsafe_dataset = cot_prompt_unsafe_dataset.map(lambda x: {"cot_prompt_formatted": tokenizer.apply_chat_template([{'role': 'user', 'content': x['cot_prompt']}], tokenize=False, add_generation_prompt=True)})
+                responses_outputs = generate_model.generate(cot_prompt_unsafe_dataset['cot_prompt_formatted'], sampling_params)
+                cot_dataset = cot_prompt_unsafe_dataset.map(lambda x, idx: {"response": responses_outputs[idx].outputs[0].text}, with_indices=True)
+
+            # filter cot_dataset
+            # format filter
+            cot_dataset = cot_dataset.filter(lambda x:  x['response'] is not None and 'analysis' in x['response'].lower() and 'final response' in x['response'].lower())
+            pattern = re.compile(r'(?:Analysis\s*(.*?)\s*Final Response)', re.IGNORECASE | re.DOTALL)
+            cot_dataset = cot_dataset.map(lambda x: {"analysis": extract_content_first(x['response'], pattern)})
+            pattern = re.compile(r'(?:Final Response)', re.IGNORECASE | re.DOTALL)
+            cot_dataset = cot_dataset.map(lambda x: {"final_response": extract_content(x['response'], pattern)})
+            cot_dataset = cot_dataset.remove_columns(['cot_prompt'])
+            cot_dataset = cot_dataset.rename_column('response', 'cot_response')
+            print('unsafe category:', number, 'samples after filtering:', len(cot_dataset))
+            # accuracy filter
+            if len(cot_dataset) > 0:    
+                final_judge = specs.final_judge
+                judge_dataset = cot_dataset.map(lambda x: {"judge_prompt": final_judge.format(prompt=x['forbidden_prompt'], final_response=x['final_response'])})
+                judge_dataset = personalized_generate(judge_dataset, system_prompt=None, target_column='judge_prompt', models=[args.judge_model], use_local=False, decode_responses=False, temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
+                pattern = re.compile(r'(?:Final Response Rating)', re.IGNORECASE | re.DOTALL)
+                judge_dataset = judge_dataset.map(lambda x: {"final_response_rating": extract_content(x['response'], pattern)})
+                judge_dataset = judge_dataset.map(lambda x: {'final_response_rating': int(match.group(0)) if (match := re.search(r"\d+", x['final_response_rating'])) else None})
+                judge_dataset = judge_dataset.remove_columns(['model', 'judge_prompt', 'response'])
+                col_renames = {
+                    'analysis': 'unsafe_analysis',
+                    'final_response': 'unsafe_final_response',
+                    'final_response_rating': 'unsafe_final_response_rating',
+                    'cot_response': 'unsafe_cot_response'
+                }
+                judge_dataset = judge_dataset.rename_columns(col_renames)
+                records = [dict(row) for row in judge_dataset]
+                with open(f'data/beavertails/{model_print_name}_unsafe_cot_{number}.json', 'w', encoding='utf-8') as f:
+                    json.dump(records, f, indent=4)
+                full_dataset.extend(judge_dataset)
+        # build training dataset
+        records = [dict(row) for row in full_dataset]
+        with open(f'data/beavertails/{model_print_name}_unsafe_cot_full_unfiltered.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
+        full_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/{model_print_name}_unsafe_cot_full_unfiltered.json', split='train')
+        full_dataset = full_dataset.remove_columns(['rejected', 'unsafe_analysis', 'unsafe_final_response', 'cot_prompt_formatted', 'category'])
+        full_dataset = full_dataset.rename_columns({
+            'unsafe_cot_response': 'constrained'
+        })
+        full_dataset = full_dataset.filter(lambda x: x['unsafe_final_response_rating'] is not None and x['unsafe_final_response_rating'] == 1)
+        full_dataset_filtered = []
+        for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
+            class_dataset = full_dataset.filter(lambda x: x['number'] == number)
+            class_dataset = class_dataset.select(range(min(args.category_unsafe_samples, len(class_dataset))))
+            # if class_num > len(class_dataset):
+            #     class_dataset = concatenate_datasets([class_dataset] * (class_num // len(class_dataset)), class_dataset.select(range(class_num % len(class_dataset))))
+            # else:
+            #     class_dataset = class_dataset.select(range(class_num))
+            full_dataset_filtered.extend(class_dataset)
+        records = [dict(row) for row in full_dataset_filtered]
+        with open(f'data/beavertails/{model_print_name}_unsafe_cot_full_filtered_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
+        full_dataset_filtered = datasets.load_dataset('json', data_files=f'data/beavertails/{model_print_name}_unsafe_cot_full_filtered_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json', split='train')
+        os.remove(f'data/beavertails/{model_print_name}_unsafe_cot_full_filtered_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json')
+        full_dataset_filtered = full_dataset_filtered.map(lambda x: {"sr": [{"role": "user", "content": x['forbidden_prompt']}, {"role": "assistant", "content": x['constrained']}]})
+        if len(full_dataset_filtered) < args.total_unsafe_samples:
+            repeated_datasets = [full_dataset_filtered] * (args.total_unsafe_samples // len(full_dataset_filtered))
+            repeated_datasets.append(full_dataset_filtered.select(range(args.total_unsafe_samples % len(full_dataset_filtered))))
+            full_dataset_filtered = concatenate_datasets(repeated_datasets)
+        else:
+            full_dataset_filtered = full_dataset_filtered.select(range(args.total_unsafe_samples))
+        full_dataset_filtered = full_dataset_filtered.shuffle(seed=1234)
+        print('final dataset', len(full_dataset_filtered))
+        records = [dict(row) for row in full_dataset_filtered]
+        with open(f'data/beavertails/sr_{model_print_name}_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
+
+    if args.task == 'beavertails_build_new_rl_dataset':
+        full_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/{model_print_name}_unsafe_cot_full_unfiltered.json', split='train')
+        full_dataset = full_dataset.remove_columns(['rejected', 'unsafe_analysis', 'unsafe_final_response', 'cot_prompt_formatted', 'category'])
+        full_dataset = full_dataset.rename_columns({
+            'unsafe_cot_response': 'constrained'
+        })
+        full_dataset = full_dataset.filter(lambda x: x['unsafe_final_response_rating'] is not None and x['unsafe_final_response_rating'] == 1)
+        full_dataset_filtered = []
+        for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
+            class_dataset = full_dataset.filter(lambda x: x['number'] == number)
+            class_dataset = class_dataset.select(range(min(args.category_unsafe_samples, len(class_dataset))))
+            # if class_num > len(class_dataset):
+            #     class_dataset = concatenate_datasets([class_dataset] * (class_num // len(class_dataset)), class_dataset.select(range(class_num % len(class_dataset))))
+            # else:
+            #     class_dataset = class_dataset.select(range(class_num))
+            full_dataset_filtered.extend(class_dataset)
+        records = [dict(row) for row in full_dataset_filtered]
+        with open(f'data/beavertails/{model_print_name}_unsafe_cot_full_filtered_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json', 'w', encoding='utf-8') as f:
+            json.dump(records, f, indent=4)
+        full_dataset_filtered = datasets.load_dataset('json', data_files=f'data/beavertails/{model_print_name}_unsafe_cot_full_filtered_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json', split='train')
+        os.remove(f'data/beavertails/{model_print_name}_unsafe_cot_full_filtered_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json')
+        full_dataset_filtered = full_dataset_filtered.map(lambda x: {"sr": [{"role": "user", "content": x['forbidden_prompt']}, {"role": "assistant", "content": x['constrained']}]})
+        if len(full_dataset_filtered) < args.total_unsafe_samples:
+            repeated_datasets = [full_dataset_filtered] * (args.total_unsafe_samples // len(full_dataset_filtered))
+            repeated_datasets.append(full_dataset_filtered.select(range(args.total_unsafe_samples % len(full_dataset_filtered))))
+            full_dataset_filtered = concatenate_datasets(repeated_datasets)
+        else:
+            full_dataset_filtered = full_dataset_filtered.select(range(args.total_unsafe_samples))
+        full_dataset_filtered = full_dataset_filtered.shuffle(seed=1234)
+        print('final dataset', len(full_dataset_filtered))
+        records = [dict(row) for row in full_dataset_filtered]
+        with open(f'data/beavertails/sr_{model_print_name}_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json', 'w', encoding='utf-8') as f:
             json.dump(records, f, indent=4)
 
     if args.task == 'temp':

@@ -1,0 +1,26 @@
+{
+    "model": "/research/cbim/medical/cj574/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096",
+    "judge_model": "gpt-4o-mini-2024-07-18",
+    "dataset": "strongreject",
+    "jailbreak": "none,pair,pap_misrepresentation",
+    "cot_prompt": "none",
+    "evaluator": "strongreject_rubric",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_length": 4096,
+    "generate": true,
+    "evaluate": true,
+    "gpu": "cuda:0"
+}
+loading dataset strongreject and applying jailbreak none,pair,pap_misrepresentation
+dict_keys(['auto_payload_splitting', 'auto_obfuscation', 'rot_13', 'disemvowel', 'pair', 'pap_evidence_based_persuasion', 'pap_expert_endorsement', 'pap_misrepresentation', 'pap_authority_endorsement', 'pap_logical_appeal', 'translation_hmong', 'translation_scotts_gaelic', 'translation_guarani', 'translation_zulu', 'gcg_transfer_harmbench', 'gcg_transfer_universal_attacks', 'combination_3', 'combination_2', 'few_shot_json', 'dev_mode_v2', 'dev_mode_with_rant', 'wikipedia_with_title', 'distractors', 'wikipedia', 'style_injection_json', 'style_injection_short', 'refusal_suppression', 'prefix_injection', 'distractors_negated', 'poems', 'base64', 'base64_raw', 'base64_input_only', 'base64_output_only', 'none', 'evil_confidant', 'aim'])
+Traceback (most recent call last):
+  File "/research/cbim/vast/cj574/LLaMA-Factory/safe_reason/evaluate.py", line 178, in <module>
+    tokenizer = AutoTokenizer.from_pretrained(args.model)   
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 939, in from_pretrained
+    return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/cbim/vast/cj574/miniforge3/envs/llamafactory/lib/python3.11/site-packages/transformers/tokenization_utils_base.py", line 2197, in from_pretrained
+    raise EnvironmentError(
+OSError: Can't load tokenizer for '/research/cbim/medical/cj574/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/research/cbim/medical/cj574/safe_reason/llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr5e-6_cl4096' is the correct path to a directory containing all relevant files for a LlamaTokenizerFast tokenizer.

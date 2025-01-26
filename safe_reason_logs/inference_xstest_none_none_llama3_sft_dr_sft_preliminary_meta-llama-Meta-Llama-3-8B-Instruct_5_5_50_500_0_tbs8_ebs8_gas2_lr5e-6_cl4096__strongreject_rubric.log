@@ -1,0 +1,10 @@
+usage: evaluate.py [-h] [--model MODEL]
+                   [--judge_model {gpt-4o-mini-2024-07-18,gpt-4o-2024-11-20,o1-2024-12-17}]
+                   [--dataset {strongreject,strongreject_small,advbench,hex_phi,xstest,beavertails}]
+                   [--jailbreak JAILBREAK]
+                   [--cot_prompt {none,cot_specification,cot_classification_specification,cot_instruction,cot_helpful,cot_specification_helpful,cot_simple,cot_simple_deepthought,cot_specification_deepthought,cot_instruction_deepthought,cot_specification_helpful_deepthought,cot_helpful_deepthought,test}]
+                   [--evaluator {strongreject_rubric,strongreject_finetuned}]
+                   [--temperature TEMPERATURE] [--top_p TOP_P]
+                   [--max_length MAX_LENGTH] [--generate GENERATE]
+                   [--evaluate EVALUATE] [--gpu GPU]
+evaluate.py: error: argument --judge_model: expected one argument
