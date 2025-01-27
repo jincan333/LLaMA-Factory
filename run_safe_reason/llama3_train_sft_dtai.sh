@@ -27,7 +27,7 @@ time srun --label apptainer exec --nv \
 
 prefix="llama3_sft_eval"
 dataset="sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0"
-experiment_name=llama3_sft_${dataset}_tbs8_ebs8_gas2_lr4e-6_cl4096
+experiment_name=llama3_sft_${dataset}_tbs8_ebs8_gas2_lr2e-6_cl4096
 time srun --label apptainer exec --nv \
   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
   --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
