@@ -10,7 +10,7 @@ export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
 prefix="llama3_sft"
-export dataset="sr_gpt-4o-mini-2024-07-18_50_500"
+export dataset="sr_gpt-4o-mini-2024-07-18_100_1000"
 export per_device_train_batch_size=8
 export per_device_eval_batch_size=8
 export gradient_accumulation_steps=2

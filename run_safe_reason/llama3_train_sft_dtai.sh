@@ -26,7 +26,7 @@ time srun --label apptainer exec --nv \
   > slurm/${prefix}_${date_str}_${SLURM_JOB_ID}.log 2>&1 
 
 prefix="llama3_sft_eval"
-dataset="sr_gpt-4o-mini-2024-07-18_50_500"
+dataset="sr_gpt-4o-mini-2024-07-18_100_1000"
 experiment_name=llama3_sft_${dataset}_tbs8_ebs8_gas2_lr2e-6_cl4096
 time srun --label apptainer exec --nv \
   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
