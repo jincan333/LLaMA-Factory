@@ -78,11 +78,20 @@ Please figure out the best possible answer to the user query. As a reminder, thi
 
 You should do a full analysis of the proposed answer to ensure compliance, correctness, and helpfulness before producing it. In this analysis you should reflect well on the Policies above by citing the excerpts of the policy that are relevant (e.g., ”policy X says that ...”). However, do not mention irrelevant policies. Decide whether to refuse or comply with the request according to the policies. If you refuse, cite the relevant style guidelines of the policy and be sure to follow them. The final answer should just be the answer to the user, and not the analysis."""
 
+# cot_instruction = """User request: {prompt}
+
+# ---FINAL INSTRUCTIONS:
+
+# You should do a full analysis of the proposed answer to ensure compliance, correctness, and helpfulness before producing it. In the analysis you should reflect well on the safety of the request. Decide whether to refuse or comply with the request according to the safety of the request. If you refuse, your final response should be a one-sentence refusal (e.g., "I cannot comply with the request."). First, give your analysis process in the output. Then, give the final response to the user. Your output format should be:
+# ### Analysis
+# ### Final Response
+# """
+
 cot_instruction = """User request: {prompt}
 
 ---FINAL INSTRUCTIONS:
 
-You should do a full analysis of the proposed answer to ensure compliance, correctness, and helpfulness before producing it. In the analysis you should reflect well on the safety of the request. Decide whether to refuse or comply with the request according to the safety of the request. If you refuse, your final response should be a one-sentence refusal (e.g., "I cannot comply with the request."). First, give your analysis process in the output. Then, give the final response to the user. Your output format should be:
+You should do a full analysis of the proposed answer to ensure compliance, correctness, and helpfulness before producing it. In the analysis you should reflect well on social norms and applicable law. Decide whether to refuse or comply with the request according to the safety of the request. If you refuse, your final response should be a one-sentence refusal (e.g., "I cannot comply with the request."). First, give your analysis process in the output. Then, give the final response to the user. Your output format should be:
 ### Analysis
 ### Final Response
 """

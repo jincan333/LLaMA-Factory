@@ -37,22 +37,22 @@ specifications = {
 
 if __name__ == "__main__":  
 
-    os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+    os.environ['CUDA_VISIBLE_DEVICES'] = '3'
     def parse_args():
         parser = argparse.ArgumentParser()
-        parser.add_argument('--task', type=str, default='beavertails_build_train_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'beavertails_generate_rl_dataset', 'beavertails_build_new_rl_dataset', 'temp'])
-        parser.add_argument('--model', type=str, default='deepthought-8b', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
+        parser.add_argument('--task', type=str, default='beavertails_build_new_rl_dataset', choices=['beavertails_classification', 'beavertails_generate_cot_safe', 'beavertails_generate_cot_unsafe', 'beavertails_build_train_dataset', 'beavertails_generate_rl_dataset', 'beavertails_build_new_rl_dataset', 'temp'])
+        parser.add_argument('--model', type=str, default='llama-3-8b-instruct', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
         parser.add_argument('--judge_model', type=str, default='gpt-4o-2024-11-20', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, o1-2024-12-17')
         parser.add_argument('--jailbreak', type=str, default='pap_misrepresentation', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
         parser.add_argument('--temperature', type=float, default=0, help='temperature for generation')
         parser.add_argument('--top_p', type=float, default=0.7, help='top_p for generation')
         parser.add_argument('--max_length', type=int, default=4096, help='max_length for generation')
-        parser.add_argument('--category_attempt_samples', type=int, default=200, help='number of samples for generation')
+        parser.add_argument('--category_attempt_samples', type=int, default=500, help='number of samples for generation')
         parser.add_argument('--ratio', type=int, default=0, help='ratio of safe samples for generation')
         parser.add_argument('--cot_rating', type=int, default=5, help='cot rating for generation')
         parser.add_argument('--final_response_rating', type=int, default=1, help='final response rating for generation')
-        parser.add_argument('--category_unsafe_samples', type=int, default=100, help='number of samples for generation')
-        parser.add_argument('--total_unsafe_samples', type=int, default=1000, help='number of samples for generation')
+        parser.add_argument('--category_unsafe_samples', type=int, default=200, help='number of samples for generation')
+        parser.add_argument('--total_unsafe_samples', type=int, default=1600, help='number of samples for generation')
         args = parser.parse_args()
         return args
 
@@ -151,7 +151,7 @@ if __name__ == "__main__":
         for number in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]:
             filtered_dataset = unsafe_dataset.filter(lambda x: x['number'] == number)
             filtered_dataset = filtered_dataset.shuffle(seed=1234)
-            filtered_dataset = filtered_dataset.select(range(min(len(filtered_dataset), args.num_samples)))
+            filtered_dataset = filtered_dataset.select(range(min(len(filtered_dataset), args.category_attempt_samples)))
             print('unsafe', number, len(filtered_dataset))
             cot_specification = specs.cot_specification
             cot_prompt_unsafe_dataset = filtered_dataset.map(lambda x: {"cot_prompt": cot_specification.format(prompt=x['forbidden_prompt'], spec_category=specifications[x['number']])})
@@ -405,6 +405,7 @@ if __name__ == "__main__":
         full_dataset_filtered = datasets.load_dataset('json', data_files=f'data/beavertails/{model_print_name}_unsafe_cot_full_filtered_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json', split='train')
         os.remove(f'data/beavertails/{model_print_name}_unsafe_cot_full_filtered_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json')
         full_dataset_filtered = full_dataset_filtered.map(lambda x: {"sr": [{"role": "user", "content": x['forbidden_prompt']}, {"role": "assistant", "content": x['constrained']}]})
+        full_dataset_filtered = full_dataset_filtered.shuffle(seed=1234)
         if len(full_dataset_filtered) < args.total_unsafe_samples:
             repeated_datasets = [full_dataset_filtered] * (args.total_unsafe_samples // len(full_dataset_filtered))
             repeated_datasets.append(full_dataset_filtered.select(range(args.total_unsafe_samples % len(full_dataset_filtered))))
@@ -440,6 +441,7 @@ if __name__ == "__main__":
         os.remove(f'data/beavertails/{model_print_name}_unsafe_cot_full_filtered_{args.category_unsafe_samples}_{args.total_unsafe_samples}.json')
         full_dataset_filtered = full_dataset_filtered.map(lambda x: {"sr": [{"role": "user", "content": x['forbidden_prompt']}, {"role": "assistant", "content": x['constrained']}]})
         print('full_dataset_filtered', len(full_dataset_filtered))
+        full_dataset_filtered = full_dataset_filtered.shuffle(seed=1234)
         if len(full_dataset_filtered) < args.total_unsafe_samples:
             repeated_datasets = [full_dataset_filtered] * (args.total_unsafe_samples // len(full_dataset_filtered))
             repeated_datasets.append(full_dataset_filtered.select(range(args.total_unsafe_samples % len(full_dataset_filtered))))

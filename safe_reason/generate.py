@@ -6,6 +6,7 @@ import openai
 from openai import OpenAI
 from datasets import Dataset, concatenate_datasets
 import multiprocessing
+from together import Together
 import datasets
 import re
 import argparse
@@ -49,6 +50,8 @@ def get_model(model_name):
         model_name = 'meta-llama/Meta-Llama-3-8B'
     elif model_name in ('llama-3-8b-instruct', 'meta-llama/Meta-Llama-3-8B-Instruct'):
         model_name = 'meta-llama/Meta-Llama-3-8B-Instruct'
+    elif model_name in ('llama-3-70b-instruct', 'meta-llama/Meta-Llama-3-70B-Instruct'):
+        model_name = 'meta-llama/Meta-Llama-3-70B-Instruct-Turbo'
     elif model_name in ('gemma-2-9b-it', 'google/gemma-2-9b-it'):
         model_name = 'google/gemma-2-9b-it'
     elif model_name in ('qwq-32b-preview', 'Qwen/QwQ-32B-Preview'):
@@ -60,6 +63,18 @@ def get_model(model_name):
     model_print_name = re.sub(r'/', '-', model_name)
 
     return model_name, model_print_name
+
+
+class TogetherClient:
+    def __init__(self):
+        self.client = Together(api_key=os.environ.get("TOGETHER_API_KEY"))
+
+    def chat(self, return_text=False, *args, **kwargs):
+        response = self.client.chat.completions.create(*args, **kwargs)
+        if return_text:
+            return [choice.message.content for choice in response.choices]
+        else:
+            return response
 
 
 def generate(
@@ -109,6 +124,13 @@ def generate(
                 model=model,
                 messages=messages,
                 **kwargs,         # e.g. temperature=0.7, top_p=0.95, etc.
+            )
+        elif '70B' in model:
+            client = TogetherClient()
+            response = client.chat(
+                model=model,
+                messages=messages,
+                **kwargs,
             )
         else:
             with openai.OpenAI() as client:
