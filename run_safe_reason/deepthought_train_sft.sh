@@ -10,11 +10,11 @@ export MASTER_PORT=29501
 export OMP_NUM_THREADS=8
 
 prefix="deepthought_sft"
-export dataset="sr_sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_1_50_1000_0"
+export dataset="sr_ruliad-deepthought-8b-llama-v0.01-alpha_100_1000"
 export per_device_train_batch_size=8
 export per_device_eval_batch_size=8
 export gradient_accumulation_steps=2
-export learning_rate=5e-7
+export learning_rate=2e-6
 export cutoff_len=4096
 export experiment_name=${prefix}_${dataset}_tbs${per_device_train_batch_size}_ebs${per_device_eval_batch_size}_gas${gradient_accumulation_steps}_lr${learning_rate}_cl${cutoff_len}
 export output_dir=${output_dir}/${experiment_name}
