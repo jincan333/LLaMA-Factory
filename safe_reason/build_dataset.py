@@ -51,8 +51,8 @@ if __name__ == "__main__":
         parser.add_argument('--ratio', type=int, default=0, help='ratio of safe samples for generation')
         parser.add_argument('--cot_rating', type=int, default=5, help='cot rating for generation')
         parser.add_argument('--final_response_rating', type=int, default=1, help='final response rating for generation')
-        parser.add_argument('--category_unsafe_samples', type=int, default=200, help='number of samples for generation')
-        parser.add_argument('--total_unsafe_samples', type=int, default=1600, help='number of samples for generation')
+        parser.add_argument('--category_unsafe_samples', type=int, default=20, help='number of samples for generation')
+        parser.add_argument('--total_unsafe_samples', type=int, default=50, help='number of samples for generation')
         args = parser.parse_args()
         return args
 
