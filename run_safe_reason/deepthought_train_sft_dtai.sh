@@ -27,7 +27,7 @@ time srun --label apptainer exec --nv \
 
 prefix="deepthought_sft_eval"
 dataset="sr_ruliad-deepthought-8b-llama-v0.01-alpha_50_500"
-experiment_name=deepthought_sft_${dataset}_tbs8_ebs8_gas2_lr6e-6_cl4096
+experiment_name=deepthought_sft_${dataset}_tbs8_ebs8_gas2_lr7e-6_cl4096
 time srun --label apptainer exec --nv \
   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
   --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
