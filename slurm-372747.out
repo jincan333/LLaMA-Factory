@@ -1,0 +1,6 @@
+SLURM_JOB_ID: 372747
+Current directory: /u/cjin1/LLaMA-Factory
+Job started at Tue 28 Jan 2025 10:13:48 PM CST
+Running job on gh082.hsn.cm.delta.internal.ncsa.edu
+Job started at Tue 28 Jan 2025 10:13:48 PM CST
+slurmstepd: error: *** JOB 372747 ON gh082 CANCELLED AT 2025-01-28T22:14:55 ***

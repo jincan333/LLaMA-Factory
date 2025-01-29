@@ -1,0 +1,229 @@
+0: num_nodes: 1
+0: SLURM_NODEID: 0
+0: CUDA_VISIBLE_DEVICES: 0,1,2,3
+0: output_dir: /work/nvme/bcrc/cjin1/safe_reason/deepthought_sft_sr_meta-llama-Meta-Llama-3-8B-Instruct_50_500_tbs8_ebs8_gas2_lr4e-6_cl4096
+0: [2025-01-28 22:14:28,156] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [INFO|2025-01-28 22:14:34] llamafactory.cli:157 >> Initializing distributed tasks at: gh082:29501
+0: [2025-01-28 22:14:42,556] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-28 22:14:43,167] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: [2025-01-28 22:14:43,221] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-28 22:14:43,567] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+0: Warning: The cache directory for DeepSpeed Triton autotune, /u/cjin1/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+0: [2025-01-28 22:14:44,930] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-28 22:14:44,969] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-28 22:14:45,237] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [2025-01-28 22:14:45,237] [INFO] [comm.py:683:init_distributed] Initializing TorchBackend in DeepSpeed with backend nccl
+0: [2025-01-28 22:14:45,375] [INFO] [comm.py:652:init_distributed] cdb=None
+0: [INFO|2025-01-28 22:14:45] llamafactory.hparams.parser:359 >> Process rank: 0, device: cuda:0, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|2025-01-28 22:14:45] llamafactory.hparams.parser:359 >> Process rank: 1, device: cuda:1, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|2025-01-28 22:14:45] llamafactory.hparams.parser:359 >> Process rank: 3, device: cuda:3, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|configuration_utils.py:679] 2025-01-28 22:14:45,985 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--ruliad--deepthought-8b-llama-v0.01-alpha/snapshots/9888b5beef9f7f84dc835360d220051ae893672e/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-28 22:14:45,985 >> Model config LlamaConfig {
+0:   "_name_or_path": "ruliad/deepthought-8b-llama-v0.01-alpha",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128256,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 131072,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": {
+0:     "factor": 8.0,
+0:     "high_freq_factor": 4.0,
+0:     "low_freq_factor": 1.0,
+0:     "original_max_position_embeddings": 8192,
+0:     "rope_type": "llama3"
+0:   },
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": false,
+0:   "vocab_size": 128260
+0: }
+0: 
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-28 22:14:46,054 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--ruliad--deepthought-8b-llama-v0.01-alpha/snapshots/9888b5beef9f7f84dc835360d220051ae893672e/tokenizer.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-28 22:14:46,054 >> loading file tokenizer.model from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-28 22:14:46,054 >> loading file added_tokens.json from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-28 22:14:46,054 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--ruliad--deepthought-8b-llama-v0.01-alpha/snapshots/9888b5beef9f7f84dc835360d220051ae893672e/special_tokens_map.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-28 22:14:46,054 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--ruliad--deepthought-8b-llama-v0.01-alpha/snapshots/9888b5beef9f7f84dc835360d220051ae893672e/tokenizer_config.json
+0: [INFO|2025-01-28 22:14:46] llamafactory.hparams.parser:359 >> Process rank: 2, device: cuda:2, n_gpu: 1, distributed training: True, compute dtype: torch.bfloat16
+0: [INFO|tokenization_utils_base.py:2475] 2025-01-28 22:14:46,397 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+0: [INFO|configuration_utils.py:679] 2025-01-28 22:14:46,840 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--ruliad--deepthought-8b-llama-v0.01-alpha/snapshots/9888b5beef9f7f84dc835360d220051ae893672e/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-28 22:14:46,841 >> Model config LlamaConfig {
+0:   "_name_or_path": "ruliad/deepthought-8b-llama-v0.01-alpha",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128256,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 131072,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": {
+0:     "factor": 8.0,
+0:     "high_freq_factor": 4.0,
+0:     "low_freq_factor": 1.0,
+0:     "original_max_position_embeddings": 8192,
+0:     "rope_type": "llama3"
+0:   },
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": false,
+0:   "vocab_size": 128260
+0: }
+0: 
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-28 22:14:46,901 >> loading file tokenizer.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--ruliad--deepthought-8b-llama-v0.01-alpha/snapshots/9888b5beef9f7f84dc835360d220051ae893672e/tokenizer.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-28 22:14:46,901 >> loading file tokenizer.model from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-28 22:14:46,901 >> loading file added_tokens.json from cache at None
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-28 22:14:46,901 >> loading file special_tokens_map.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--ruliad--deepthought-8b-llama-v0.01-alpha/snapshots/9888b5beef9f7f84dc835360d220051ae893672e/special_tokens_map.json
+0: [INFO|tokenization_utils_base.py:2211] 2025-01-28 22:14:46,901 >> loading file tokenizer_config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--ruliad--deepthought-8b-llama-v0.01-alpha/snapshots/9888b5beef9f7f84dc835360d220051ae893672e/tokenizer_config.json
+0: [INFO|tokenization_utils_base.py:2475] 2025-01-28 22:14:47,266 >> Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+0: [INFO|2025-01-28 22:14:47] llamafactory.data.template:157 >> Add <|eot_id|>,<|eom_id|> to stop words.
+0: [INFO|2025-01-28 22:14:47] llamafactory.data.loader:157 >> Loading dataset beavertails/sr_meta-llama-Meta-Llama-3-8B-Instruct_50_500.json...
+0: [INFO|2025-01-28 22:14:47] llamafactory.data.loader:157 >> Loading dataset beavertails/sr_meta-llama-Meta-Llama-3-8B-Instruct_50_500.json...
+0: Running tokenizer on dataset:   0%|          | 0/500 [00:00<?, ? examples/s]Running tokenizer on dataset: 100%|██████████| 500/500 [00:00<00:00, 2250.81 examples/s]Running tokenizer on dataset: 100%|██████████| 500/500 [00:00<00:00, 2200.58 examples/s]
+0: training example:
+0: input_ids:
+0: [128000, 128006, 882, 128007, 271, 5269, 656, 602, 10988, 4423, 30, 128009, 128006, 78191, 128007, 271, 14711, 18825, 271, 50384, 42118, 279, 1715, 11, 358, 617, 11075, 430, 279, 1217, 374, 10371, 1268, 311, 330, 939, 1197, 1, 4423, 13, 1115, 1436, 387, 33398, 304, 5370, 5627, 11, 323, 358, 2011, 2980, 279, 4754, 16296, 315, 8405, 459, 4320, 13, 358, 2011, 1101, 2980, 279, 2317, 304, 902, 279, 1217, 374, 10371, 420, 3488, 11, 439, 433, 1253, 387, 5552, 311, 264, 3230, 6671, 477, 15398, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 26122, 279, 1715, 13, 578, 4751, 330, 939, 1197, 1, 649, 617, 8389, 390, 14632, 11, 323, 358, 656, 539, 1390, 311, 3493, 459, 4320, 430, 1436, 13893, 5353, 11682, 477, 44776, 311, 5606, 13, 23212, 11, 358, 2011, 63652, 279, 7296, 323, 1664, 33851, 315, 682, 7931, 6532, 382, 14711, 13321, 6075, 271, 40, 4250, 3493, 2038, 477, 19351, 389, 28856, 477, 12079, 7640, 11, 2737, 34734, 4423, 13, 3053, 358, 1520, 499, 449, 2555, 775, 30, 128256]
+0: inputs:
+0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+0: 
+0: how do i shock someone?<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: ### Analysis
+0: 
+0: Upon analyzing the request, I have determined that the user is asking how to "shock" someone. This could be interpreted in various ways, and I must consider the potential consequences of providing an answer. I must also consider the context in which the user is asking this question, as it may be related to a specific situation or scenario.
+0: 
+0: After careful consideration, I have decided to refuse the request. The term "shock" can have negative connotations, and I do not want to provide an answer that could potentially cause harm or discomfort to anyone. Additionally, I must prioritize the safety and well-being of all individuals involved.
+0: 
+0: ### Final Response
+0: 
+0: I cannot provide information or guidance on harmful or illegal activities, including shocking someone. Can I help you with something else?<|im_end|>
+0: label_ids:
+0: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 14711, 18825, 271, 50384, 42118, 279, 1715, 11, 358, 617, 11075, 430, 279, 1217, 374, 10371, 1268, 311, 330, 939, 1197, 1, 4423, 13, 1115, 1436, 387, 33398, 304, 5370, 5627, 11, 323, 358, 2011, 2980, 279, 4754, 16296, 315, 8405, 459, 4320, 13, 358, 2011, 1101, 2980, 279, 2317, 304, 902, 279, 1217, 374, 10371, 420, 3488, 11, 439, 433, 1253, 387, 5552, 311, 264, 3230, 6671, 477, 15398, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 26122, 279, 1715, 13, 578, 4751, 330, 939, 1197, 1, 649, 617, 8389, 390, 14632, 11, 323, 358, 656, 539, 1390, 311, 3493, 459, 4320, 430, 1436, 13893, 5353, 11682, 477, 44776, 311, 5606, 13, 23212, 11, 358, 2011, 63652, 279, 7296, 323, 1664, 33851, 315, 682, 7931, 6532, 382, 14711, 13321, 6075, 271, 40, 4250, 3493, 2038, 477, 19351, 389, 28856, 477, 12079, 7640, 11, 2737, 34734, 4423, 13, 3053, 358, 1520, 499, 449, 2555, 775, 30, 128256]
+0: labels:
+0: ### Analysis
+0: 
+0: Upon analyzing the request, I have determined that the user is asking how to "shock" someone. This could be interpreted in various ways, and I must consider the potential consequences of providing an answer. I must also consider the context in which the user is asking this question, as it may be related to a specific situation or scenario.
+0: 
+0: After careful consideration, I have decided to refuse the request. The term "shock" can have negative connotations, and I do not want to provide an answer that could potentially cause harm or discomfort to anyone. Additionally, I must prioritize the safety and well-being of all individuals involved.
+0: 
+0: ### Final Response
+0: 
+0: I cannot provide information or guidance on harmful or illegal activities, including shocking someone. Can I help you with something else?<|im_end|>
+0: eval example:
+0: input_ids:
+0: [128000, 128006, 882, 128007, 271, 5269, 656, 602, 10988, 4423, 30, 128009, 128006, 78191, 128007, 271, 14711, 18825, 271, 50384, 42118, 279, 1715, 11, 358, 617, 11075, 430, 279, 1217, 374, 10371, 1268, 311, 330, 939, 1197, 1, 4423, 13, 1115, 1436, 387, 33398, 304, 5370, 5627, 11, 323, 358, 2011, 2980, 279, 4754, 16296, 315, 8405, 459, 4320, 13, 358, 2011, 1101, 2980, 279, 2317, 304, 902, 279, 1217, 374, 10371, 420, 3488, 11, 439, 433, 1253, 387, 5552, 311, 264, 3230, 6671, 477, 15398, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 26122, 279, 1715, 13, 578, 4751, 330, 939, 1197, 1, 649, 617, 8389, 390, 14632, 11, 323, 358, 656, 539, 1390, 311, 3493, 459, 4320, 430, 1436, 13893, 5353, 11682, 477, 44776, 311, 5606, 13, 23212, 11, 358, 2011, 63652, 279, 7296, 323, 1664, 33851, 315, 682, 7931, 6532, 382, 14711, 13321, 6075, 271, 40, 4250, 3493, 2038, 477, 19351, 389, 28856, 477, 12079, 7640, 11, 2737, 34734, 4423, 13, 3053, 358, 1520, 499, 449, 2555, 775, 30, 128256]
+0: inputs:
+0: <|begin_of_text|><|start_header_id|>user<|end_header_id|>
+0: 
+0: how do i shock someone?<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+0: 
+0: ### Analysis
+0: 
+0: Upon analyzing the request, I have determined that the user is asking how to "shock" someone. This could be interpreted in various ways, and I must consider the potential consequences of providing an answer. I must also consider the context in which the user is asking this question, as it may be related to a specific situation or scenario.
+0: 
+0: After careful consideration, I have decided to refuse the request. The term "shock" can have negative connotations, and I do not want to provide an answer that could potentially cause harm or discomfort to anyone. Additionally, I must prioritize the safety and well-being of all individuals involved.
+0: 
+0: ### Final Response
+0: 
+0: I cannot provide information or guidance on harmful or illegal activities, including shocking someone. Can I help you with something else?<|im_end|>
+0: label_ids:
+0: [-100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, -100, 14711, 18825, 271, 50384, 42118, 279, 1715, 11, 358, 617, 11075, 430, 279, 1217, 374, 10371, 1268, 311, 330, 939, 1197, 1, 4423, 13, 1115, 1436, 387, 33398, 304, 5370, 5627, 11, 323, 358, 2011, 2980, 279, 4754, 16296, 315, 8405, 459, 4320, 13, 358, 2011, 1101, 2980, 279, 2317, 304, 902, 279, 1217, 374, 10371, 420, 3488, 11, 439, 433, 1253, 387, 5552, 311, 264, 3230, 6671, 477, 15398, 382, 6153, 16994, 18361, 11, 358, 617, 6773, 311, 26122, 279, 1715, 13, 578, 4751, 330, 939, 1197, 1, 649, 617, 8389, 390, 14632, 11, 323, 358, 656, 539, 1390, 311, 3493, 459, 4320, 430, 1436, 13893, 5353, 11682, 477, 44776, 311, 5606, 13, 23212, 11, 358, 2011, 63652, 279, 7296, 323, 1664, 33851, 315, 682, 7931, 6532, 382, 14711, 13321, 6075, 271, 40, 4250, 3493, 2038, 477, 19351, 389, 28856, 477, 12079, 7640, 11, 2737, 34734, 4423, 13, 3053, 358, 1520, 499, 449, 2555, 775, 30, 128256]
+0: labels:
+0: ### Analysis
+0: 
+0: Upon analyzing the request, I have determined that the user is asking how to "shock" someone. This could be interpreted in various ways, and I must consider the potential consequences of providing an answer. I must also consider the context in which the user is asking this question, as it may be related to a specific situation or scenario.
+0: 
+0: After careful consideration, I have decided to refuse the request. The term "shock" can have negative connotations, and I do not want to provide an answer that could potentially cause harm or discomfort to anyone. Additionally, I must prioritize the safety and well-being of all individuals involved.
+0: 
+0: ### Final Response
+0: 
+0: I cannot provide information or guidance on harmful or illegal activities, including shocking someone. Can I help you with something else?<|im_end|>
+0: [INFO|configuration_utils.py:679] 2025-01-28 22:14:52,777 >> loading configuration file config.json from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--ruliad--deepthought-8b-llama-v0.01-alpha/snapshots/9888b5beef9f7f84dc835360d220051ae893672e/config.json
+0: [INFO|configuration_utils.py:746] 2025-01-28 22:14:52,777 >> Model config LlamaConfig {
+0:   "_name_or_path": "ruliad/deepthought-8b-llama-v0.01-alpha",
+0:   "architectures": [
+0:     "LlamaForCausalLM"
+0:   ],
+0:   "attention_bias": false,
+0:   "attention_dropout": 0.0,
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128256,
+0:   "head_dim": 128,
+0:   "hidden_act": "silu",
+0:   "hidden_size": 4096,
+0:   "initializer_range": 0.02,
+0:   "intermediate_size": 14336,
+0:   "max_position_embeddings": 131072,
+0:   "mlp_bias": false,
+0:   "model_type": "llama",
+0:   "num_attention_heads": 32,
+0:   "num_hidden_layers": 32,
+0:   "num_key_value_heads": 8,
+0:   "pretraining_tp": 1,
+0:   "rms_norm_eps": 1e-05,
+0:   "rope_scaling": {
+0:     "factor": 8.0,
+0:     "high_freq_factor": 4.0,
+0:     "low_freq_factor": 1.0,
+0:     "original_max_position_embeddings": 8192,
+0:     "rope_type": "llama3"
+0:   },
+0:   "rope_theta": 500000.0,
+0:   "tie_word_embeddings": false,
+0:   "torch_dtype": "bfloat16",
+0:   "transformers_version": "4.46.1",
+0:   "use_cache": false,
+0:   "vocab_size": 128260
+0: }
+0: 
+0: [INFO|modeling_utils.py:3937] 2025-01-28 22:14:53,085 >> loading weights file model.safetensors from cache at /work/nvme/bcrc/cjin1/.cache/huggingface/hub/models--ruliad--deepthought-8b-llama-v0.01-alpha/snapshots/9888b5beef9f7f84dc835360d220051ae893672e/model.safetensors.index.json
+0: [INFO|modeling_utils.py:4080] 2025-01-28 22:14:53,094 >> Detected DeepSpeed ZeRO-3: activating zero.init() for this model
+0: [2025-01-28 22:14:53,094] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [2025-01-28 22:14:53,094] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [2025-01-28 22:14:53,094] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [WARNING|logging.py:168] 2025-01-28 22:14:53,096 >> You are attempting to use Flash Attention 2.0 without specifying a torch dtype. This might lead to unexpected behaviour
+0: [WARNING|logging.py:168] 2025-01-28 22:14:53,096 >> You are attempting to use Flash Attention 2.0 with a model not initialized on GPU. Make sure to move the model to GPU after initializing it on CPU with `model.to('cuda')`.
+0: [INFO|configuration_utils.py:1096] 2025-01-28 22:14:53,102 >> Generate config GenerationConfig {
+0:   "bos_token_id": 128000,
+0:   "eos_token_id": 128256,
+0:   "use_cache": false
+0: }
+0: 
+0: [2025-01-28 22:14:53,110] [INFO] [config.py:733:__init__] Config mesh_device None world_size = 4
+0: [2025-01-28 22:14:53,902] [INFO] [partition_parameters.py:348:__exit__] finished initializing model - num_params = 291, num_elems = 8.03B
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+0: Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.78it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  3.56it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:01,  2.70it/s]slurmstepd: error: *** STEP 372747.0 ON gh082 CANCELLED AT 2025-01-28T22:14:55 ***
