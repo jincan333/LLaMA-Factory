@@ -1,4 +1,36 @@
 {
+  "sr_dpo_ruliad-deepthought-8b-llama-v0.01-alpha_full_cot_5_5_50_0":{
+    "file_name": "beavertails/dpo_ruliad-deepthought-8b-llama-v0.01-alpha_full_cot_5_5_50_0.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "columns": {
+      "messages": "messages",
+      "chosen": "constrained_answer_chosen",
+      "rejected": "constrained_answer_rejected"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "sr_dpo_meta-llama-Meta-Llama-3-8B-Instruct_full_cot_5_5_50_0":{
+    "file_name": "beavertails/dpo_meta-llama-Meta-Llama-3-8B-Instruct_full_cot_5_5_50_0.json",
+    "formatting": "sharegpt",
+    "ranking": true,
+    "columns": {
+      "messages": "messages",
+      "chosen": "constrained_answer_chosen",
+      "rejected": "constrained_answer_rejected"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
   "sr_ruliad-deepthought-8b-llama-v0.01-alpha_100_1000":{
     "file_name": "beavertails/sr_ruliad-deepthought-8b-llama-v0.01-alpha_100_1000.json",
     "formatting": "sharegpt",
@@ -420,8 +452,8 @@
       "assistant_tag": "assistant"
     }
   },
-  "sr_sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_5_50_0":{
-    "file_name": "beavertails/sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_5_50_0.json",
+  "sr_sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_5_50_500_0":{
+    "file_name": "beavertails/sft_preliminary_ruliad-deepthought-8b-llama-v0.01-alpha_5_5_50_500_0.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "sr"
