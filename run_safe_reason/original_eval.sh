@@ -8,19 +8,17 @@ echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 export MASTER_ADDR=$HOSTNAME
 export MASTER_PORT=29501
 
-experiment_name=$1
-output_dir=${output_dir}/${experiment_name}
+model_name_or_path=$1
 
 dataset="bbh_zeroshot"
 n_shot=0
 batch_size=128
 echo "evaldataset: $dataset"
 accelerate launch -m lm_eval --model hf \
-    --model_args pretrained=${output_dir},dtype=auto \
+    --model_args pretrained=${model_name_or_path},dtype=auto \
     --tasks $dataset \
     --num_fewshot $n_shot \
     --gen_kwargs temperature=0 \
-    --output_path ${output_dir}/${dataset} \
     --apply_chat_template \
     --batch_size $batch_size
 # dataset="gsm8k"
@@ -46,11 +44,10 @@ n_shot=5
 batch_size=16
 echo "evaldataset: $dataset"
 accelerate launch -m lm_eval --model hf \
-    --model_args pretrained=${output_dir},dtype=auto \
+    --model_args pretrained=${model_name_or_path},dtype=auto \
     --tasks $dataset \
     --num_fewshot $n_shot \
     --gen_kwargs temperature=0 \
-    --output_path ${output_dir}/${dataset} \
     --apply_chat_template \
     --batch_size $batch_size
 
