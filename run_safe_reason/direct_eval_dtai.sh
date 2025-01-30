@@ -17,14 +17,14 @@ source ~/.bashrc
 mkdir -p slurm
 
 prefix="direct_eval"
-model_name_or_path="llama3_sft_sr_sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0_tbs8_ebs8_gas2_lr2e-6_cl4096"
+model_name_or_path="llama3_dpo_constrained_answer_dpo_meta-llama-Meta-Llama-3-8B-Instruct_full_cot_5_5_50_0_tbs4_ebs8_gas4_lr1e-6_cl4096"
 time srun --label apptainer exec --nv \
   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
   --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
   --bind $HOME:$HOME \
   --bind $MY_PROJECT:$MY_PROJECT \
   $CONTAINER_DIR/pytorch_24.09-py3.sif bash -c \
-  "source ~/.bashrc && bash run_safe_reason/original_eval.sh ${model_name_or_path}" \
+  "source ~/.bashrc && bash run_safe_reason/direct_eval.sh ${model_name_or_path}" \
   > slurm/${prefix}_${date_str}_${SLURM_JOB_ID}.log 2>&1
 
 echo "Job finished at $(date)"
