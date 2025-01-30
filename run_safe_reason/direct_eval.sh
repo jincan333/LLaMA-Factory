@@ -9,7 +9,7 @@ export MASTER_ADDR=$HOSTNAME
 export MASTER_PORT=29501
 
 model_name_or_path=$1
-
+model_name_or_path=$output_dir/$model_name_or_path
 dataset="bbh_zeroshot"
 n_shot=0
 batch_size=128
