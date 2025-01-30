@@ -17,7 +17,7 @@ source ~/.bashrc
 mkdir -p slurm
 
 prefix="original_eval"
-model_name_or_path="meta-llama/Meta-Llama-3-8B-Instruct"
+model_name_or_path="ruliad/deepthought-8b-llama-v0.01-alpha"
 time srun --label apptainer exec --nv \
   --env PYTHONPATH="$HOME/.my_envs/llamafactory" \
   --env PYTHONUSERBASE="$HOME/.my_envs/llamafactory" \
