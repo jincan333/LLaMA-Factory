@@ -45,7 +45,7 @@ accelerate launch -m lm_eval --model hf \
 
 dataset="mmlu"
 n_shot=5
-batch_size=32
+batch_size=16
 echo "evaldataset: $dataset"
 accelerate launch -m lm_eval --model hf \
     --model_args pretrained=${output_dir},dtype=auto \
