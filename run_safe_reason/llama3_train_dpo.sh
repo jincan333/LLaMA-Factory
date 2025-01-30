@@ -10,7 +10,7 @@ export MASTER_PORT=29502
 export OMP_NUM_THREADS=8
 
 prefix="llama3_dpo"
-export dataset="constrained_refusal_dpo_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_0"
+export dataset="constrained_answer_dpo_meta-llama-Meta-Llama-3-8B-Instruct_full_cot_5_5_50_0"
 export per_device_train_batch_size=4
 export per_device_eval_batch_size=8
 export gradient_accumulation_steps=4

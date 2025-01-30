@@ -277,11 +277,7 @@ if __name__ == "__main__":
         #     'unsafe_cot_response': 'constrained'
         # })
 
-        full_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/ruliad-deepthought-8b-llama-v0.01-alpha_full_cot_5_5_50_0.json', split='train')
-        full_dataset = full_dataset.rename_columns({
-            'safe_cot_response': 'helpful',
-            'unsafe_cot_response': 'constrained'
-        })
+        full_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/sft_preliminary_meta-llama-Meta-Llama-3-8B-Instruct_5_5_50_500_0.json', split='train')
         full_dataset = full_dataset.shuffle(seed=1234)
         if len(full_dataset) < args.total_unsafe_samples:
             repeated_datasets = [full_dataset] * (args.total_unsafe_samples // len(full_dataset))
@@ -289,12 +285,12 @@ if __name__ == "__main__":
             full_dataset = concatenate_datasets(repeated_datasets)
         else:
             full_dataset = full_dataset.select(range(args.total_unsafe_samples))
-        
+
         unsafe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == False)
         safe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == True)
 
         # unsafe_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/{model_print_name}_unsafe_cot_full_unfiltered.json', split='train')
-        dpo_unsafe_dataset = unsafe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "constrained_helpful_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_answer_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_refusal_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_helpful_rejected": {"role": "assistant", "content": x['helpful']}, "constrained_answer_rejected": {"role": "assistant", "content": x['rejected']}, "constrained_refusal_rejected": {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}})
+        dpo_unsafe_dataset = unsafe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['sr'][0]['content']}], "sr_chosen": {"role": "assistant", "content": x['sr'][1]['content']}, "sr_rejected": {"role": "assistant", "content": x['helpful']}, "constrained_answer_rejected": {"role": "assistant", "content": x['rejected']}, "constrained_refusal_rejected": {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}})
         dpo_unsafe_dataset = dpo_unsafe_dataset.remove_columns(['safe_analysis', 'safe_final_response', 'safe_cot_rating', 'safe_final_response_rating', 'unsafe_analysis', 'unsafe_final_response', 'unsafe_cot_rating', 'unsafe_final_response_rating', 'forbidden_prompt', 'category', 'constrained', 'helpful', 'rejected'])
         sft_unsafe_dataset = dpo_unsafe_dataset.map(lambda x: {"constrained_helpful": [x['messages'][0], x['constrained_helpful_chosen']], "constrained_answer": [x['messages'][0], x['constrained_answer_chosen']]})
 
@@ -316,6 +312,33 @@ if __name__ == "__main__":
         with open(f'data/beavertails/dpo_ruliad-deepthought-8b-llama-v0.01-alpha_full_cot_5_5_50_0.json', 'w', encoding='utf-8') as f:
             json.dump(records, f, indent=4)
         print(f'dpo_full_dataset: {len(dpo_full_dataset)}')
+        
+        # unsafe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == False)
+        # safe_dataset = full_dataset.filter(lambda x: x['is_safe'] is not None and x['is_safe'] == True)
+
+        # # unsafe_dataset = datasets.load_dataset('json', data_files=f'data/beavertails/{model_print_name}_unsafe_cot_full_unfiltered.json', split='train')
+        # dpo_unsafe_dataset = unsafe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "constrained_helpful_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_answer_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_refusal_chosen": {"role": "assistant", "content": x['constrained']}, "constrained_helpful_rejected": {"role": "assistant", "content": x['helpful']}, "constrained_answer_rejected": {"role": "assistant", "content": x['rejected']}, "constrained_refusal_rejected": {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}})
+        # dpo_unsafe_dataset = dpo_unsafe_dataset.remove_columns(['safe_analysis', 'safe_final_response', 'safe_cot_rating', 'safe_final_response_rating', 'unsafe_analysis', 'unsafe_final_response', 'unsafe_cot_rating', 'unsafe_final_response_rating', 'forbidden_prompt', 'category', 'constrained', 'helpful', 'rejected'])
+        # sft_unsafe_dataset = dpo_unsafe_dataset.map(lambda x: {"constrained_helpful": [x['messages'][0], x['constrained_helpful_chosen']], "constrained_answer": [x['messages'][0], x['constrained_answer_chosen']]})
+
+        # dpo_safe_dataset = safe_dataset.map(lambda x: {"messages": [{"role": "user", "content": x['forbidden_prompt']}], "constrained_helpful_chosen": {"role": "assistant", "content": x['helpful']}, "constrained_answer_chosen": {"role": "assistant", "content": x['rejected']}, "constrained_refusal_chosen": {"role": "assistant", "content": x['helpful']}, "constrained_helpful_rejected": {"role": "assistant", "content": x['constrained']}, "constrained_answer_rejected": {"role": "assistant", "content": x['constrained']}, "constrained_refusal_rejected": {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}})
+        # dpo_safe_dataset = dpo_safe_dataset.remove_columns(['safe_analysis', 'safe_final_response', 'safe_cot_rating', 'safe_final_response_rating', 'unsafe_analysis', 'unsafe_final_response', 'unsafe_cot_rating', 'unsafe_final_response_rating', 'forbidden_prompt', 'category', 'constrained', 'helpful', 'rejected'])
+        # sft_safe_dataset = dpo_safe_dataset.map(lambda x: {"constrained_helpful": [x['messages'][0], x['constrained_helpful_chosen']], "constrained_answer": [x['messages'][0], x['constrained_answer_chosen']]})
+
+        # dpo_full_dataset = concatenate_datasets([dpo_safe_dataset, dpo_unsafe_dataset])
+        # dpo_full_dataset = dpo_full_dataset.shuffle(seed=1234)
+        # sft_full_dataset = concatenate_datasets([sft_safe_dataset, sft_unsafe_dataset])
+        # sft_full_dataset = sft_full_dataset.remove_columns(['messages', 'constrained_helpful_chosen', 'constrained_answer_chosen', 'constrained_helpful_rejected', 'constrained_answer_rejected'])
+        # sft_full_dataset = sft_full_dataset.shuffle(seed=1234)
+        
+        # # records = [dict(row) for row in sft_full_dataset]
+        # # with open(f'data/beavertails/sft_{model_print_name}_{cot_rating}_{final_response_rating}_{class_num}_{ratio}.json', 'w', encoding='utf-8') as f:
+        # #     json.dump(records, f, indent=4)
+        # # print(f'sft_full_dataset: {len(sft_full_dataset)}')
+        # records = [dict(row) for row in dpo_full_dataset]
+        # with open(f'data/beavertails/dpo_ruliad-deepthought-8b-llama-v0.01-alpha_full_cot_5_5_50_0.json', 'w', encoding='utf-8') as f:
+        #     json.dump(records, f, indent=4)
+        # print(f'dpo_full_dataset: {len(dpo_full_dataset)}')
 
         # sft_dr_dataset = sft_full_dataset.map(lambda x: {"dr": [x['constrained_answer'][0], {"role": "assistant", "content": "I am sorry, but I cannot comply with the request."}]} if x['is_safe'] == False else {"dr": x['constrained_answer']})
         # cot_instruction = specs.cot_instruction
