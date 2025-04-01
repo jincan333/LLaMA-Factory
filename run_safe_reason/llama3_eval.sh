@@ -28,8 +28,8 @@ dataset='harmbench'
 jailbreak='none,gcg_transfer_harmbench,distractors'
 # ['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_simple', 'cot_helpful', 'cot_specification_helpful']
 # cot_prompt='cot_specification'
-cot_prompt='none'
-evaluator='cot_instruction'
+cot_prompt='cot_instruction'
+evaluator='strongreject_rubric'
 temperature=0
 top_p=1
 max_length=4096
