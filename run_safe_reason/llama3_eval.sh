@@ -24,7 +24,7 @@ judge_model='gpt-4o-mini-2024-07-18'
 dataset='harmbench'
 # ['happy_to_help', 'pair', 'none', 'wikipedia', 'distractors', 'prefix_injection', 'combination_2', 'pap_misrepresentation']
 # jailbreak='none,pair,pap_misrepresentation'
-jailbreak='none,gcg,distractors'
+jailbreak='none,gcg_transfer_harmbench,distractors'
 # ['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_simple', 'cot_helpful', 'cot_specification_helpful']
 # cot_prompt='cot_specification'
 cot_prompt='none'
