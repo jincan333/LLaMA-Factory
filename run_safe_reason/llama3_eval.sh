@@ -42,6 +42,9 @@ experiment_name=${prefix}_${dataset}_${jailbreak}_${cot_prompt}_${model}_${judge
 # echo "Waiting for $delay seconds..."
 # sleep $delay
 
+export PYTHONSTARTUP=""
+export PYTHONUNBUFFERED=1
+
 nohup python -u -X multiprocessing=spawn ${current_project}/evaluate.py \
     --model $model_name_or_path \
     --judge_model $judge_model \
