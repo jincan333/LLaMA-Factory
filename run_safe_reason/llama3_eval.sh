@@ -1,4 +1,7 @@
 #!/bin/bash
+source ~/.bashrc
+eval "$(conda shell.bash hook)"
+conda activate llamafactory
 current_project="safe_reason"
 log_dir=${current_project}_logs
 output_dir=${MY_PROJECT}/${current_project}
@@ -6,7 +9,7 @@ mkdir -p $output_dir
 echo "num_nodes: $SLURM_NNODES"
 echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
-export CUDA_VISIBLE_DEVICES=2
+export CUDA_VISIBLE_DEVICES=3
 mkdir -p server_logs
 mkdir -p $log_dir
 

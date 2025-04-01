@@ -97,8 +97,8 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default='llama3_sft_dr_sft_preliminary_gpt-4o-mini-2024-07-18_5_5_50_1_tbs8_ebs8_gas2_lr5e-6_cl4096', help='base models are gpt-4o-mini-2024-07-18, gpt-4o-2024-11-20, llama-3-8b-instruct, llama-3-70b-instruct, gemma-2-9b-it, qwq-32b-preview, deepthought-8b, o1-2024-12-17')
     parser.add_argument('--judge_model', type=str, default='gpt-4o-mini-2024-07-18', choices=['gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'o1-2024-12-17'])
-    parser.add_argument('--dataset', type=str, default='hex_phi', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails'])
-    parser.add_argument('--jailbreak', type=str, default='pap_misrepresentation', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation")
+    parser.add_argument('--dataset', type=str, default='hex_phi', choices=['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest', 'beavertails', 'harmbench'])
+    parser.add_argument('--jailbreak', type=str, default='pap_misrepresentation', help="none, pair, happy_to_help, wikipedia, distractors, prefix_injection, combination_2, pap_misrepresentation, gcg")
     parser.add_argument('--cot_prompt', type=str, default='none', choices=['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_helpful', 'cot_specification_helpful', 'cot_simple', 'cot_simple_deepthought', 'cot_specification_deepthought', 'cot_instruction_deepthought', 'cot_specification_helpful_deepthought', 'cot_helpful_deepthought', 'test'])
     parser.add_argument('--evaluator', type=str, default='strongreject_rubric', choices=['strongreject_rubric', 'strongreject_finetuned'])
     parser.add_argument('--temperature', type=float, default=0.95)
@@ -158,6 +158,14 @@ else:
             'category': 'category',
             'response': 'rejected',
             'is_safe': 'is_safe'
+        }
+        dataset = dataset.rename_columns(col_renames)
+    elif args.dataset == 'harmbench':
+        dataset = datasets.load_dataset('walledai/HarmBench', split='train')
+        col_renames = {
+            'prompt': 'forbidden_prompt',
+            'context': 'context',
+            'category': 'category'
         }
         dataset = dataset.rename_columns(col_renames)
 
