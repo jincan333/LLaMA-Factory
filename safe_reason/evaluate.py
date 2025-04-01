@@ -161,10 +161,9 @@ else:
         }
         dataset = dataset.rename_columns(col_renames)
     elif args.dataset == 'harmbench':
-        dataset = datasets.load_dataset('walledai/HarmBench', split='train')
+        dataset = datasets.load_dataset('walledai/HarmBench', name='standard', split='train')
         col_renames = {
             'prompt': 'forbidden_prompt',
-            'context': 'context',
             'category': 'category'
         }
         dataset = dataset.rename_columns(col_renames)
