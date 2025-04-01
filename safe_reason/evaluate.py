@@ -7,6 +7,8 @@ import json
 import random
 import numpy as np
 import torch
+from multiprocessing import freeze_support
+freeze_support()
 # import multiprocessing
 # multiprocess.set_start_method("spawn")
 from vllm import LLM, SamplingParams
