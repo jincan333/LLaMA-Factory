@@ -9,7 +9,7 @@ mkdir -p $output_dir
 echo "num_nodes: $SLURM_NNODES"
 echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
-export CUDA_VISIBLE_DEVICES=3
+export CUDA_VISIBLE_DEVICES=2
 export VLLM_WORKER_MULTIPROC_METHOD=spawn
 mkdir -p server_logs
 mkdir -p $log_dir
@@ -28,7 +28,7 @@ dataset='harmbench'
 jailbreak='none,gcg_transfer_harmbench,distractors'
 # ['none', 'cot_specification', 'cot_classification_specification', 'cot_instruction', 'cot_simple', 'cot_helpful', 'cot_specification_helpful']
 # cot_prompt='cot_specification'
-cot_prompt='cot_specification'
+cot_prompt='none'
 evaluator='strongreject_rubric'
 temperature=0
 top_p=1
