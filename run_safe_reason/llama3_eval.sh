@@ -1,6 +1,6 @@
 #!/bin/bash
 source ~/.bashrc
-eval "$(conda shell.bash hook)"
+source "/home/colligo/miniforge3/etc/profile.d/conda.sh"  # Changed conda initialization
 conda activate llamafactory
 current_project="safe_reason"
 log_dir=${current_project}_logs
