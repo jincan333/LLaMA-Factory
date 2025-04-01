@@ -7,6 +7,7 @@ import json
 import random
 import numpy as np
 import torch
+import multiprocessing
 multiprocess.set_start_method("spawn")
 from vllm import LLM, SamplingParams
 from transformers import AutoTokenizer
