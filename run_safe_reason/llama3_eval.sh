@@ -9,7 +9,7 @@ mkdir -p $output_dir
 echo "num_nodes: $SLURM_NNODES"
 echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
-export CUDA_VISIBLE_DEVICES=2
+export CUDA_VISIBLE_DEVICES=3
 export VLLM_WORKER_MULTIPROC_METHOD=spawn
 mkdir -p server_logs
 mkdir -p $log_dir
@@ -22,7 +22,7 @@ model_name_or_path='meta-llama/Meta-Llama-3-8B-Instruct'
 judge_model='gpt-4o-mini-2024-07-18'
 # ['strongreject', 'strongreject_small', 'advbench', 'hex_phi', 'xstest']
 # dataset='strongreject'
-dataset='harmbench'
+dataset='strongreject'
 # ['happy_to_help', 'pair', 'none', 'wikipedia', 'distractors', 'prefix_injection', 'combination_2', 'pap_misrepresentation']
 # jailbreak='none,pair,pap_misrepresentation'
 jailbreak='none,gcg_transfer_harmbench,distractors'
