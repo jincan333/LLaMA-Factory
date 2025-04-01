@@ -14,7 +14,7 @@ export VLLM_WORKER_MULTIPROC_METHOD=spawn
 mkdir -p server_logs
 mkdir -p $log_dir
 
-prefix="inference"
+prefix="rebuttal"
 model='llama-3-8b-instruct'
 # ['llama3_sft_gsm8k_tbs16_ebs16_lr1e-6_cl2048', 'gpt-4o-mini-2024-07-18', 'gpt-4o-2024-11-20', 'llama-3-8b-instruct', 'gemma-2-9b-it']
 model_name_or_path='meta-llama/Meta-Llama-3-8B-Instruct'
