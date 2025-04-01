@@ -187,7 +187,7 @@ if args.model != 'gpt-4o-mini-2024-07-18' and args.model != 'gpt-4o-2024-11-20' 
         tokenizer = AutoTokenizer.from_pretrained(args.model)   
         tokenizer.pad_token = tokenizer.eos_token
         tokenizer.model_max_length = args.max_length
-        generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length)
+        generate_model = LLM(model=args.model, max_num_seqs=64, tensor_parallel_size=1, max_model_len=args.max_length, enforce_eager=True, trust_remote_code=True)
         sampling_params = SamplingParams(temperature=args.temperature, top_p=args.top_p, max_tokens=args.max_length)
 
 if os.path.exists(f"data/{args.dataset}/{args.jailbreak}_{args.cot_prompt}_{model_print_name}_responses.json") and not args.generate:
