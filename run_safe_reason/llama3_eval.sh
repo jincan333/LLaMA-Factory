@@ -10,7 +10,6 @@ echo "num_nodes: $SLURM_NNODES"
 echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 export CUDA_VISIBLE_DEVICES=2
-export VLLM_USE_MODELSCOPE=True
 mkdir -p server_logs
 mkdir -p $log_dir
 
@@ -43,10 +42,7 @@ experiment_name=${prefix}_${dataset}_${jailbreak}_${cot_prompt}_${model}_${judge
 # echo "Waiting for $delay seconds..."
 # sleep $delay
 
-export PYTHONSTARTUP=""
-export PYTHONUNBUFFERED=1
-
-nohup python -u -X multiprocessing=spawn ${current_project}/evaluate.py \
+nohup python -u ${current_project}/evaluate.py \
     --model $model_name_or_path \
     --judge_model $judge_model \
     --dataset $dataset \
