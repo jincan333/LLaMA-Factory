@@ -10,6 +10,7 @@ echo "num_nodes: $SLURM_NNODES"
 echo "SLURM_NODEID: $SLURM_NODEID"
 echo "CUDA_VISIBLE_DEVICES: $CUDA_VISIBLE_DEVICES"
 export CUDA_VISIBLE_DEVICES=2
+export VLLM_WORKER_MULTIPROC_METHOD=spawn
 mkdir -p server_logs
 mkdir -p $log_dir
 
